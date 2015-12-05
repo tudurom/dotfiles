@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+MUSIC="$(playerctl metadata artist) - $(playerctl metadata title)"
+
+if [ $? -ne 0 ]
+then
+  #echo "No music playing"
+  exit 0
+else
+  echo $MUSIC
+fi
+
+case $BLOCK_BUTTON in
+  1) playerctl play-pause &;;
+  4) playerctl next &;;
+  5) playerctl previous &;;
+esac

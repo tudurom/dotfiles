@@ -1,0 +1,1 @@
+../../../../../../../../../.zprezto/modules/prompt/external/pure/pure.zsh

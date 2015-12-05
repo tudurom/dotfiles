@@ -1,0 +1,1 @@
+/home/tudurom/.zprezto/runcoms/zshrc
