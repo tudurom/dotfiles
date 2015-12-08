@@ -1,0 +1,26 @@
+#!/bin/python
+#rnd=$(($RANDOM % 100))
+#if [ -z $OVER ]; then OVER=0; fi
+#echo $rnd
+#if [ $rnd -eq 2 ] || [ $OVER -eq 1 ]; then
+#  feh --bg-scale ~/Pictures/surprise_wall.png
+#else
+#  feh --bg-scale ~/Pictures/wallpaper.png
+#fi
+import os
+import time
+import random
+
+donger = os.environ.get('DONGER', 0)
+finger = os.environ.get('FINGER', 0)
+
+date = time.strftime('%d/%m')
+rnd = random.randrange(1, 101)
+
+if donger or date == '01/04':
+    os.system('feh --bg-scale ~/Pictures/april_wall.png')
+elif finger or rnd == 2:
+    os.system('feh --bg-scale ~/Pictures/surprise_wall.png')
+else:
+    os.system('feh --bg-scale ~/Pictures/wallpaper.png')
+
