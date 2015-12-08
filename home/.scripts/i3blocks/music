@@ -11,7 +11,7 @@ else
 fi
 
 case $BLOCK_BUTTON in
-  1) playerctl play-pause &;;
-  4) playerctl next &;;
-  5) playerctl previous &;;
+  1) playerctl play-pause & ;;
+  4) playerctl next & ;;
+  5) playerctl previous & ;;
 esac

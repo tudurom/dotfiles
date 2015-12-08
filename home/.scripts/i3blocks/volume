@@ -64,7 +64,7 @@ format() {
 
 case $BLOCK_BUTTON in
   # launch pavucontrol when clicked
-  1) pavucontrol &;;
+  1) pavucontrol & ;;
   3) amixer -q -D $MIXER sset $SCONTROL $(capability) toggle ;;  # right click, mute/unmute
   4) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute ;; # scroll up, increase
   5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease

@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 # export TERM=xterm-256color
 export TERM=xterm-256color
-export EDITOR=nano
+export EDITOR=vim
 export VISUAL=vim
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 

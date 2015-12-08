@@ -122,12 +122,13 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+F1 move workspace to output left
 bindsym $mod+F2 move workspace to output right
 
+set $mixer pulse
 
 # Multimedia keys
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute # raise
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute # decrease
+bindsym XF86AudioRaiseVolume exec amixer -q -D $mixer sset Master 5%+ unmute # raise
+bindsym XF86AudioLowerVolume exec amixer -q -D $mixer sset Master 5%- unmute # decrease
 
-bindsym XF86AudioMute exec amixer -q set Master mute # mute
+bindsym XF86AudioMute exec amixer -q -D $mixer sset Master toggle # mute
 
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -139,7 +140,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Aye, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Aye, exit i3' 'i3-msg exit' -b 'Shutdown' 'poweroff' -b 'Reboot' 'reboot'"
 
 
 # resize window (you can also use the mouse for that)
@@ -174,6 +175,7 @@ assign [class="Codeblocks"]         $workspace2
 assign [class="URxvt"]              $workspace4
 assign [class="libreoffice-writer"] $workspace5
 assign [class="Rhythmbox"]          $workspace6
+assign [class="Lollypop"]           $workspace6
 
 #set $bg-color 	         #2f343f
 #set $bg-color 	         #0c1922
