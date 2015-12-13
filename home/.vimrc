@@ -23,6 +23,7 @@ call vundle#begin()
   Plugin 'ntpeters/vim-better-whitespace'
 
   Plugin 'Shougo/unite.vim'
+  Plugin 'bling/vim-airline'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -50,3 +51,5 @@ set t_Co=256
 let base16colorspace=256
 colorscheme base16-ocean 
 set background=dark
+let g:airline_powerline_fonts = 1
+set laststatus=2

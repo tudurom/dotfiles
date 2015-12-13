@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Let's set up some colors. By default, we won't use any color.
+EYES=""
+TRUNK=""
+LEAVES=""
+CLEAR=""
+
+# If we're in a terminal, we can play with some color.
+if [ -t 1 ]
+then
+    # We'll choose our palette based on the number of available colors.
+    case $(tput colors) in
+        256)
+            EYES="$(tput setaf 240)" # A nice gray
+            SPOTS="$(tput setaf 15)" # Bright white
+            TRUNK="$(tput setaf 130)" # Brown-ish orange
+            LEAVES="$(tput setaf 22)" # Dark green
+            CLEAR="$(tput sgr0)"
+            ;;
+        16)
+            EYES="$(tput setaf 8)" # Gray
+            SPOTS="$(tput setaf 15)" # Bright white
+            TRUNK="$(tput setaf 3)" # Dark yellow
+            LEAVES="$(tput setaf 10)" # Bright green
+            CLEAR="$(tput sgr0)"
+            ;;
+        8)
+            EYES="$(tput setaf 7)" # White
+            SPOTS="$(tput setaf 7)" # White
+            TRUNK="$(tput setaf 3)" # Yellow
+            LEAVES="$(tput setaf 2)" # Green
+            CLEAR="$(tput sgr0)"
+            ;;
+    esac
+fi
+
+
+if [[ "$EUID" != 0 ]]
+then
+    # Non-root
+    echo "It's a weird tree."
+else
+    # Root!
+    cat <<-EOF
+	${LEAVES}    _              ${TRUNK}__
+	${LEAVES}   / \`\\  ${TRUNK}(~._    ./  )
+	${LEAVES}   \__/ __${TRUNK}\`-_\\__/ ./
+	${LEAVES}  _ ${TRUNK}\\ \\${LEAVES}/  \\   ${TRUNK}\\ |_   ${LEAVES}__
+	${LEAVES}(   )  \\__/ ${TRUNK}-^    \\ ${LEAVES}/  \\
+	${LEAVES} \\_/ ${TRUNK}"  \\  | ${EYES}o  o  ${TRUNK}|${LEAVES}.. /  __
+	${TRUNK}      \\. --' ${SPOTS}====  ${TRUNK}/  || ${LEAVES}/  \\
+	${TRUNK}        \\   ${SPOTS}.  .  ${TRUNK}|---${LEAVES}__${TRUNK}.${LEAVES}\\__/
+	${TRUNK}        /  ${SPOTS}:     ${TRUNK}/   ${LEAVES}|   |
+	${TRUNK}        /   ${SPOTS}:   ${TRUNK}/     ${LEAVES}\\_/
+	${TRUNK}     --/ ${SPOTS}::    ${TRUNK}(
+	${TRUNK}    (  |     (  (____
+	${TRUNK}  .--  .. ----**.____)
+	${TRUNK}  \\___/$CLEAR
+	EOF
+fi

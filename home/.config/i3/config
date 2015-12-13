@@ -169,6 +169,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+mode "launch" {
+  bindsym f exec firefox
+  bindsym t exec tomahawk
+  bindsym c exec codeblocks
+  bindsym n exec nautilus
+  
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+
+  
+}
+
+bindsym $mod+Shift+v mode "launch"
+
 # default workspaces
 assign [class="Firefox"]            $workspace1
 assign [class="Codeblocks"]         $workspace2
@@ -176,6 +190,7 @@ assign [class="URxvt"]              $workspace4
 assign [class="libreoffice-writer"] $workspace5
 assign [class="Rhythmbox"]          $workspace6
 assign [class="Lollypop"]           $workspace6
+assign [class="Tomahawk"]           $workspace6
 
 #set $bg-color 	         #2f343f
 #set $bg-color 	         #0c1922
@@ -216,7 +231,7 @@ client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $urgent-bg-color
 
 bindsym $mod+Shift+d exec i3-dmenu-desktop
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#8fa1b3" -font "System San Francisco Display 18" 
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#8fa1b3" -font "System San Francisco Display 18"
 
 bindsym $mod+Shift+x exec ~/.scripts/lock.sh ~/.scripts/lock.png
 
@@ -224,6 +239,9 @@ for_window [class="^.*"] border pixel 3
 gaps inner 5
 gaps outer 5
 smart_gaps on
+
+for_window [class="XTerm"] floating enable
+for_window [class="Plank"] floating enable,move absolute center
 
 exec_always --no-startup-id feh --bg-scale --no-startup-id ~/Pictures/wallpaper.png
 exec_always xsetroot -cursor_name left_ptr

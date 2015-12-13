@@ -4,6 +4,7 @@
 URxvt.font: xft:Hack:size=12
 URxvt.scrollBar: false
 URxvt.letterSpace: -1
+urxvt*perl-ext-common: default,clipboard
 
 #define base00 #2b303b
 #define base01 #343d46

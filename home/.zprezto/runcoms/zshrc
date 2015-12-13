@@ -15,9 +15,9 @@ fi
 export TERM=xterm-256color
 export EDITOR=vim
 export VISUAL=vim
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+export PATH="$(ruby -e 'print Gem.user_dir')/bin:$HOME/.scripts:$PATH"
 
-source ~/.dotfiles/base16-ocean.dark.sh
+source ~/.scripts/base16-ocean.dark.sh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # Vi mode
