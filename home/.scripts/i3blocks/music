@@ -1,13 +1,18 @@
 #!/usr/bin/bash
 
+STATUS="$(playerctl status)"
 MUSIC="$(playerctl metadata artist) - $(playerctl metadata title)"
 
-if [ $? -ne 0 ]
+declare -A val
+val["Playing"]=""
+val["Paused"]=""
+
+if [ $? -ne 0 ] || [[ $STATUS = "Stopped" ]]
 then
   #echo "No music playing"
   exit 0
 else
-  echo $MUSIC
+  echo "${val["$STATUS"]} $MUSIC"
 fi
 
 case $BLOCK_BUTTON in
@@ -16,3 +21,4 @@ case $BLOCK_BUTTON in
   4) playerctl next & ;;
   5) playerctl previous & ;;
 esac &
+

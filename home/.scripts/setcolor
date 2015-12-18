@@ -1,0 +1,15 @@
+#!/usr/bin/ruby
+
+$colors = {}
+
+$colors['BG_COLOR']="#1e4156"
+$colors['INACTIVE_BG_COLOR']="#142a38"
+$colors['TEXT_COLOR']="#4395c6"
+$colors['URGENT_BG_COLOR']="#E53935"
+$colors['BAR_BG_COLOR']="#18242C"
+
+if __FILE__ == $0 and ARGV.length > 0 then
+  print $colors[ARGV[0]]
+end
+
+

@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+source $HOME/.config/herbstluftwm/colors
+
+rofi -show run

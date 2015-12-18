@@ -174,11 +174,11 @@ mode "launch" {
   bindsym t exec tomahawk
   bindsym c exec codeblocks
   bindsym n exec nautilus
-  
+
   bindsym Return mode "default"
   bindsym Escape mode "default"
 
-  
+
 }
 
 bindsym $mod+Shift+v mode "launch"
@@ -186,6 +186,7 @@ bindsym $mod+Shift+v mode "launch"
 # default workspaces
 assign [class="Firefox"]            $workspace1
 assign [class="Codeblocks"]         $workspace2
+assign [class="Gvim"]               $workspace2
 assign [class="URxvt"]              $workspace4
 assign [class="libreoffice-writer"] $workspace5
 assign [class="Rhythmbox"]          $workspace6
@@ -208,7 +209,7 @@ bar {
   status_command i3blocks
   tray_output primary
   separator_symbol "●"
-  font pango:FontAwesome12, System San Francisco Display 12
+  font pango:FontAwesome 12, System San Francisco Display 12
 
 
   colors {
@@ -244,4 +245,5 @@ for_window [class="XTerm"] floating enable
 for_window [class="Plank"] floating enable,move absolute center
 
 exec_always --no-startup-id feh --bg-scale --no-startup-id ~/Pictures/wallpaper.png
-exec_always xsetroot -cursor_name left_ptr
+exec_always --no-startup-id xsetroot -cursor_name left_ptr
+exec_always --no-startup-id redshift-gtk &
