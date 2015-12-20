@@ -18,9 +18,9 @@ date = time.strftime('%d/%m')
 rnd = random.randrange(1, 101)
 
 if donger or date == '01/04':
-    os.system('feh --bg-scale ~/Pictures/april_wall.png')
+    os.system('feh --bg-fill ~/Pictures/april_wall.png')
 elif finger or rnd == 2:
-    os.system('feh --bg-scale ~/Pictures/surprise_wall.png')
+    os.system('feh --bg-fill ~/Pictures/surprise_wall.png')
 else:
-    os.system('feh --bg-scale ~/Pictures/wallpaper.png')
+    os.system('feh --bg-fill ~/Pictures/Monody.jpg')
 

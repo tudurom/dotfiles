@@ -5,6 +5,16 @@ load `printf %s $HOME` + "/.scripts/setcolor"
 BOLD_FONT_INDEX=2
 ICON_FONT_INDEX=3
 
+CLOCK_ICON   = "\u00c9"
+SPEAKER_ICON = "\u00c6"
+PLAYING_ICON = "\u00e6"
+PAUSED_ICON  = "\u00e7"
+STOPPED_ICON = "\u00e5"
+BATTERY_CHARGING_ICON = "\u00c2"
+BATTERY_FULL_ICON = "\u00f0"
+BATTERY_HALF_ICON = "\u00ef"
+BATTERY_EMPTY_ICON = "\u00ee"
+
 #puts $colors["BG_COLOR"]
 
 def bold(text)
@@ -57,6 +67,7 @@ end
 class Widget
 
   def initialize()
+    @align = :l
   end
 
   def update()
@@ -68,25 +79,36 @@ class Widget
   def out()
   end
 
+  def align()
+    return @align
+  end
+
 end
 
 class WidgetManager < Widget
 
   def initialize()
-    @widgets = []
+    @widgets = { :l => [], :c => [], :r => [] }
   end
 
   def add(widget)
-    @widgets.push widget
+    @widgets[widget.align].push widget
   end
 
   def update()
-    @widgets.each do |widget|
-      widget.update()
-    end
     @out = ""
-    @widgets.each do |widget|
-      @out += widget.out + " "
+    @widgets.each do |align, widgets_with_align|
+      @out += "%{#{align.to_s}}"
+      widgets_with_align.each_with_index do |widget, index|
+        widget.update
+        @out += widget.out
+        if index < widgets_with_align.length - 1
+          widgets_with_align[index + 1].update
+          if widgets_with_align[index + 1].out.strip != ""
+            @out += separator
+          end
+        end
+      end
     end
 
   end
@@ -104,8 +126,6 @@ end
 
 class HLWMTags < Widget
 
-  def initialize()
-  end
 
   def out()
     return @out
@@ -131,7 +151,7 @@ class HLWMTags < Widget
         @out += bg("-", fg("#ababab", text))
       end
     end
-    @out += separator + fg("#ababab", `xtitle`.strip())
+    @out += fg("#ababab", `xtitle`.strip())
 
   end
 
@@ -143,8 +163,12 @@ end
 
 class TimeW < Widget
 
+  def initialize
+    @align = :r
+  end
+
   def update()
-    @out = "%{r}" + icon("\uf017") + " " + `date +"%A, %d %B %H:%I"`.strip + separator
+    @out = icon(CLOCK_ICON) + " " + Time.now.strftime("%A, %m %B %I:%M")
   end
 
   def render()
@@ -158,20 +182,24 @@ end
 
 class PlayerctlW < Widget
 
+  def initialize
+    @align = :r
+  end
+
   def update()
     status = `playerctl status`.strip()
     if status != ""
       statuses = {
-        "Playing" => "\uf04b",
-        "Paused"  => "\uf04c",
-        "Stopped" => "\uf04d"
+        "Playing" => PLAYING_ICON,
+        "Paused"  => PAUSED_ICON,
+        "Stopped" => STOPPED_ICON
       }
       buttons = []
       buttons[0] = Button.new(1, "playerctl play-pause")
       buttons[1] = Button.new(3, "playerctl stop")
       artist = `playerctl metadata artist`
       title = `playerctl metadata title`
-      @out = bold("#{icon(statuses[status])} #{click(artist + ' - ' + title, buttons)}")
+      @out = "#{icon(statuses[status])} #{click(bold(artist + ' - ' + title), buttons)} "
     else
       @out = " "
     end
@@ -188,13 +216,16 @@ end
 
 class VolumeW < Widget
 
+  def initialize
+    @align = :r
+  end
   def update()
     buttons = [Button.new(3, "amixer -D pulse sset Master toggle"),
                Button.new(4, "amixer -D pulse sset Master 5%+"),
                Button.new(5, "amixer -D pulse sset Master 5%-")]
 
 
-    @out = "#{icon("\uf028")} " + `~/.scripts/desktop/panel/volume`.strip.chomp('%') + separator
+    @out = "#{icon(SPEAKER_ICON)} " + click(`~/.scripts/desktop/panel/volume`.strip.chomp('%'), buttons)
   end
 
   def out()
@@ -206,14 +237,56 @@ class VolumeW < Widget
   end
 end
 
+class BatteryW < Widget
+
+  def initialize
+    @align = :r
+  end
+
+  def update
+    regex = /(\w+), (\d+)%(, (\d+):(\d+):(\d+))?/
+    out = `acpi -b`
+    regex.match(out)
+    status = $~[1]
+    percentage = $~[2].to_i
+    hours = $~[4]
+    minutes = $~[5]
+    icon = ""
+    if status == "Charging"
+      icon = BATTERY_CHARGING_ICON
+    elsif percentage >= 50
+      icon = BATTERY_FULL_ICON
+    elsif percentage < 50 and percentage >= 20
+      icon = BATTERY_HALF_ICON
+    else
+      icon = BATTERY_EMPTY_ICON
+    end
+
+    @out = icon(icon) + " " + percentage.to_s
+    if hours != nil
+      @out += " (#{hours}:#{minutes})"
+    end
+  end
+
+  def out
+    return @out
+  end
+
+  def render
+    print @out
+  end
+end
+
 tags = HLWMTags.new
 time = TimeW.new
 volume = VolumeW.new
+batt = BatteryW.new
 pctl = PlayerctlW.new
 manager = WidgetManager.new
 manager.add tags
 manager.add time
 manager.add volume
+manager.add batt
 manager.add pctl
 
 while true

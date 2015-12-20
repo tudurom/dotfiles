@@ -127,10 +127,10 @@ hc set frame_border_active_color "$BG_COLOR"
 hc set frame_border_normal_color "$INACTIVE_BG_COLOR"
 hc set frame_bg_normal_color "$INACTIVE_BG_COLOR"
 hc set frame_bg_active_color "$BG_COLOR"
-hc set frame_border_width 1
+hc set frame_border_width 0
 hc set always_show_frame 1
 hc set frame_bg_transparent 1
-hc set frame_transparent_width 5
+hc set frame_transparent_width 0
 hc set window_gap 10
 
 hc attr theme.active.color "$(hc get frame_bg_active_color)"
@@ -146,7 +146,6 @@ hc attr theme.active.inner_color '#3E4A00'
 hc attr theme.active.outer_color '#3E4A00'
 hc attr theme.background_color '#18242C'
 
-hc set window_gap 0
 hc set frame_padding 0
 hc set smart_window_surroundings 0
 hc set smart_frame_surroundings 1
@@ -156,7 +155,7 @@ hc set mouse_recenter_gap 0
 hc unrule -F
 #hc rule class=XTerm tag=3 # move all xterms to tag 3
 #hc rule focus=on # normally focus new clients
-hc rule focus=off # normally do not focus new clients
+hc rule focus=on # normally do not focus new clients
 # give focus to most common terminals
 #hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
