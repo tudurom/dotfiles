@@ -1,9 +1,9 @@
 Tudurom's dotfiles
 ==================
 
-~This is my first ever GNU/Linux install on real hardware, and my first rice.~
+~~This is my first ever GNU/Linux install on real hardware, and my first rice.~~
 
-~Feel free to complain about my stupidity!~
+~~Feel free to complain about my stupidity!~~
 
 Shiny new HLWM rice with Ruby powered Lemonbar!
 
