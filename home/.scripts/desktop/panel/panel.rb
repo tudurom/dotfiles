@@ -151,7 +151,7 @@ class HLWMTags < Widget
         @out += bg("-", fg("#ababab", text))
       end
     end
-    @out += fg("#ababab", `xtitle`.strip())
+    @out += separator + fg("#ababab", `xtitle`.strip())
 
   end
 
@@ -168,7 +168,7 @@ class TimeW < Widget
   end
 
   def update()
-    @out = icon(CLOCK_ICON) + " " + Time.now.strftime("%A, %m %B %I:%M")
+    @out = icon(CLOCK_ICON) + " " + Time.now.strftime("%A, %m %B %I:%M %p")
   end
 
   def render()
