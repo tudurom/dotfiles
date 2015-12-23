@@ -209,7 +209,7 @@ bar {
   status_command i3blocks
   tray_output primary
   separator_symbol "●"
-  font pango:FontAwesome 12, System San Francisco Display 12
+  font pango:FontAwesome 10, System San Francisco Display 10
 
 
   colors {
@@ -239,7 +239,6 @@ bindsym $mod+Shift+x exec ~/.scripts/lock.sh ~/.scripts/lock.png
 for_window [class="^.*"] border pixel 3
 gaps inner 5
 gaps outer 5
-smart_gaps on
 
 for_window [class="XTerm"] floating enable
 for_window [class="Plank"] floating enable,move absolute center

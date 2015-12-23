@@ -1,0 +1,9 @@
+#! /bin/bash
+
+PANEL_FIFO=/tmp/pamel-fifo
+PANEL_HEIGHT=30
+PANEL_WM_NAME="lemonbar"
+PANEL_FONT_FAMILY=-*-tamsynmod-medium-*-*-*-17-*-*-*-*-*-*-*
+REFRESH_VOLUME=0.5
+REFRESH_MUSIC=1
+REFRESH_BATTERY=10

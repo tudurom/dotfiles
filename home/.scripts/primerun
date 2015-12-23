@@ -1,0 +1,4 @@
+#! /bin/bash
+
+xrandr --setprovideroffloadsink nouveau Intel
+DRI_PRIME=1 "$@"

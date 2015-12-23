@@ -1,0 +1,57 @@
+#! /bin/zsh
+
+. panel_config
+. panel_icons
+
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+
+bspc config top_padding $PANEL_HEIGHT
+bspc control --subscribe > "$PANEL_FIFO" &
+xtitle -sf 'T%s' > "$PANEL_FIFO" &
+clock -sf 'S%a %d %B %H:%M' > "$PANEL_FIFO" &
+
+# Volume
+while true; do
+  # Not quering pulse because it uses a hell lot of CPU
+  echo -e "V$(amixer get Master | grep 'Mono: Playback' | grep -o '...%' | sed 's/\[//' | sed 's/%//' | sed 's/ //')"
+  sleep $REFRESH_VOLUME
+done > "$PANEL_FIFO" &
+
+# Player status
+while true; do
+  pstatus=$(playerctl status)
+  case $pstatus in
+    Playing)
+      icon="$ICON_PLAY"
+      ;;
+    Paused)
+      icon="$ICON_PAUSE"
+      ;;
+    Stopped)
+      icon="$ICON_STOP"
+      ;;
+  esac
+  echo -e "PS$icon $(playerctl metadata artist) - $(playerctl metadata title)"
+  sleep $REFRESH_MUSIC
+done > "$PANEL_FIFO" &
+
+while true; do
+  ~/.scripts/i3blocks/battery | read batt_status
+  echo "B$batt_status"
+  sleep $REFRESH_BATTERY
+done > "$PANEL_FIFO" &
+
+. panel_colors
+
+cat "$PANEL_FIFO" | panel_bar | lemonbar -n "$PANEL_WM_NAME" -g "x$PANEL_HEIGHT" -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -a 30 | zsh &
+
+wait

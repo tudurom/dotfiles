@@ -1,0 +1,131 @@
+#
+## my hotkeys
+#
+
+# Lock screen
+super + shift + x
+  lock.sh
+
+XF86AudioRaiseVolume
+  amixer -D pulse sset Master 5%+ unmute
+
+XF86AudioLowerVolume
+  amixer -D pulse sset Master 5%- unmute
+
+XF86AudioMute
+  amixer -D pulse sset Master toggle
+
+XF86MonBrightnessUp
+  xbacklight -inc 10%
+
+XF86MonBrightnessDown
+  xbacklight -dec 10%
+
+XF86AudioPlay
+  playerctl play-pause
+
+XF86AudioStop
+  playerctl stop
+
+XF86AudioNext
+  playerctl next
+
+XF86AudioPrev
+  playerctl previous
+
+#
+## bspwm hotkeys
+#
+
+# Quit bspwm and kill the panel
+super + alt + Escape
+	bspc quit && pkill panel
+
+# Close the focused window
+super + w
+	bspc window -c
+
+# Toggle monocle layout
+super + n
+	bspc desktop -l next
+
+# Change selected window's mode into tiled, pseudo-tiled, floating or fullscreen
+super + {t,p,s,f}
+	bspc window -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Focus the last window/desktop
+super + {grave,Tab}
+	bspc {window,desktop} -f last
+
+# Swap the focused window with the last window
+super + apostrophe
+	bspc window -s last
+
+# Focus the next older/newer window
+super + {o,i}
+	bspc control --record-history off; \
+	bspc window {older,newer} -f; \
+	bspc control --record-history on
+
+
+super + y
+	bspc window -w last.!automatic
+
+super + m
+	bspc window -s biggest
+
+super + {_,shift + }{h,j,k,l}
+	bspc window -{f,s} {left,down,up,right}
+
+super + {_,shift + }c
+	bspc window -f {next,prev}
+
+super + {comma,period}
+	bspc desktop -C {backward,forward}
+
+super + bracket{left,right}
+	bspc desktop -f {prev,next}
+
+super + ctrl + {h,j,k,l}
+	bspc window -p {left,down,up,right}
+
+super + ctrl + {_,shift + }space
+	bspc {window -p cancel,desktop -c}
+
+super + alt + {h,j,k,l}
+	bspc window -e {left -10,down +10,up -10,right +10}
+
+super + alt + shift + {h,j,k,l}
+	bspc window -e {right -10,up +10,down -10,left +10}
+
+super + ctrl + {1-9}
+	bspc window -r 0.{1-9}
+
+super + {Left,Down,Up,Right}
+	xdo move {-x -20,-y +20,-y -20,-x +20}
+
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,window -d} '^{1-9,10}'
+
+~button1
+	bspc pointer -g focus
+
+super + button{1-3}
+	; bspc pointer -g {move,resize_side,resize_corner}
+
+super + @button{1-3}
+	bspc pointer -u
+
+#
+# wm independent hotkeys
+#
+
+super + Return
+	urxvt
+
+super + space
+  ~/.scripts/desktop/launch
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
