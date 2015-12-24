@@ -1,7 +1,20 @@
-ICON_VOLUME="\u00ed"
-ICON_CLOCK="\u00c9"
+#ICON_VOLUME="\u00ed"
+#ICON_CLOCK="\u00c9"
+#ICON_LEFT="\u00ab"
+#ICON_PLAY="\u00e6"
+#ICON_PAUSE="\u00e7"
+#ICON_STOP="\u00e5"
+#ICON_BATTERY="\u00f0"
+
+function icon()
+{
+    echo "%{T2}$(printf $1)%{T-}"
+}
+
+ICON_VOLUME="\ue050"
+ICON_CLOCK="\ue015"
 ICON_LEFT="\u00ab"
-ICON_PLAY="\u00e6"
-ICON_PAUSE="\u00e7"
-ICON_STOP="\u00e5"
-ICON_BATTERY="\u00f0"
+ICON_PLAY="\ue058"
+ICON_PAUSE="\ue059"
+ICON_STOP="\ue057"
+ICON_BATTERY="\ue238"

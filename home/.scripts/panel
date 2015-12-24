@@ -5,7 +5,7 @@
 
 if [ $(pgrep -cx panel) -gt 1 ] ; then
 	printf "%s\n" "The panel is already running." >&2
-	exit 1
+exit 1
 fi
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
@@ -40,7 +40,7 @@ while true; do
       icon="$ICON_STOP"
       ;;
   esac
-  echo -e "PS$icon $(playerctl metadata artist) - $(playerctl metadata title)"
+  echo -e "PS$(icon $icon) $(playerctl metadata artist) - $(playerctl metadata title)"
   sleep $REFRESH_MUSIC
 done > "$PANEL_FIFO" &
 
@@ -52,6 +52,6 @@ done > "$PANEL_FIFO" &
 
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -n "$PANEL_WM_NAME" -g "x$PANEL_HEIGHT" -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -a 30 | zsh &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -n "$PANEL_WM_NAME" -g "x$PANEL_HEIGHT" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -f "FontAwesome" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -a 30 | zsh &
 
 wait

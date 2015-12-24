@@ -7,7 +7,7 @@
 
 function icon()
 {
-  echo "%{T3}$(printf $1)%{T-}"
+  echo "%{T2}$(printf $1)%{T-}"
 }
 
 num_mon=$(bspc query -M | wc -l)
@@ -90,5 +90,5 @@ while read -r line ; do
 			done
 			;;
 	esac
-  echo -e "%{U$COLOR_UNDERLINE}%{l}${wm_infos}$(icon $ICON_TEST) $separator ${title}%{r}$ICON_BATTERY${battery} $separator $ICON_VOLUME ${volume} $separator $ICON_CLOCK${time} $separator ${playing} "
+  echo -e "%{U$COLOR_UNDERLINE}%{l}${wm_infos} $separator ${title}%{r}$(icon $ICON_BATTERY)${battery} $separator $(icon $ICON_VOLUME) ${volume} $separator $(icon $ICON_CLOCK)${time} $separator ${playing} "
 done
