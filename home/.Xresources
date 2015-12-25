@@ -39,7 +39,7 @@ URxvt.depth: 32
 
 *.foreground:   base05
 *.background:   base00
-URxvt.background: [95]#2b303b
+URxvt.background: [97]#2b303b
 *.cursorColor:  base05
 
 *.color0:       base00
