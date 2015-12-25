@@ -7,13 +7,13 @@ super + shift + x
   lock.sh
 
 XF86AudioRaiseVolume
-  amixer -D pulse sset Master 5%+ unmute
+  amixer sset Master 5%+ unmute
 
 XF86AudioLowerVolume
-  amixer -D pulse sset Master 5%- unmute
+  amixer sset Master 5%- unmute
 
 XF86AudioMute
-  amixer -D pulse sset Master toggle
+  amixer sset Master toggle
 
 XF86MonBrightnessUp
   xbacklight -inc 10%

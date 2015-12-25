@@ -22,7 +22,20 @@ clock -sf 'S%a %d %B %H:%M' > "$PANEL_FIFO" &
 # Volume
 while true; do
   # Not quering pulse because it uses a hell lot of CPU
-  echo -e "V$(amixer get Master | grep 'Mono: Playback' | grep -o '...%' | sed 's/\[//' | sed 's/%//' | sed 's/ //')"
+  state=$(amixer get Master | grep 'Mono: Playback' | grep '\[on]')
+  volume=$(amixer get Master | grep 'Mono: Playback' | grep -o '...%' | sed 's/\[//' | sed 's/%//' | sed 's/ //')
+  if [ $state ]; then
+    if [ $volume -ge 50 ]; then
+      vicon=$ICON_VOLUME
+    elif [ $volume -gt 0 ] && [ $volume -lt 50 ]; then
+      vicon=$ICON_VOLUME_LOW
+    else
+      vicon=$ICON_VOLUME_LOW
+    fi
+  else
+    vicon=$ICON_MUTE
+  fi
+  echo -e "V$(icon $vicon) $volume"
   sleep $REFRESH_VOLUME
 done > "$PANEL_FIFO" &
 
@@ -44,8 +57,10 @@ while true; do
   sleep $REFRESH_MUSIC
 done > "$PANEL_FIFO" &
 
+# Battery percentage and time until full charge/discharge
 while true; do
-  ~/.scripts/i3blocks/battery | read batt_status
+  #~/.scripts/i3blocks/battery | read batt_status
+  batt_status="$(~/.scripts/battery $ICON_BATTERY_CHARGING $ICON_BATTERY_FULL $ICON_BATTERY_HALF $ICON_BATTERY_EMPTY 2)"
   echo "B$batt_status"
   sleep $REFRESH_BATTERY
 done > "$PANEL_FIFO" &

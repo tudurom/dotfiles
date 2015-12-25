@@ -43,7 +43,7 @@ while read -r line ; do
 			while [ $# -gt 0 ] ; do
 				item=$1
 				name=${item#?}
-        name="%{A:bspc desktop -f $name:}${name}%{A}"
+        name="%{A:bspc desktop -f $name:} ${name} %{A}"
 				case $item in
 					#M*)
 					#	# active monitor
@@ -59,27 +59,27 @@ while read -r line ; do
 					#	;;
 					O*)
 						# focused occupied desktop
-						wm_infos="$wm_infos%{+u} ${name} %{-u}"
+						wm_infos="$wm_infos%{+u}${name}%{-u}"
 						;;
 					F*)
 						# focused free desktop
-						wm_infos="$wm_infos%{+u} ${name} %{-u}"
+						wm_infos="$wm_infos%{+u}${name}%{-u}"
 						;;
 					U*)
 						# focused urgent desktop
-						wm_infos="$wm_infos%{B$COLOR_URGENT}%{+u} ${name} %{-u}%{B-}"
+						wm_infos="$wm_infos%{B$COLOR_URGENT}%{+u}${name}%{-u}%{B-}"
 						;;
 					o*)
 						# occupied desktop
-						wm_infos="$wm_infos ${name} "
+						wm_infos="$wm_infos${name}"
 						;;
 					f*)
 						# free desktop
-						wm_infos="$wm_infos ${name} "
+						wm_infos="$wm_infos${name}"
 						;;
 					u*)
 						# urgent desktop
-						wm_infos="$wm_infos%{B$COLOR_URGENT} ${name} %{B-}"
+						wm_infos="$wm_infos%{B$COLOR_URGENT}${name}%{B-}"
 						;;
 					#L*)
 					#	# layout
@@ -90,5 +90,5 @@ while read -r line ; do
 			done
 			;;
 	esac
-  echo -e "%{U$COLOR_UNDERLINE}%{l}${wm_infos} $separator ${title}%{r}$(icon $ICON_BATTERY)${battery} $separator $(icon $ICON_VOLUME) ${volume} $separator $(icon $ICON_CLOCK)${time} $separator ${playing} "
+  echo -e "%{U$COLOR_UNDERLINE}%{l}${wm_infos} $separator ${title}%{r}${battery} $separator ${volume} $separator $(icon $ICON_CLOCK)${time} $separator ${playing} "
 done
