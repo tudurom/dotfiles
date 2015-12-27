@@ -39,11 +39,10 @@ XF86AudioPrev
 
 # Quit bspwm and kill the panel
 super + alt + Escape
-	bspc quit && pkill panel
-
+  ~/.scripts/exitbspwm
 # Close the focused window
 super + w
-	bspc window -c
+	bspc node -c
 
 # Toggle monocle layout
 super + n
@@ -51,34 +50,35 @@ super + n
 
 # Change selected window's mode into tiled, pseudo-tiled, floating or fullscreen
 super + {t,p,s,f}
-	bspc window -t {tiled,pseudo_tiled,floating,fullscreen}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # Focus the last window/desktop
 super + {grave,Tab}
-	bspc {window,desktop} -f last
+	bspc {node,desktop} -f last
 
 # Swap the focused window with the last window
 super + apostrophe
-	bspc window -s last
+	bspc node -s last
 
 # Focus the next older/newer window
 super + {o,i}
 	bspc control --record-history off; \
-	bspc window {older,newer} -f; \
+	bspc node {older,newer} -f; \
 	bspc control --record-history on
 
 
 super + y
-	bspc window -w last.!automatic
+	bspc node -w last.!automatic
 
 super + m
-	bspc window -s biggest
+	bspc node -s biggest
+
 
 super + {_,shift + }{h,j,k,l}
-	bspc window -{f,s} {left,down,up,right}
+	bspc node -{f,s} {left,down,up,right}
 
 super + {_,shift + }c
-	bspc window -f {next,prev}
+	bspc node -f {next,prev}
 
 super + {comma,period}
 	bspc desktop -C {backward,forward}
@@ -87,25 +87,25 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}
 
 super + ctrl + {h,j,k,l}
-	bspc window -p {left,down,up,right}
+	bspc node -p {left,down,up,right}
 
 super + ctrl + {_,shift + }space
-	bspc {window -p cancel,desktop -c}
+	bspc {node -p cancel,desktop -c}
 
 super + alt + {h,j,k,l}
-	bspc window -e {left -10,down +10,up -10,right +10}
+	bspc node -e {left -10,down +10,up -10,right +10}
 
 super + alt + shift + {h,j,k,l}
-	bspc window -e {right -10,up +10,down -10,left +10}
+	bspc node -e {right -10,up +10,down -10,left +10}
 
 super + ctrl + {1-9}
-	bspc window -r 0.{1-9}
+	bspc node -r 0.{1-9}
 
 super + {Left,Down,Up,Right}
 	xdo move {-x -20,-y +20,-y -20,-x +20}
 
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,window -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '^{1-9,10}'
 
 ~button1
 	bspc pointer -g focus

@@ -3,6 +3,8 @@
 . panel_config
 . panel_icons
 
+#EPOCH=1
+
 if [ $(pgrep -cx panel) -gt 1 ] ; then
 	printf "%s\n" "The panel is already running." >&2
 exit 1
@@ -13,11 +15,16 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 
-
 bspc config top_padding $PANEL_HEIGHT
-bspc control --subscribe > "$PANEL_FIFO" &
+#bspc control --subscribe > "$PANEL_FIFO" &
+bspc subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
-clock -sf 'S%a %d %B %H:%M' > "$PANEL_FIFO" &
+if [ $EPOCH -eq 1 ]; then
+  clock_format='%s'
+else
+  clock_format='%a %d %B %H:%M'
+fi
+clock -sf "S$clock_format" -i 10 > "$PANEL_FIFO" &
 
 # Volume
 while true; do

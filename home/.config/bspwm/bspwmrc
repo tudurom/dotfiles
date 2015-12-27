@@ -9,14 +9,13 @@ bspc config split_ratio         0.50
 bspc config borderless_monocle  false
 bspc config gapless_monocle     false
 bspc config focus_by_distance   true
-bspc config pointer_follows_focus true
 bspc config pointer_follows_monitor true
 
 bspc config normal_border_color "#2b303b"
 bspc config focused_border_color "#96b5b4"
 
 if [ $(bspc query -M | wc -l) -eq 2 ]; then
-  bspc monitor LVDS-1 -d 6 7 8 9 10
+  bspc monitor LVDS-0 -d 6 7 8 9 10
   bspc monitor DP-3 -d 1 2 3 4 5
 else
   bspc monitor -d 1 2 3 4 5 6 7 8 9 10
