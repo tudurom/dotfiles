@@ -68,7 +68,7 @@ super + {o,i}
 
 
 super + y
-	bspc node -w last.!automatic
+	bspc node -n last.!automatic
 
 super + m
 	bspc node -s biggest
