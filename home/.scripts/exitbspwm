@@ -1,0 +1,19 @@
+#! /bin/ruby
+
+choices = {
+  "1) Exit BSPWM" => "pkill panel && bspc quit",
+  "2) Poweroff"   => "poweroff",
+  "3) Reboot"     => "reboot"
+}
+
+out = ""
+
+choices.each do |key, value|
+  out += key + "\n"
+end
+
+choice = `echo "#{out}" | rofi -dmenu -p "leave" -no-custom`
+puts choices
+puts choices[choice]
+
+`#{choices[choice]}`
