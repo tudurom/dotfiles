@@ -9,3 +9,13 @@ PANEL_ICON_FONT_FAMILY=-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-
 REFRESH_VOLUME=0.5
 REFRESH_MUSIC=1
 REFRESH_BATTERY=10
+
+num_mon=$(bspc query -M | wc -l)
+max_res=$(xrandr  | grep \* | cut -d' ' -f4 | head -n $num_mon | tail -n 1)
+IFS=x; read -a sizes <<<"$max_res"
+top_pad=10
+side_pad=10
+max_res=$(xrandr  | grep \* | cut -d' ' -f4 | head -n $num_mon | tail -n 1)
+IFS=x; read -a sizes <<<"$max_res"
+width=$(expr ${sizes[0]} - 2 \* $side_pad)
+BAR_GEOMETRY="${width}x${PANEL_HEIGHT}+${side_pad}+${top_pad}"

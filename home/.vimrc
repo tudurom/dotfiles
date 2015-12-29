@@ -47,9 +47,9 @@ set expandtab
 set shiftwidth=2
 set smartindent
 set cindent
-set t_Co=256
-let base16colorspace=256
-colorscheme base16-ocean
+"set t_Co=16
+"let base16colorspace=16
+"colorscheme base16-ocean
 set background=dark
 let g:airline_powerline_fonts = 1
 set laststatus=2

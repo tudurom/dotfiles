@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /bin/bash
 
 . panel_config
 . panel_icons
@@ -15,7 +15,7 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 
-bspc config top_padding $PANEL_HEIGHT
+bspc config -m "$(bspc query -M | head -n 1)" top_padding $(expr $PANEL_HEIGHT + $top_pad)
 #bspc control --subscribe > "$PANEL_FIFO" &
 bspc subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
@@ -74,6 +74,6 @@ done > "$PANEL_FIFO" &
 
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -n "$PANEL_WM_NAME" -g "x$PANEL_HEIGHT" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -f "FontAwesome" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -a 30 | zsh &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -o -1 -n "$PANEL_WM_NAME" -g "$BAR_GEOMETRY" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -f "FontAwesome" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -a 30 | zsh &
 
 wait

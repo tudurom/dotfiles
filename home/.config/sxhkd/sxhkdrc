@@ -39,7 +39,8 @@ XF86AudioPrev
 
 # Quit bspwm and kill the panel
 super + alt + Escape
-  ~/.scripts/exitbspwm
+#~/.scripts/exitbspwm
+  pkill panel && bspc quit
 # Close the focused window
 super + w
 	bspc node -c
@@ -75,7 +76,7 @@ super + m
 
 
 super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {left,down,up,right}
+	bspc node -{f,s} {west,south,north,east}
 
 super + {_,shift + }c
 	bspc node -f {next,prev}
@@ -87,13 +88,13 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}
 
 super + ctrl + {h,j,k,l}
-	bspc node -p {left,down,up,right}
+	bspc node -p {west,south,north,east}
 
 super + ctrl + {_,shift + }space
 	bspc {node -p cancel,desktop -c}
 
 super + alt + {h,j,k,l}
-	bspc node -e {left -10,down +10,up -10,right +10}
+	bspc node -e {west -10,south +10,north -10,east +10}
 
 super + alt + shift + {h,j,k,l}
 	bspc node -e {right -10,up +10,down -10,left +10}
