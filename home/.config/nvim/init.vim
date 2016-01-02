@@ -1,3 +1,7 @@
+"  ╻ ╻╻┏┳┓┏━┓┏━╸
+"  ┃┏┛┃┃┃┃┣┳┛┃
+" ╹┗┛ ╹╹ ╹╹┗╸┗━╸
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -24,6 +28,7 @@ call vundle#begin()
 
   Plugin 'Shougo/unite.vim'
   Plugin 'bling/vim-airline'
+  Plugin 'Valloric/YouCompleteMe'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -40,16 +45,27 @@ call vundle#begin()
   " see :h vundle for more details or wiki for FAQ
   " Put your non-Plugin stuff after this line
 
-syntax enable
-set number
-set tabstop=2
-set expandtab
-set shiftwidth=2
-set smartindent
-set cindent
-set t_Co=256
-let base16colorspace=256
-colorscheme base16-ocean
-set background=dark
-let g:airline_powerline_fonts = 1
-set laststatus=2
+" Essential things
+  syntax enable
+  set number
+  set tabstop=2
+  set expandtab
+  set shiftwidth=2
+  set smartindent
+  set cindent
+
+" Colors
+  set t_Co=256
+  let base16colorspace=256
+  colorscheme base16-ocean
+  set background=dark
+
+" Airline things
+  " let g:airline_powerline_fonts = 1
+  let g:airline_left_sep='▓▒░'
+  let g:airline_right_sep='░▒▓'
+  set laststatus=2
+
+" NERD things
+  " Toggle NERDTree
+  map <C-n> :NERDTreeToggle<CR>

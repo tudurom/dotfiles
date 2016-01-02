@@ -40,7 +40,7 @@ XF86AudioPrev
 # Quit bspwm and kill the panel
 super + alt + Escape
 #~/.scripts/exitbspwm
-  pkill panel && bspc quit
+  pkill panel; bspc quit
 # Close the focused window
 super + w
 	bspc node -c
@@ -93,11 +93,13 @@ super + ctrl + {h,j,k,l}
 super + ctrl + {_,shift + }space
 	bspc {node -p cancel,desktop -c}
 
+# expand the tiled space in the given direction
 super + alt + {h,j,k,l}
-	bspc node -e {west -10,south +10,north -10,east +10}
+	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
 
+# contract the tiled space in the given direction
 super + alt + shift + {h,j,k,l}
-	bspc node -e {right -10,up +10,down -10,left +10}
+	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
 
 super + ctrl + {1-9}
 	bspc node -r 0.{1-9}

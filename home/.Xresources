@@ -1,19 +1,32 @@
+! X font settings
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 96:unscaled
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
 ! Rofi config
-rofi.font: System San Francisco Display 18
+!rofi.font: System San Francisco Display 18
+rofi.font: M+ 2mn 18
 rofi.lines: 3
 rofi.eh: 2
-rofi.width: 100%
+!rofi.width: 100%
 rofi.padding: 400
 rofi.bw: 3
 rofi.opacity: 90
 rofi.fullscreen: true
+!rofi.fuzzy: true
 
 ! Base16 Ocean
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
-URxvt.font: -misc-tamzenforpowerline-medium-r-normal--17-120-100-100-c-0-iso10646-1
+!URxvt.font: -*-tamzenforpowerline-medium-*-*-*-14-*-*-*-*-*-*-*
+URxvt.font: -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
+!URxvt.font: -*-candy-*-*-*-*-11-*-*-*-*-*-*-*
 URxvt.scrollBar: false
-!URxvt.letterSpace: -1
+URxvt.letterSpace: -1
 urxvt*perl-ext-common: default,clipboard
 URxvt.depth: 32
 
@@ -39,7 +52,7 @@ URxvt.depth: 32
 
 *.foreground:   base05
 *.background:   base00
-URxvt.background: [97]#2b303b
+URxvt.background: [99]#2b303b
 *.cursorColor:  base05
 
 *.color0:       base00

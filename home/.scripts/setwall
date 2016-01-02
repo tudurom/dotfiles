@@ -12,15 +12,15 @@ import time
 import random
 
 donger = os.environ.get('DONGER', 0)
-finger = os.environ.get('FINGER', 0)
+surprise = os.environ.get('SNOWDEN', 0)
 
 date = time.strftime('%d/%m')
 rnd = random.randrange(1, 101)
 
 if donger or date == '01/04':
     os.system('feh --bg-fill ~/Pictures/april_wall.png')
-elif finger or rnd == 2:
-    os.system('feh --bg-fill ~/Pictures/surprise_wall.png')
+elif surprise or rnd == 2:
+    os.system('feh --bg-fill ~/Pictures/snowden.jpg')
 else:
-    os.system('feh --bg-fill ~/Pictures/Monody.jpg')
+    os.system('feh --bg-fill ~/Pictures/pixel2.png')
 

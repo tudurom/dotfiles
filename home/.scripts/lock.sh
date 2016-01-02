@@ -7,6 +7,6 @@ if [ "$(playerctl status)" = "Playing"  ] ; then
   playerctl pause
 fi
 i3lock -u -i /tmp/screen.png
-systemctl suspend
+#systemctl suspend
 rm /tmp/screen.png
 

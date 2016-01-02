@@ -5,6 +5,10 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+# bumblebee stuff
+#optirun true
+#intel-virtual-output
+
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
