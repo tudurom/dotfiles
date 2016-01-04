@@ -69,3 +69,6 @@ call vundle#begin()
 " NERD things
   " Toggle NERDTree
   map <C-n> :NERDTreeToggle<CR>
+
+" Clipboard setting
+  set clipboard=unnamed
