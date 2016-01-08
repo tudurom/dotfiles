@@ -1,3 +1,5 @@
+defaults.pcm.rate_converter "samplerate_best"
+
 pcm.!default {
   type hw
   card 0

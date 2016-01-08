@@ -29,6 +29,8 @@ call vundle#begin()
   Plugin 'Shougo/unite.vim'
   Plugin 'bling/vim-airline'
   Plugin 'Valloric/YouCompleteMe'
+  Plugin 'mustache/vim-mustache-handlebars'
+  Plugin 'noahfrederick/vim-noctu'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -56,14 +58,16 @@ call vundle#begin()
 
 " Colors
   set t_Co=256
-  let base16colorspace=256
-  colorscheme base16-ocean
+  "let base16colorspace=256
+  "colorscheme base16-ocean
+  colorscheme noctu
   set background=dark
 
 " Airline things
   " let g:airline_powerline_fonts = 1
   let g:airline_left_sep='▓▒░'
   let g:airline_right_sep='░▒▓'
+  let g:airline_theme='term'
   set laststatus=2
 
 " NERD things

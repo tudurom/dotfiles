@@ -9,7 +9,6 @@ bspc config split_ratio         0.50
 bspc config borderless_monocle  false
 bspc config gapless_monocle     false
 bspc config focus_by_distance   true
-bspc config pointer_follows_monitor true
 
 bspc config normal_border_color "#373e4d"
 bspc config focused_border_color "#96b5b4"

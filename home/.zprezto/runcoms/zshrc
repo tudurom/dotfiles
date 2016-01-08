@@ -11,8 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-# export TERM=xterm-256color
-export TERM=xterm-256color
+#export TERM=xterm-256color
 export EDITOR=nvim
 export VISUAL=nvim
 export GOPATH=$HOME/Go
@@ -22,10 +21,11 @@ eval "$(rbenv init -)"
 
 # Aliases aka hacks
 alias :q=exit
-alias vim=nvim
+#alias vim=nvim
 alias irb=pry
+alias ccat=pygmentize
 
-source ~/.scripts/base16-ocean.dark.sh
+#source ~/.scripts/base16-ocean.dark.sh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # Vi mode
@@ -46,6 +46,10 @@ testnet() {
   while true; do
     ping google.com
   done
+}
+
+cless() {
+  pygmentize -f terminal "$1" | less -R
 }
 
 # Set window title to "username@hostname: directory"

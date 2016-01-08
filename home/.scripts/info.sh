@@ -4,7 +4,7 @@
 # copied from z3bra's blog
 # modified by tudurom
 #
-
+clear
 c00=$'\e[0;30m'
 c01=$'\e[0;31m'
 c02=$'\e[0;32m'
@@ -76,11 +76,6 @@ if [ ! -f "$imgtempdir/$imgname" ]; then
     -gravity $crop_offset "$img" \
     -resize "$imgsize"x"$imgsize" "$imgtempdir/$imgname"
 fi
-img="$imgtempdir/$imgname"
-if type -p /usr/lib/w3m/w3mimgdisplay >/dev/null 2>&1; then
-  printf "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
-    /usr/lib/w3m/w3mimgdisplay
-fi
 
 if [ -n "$DISPLAY" ]; then
     WM=$(xprop -root _NET_SUPPORTING_WM_CHECK)
@@ -127,3 +122,9 @@ cat << EOF
 
 
 EOF
+img="$imgtempdir/$imgname"
+if type -p /usr/lib/w3m/w3mimgdisplay >/dev/null 2>&1; then
+  printf "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
+    /usr/lib/w3m/w3mimgdisplay
+fi
+
