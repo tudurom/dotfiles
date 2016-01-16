@@ -1,0 +1,42 @@
+#! /bin/ruby
+
+$pwd = Dir.pwd
+$problem_name = Dir.pwd.split('/')[-1]
+
+def center(s)
+  cols = `tput cols`.to_i
+  spaces = '-' * ((cols - s.length) / 2)
+  puts spaces + s + spaces
+end
+
+def compile
+  puts `gcc #{$problem_name}.c -o #{$problem_name} -Wall -O2`
+end
+
+def run
+  center "STDOUT:"
+  puts `./#{$problem_name}`
+end
+
+def out
+  center "In:"
+  system("less #{$problem_name}.in")
+  center "Out:"
+  system("less #{$problem_name}.out")
+end
+
+option = ARGV[0]
+
+if option == nil or option == 'a'
+  compile
+  run
+  out
+elsif option == 'c'
+  compile
+elsif option == 'r'
+  run
+elsif option == 'o'
+  out
+else
+  puts "Wrong way"
+end

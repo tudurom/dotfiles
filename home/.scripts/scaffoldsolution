@@ -1,0 +1,28 @@
+#! /bin/bash
+
+dir=problems
+
+printf "Project name? "
+read proj_name
+printf "\n"
+
+dongers=("┌༼▀̿ Ĺ̯▀̿༽┐" "(つ▀¯▀)つ" "┌(▀Ĺ̯▀)┐" "( ͡° ͜ʖ ͡°)>⌐■-■" "ヽ༼ ຈل͜ຈ༼ ▀̿̿Ĺ̯̿̿▀̿ ̿༽Ɵ͆ل͜Ɵ͆ ༽ﾉ")
+arr_size=${#dongers[@]}
+random_donger=${dongers[$(shuf -i 0-${arr_size} -n 1)]}
+project_dir="${dir}/${proj_name}"
+
+mkdir -p $project_dir
+touch "${project_dir}/${proj_name}.in"
+touch "${project_dir}/${proj_name}.out"
+cat >"${project_dir}/${proj_name}.c" <<EOF
+// ${random_donger}
+#include <stdio.h>
+
+int main() {
+  FILE *fin, *fout;
+  printf("Hello!");
+  return 0;
+}
+EOF
+
+cd "$project_dir"
