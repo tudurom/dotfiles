@@ -24,8 +24,9 @@ alias :q=exit
 #alias vim=nvim
 alias irb=pry
 alias ccat=pygmentize
+alias ph=problemhelper
 
-#source ~/.scripts/base16-ocean.dark.sh
+source ~/.scripts/base16-ocean.dark.sh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # Vi mode

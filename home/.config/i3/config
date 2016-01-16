@@ -243,6 +243,7 @@ gaps outer 5
 for_window [class="XTerm"] floating enable
 for_window [class="Plank"] floating enable,move absolute center
 
-exec_always --no-startup-id feh --bg-scale --no-startup-id ~/Pictures/wallpaper.png
+#exec_always --no-startup-id feh --bg-scale --no-startup-id ~/Pictures/wallpaper.png
+exec_always --no-startup-id setwall
 exec_always --no-startup-id xsetroot -cursor_name left_ptr
 exec_always --no-startup-id redshift-gtk &

@@ -40,7 +40,9 @@ XF86AudioPrev
 # Quit bspwm and kill the panel
 super + alt + Escape
 #~/.scripts/exitbspwm
-  pkill panel; bspc quit
+  pkill panel; bspc quit 1
+super + alt + shift + Escape
+  pkill panel; bspc wm -d > "$BSPWM_STATE"; bspc quit
 # Close the focused window
 super + w
 	bspc node -c

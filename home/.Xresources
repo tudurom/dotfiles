@@ -22,9 +22,9 @@ rofi.fullscreen: true
 ! Base16 Ocean
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
-!URxvt.font: -*-tamzenforpowerline-medium-*-*-*-14-*-*-*-*-*-*-*
 URxvt.font: -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
-!URxvt.font: -*-candy-*-*-*-*-11-*-*-*-*-*-*-*
+! For writing markdown
+!URxvt.font: xft:Fira Mono:size=12
 URxvt.scrollBar: false
 URxvt.letterSpace: -1
 urxvt*perl-ext-common: default,clipboard

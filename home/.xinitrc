@@ -57,10 +57,11 @@ xset fp rehash
 
 #xrandr --output VIRTUAL1 --off --output LVDS1 --mode 1600x900 --pos 1920x180 --rotate normal --output VGA1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
 #xrandr --output VIRTUAL1 --off --output LVDS1 --mode 1600x900 --pos 2128x180 --rotate normal --output VGA1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
-sh ~/.screenlayout/layout.sh
+#sh ~/.screenlayout/layout.sh
 compton -b &
 mpd &
 mpDris2 &
 #exec i3
 #exec herbstluftwm
-exec bspwm
+exec wm
+#exec gnome-session

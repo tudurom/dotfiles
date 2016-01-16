@@ -19,18 +19,19 @@ call vundle#begin()
   " plugin on GitHub repo
   Plugin 'tpope/vim-fugitive'
 
-  " Set colorscheme
+  " Colorschemes
   Plugin 'chriskempson/base16-vim'
 
+  " Others
   Plugin 'scrooloose/nerdtree'
 
   Plugin 'ntpeters/vim-better-whitespace'
 
-  Plugin 'Shougo/unite.vim'
+  Plugin 'gabrielelana/vim-markdown'
+
   Plugin 'bling/vim-airline'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'mustache/vim-mustache-handlebars'
-  Plugin 'noahfrederick/vim-noctu'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -58,16 +59,15 @@ call vundle#begin()
 
 " Colors
   set t_Co=256
-  "let base16colorspace=256
-  "colorscheme base16-ocean
-  colorscheme noctu
+  let base16colorspace=256
   set background=dark
+  colorscheme base16-ocean
 
 " Airline things
   " let g:airline_powerline_fonts = 1
   let g:airline_left_sep='▓▒░'
   let g:airline_right_sep='░▒▓'
-  let g:airline_theme='term'
+  "let g:airline_theme='term'
   set laststatus=2
 
 " NERD things
@@ -76,3 +76,10 @@ call vundle#begin()
 
 " Clipboard setting
   set clipboard=unnamed
+
+" Word wrapping
+  set wrap
+  set linebreak
+  set nolist
+  set textwidth=0
+  set wrapmargin=0

@@ -74,6 +74,6 @@ done > "$PANEL_FIFO" &
 
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -o -1 -n "$PANEL_WM_NAME" -g "$BAR_GEOMETRY" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -f "FontAwesome" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -a 30 | zsh &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -o -1 -n "$PANEL_WM_NAME" -g "$BAR_GEOMETRY" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -f "FontAwesome" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -a 30 -u 2| zsh &
 
 wait
