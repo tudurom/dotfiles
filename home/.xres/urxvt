@@ -1,0 +1,13 @@
+!URxvt.font: -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
+URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*
+! For writing markdown
+!URxvt.font: xft:Fira Mono:size=12
+URxvt.scrollBar: false
+URxvt.letterSpace: 0
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.internalBorder: 10
+urxvt*perl-ext-common: default,clipboard
+URxvt.depth: 32
+
+! vim: set ft=xdefaults :

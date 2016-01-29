@@ -21,6 +21,7 @@ call vundle#begin()
 
   " Colorschemes
   Plugin 'chriskempson/base16-vim'
+  Plugin 'noahfrederick/vim-noctu'
 
   " Others
   Plugin 'scrooloose/nerdtree'
@@ -61,7 +62,9 @@ call vundle#begin()
   set t_Co=256
   let base16colorspace=256
   set background=dark
-  colorscheme base16-ocean
+  "colorscheme base16-ocean
+  "colo noctu
+  colo shblah
 
 " Airline things
   " let g:airline_powerline_fonts = 1
@@ -83,3 +86,7 @@ call vundle#begin()
   set nolist
   set textwidth=0
   set wrapmargin=0
+
+" Invisible chars
+  set listchars=eol:¬,space:·
+  set list

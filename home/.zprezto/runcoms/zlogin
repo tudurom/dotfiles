@@ -22,4 +22,4 @@ if (( $+commands[fortune] )); then
   fi
 fi
 export PANEL_FIFO="/tmp/panel-fifo"
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+source ~/.profile

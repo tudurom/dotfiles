@@ -9,7 +9,7 @@ hc() {
 hc emit_hook reload
 
 # Sets the wallpaper (.scripts/setwall)
-setwall
+SNOWDEN=1 setwall
 
 # remove all existing keybindings
 hc keyunbind --all

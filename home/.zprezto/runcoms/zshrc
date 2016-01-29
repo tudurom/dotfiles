@@ -10,48 +10,12 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+source ~/crosssh.sh
+
 # Customize to your needs...
 #export TERM=xterm-256color
-export EDITOR=nvim
-export VISUAL=nvim
-export GOPATH=$HOME/Go
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:$HOME/.scripts:$GOPATH/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# Aliases aka hacks
-alias :q=exit
-#alias vim=nvim
-alias irb=pry
-alias ccat=pygmentize
-alias ph=problemhelper
-
-source ~/.scripts/base16-ocean.dark.sh
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-
-# Vi mode
 bindkey -v
 export KEYTIMEOUT=1
-
-# The Fuck is real
-eval $(thefuck --alias)
-
-fortune | lolcat
-
-# Remove unnecessary packages
-pclean() {
-  sudo pacman -Rsn $(pacman -Qdtq)
-}
-
-testnet() {
-  while true; do
-    ping google.com
-  done
-}
-
-cless() {
-  pygmentize -f terminal "$1" | less -R
-}
 
 # Set window title to "username@hostname: directory"
 precmd () {print -Pn "\e]0;%n@%m: %~\a"}

@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/tudurom/.config/i3'
+let g:netrw_dirhist_2='/etc/modprobe.d'
+let g:netrw_dirhist_3='/home/tudurom/.config'

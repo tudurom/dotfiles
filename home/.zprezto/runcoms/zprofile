@@ -72,4 +72,3 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
-export BSPWM_STATE=/tmp/bspwm-state.json

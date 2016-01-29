@@ -11,10 +11,10 @@ framerate = 60
 
 # Sensitivity in  %. If you think the bars are to low/response is to littei, try
 # increasing this value 200 means double height. Accepts only non-negative values.
-; sensitivity = 100
+sensitivity = 100
 
 # Autosens will atempt to decrease sensitivity if cava peaks. 1 = on, 0 = off
-; autosens = 1
+autosens = 1
 
 # The number of bars. 0 (default) sets it to auto (fil upp console).
 # width of bras and space between bars in number of characters. Default witdth 3 and space 1.
@@ -52,7 +52,7 @@ method = fifo
 source = /tmp/mpd.fifo
 
 ; method = pulse
-; source = NULL
+; source = 3
 
 
 

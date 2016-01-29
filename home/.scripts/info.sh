@@ -4,6 +4,7 @@
 # copied from z3bra's blog
 # modified by tudurom
 #
+lines=23
 clear
 c00=$'\e[0;30m'
 c01=$'\e[0;31m'
@@ -33,11 +34,11 @@ crop_offset="center"
 xoffset=400
 yoffset=0
 imgtempdir="$HOME/.fetchimages"
-fontwidth=5
+fontwidth=30
 gap=4
 img=$(awk '/feh/ {printf $3}' "$HOME/.fehbg" | sed -e "s/'//g")
 # Image size is half of the terminal
-imgsize=$(($(tput cols) * fontwidth / 2))
+imgsize=$((((lines - 1) * fontwidth) / 2))
 # Padding is half the terminal width + gap
 padding=$(($(tput cols) / 2 + gap))
 imgname="$crop_offset-${img##*/}"
