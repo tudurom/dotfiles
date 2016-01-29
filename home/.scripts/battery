@@ -5,10 +5,10 @@
 # * Full battery
 # * Half battery
 # * Empty battery
-# and the icon font index for lemonbar
+#, the icon font index for lemonbar and the color for the icon
 
-if ARGV.length != 5
-  puts "Expecting 5 arguments"
+if ARGV.length != 6
+  puts "Expecting 6 arguments"
   exit 1
 end
 
@@ -17,6 +17,7 @@ FULL_ICON = ARGV[1]
 HALF_ICON = ARGV[2]
 EMPTY_ICON = ARGV[3]
 INDEX = ARGV[4]
+COLOR = ARGV[5]
 
 regex = /(\w+), (\d+)%(, (\d+):(\d+):(\d+))?/
 out = `acpi -b`
@@ -37,7 +38,7 @@ else
   icon = EMPTY_ICON
 end
 
-out = "%{T#{INDEX}}#{icon}%{T-} #{percentage.to_s}"
+out = "%{F#{COLOR}}%{T#{INDEX}}#{icon}%{T-}%{F-} #{percentage.to_s}"
 if hours != nil
   out += " (#{hours}:#{minutes})"
 end

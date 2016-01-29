@@ -1,0 +1,21 @@
+source ~/crosssh.sh
+
+HISTFILE="$HOME/.mksh_history"
+typeset ret_code
+set -o bgnice
+
+prompt () {
+  _ERR=$?
+  exit_color=4
+  if [[ $_ERR -ne 0 ]]; then
+    exit_color=1
+  fi
+  prename="tud$(tput setaf $exit_color)||"
+  arrow="$(tput setaf 6)>"
+  dir="$(tput setaf 7)$(pwd | sed -e "s/\/home\/$USER/~/")"
+  echo -n "${prename} ${dir} ${arrow}$(tput sgr0) "
+}
+
+PS1='$(prompt)'
+
+# vim: set syntax=sh :

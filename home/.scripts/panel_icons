@@ -1,3 +1,10 @@
+. panel_colors
+
+function icon()
+{
+  echo "%{F$COLOR_ICON}%{T2}$(printf $1)%{T-}%{F-}"
+}
+
 #ICON_VOLUME="\u00ed"
 #ICON_CLOCK="\u00c9"
 #ICON_LEFT="\u00ab"
@@ -5,11 +12,6 @@
 #ICON_PAUSE="\u00e7"
 #ICON_STOP="\u00e5"
 #ICON_BATTERY="\u00f0"
-
-function icon()
-{
-    echo "%{T2}$(printf $1)%{T-}"
-}
 
 ICON_VOLUME="\ue050"
 ICON_VOLUME_LOW="\ue04e"

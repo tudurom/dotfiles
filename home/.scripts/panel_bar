@@ -2,13 +2,7 @@
 #
 # Example panel for LemonBoy's bar
 
-. panel_colors
 . panel_icons
-
-function icon()
-{
-  echo "%{T2}$(printf $1)%{T-}"
-}
 
 num_mon=$(bspc query -M | wc -l)
 
