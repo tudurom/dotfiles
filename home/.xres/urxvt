@@ -1,4 +1,3 @@
-!URxvt.font: -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
 URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*
 ! For writing markdown
 !URxvt.font: xft:Fira Mono:size=12
