@@ -30,7 +30,7 @@ let g:colors_name="shblah"
     highlight IncSearch    term=NONE cterm=NONE ctermfg=0    ctermbg=NONE
     highlight NonText      term=NONE cterm=bold ctermfg=0    ctermbg=NONE
     highlight Normal       term=NONE cterm=NONE ctermfg=7    ctermbg=NONE
-    highlight Pmenu        term=NONE cterm=NONE ctermfg=0    ctermbg=NONE
+    highlight Pmenu        term=NONE cterm=NONE ctermfg=8    ctermbg=NONE
     highlight PreProc      term=NONE cterm=bold ctermfg=5    ctermbg=NONE
     highlight Search       term=NONE cterm=bold ctermfg=0    ctermbg=NONE
     highlight Special      term=NONE cterm=bold ctermfg=2    ctermbg=NONE

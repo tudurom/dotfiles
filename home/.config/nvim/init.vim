@@ -5,51 +5,33 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-  " alternatively, pass a path where Vundle should install plugins
-  "call vundle#begin('~/some/path/here')
-
-  " let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
-
-  " The following are examples of different formats supported.
-  " Keep Plugin commands between vundle#begin/end.
-  " plugin on GitHub repo
-  Plugin 'tpope/vim-fugitive'
+" Plugins {{{
+call plug#begin('~/.config/nvim/plugged')
 
   " Colorschemes
-  Plugin 'chriskempson/base16-vim'
-  Plugin 'noahfrederick/vim-noctu'
+  Plug 'chriskempson/base16-vim'
+  Plug 'noahfrederick/vim-noctu'
 
   " Others
-  Plugin 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdtree'
 
-  Plugin 'ntpeters/vim-better-whitespace'
+  Plug 'ntpeters/vim-better-whitespace'
 
-  Plugin 'gabrielelana/vim-markdown'
+  Plug 'gabrielelana/vim-markdown'
 
-  Plugin 'bling/vim-airline'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'mustache/vim-mustache-handlebars'
+  Plug 'bling/vim-airline'
 
-  " All of your Plugins must be added before the following line
-  call vundle#end()            " required
+  Plug 'ervandew/supertab'
+
+  " Focus...
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/limelight.vim'
+
+  call plug#end()            " required
   filetype plugin indent on    " required
-  " To ignore plugin indent changes, instead use:
-  "filetype plugin on
-  "
-  " Brief help
-  " :PluginList       - lists configured plugins
-  " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-  " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-  " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-  "
-  " see :h vundle for more details or wiki for FAQ
-  " Put your non-Plugin stuff after this line
+" }}}
 
-" Essential things
+" Essential things {{{
   syntax enable
   set number
   set tabstop=2
@@ -57,36 +39,59 @@ call vundle#begin()
   set shiftwidth=2
   set smartindent
   set cindent
+" }}}
 
-" Colors
+" Colors {{{
   set t_Co=256
   let base16colorspace=256
   set background=dark
   "colorscheme base16-ocean
   "colo noctu
   colo shblah
+" }}}
 
-" Airline things
+" Airline {{{
   " let g:airline_powerline_fonts = 1
   let g:airline_left_sep='▓▒░'
   let g:airline_right_sep='░▒▓'
   "let g:airline_theme='term'
   set laststatus=2
+" }}}
 
-" NERD things
+" NERD things {{{
   " Toggle NERDTree
   map <C-n> :NERDTreeToggle<CR>
+" }}}
 
-" Clipboard setting
+" Goyo settings {{{
+  let g:goyo_width='80%'
+  let g:goyo_height='90%'
+" }}}
+
+" Clipboard setting {{{
   set clipboard=unnamed
+" }}}
 
-" Word wrapping
+" Word wrapping {{{
   set wrap
   set linebreak
   set nolist
   set textwidth=0
   set wrapmargin=0
+" }}}
 
-" Invisible chars
-  set listchars=eol:¬,space:·
-  set list
+" Code folding {{{
+  set fdm=marker
+  map <C-d> za
+" }}}
+
+" Completion {{{
+  filetype plugin on
+  set omnifunc=syntaxcomplete#Complete
+" }}}
+
+" Focus... {{{
+  let g:limelight_conceal_ctermfg = 'gray'
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
+" }}}

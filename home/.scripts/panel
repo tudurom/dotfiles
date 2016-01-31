@@ -26,6 +26,12 @@ else
 fi
 clock -sf "S$clock_format" -i 10 > "$PANEL_FIFO" &
 
+# Clock
+while true; do
+  echo "S$(date +"$clock_format")"
+  sleep 10
+done > "$PANEL_FIFO" &
+
 # Volume
 while true; do
   # Not quering pulse because it uses a hell lot of CPU
