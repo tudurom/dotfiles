@@ -36,7 +36,7 @@ done > "$PANEL_FIFO" &
 while true; do
   # Not quering pulse because it uses a hell lot of CPU
   state=$(amixer get Master | grep 'Mono: Playback' | grep '\[on]')
-  volume=$(amixer get Master | grep 'Mono: Playback' | grep -o '...%' | sed 's/\[//' | sed 's/%//' | sed 's/ //')
+  volume=$(amixer -D pulse get Master | grep 'Front Left: Playback' | grep -o '...%' | sed 's/\[//' | sed 's/%//' | sed 's/ //')
   if [ $state ]; then
     if [ $volume -ge 50 ]; then
       vicon=$ICON_VOLUME
@@ -53,20 +53,20 @@ while true; do
 done > "$PANEL_FIFO" &
 
 # Player status
+last_title="-"
 while true; do
-  pstatus=$(playerctl status)
-  case $pstatus in
-    Playing)
-      icon="$ICON_PLAY"
-      ;;
-    Paused)
-      icon="$ICON_PAUSE"
-      ;;
-    Stopped)
-      icon="$ICON_STOP"
-      ;;
-  esac
-  echo -e "PS$(icon $icon) $(playerctl metadata artist) - $(playerctl metadata title)"
+  if [[ $(mpc status | wc -l) -eq 3 ]]; then
+    last_title=$(mpc status | head -n 1) # In case the music is stopped
+  fi
+
+  if [[ -n $(mpc status | grep paused) ]]; then
+    icon="$ICON_PAUSE"
+  elif [[ -n $(mpc status | grep playing) ]]; then
+    icon="$ICON_PLAY"
+  else
+    icon="$ICON_STOP"
+  fi
+  echo -e "PS$(icon $icon) $last_title"
   sleep $REFRESH_MUSIC
 done > "$PANEL_FIFO" &
 
