@@ -20,9 +20,9 @@ end
 
 def out
   center "In:"
-  system("less #{$problem_name}.in")
+  system("less -F #{$problem_name}.in")
   center "Out:"
-  system("less #{$problem_name}.out")
+  system("less -F #{$problem_name}.out")
 end
 
 option = ARGV[0]

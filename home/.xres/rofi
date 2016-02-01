@@ -1,11 +1,13 @@
 ! Rofi config
-!rofi.font: System San Francisco Display 18
-rofi.font: M+ 2mn 18
-rofi.lines: 3
-rofi.eh: 2
-!rofi.width: 100%
-rofi.padding: 400
-rofi.bw: 3
-rofi.opacity: 90
-rofi.fullscreen: true
-!rofi.fuzzy: true
+rofi.font: M+ 1m 10
+rofi.bg: #1d2a30
+rofi.fg: #71c2af
+rofi.hlbg: #273941
+rofi.hlfg: #71c2af
+rofi.bw: 0
+rofi.separator-style: dash
+rofi.padding: 4
+rofi.location: 1
+rofi.width: 100
+rofi.height: 100
+rofi.yoffset: 30

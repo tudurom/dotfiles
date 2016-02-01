@@ -1,17 +1,31 @@
-Tudurom's dotfiles
+tudurom's dotfiles
 ==================
 
-~~This is my first ever GNU/Linux install on real hardware, and my first rice.~~
+> you are your dotfiles
 
-~~Feel free to complain about my stupidity!~~
+A mix of style and usability, these are my dotfiles. 
 
-Shiny new HLWM rice with Ruby powered Lemonbar!
+Managing
+--------
 
-Wallpapers README
+I manage my dotfiles using [homeshick](https://github.com/andsens/homeshick).
+
+List of programs
 -----------------
 
-There is a script called `setwall` which sets the wallpaper to `Pictures/wallpaper.png`. If it is 1st of April, then the script sets the wallpaper to `Pictures/april_wall.png`. Also, there is a 1% chance to set your wallpaper to `Pictures/surprise_wall.png`.
+* **Operating System**: Arch Linux
+* **Text editor**: neovim
+  * See `~/.config/nvim/init.vim` for plugins
+* **Shell**: mksh
+* **Terminal emulator**: urxvt
+* **Window manager**: bspwm
+  * **Panel**: lemonbar (see `~/.scripts/panel*`)
+* **Browser**: Firefox
+  * **Theme**: Twily's modified
+  * I will make a start page soon!
+* **Music player**: mpd + ncmpcpp
 
-You can override this behaviour by setting the `DONGERS` environment variable to `1` to set the wallpaper to `Pictures/april_wall.png` or by setting the `FINGER` env to `1` for the wallpaper with Linus Torvalds.
+Color scheme
+------------
 
-Happy hacking!
+[cloudy](https://github.com/tudurom/dotfiles/blob/master/home/.xres/colors/cloudy)

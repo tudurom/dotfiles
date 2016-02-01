@@ -22,5 +22,5 @@ if donger or date == '01/04':
 elif surprise or rnd == 2:
     os.system('feh --bg-fill ~/Pictures/snowden.jpg')
 else:
-    os.system('feh --bg-fill ~/Pictures/cloud.jpg')
+    os.system('feh --bg-fill ~/Pictures/nomanssky.png')
 

@@ -57,6 +57,8 @@ last_title="-"
 while true; do
   if [[ $(mpc status | wc -l) -eq 3 ]]; then
     last_title=$(mpc status | head -n 1) # In case the music is stopped
+  elif [[ $(mpc status | wx -l) -eq 0 ]]; then
+    last_title="-"
   fi
 
   if [[ -n $(mpc status | grep paused) ]]; then
