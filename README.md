@@ -29,3 +29,10 @@ Color scheme
 ------------
 
 [cloudy](https://github.com/tudurom/dotfiles/blob/master/home/.xres/colors/cloudy)
+
+TODO
+----
+
+- [ ] Fix strange colors in `shblah.vim`
+- [ ] Firefox start page
+- [ ] Note taking script
