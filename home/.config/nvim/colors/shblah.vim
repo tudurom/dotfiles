@@ -42,7 +42,7 @@ let g:colors_name="shblah"
     highlight Todo         term=NONE cterm=NONE ctermfg=0    ctermbg=NONE
     highlight Type         term=NONE cterm=NONE ctermfg=2    ctermbg=NONE
     highlight VertSplit    term=NONE cterm=bold ctermfg=0    ctermbg=NONE
-    highlight Visual       term=NONE cterm=bold ctermfg=4    ctermbg=NONE
+    highlight Visual       term=NONE cterm=bold ctermfg=3    ctermbg=8
 
     "
     " General highlighting group links.
