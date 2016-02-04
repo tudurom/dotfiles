@@ -1,6 +1,4 @@
-URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*
-! For writing markdown
-!URxvt.font: xft:Fira Mono:size=12
+URxvt.font: -*-tamsyn-medium-*-*-*-15-*-*-*-*-*-*-*
 URxvt.scrollBar: false
 URxvt.letterSpace: 0
 URxvt.cursorBlink: true

@@ -16,7 +16,6 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 mkfifo "$PANEL_FIFO"
 
 bspc config -m "$(bspc query -M | head -n 1)" top_padding $(expr $PANEL_HEIGHT + $top_pad)
-#bspc control --subscribe > "$PANEL_FIFO" &
 bspc subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 if [ $EPOCH -eq 1 ]; then

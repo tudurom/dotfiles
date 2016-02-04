@@ -19,9 +19,8 @@ autosens = 1
 # The number of bars. 0 (default) sets it to auto (fil upp console).
 # width of bras and space between bars in number of characters. Default witdth 3 and space 1.
 ; bars = 0
-; bar_width = 3
-; bar_spacing = 1
-
+bar_width = 3
+bar_spacing = 1
 
 # Lower cutoff freq for lowest bar and higheset for highest bar
 # the bandwith of the visualizer, defaults to 50 - 10000 Hz
