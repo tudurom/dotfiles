@@ -57,7 +57,7 @@ last_title="-"
 while true; do
   if [[ $(mpc status | wc -l) -eq 3 ]]; then
     last_title=$(mpc status | head -n 1) # In case the music is stopped
-  elif [[ $(mpc status | wx -l) -eq 0 ]]; then
+  elif [[ $(mpc status | wc -l) -eq 0 ]]; then
     last_title="-"
   fi
 
@@ -82,6 +82,6 @@ done > "$PANEL_FIFO" &
 
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -o -1 -n "$PANEL_WM_NAME" -g "$BAR_GEOMETRY" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -f "FontAwesome" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -a 30 -u 2| zsh &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -o -2 -n "$PANEL_WM_NAME" -g "$BAR_GEOMETRY" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -f "FontAwesome" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -U "$COLOR_UNDERLINE" -a 30 -u 2| zsh &
 
 wait

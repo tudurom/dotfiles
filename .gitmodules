@@ -1,0 +1,3 @@
+[submodule "home/.scripts/clint"]
+	path = home/.scripts/clint
+	url = https://github.com/tudurom/clint.git

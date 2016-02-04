@@ -17,7 +17,7 @@ let g:colors_name="shblah"
     "
     " Actual colours and styles.
     "
-    highlight Comment      term=NONE cterm=bold ctermfg=0    ctermbg=NONE
+    highlight Comment      term=NONE cterm=bold ctermfg=8    ctermbg=NONE
     highlight Constant     term=NONE cterm=bold ctermfg=4    ctermbg=NONE
     highlight Cursor       term=NONE cterm=bold ctermfg=3    ctermbg=NONE
     highlight CursorLine   term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE
@@ -26,21 +26,21 @@ let g:colors_name="shblah"
     highlight DiffDelete   term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE
     highlight Folded       term=NONE cterm=bold ctermfg=0    ctermbg=NONE
     highlight Function     term=NONE cterm=bold ctermfg=4    ctermbg=NONE
-    highlight Identifier   term=NONE cterm=bold ctermfg=1    ctermbg=NONE
+    highlight Identifier   term=NONE cterm=bold ctermfg=5    ctermbg=NONE
     highlight IncSearch    term=NONE cterm=NONE ctermfg=0    ctermbg=NONE
     highlight NonText      term=NONE cterm=bold ctermfg=0    ctermbg=NONE
     highlight Normal       term=NONE cterm=NONE ctermfg=7    ctermbg=NONE
     highlight Pmenu        term=NONE cterm=NONE ctermfg=8    ctermbg=NONE
-    highlight PreProc      term=NONE cterm=bold ctermfg=5    ctermbg=NONE
+    highlight PreProc      term=NONE cterm=bold ctermfg=6    ctermbg=NONE
     highlight Search       term=NONE cterm=bold ctermfg=0    ctermbg=NONE
     highlight Special      term=NONE cterm=bold ctermfg=2    ctermbg=NONE
     highlight SpecialKey   term=NONE cterm=NONE ctermfg=2    ctermbg=NONE
     highlight Statement    term=NONE cterm=bold ctermfg=2    ctermbg=NONE
-    highlight StatusLine   term=NONE cterm=NONE ctermfg=7    ctermbg=NONE
+    highlight StatusLine   term=NONE cterm=NONE ctermfg=8    ctermbg=NONE
     highlight StatusLineNC term=NONE cterm=NONE ctermfg=6    ctermbg=NONE
     highlight String       term=NONE cterm=NONE ctermfg=1    ctermbg=NONE
     highlight Todo         term=NONE cterm=NONE ctermfg=0    ctermbg=NONE
-    highlight Type         term=NONE cterm=NONE ctermfg=2    ctermbg=NONE
+    highlight Type         term=NONE cterm=NONE ctermfg=4    ctermbg=NONE
     highlight VertSplit    term=NONE cterm=bold ctermfg=0    ctermbg=NONE
     highlight Visual       term=NONE cterm=bold ctermfg=3    ctermbg=8
 

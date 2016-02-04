@@ -85,5 +85,5 @@ while read -r line ; do
       done
       ;;
   esac
-  echo -e "%{U$COLOR_UNDERLINE}%{l}${wm_infos} $separator ${title}%{r}${battery} $separator ${volume} $separator $(icon $ICON_CLOCK)${time} $separator ${playing} "
+  echo -e "%{l}${wm_infos} $separator ${title}%{r}${battery} $separator ${volume} $separator $(icon $ICON_CLOCK)${time} $separator ${playing} "
 done

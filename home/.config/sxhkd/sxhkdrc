@@ -22,16 +22,16 @@ XF86MonBrightnessDown
   xbacklight -dec 10%
 
 XF86AudioPlay
-  playerctl play-pause
+  mpc toggle
 
 XF86AudioStop
-  playerctl stop
+  mpc stop
 
 XF86AudioNext
-  playerctl next
+  mpc next
 
 XF86AudioPrev
-  playerctl previous
+  mpc prev
 
 #
 ## bspwm hotkeys

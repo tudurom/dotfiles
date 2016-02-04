@@ -27,5 +27,5 @@ fi
 
 
 panel &
-setwall
+setwall &
 xsetroot -cursor_name left_ptr &
