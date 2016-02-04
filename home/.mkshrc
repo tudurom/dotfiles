@@ -1,8 +1,9 @@
-source ~/crosssh.sh
+source ~/.crosssh.sh
 
 HISTFILE="$HOME/.mksh_history"
 typeset ret_code
 set -o bgnice
+alias rename="/usr/bin/rename"
 
 prompt () {
   _ERR=$?
