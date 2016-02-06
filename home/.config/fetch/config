@@ -34,7 +34,7 @@ printinfo () {
     info "Memory" memory
 
     info "Birthday" birthday
-    # info "Battery" battery
+    info "Battery" battery
     # info "Font" gtkfont
     # info "Disk" disk
     # info "Resolution" resolution

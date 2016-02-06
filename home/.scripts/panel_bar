@@ -1,6 +1,4 @@
 #! /bin/sh
-#
-# Example panel for LemonBoy's bar
 
 . panel_icons
 

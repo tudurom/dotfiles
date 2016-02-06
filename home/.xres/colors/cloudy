@@ -5,31 +5,31 @@
 URxvt.cursorColor: #eff1f5
 
 ! black
-*.color0:       #273941
-*.color8:       #65737e
+*.color0:       #1d2a30
+*.color8:       #456472
 
 ! red
-*.color1:       #c27171
+*.color1:       #a66363
 *.color9:       #c27171
 
 ! green
-*.color2:       #71c287
+*.color2:       #63a67a
 *.color10:      #71c287
 
 ! yellow
-*.color3:       #bfc271
+*.color3:       #a6a663
 *.color11:      #bfc271
 
 ! blue
-*.color4:       #719bc2
+*.color4:       #6385a6
 *.color12:      #719bc2
 
 ! magenta
-*.color5:       #c271a1
+*.color5:       #a66390
 *.color13:      #c271a1
 
 ! cyan
-*.color6:       #71c2af
+*.color6:       #63a69b
 *.color14:      #71c2af
 
 ! white

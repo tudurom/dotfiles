@@ -9,12 +9,12 @@ REFRESH_VOLUME=0.5
 REFRESH_MUSIC=1
 REFRESH_BATTERY=10
 
-num_mon=$(bspc query -M | wc -l)
+#num_mon=$(bspc query -M | wc -l)
+num_mon=$(bspc query -M | grep " connected" | wc -l)
 max_res=$(xrandr  | grep \* | cut -d' ' -f4 | head -n $num_mon | tail -n 1)
 IFS=x; read -a sizes <<<"$max_res"
 top_pad=$(bspc config window_gap)
 side_pad=$(bspc config window_gap)
-max_res=$(xrandr  | grep \* | cut -d' ' -f4 | head -n $num_mon | tail -n 1)
 IFS=x; read -a sizes <<<"$max_res"
 rwidth=$(expr ${sizes[0]} - 2 \* $side_pad)
 BAR_GEOMETRY="${rwidth}x${PANEL_HEIGHT}+${side_pad}+${top_pad}"
