@@ -1,0 +1,68 @@
+" ==Vimperator_Color_Scheme==
+" name: Base16 Ocean dark
+" url: http://code.google.com/p/vimperator-labs/issues/detail?id=280&q=label%3Aproject-vimperator%20label%3Atype-colorscheme&colspec=ID%20Summary%20Project%20Type%20Status%20Priority%20Stars%20Owner
+" ==Ocean_Colorscheme_Settings==
+
+"StatusLine settings
+hi StatusLine           color: #c0c5ce; background: #1d2a30; font-size: 8pt; font: M+ 1m;
+" hi StatusLineBroken     color: #c0c5ce; background: #afafff; font-size: 8pt; font: M+ 1m;
+" hi StatusLineSecure     color: #c0c5ce; background: #afffaf; font-size: 8pt; font: M+ 1m;
+
+"CmdLine settings excluding Gradient
+hi Normal               color: #c0c5ce; background: #1d2a30;
+hi CmdLine              background:#273941; color: #c0c5ce; font-family: M+ 1m; font-size: 8pt;
+hi CompDesc             color: #c6c6c6; width: 50%; font-family: M+ 1m; font-size: 8pt;
+hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
+hi CompItem[selected]   background: #273941; color: #c27171; font-family: M+ 1m;
+" hi CompLess             text-align: center; height: 0; line-height: .5ex; padding-top: 1ex;
+" hi CompMore             text-align: center; height: .5ex; line-height: .5ex; margin-bottom: -.5ex;
+hi CompMsg              font-family: M+ 1m; font-style: monospace; margin-left: 16px; font-size: 8pt;
+hi CompResult           width: 45%; overflow: hidden;font-size: 8pt; font-family: M+ 1m; font-weight: normal;
+hi CompTitle            color: #c0c5ce; background: #1d2a30; font-weight: bold; font-family: M+ 1m; font-size: 8pt;
+hi CompTitle>*          padding: 0 .5ex; font-family: M+ 1m; font-size: 8pt;
+hi Filter               font-weight: bold;color: #c0c5ce; font-family: M+ 1m; font-size: 8pt;
+
+"When using tab complete in CmdLine, line separating Title from function and description
+" hi Gradient             height: 1px; margin-bottom: -1px; margin-top: -1px;
+" hi GradientLeft         background-color: #00bbff;
+" hi GradientRight        background-color: #2b303b;
+
+"Used with ]f and [f
+hi FrameIndicator       background-color: #2b303b; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+
+hi Bell                 border: 0 none; background-color: #2b303b;
+hi ErrorMsg             color: #2b303b; background: #bf616a; font-weight: bold;
+
+
+"Hint section
+"hi Hint                 font-family: M+ 1m; font-size: 10px; font-weight: bold; color: #f6e9e9; background-color: red; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding 0px 1px 0px 1px;
+hi Hint               	font-family: M+ 1m; font-size: 12px; font-weight: bold; color: #bf616a; background-color: #2b303b; border: solid 1px #65737e;
+hi Hint::after          content: attr(number);
+hi HintActive           background: #8fa1b3; color: #eff1f5;
+hi HintElem             background-color: #2b303b; color: #a3be8c;
+hi HintImage            opacity: .5;
+
+"Other important stuff
+hi InfoMsg              color: #c0c5ce; background: #2b303b;
+hi Message              white-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;
+hi WarningMsg           color: red; background: #2b303b;
+hi ModeMsg              color: #c0c5ce; background: #2b303b; "CmdLine when Not in Use
+hi MoreMsg              color: #c0c5ce; background: #2b303b;
+hi NonText              color: lightblue; min-height: 16px; padding-left: 2px;
+hi Question             color: #eff1f5; background: #2b303b; font-weight: bold;
+"hi Search               font-size: inherit; padding: 0; color: #2b303b; background-color: c0c5ce; padding: 0;
+hi Function             color: lightgreen; background: #2b303b;
+hi Number               color: tan; background: #2b303b
+hi String               color: #2b303b; background: #c0c5ce;
+hi Tag                  color: #2b303b; background: #c0c5ce;
+hi Title                color: #2b303b; background: #c0c5ce; font-weight: bold;
+hi URL                  text-decoration: none; color: lightblue; background: inherit;
+hi URL:hover            text-decoration: underline; cursor: pointer;
+hi LineNr               color: #c0c5ce; background: #2b303b;
+
+"style -name statusbar chrome://* <<EOM
+"#status-bar statusbarpanel { padding: 0 1px !important; }
+"statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
+"EOM
+
+"For other descriptions of each item, please see ``Styling'' section included with Vimperator
