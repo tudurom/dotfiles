@@ -13,6 +13,7 @@ import random
 
 donger = os.environ.get('DONGER', 0)
 surprise = os.environ.get('SNOWDEN', 0)
+custom = os.environ.get('CUSTOM', 0)
 
 date = time.strftime('%d/%m')
 rnd = random.randrange(1, 101)
@@ -21,6 +22,8 @@ if donger or date == '01/04':
     os.system('feh --bg-fill ~/Pictures/april_wall.png')
 elif surprise or rnd == 2:
     os.system('feh --bg-fill ~/Pictures/snowden.jpg')
+elif custom:
+    os.system('feh --bg-fill %s' % custom)
 else:
     os.system('feh --bg-fill ~/Pictures/nomanssky.png')
 

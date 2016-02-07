@@ -1,6 +1,7 @@
 " ==Vimperator_Color_Scheme==
 " name: Base16 Ocean dark
 " url: http://code.google.com/p/vimperator-labs/issues/detail?id=280&q=label%3Aproject-vimperator%20label%3Atype-colorscheme&colspec=ID%20Summary%20Project%20Type%20Status%20Priority%20Stars%20Owner
+" modified by tudurom. uses cloudy color palette
 " ==Ocean_Colorscheme_Settings==
 
 "StatusLine settings
