@@ -1,3 +1,6 @@
 [submodule "home/.scripts/clint"]
 	path = home/.scripts/clint
 	url = https://github.com/tudurom/clint.git
+[submodule "home/.config/luakit/luakit-adblock"]
+	path = home/.config/luakit/luakit-adblock
+	url = https://github.com/Plaque-fcc/luakit-adblock/
