@@ -1,5 +1,6 @@
-!URxvt.font: -*-tamsyn-medium-*-*-*-15-*-*-*-*-*-*-*
 URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*
+! No bold font
+URxvt.boldFont:
 URxvt.scrollBar: false
 URxvt.letterSpace: 0
 URxvt.cursorBlink: true
