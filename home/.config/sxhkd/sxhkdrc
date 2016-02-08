@@ -140,4 +140,4 @@ super + Escape
 
 # Shortcuts
 super + shift + f
-  luakit &
+  firefox &
