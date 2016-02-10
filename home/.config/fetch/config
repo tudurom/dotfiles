@@ -16,29 +16,52 @@ export LANGUAGE=C
 # See this wiki page for more info:
 # https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 printinfo () {
+    c00=$'\e[0;30m'
+    c01=$'\e[0;31m'
+    c02=$'\e[0;32m'
+    c03=$'\e[0;33m'
+    c04=$'\e[0;34m'
+    c05=$'\e[0;35m'
+    c06=$'\e[0;36m'
+    c07=$'\e[0;37m'
+    c08=$'\e[1;30m'
+    c09=$'\e[1;31m'
+    c10=$'\e[1;32m'
+    c11=$'\e[1;33m'
+    c12=$'\e[1;34m'
+    c13=$'\e[1;35m'
+    c14=$'\e[1;36m'
+    c15=$'\e[1;37m'
+
+    f0=$'\e[1;30m'
+    f1=$'\e[1;37m'
+    f2=$'\e[0;37m'
+
     info linebreak
 
     info title
     info underline
 
-    info "OS" distro
-    info "Kernel" kernel
-    info "Uptime" uptime
-    info "Packages" packages
-    info "Shell" shell
-    info "Window Manager" windowmanager
-    info "GTK Theme" gtktheme
-    info "Icons" gtkicons
-    info "CPU" cpu
-    info "GPU" gpu
-    info "Memory" memory
+    info "${c00}▉▉  | $(tput sgr0)$(tput setaf 1)OS" distro
+    info "${c08}  ▉▉| $(tput sgr0)$(tput setaf 1)Kernel" kernel
+    info "${c01}▉▉  | $(tput sgr0)$(tput setaf 1)Uptime" uptime
+    info "${c09}  ▉▉| $(tput sgr0)$(tput setaf 1)Packages" packages
+    info "${c02}▉▉  | $(tput sgr0)$(tput setaf 1)Shell" shell
+    info "${c10}  ▉▉| $(tput sgr0)$(tput setaf 1)Window Manager" windowmanager
+    info "${c03}▉▉  | $(tput sgr0)$(tput setaf 1)GTK Theme" gtktheme
+    info "${c11}  ▉▉| $(tput sgr0)$(tput setaf 1)Icons" gtkicons
+    info "${c04}▉▉  | $(tput sgr0)$(tput setaf 1)CPU" cpu
+    info "${c12}  ▉▉| $(tput sgr0)$(tput setaf 1)GPU" gpu
+    info "${c05}▉▉  | $(tput sgr0)$(tput setaf 1)Memory" memory
 
-    info "Birthday" birthday
-    info "Battery" battery
-    # info "Font" gtkfont
+    info "${c13}  ▉▉| $(tput sgr0)$(tput setaf 1)Font" gtkfont
     # info "Disk" disk
     # info "Resolution" resolution
-    info "Song" song
+    # info "Battery" battery
+    # info "Local IP" localip
+    # info "Public IP" publicip
+    info "${c06}▉▉  | $(tput sgr0)$(tput setaf 1)Birthday" birthday
+    info "${c14}  ▉▉| $(tput sgr0)$(tput setaf 1)Song" song
     # info "Visual Style" visualstyle
 
     info linebreak
@@ -59,6 +82,10 @@ kernel_shorthand="on"
 # Mac OS X hide/show build version
 # --osx_buildversion on/off
 osx_buildversion="on"
+
+# Show 'x86_64' and 'x86' in 'Distro:' output.
+# --os_arch on/off
+os_arch="on"
 
 
 # Uptime
@@ -111,10 +138,33 @@ gtk2="on"
 gtk3="on"
 
 
+# Battery
+
+# Which battery to display.
+# By default we display all batteries.
+# NOTE: Only works on Linux.
+# --battery_num all, 0, 1, 2, etc
+battery_num="all"
+
+# Whether or not to print each battery on the same line.
+# By default each battery gets its own line and title.
+# NOTE: Only works on Linux.
+# --battery_shorthand on/off
+battery_shorthand="off"
+
+
+# IP Address
+
+# Website to ping for the public IP
+# --ip_host url
+public_ip_host="http://ident.me"
+
+
 # Birthday
 
 # Whether to show a long pretty output
 # or a shortened one
+# NOTE: Long pretty output doesn't work on OpenBSD or NetBSD.
 # --birthday_shorthand on/off
 birthday_shorthand="off"
 
@@ -141,7 +191,6 @@ block_width=3
 # }}}
 
 # Text Colors {{{
-# --colors 1 2 3 4 5
 
 
 # --title_color num
@@ -152,7 +201,7 @@ title_color=4
 at_color=6
 
 # --subtitle_color num
-subtitle_color=6
+subtitle_color=1
 
 # --colon_color num
 colon_color=8
@@ -161,7 +210,7 @@ colon_color=8
 underline_color=8
 
 # --info_color num
-info_color=7
+info_color=6
 
 
 # }}}
@@ -175,15 +224,15 @@ line_wrap="on"
 
 # Toggle bold text
 # --bold on/off
-bold="off"
+bold="on"
 
-# Toggle title underline
+# Enable/Disable Underline
 # --underline on/off
-underline="off"
+underline="on"
 
 # Underline character
 # --underline_char char
-underline_char="─"
+underline_char="-"
 
 # Prompt height
 # You should only have to change this if your
@@ -202,7 +251,7 @@ prompt_height=1
 image="wall"
 
 # Thumbnail directory
-imgtempdir="$HOME/.fetchimages"
+thumbnail_dir="$HOME/.cache/thumbnails/fetch"
 
 # Image Backend
 # Which program to draw images with
@@ -212,15 +261,6 @@ image_backend="w3m"
 # W3m-img path
 # Some systems have this in another location
 w3m_img_path="/usr/lib/w3m/w3mimgdisplay"
-
-# Split Size
-# Sizing for the img and text splits
-# The larger the value the less space fetch will take up.
-# The default value of 2 splits the image and text at
-# half terminal width each.
-# A value of 3 splits them at a third width each and etc.
-# --split_size num
-split_size=2
 
 # Image position
 # Only works with the w3m backend
@@ -241,8 +281,14 @@ crop_mode="normal"
 crop_offset="center"
 
 # Font width
+# --font_width num
 # Used when calculating dynamic image size
-font_width=7
+font_width=5
+
+# Image size
+# The image is half the terminal width by default.
+# --size half, px
+image_size="half"
 
 # Right gap between image and text
 # --gap num
@@ -266,11 +312,14 @@ xoffset=0
 # --ascii 'distro', path/to/ascii
 ascii="distro"
 
-# Ascii color
+# Ascii colors
 # When this is set to distro it will use your
 # ditro's colors to color the ascii.
-# --ascii_color distro, number
-ascii_color="distro"
+# NOTE: You can also set this to a range of colors
+# which will allow you to custom color distro logos
+# --ascii_colors distro
+# --ascii_colors 2 4 5 6
+ascii_colors=(distro)
 
 
 # }}}
@@ -303,11 +352,28 @@ scrot_name="fetch-%Y-%m-%d-%H:%M.png"
 
 
 # Enable/Disable config file
+# --config off, none
 config="on"
 
 # Path to custom config file location
 # --config path/to/config
 config_file="$HOME/.config/fetch/config"
 
+
+# }}}
+
+# Other Options {{{
+
+# Separator to use in stdout mode.
+# --stdout_separator string
+stdout_separator="    "
+
+# Hide/Show the title in stdout mode.
+# --stdout_title on/off
+stdout_title="off"
+
+# Hide/Show each info's subtitle in stdout mode.
+# --stdout_subtitles on/off
+stdout_subtitles="on"
 
 # }}}
