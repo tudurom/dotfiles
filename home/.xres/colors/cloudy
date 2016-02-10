@@ -18,8 +18,8 @@ URxvt.cursorColor: #eff1f5
 *.color9:       #c27171
 
 ! green
-*.color2:       #63a67a
-*.color10:      #71c287
+*.color2:       #63a66e
+*.color10:      #70c27e
 
 ! yellow
 *.color3:       #a6a663
@@ -29,9 +29,9 @@ URxvt.cursorColor: #eff1f5
 *.color4:       #6385a6
 *.color12:      #719bc2
 
-! magenta
-*.color5:       #a66390
-*.color13:      #c271a1
+! orange
+*.color5:       #BF9C86
+*.color13:      #BF9C86
 
 ! cyan
 *.color6:       #63a69b

@@ -40,7 +40,3 @@ ghclone() {
   git clone https://github.com/${1}.git
 }
 
-nvim() {
-  /usr/bin/nvim $@; clear
-}
-
