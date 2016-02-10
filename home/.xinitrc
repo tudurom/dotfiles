@@ -40,6 +40,8 @@ xset fp rehash
 
 # Map Caps to Ctrl
 setxkbmap -option ctrl:nocaps
+# URxvt clipboard magic
+autocutsel -selection clipboard -fork &
 
 source ~/.screenlayout/layout.sh
 compton -b &
