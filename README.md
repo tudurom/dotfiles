@@ -35,4 +35,4 @@ TODO
 
 - [ ] Fix strange colors in `shblah.vim`
 - [ ] Firefox start page
-- [*] Note taking script
+- [x] Note taking script
