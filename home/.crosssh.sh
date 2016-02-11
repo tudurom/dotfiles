@@ -1,3 +1,9 @@
+# ┏━╸┏━┓┏━┓┏━┓┏━┓┏━┓╻ ╻
+# ┃  ┣┳┛┃ ┃┗━┓┗━┓┗━┓┣━┫
+# ┗━╸╹┗╸┗━┛┗━┛┗━┛┗━┛╹ ╹
+# by tudurom
+# bits shared between different shells (bash, mksh, zsh)
+
 export EDITOR=nvim
 export VISUAL=nvim
 export GOPATH=$HOME/Go

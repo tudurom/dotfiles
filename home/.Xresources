@@ -1,3 +1,9 @@
+! ╻ ╻┏━┓┏━╸┏━┓┏━┓╻ ╻┏━┓┏━╸┏━╸┏━┓
+! ┏╋┛┣┳┛┣╸ ┗━┓┃ ┃┃ ┃┣┳┛┃  ┣╸ ┗━┓
+! ╹ ╹╹┗╸┗━╸┗━┛┗━┛┗━┛╹┗╸┗━╸┗━╸┗━┛
+! by tudurom
+! managed like they are supposed to be
+
 #include ".xres/xft"
 #include ".xres/rofi"
 #include ".xres/colors/cloudy"
