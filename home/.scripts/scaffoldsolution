@@ -1,6 +1,6 @@
 #! /bin/bash
 
-dir=problems
+dir="$HOME/problems"
 
 printf "Project name? "
 read proj_name
