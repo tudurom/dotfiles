@@ -30,7 +30,7 @@ highlight Error        term=NONE cterm=NONE ctermfg=0    ctermbg=1
 highlight ErrorMsg     term=NONE cterm=bold ctermfg=1    ctermbg=0
 highlight FoldColumn   term=NONE cterm=bold ctermfg=0    ctermbg=NONE
 highlight Folded       term=NONE cterm=bold ctermfg=0    ctermbg=NONE
-highlight Function     term=NONE cterm=bold ctermfg=1    ctermbg=NONE
+highlight Function     term=NONE cterm=bold ctermfg=5    ctermbg=NONE
 highlight Identifier   term=NONE cterm=NONE ctermfg=1    ctermbg=NONE
 highlight IncSearch    term=NONE cterm=bold ctermfg=5    ctermbg=5
 highlight NonText      term=NONE cterm=bold ctermfg=0    ctermbg=NONE

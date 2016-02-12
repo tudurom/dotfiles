@@ -62,6 +62,28 @@ filetype off                  " required
   set smartcase
   " Make it natural
   set splitright
+  " Fuck YCM
+  let g:ycm_global_ycm_extra_conf = '/home/tudurom/problems/.ycm_extra_conf.py'
+
+  " Nope
+  set noswapfile
+  " Set backup/undo dirs
+  set backupdir=~/.config/nvim/tmp/backups//
+  set undodir=~/.config/nvim/tmp/undo//
+
+  " Make the folders automatically if they don't already exist.
+  if !isdirectory(expand(&backupdir))
+  	call mkdir(expand(&backupdir), "p")
+  endif
+
+  if !isdirectory(expand(&undodir))
+  	call mkdir(expand(&undodir), "p")
+  endif
+
+  " Make undo work after the file is closed
+  set undofile
+  set undolevels=500
+  set undoreload=500
 " }}}
 
 " Keybindings {{{
@@ -100,7 +122,7 @@ filetype off                  " required
 " }}}
 
 " Clipboard setting {{{
-  set clipboard+=unnamedplus
+  set clipboard^=unnamed,unnamedplus
 " }}}
 
 " Word wrapping {{{

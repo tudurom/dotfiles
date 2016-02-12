@@ -47,7 +47,7 @@ printinfo () {
     info "${c01}▉▉  | $(tput sgr0)$(tput setaf 1)Uptime" uptime
     info "${c09}  ▉▉| $(tput sgr0)$(tput setaf 1)Packages" packages
     info "${c02}▉▉  | $(tput sgr0)$(tput setaf 1)Shell" shell
-    info "${c10}  ▉▉| $(tput sgr0)$(tput setaf 1)Window Manager" windowmanager
+    info "${c10}  ▉▉| $(tput sgr0)$(tput setaf 1)Window Manager" wm
     info "${c03}▉▉  | $(tput sgr0)$(tput setaf 1)GTK Theme" gtktheme
     info "${c11}  ▉▉| $(tput sgr0)$(tput setaf 1)Icons" gtkicons
     info "${c04}▉▉  | $(tput sgr0)$(tput setaf 1)CPU" cpu

@@ -2,18 +2,26 @@
 
 dir="$HOME/problems"
 
-printf "Project name? "
-read proj_name
-printf "\n"
+if [ $# -lt 0 ]; then
+  printf "Project name? "
+  read proj_name
+  printf "\n"
+else
+  proj_name=$1
+fi
 
 dongers=("┌༼▀̿ Ĺ̯▀̿༽┐" "(つ▀¯▀)つ" "┌(▀Ĺ̯▀)┐" "( ͡° ͜ʖ ͡°)>⌐■-■" "ヽ༼ ຈل͜ຈ༼ ▀̿̿Ĺ̯̿̿▀̿ ̿༽Ɵ͆ل͜Ɵ͆ ༽ﾉ")
 arr_size=${#dongers[@]}
-random_donger=${dongers[$(shuf -i 0-${arr_size} -n 1)]}
+random_donger=${dongers[$(shuf -i 0-$((arr_size - 1)) -n 1)]}
 project_dir="${dir}/${proj_name}"
 
+echo "$(tput bold)"
 mkdir -p $project_dir
+echo "$(tput setaf 2)created $project_dir"
 touch "${project_dir}/${proj_name}.in"
+echo "$(tput setaf 2)created ${project_dir}/${proj_name}.in"
 touch "${project_dir}/${proj_name}.out"
+echo "$(tput setaf 2)created ${project_dir}/${proj_name}.out"
 cat >"${project_dir}/${proj_name}.c" <<EOF
 // ${random_donger}
 #include <stdio.h>
@@ -24,5 +32,6 @@ int main() {
   return 0;
 }
 EOF
+echo "$(tput setaf 2)created ${project_dir}/${proj_name}.c"
+echo "$(tput sgr0)"
 
-cd "$project_dir"
