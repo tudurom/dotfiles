@@ -132,7 +132,7 @@ super + Return
 	urxvt
 
 super + space
-  ~/.scripts/desktop/launch
+  ~/.scripts/run_dmenu
 
 # make sxhkd reload its configuration files:
 super + Escape
