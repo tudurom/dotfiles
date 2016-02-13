@@ -1,0 +1,9 @@
+#! /bin/bash
+
+ext_monitor=$(xrandr | grep " connected" | grep -v "LVDS-0" | awk '{print $1}')
+if [[ $ext_monitor -eq "" ]]; then
+  xrandr --output "LVDS-0" --primary
+else
+  xrandr --output "$ext_monitor" --auto --left-of "LVDS-0" --primary
+  bspc config -m "LVDS-0" top_padding 0
+fi
