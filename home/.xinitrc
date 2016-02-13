@@ -49,7 +49,7 @@ setxkbmap -option ctrl:nocaps
 # URxvt clipboard magic
 autocutsel -selection clipboard -fork &
 
-source ~/.screenlayout/layout.sh
+source ~/.scripts/screenlayout
 compton -b &
 mpd &
 #exec i3
