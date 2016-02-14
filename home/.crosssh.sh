@@ -29,6 +29,7 @@ alias ph=problemhelper
 alias tls="tmux ls"
 alias tswitch="tmux switch -t"
 alias tkill="tmux kill-session -t"
+alias rm="rm -i"
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 #source ~/.scripts/base16-ocean.dark.sh
