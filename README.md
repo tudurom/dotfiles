@@ -3,7 +3,7 @@ tudurom's dotfiles
 
 > you are your dotfiles
 
-A mix of style and usability, these are my dotfiles. 
+A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time Linux users and ricers can understand what's going on.
 
 Managing
 --------
