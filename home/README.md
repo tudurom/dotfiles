@@ -19,6 +19,7 @@ If a directory is not included here then check the README in the corresponding d
 
 ```
 .
+├── .gitconfig - git... config
 ├── .ncmpcpp - ncmpcpp is a client for MPD, a music server
 │   └── config
 ├── Pictures - Wallpapers. See for yourself.
