@@ -2,7 +2,7 @@
 
 dir="$HOME/problems"
 
-if [ $# -lt 0 ]; then
+if [ $# -lt 1  ]; then
   printf "Project name? "
   read proj_name
   printf "\n"
