@@ -23,10 +23,10 @@ If a directory is not included here then check the README in the corresponding d
 │   └── config
 ├── Pictures - Wallpapers. See for yourself.
 ├── .tmux
-    └── bin
-        └── statusline - tmux statusline, yeah. That's a bash script
+│   └── bin
+│       └── statusline - tmux statusline, yeah. That's a bash script
 ├── .vimperator
-    └── colors
-        └── ocean.vimp - vimperator theme
+│   └── colors
+│       └── ocean.vimp - vimperator theme
 └── .Xresources
 ```
