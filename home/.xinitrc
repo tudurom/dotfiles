@@ -54,7 +54,4 @@ compton -b &
 # It's unclutter-xfixes-git
 unclutter -b
 mpd &
-#exec i3
-#exec herbstluftwm
 exec wm
-#exec gnome-session
