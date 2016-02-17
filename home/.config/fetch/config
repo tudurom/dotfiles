@@ -48,13 +48,13 @@ printinfo () {
     info "${c09}  ▉▉| $(tput sgr0)$(tput setaf 1)Packages" packages
     info "${c02}▉▉  | $(tput sgr0)$(tput setaf 1)Shell" shell
     info "${c10}  ▉▉| $(tput sgr0)$(tput setaf 1)Window Manager" wm
-    info "${c03}▉▉  | $(tput sgr0)$(tput setaf 1)GTK Theme" gtktheme
-    info "${c11}  ▉▉| $(tput sgr0)$(tput setaf 1)Icons" gtkicons
+    info "${c03}▉▉  | $(tput sgr0)$(tput setaf 1)GTK Theme" theme
+    info "${c11}  ▉▉| $(tput sgr0)$(tput setaf 1)Icons" icons
     info "${c04}▉▉  | $(tput sgr0)$(tput setaf 1)CPU" cpu
     info "${c12}  ▉▉| $(tput sgr0)$(tput setaf 1)GPU" gpu
     info "${c05}▉▉  | $(tput sgr0)$(tput setaf 1)Memory" memory
 
-    info "${c13}  ▉▉| $(tput sgr0)$(tput setaf 1)Font" gtkfont
+    info "${c13}  ▉▉| $(tput sgr0)$(tput setaf 1)Font" font
     # info "Disk" disk
     # info "Resolution" resolution
     # info "Battery" battery
