@@ -1,39 +1,29 @@
-# Visualizer {{{
+# Host and music location
+mpd_host = "::"
 
-visualizer_look = "▒░"
-visualizer_color = "cyan"
-visualizer_in_stereo = "yes"
-visualizer_fifo_path = "/tmp/mpd.fifo"
-visualizer_sync_interval = "10"
-visualizer_output_name = "mpd spectrum"
-
-# }}}
-
-# Display Settings {{{
-
-song_list_format = "{$7%a $6> $5}{%t$6$R$b} [{%l}]"
-song_status_format = "$7%a $6$b> $5%t $6$b> $2%b$6"
-statusbar_color = "black"
-main_window_color = "cyan"
-main_window_highlight_color = "magenta"
-active_column_color = "black"
-header_visibility = "no"
-statusbar_visibility = "yes"
-colors_enabled = "yes"
-now_playing_prefix = "> "
-#now_playing_suffix = ""
-autocenter_mode = "yes"
-centered_cursor = "yes"
-progressbar_color = "black"
-progressbar_elapsed_color = "yellow"
-progressbar_look = "---"
-titles_visibility = "no"
-mouse_support = "no"
-discard_colors_if_item_is_selected = "yes"
-user_interface = "classic"
+# Playlist look
 playlist_display_mode = "classic"
+song_list_format = "$2{%a}|{%A}$8 $6-$8 $7%t$8"
 
-# }}}
+song_status_format = "$8%a$9 - $8%t$9"
+now_playing_prefix = "$b"
+now_playing_suffix = "$/b"
+
+header_visibility = "no"
+autocenter_mode = "yes"
+statusbar_visibility = "no"
+main_window_highlight_color = "white"
+discard_colors_if_item_is_selected = "no"
+
+# Progressbar look
+progressbar_look = "___"
+progressbar_color = "234"
+progressbar_elapsed_color = "white"
+progressbar_boldness = "no"
+
+# Misc
+display_bitrate = "no"
+enable_window_title = "no"
 
 # cheat sheet
 # %l - length
