@@ -4,6 +4,3 @@
 [submodule "home/.config/luakit/luakit-adblock"]
 	path = home/.config/luakit/luakit-adblock
 	url = https://github.com/Plaque-fcc/luakit-adblock/
-[submodule "home/.scripts/himawaripy"]
-	path = home/.scripts/himawaripy
-	url = https://github.com/boramalper/himawaripy.git
