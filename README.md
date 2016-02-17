@@ -13,7 +13,7 @@ I manage my dotfiles using [homeshick](https://github.com/andsens/homeshick).
 List of programs
 -----------------
 
-* **Operating System**: [Arch Linux](http://archlinux.org) (tell everyone that some guy who calls himself tudurom uses Arch. YEAH! I'M USING ARCH!)
+* **Operating System**: [Arch Linux](http://archlinux.org) (tell everyone that some (handsome) guy who calls himself tudurom uses Arch. YEAH! I'M USING ARCH!)
 * **Text editor**: [neovim](http://neovim.io)
   * See `~/.config/nvim/init.vim` for plugins
 * **Color scheme**: [cloudy](https://github.com/tudurom/dotfiles/blob/master/home/.xres/colors/cloudy)
