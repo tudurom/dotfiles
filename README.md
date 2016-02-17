@@ -3,7 +3,7 @@ tudurom's dotfiles
 
 > you are your dotfiles
 
-A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time Linux users and ricers can understand what's going on.
+A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time Linux users and ricers can understand what's going on, with explications for each directory.
 
 Managing
 --------
@@ -13,19 +13,28 @@ I manage my dotfiles using [homeshick](https://github.com/andsens/homeshick).
 List of programs
 -----------------
 
-* **Operating System**: Arch Linux
-* **Text editor**: neovim
+* **Operating System**: [Arch Linux](http://archlinux.org) (tell everyone that some guy who calls himself tudurom uses Arch. YEAH! I'M USING ARCH!)
+* **Text editor**: [neovim](http://neovim.io)
   * See `~/.config/nvim/init.vim` for plugins
 * **Color scheme**: [cloudy](https://github.com/tudurom/dotfiles/blob/master/home/.xres/colors/cloudy)
-* **Shell**: mksh
-* **Terminal emulator**: urxvt
+* **Shell**: [mksh](https://www.mirbsd.org/mksh.htm)
+  * Also using [tmux](https://wiki.archlinux.org/index.php/tmux).
+* **Terminal emulator**: [urxvt](https://wiki.archlinux.org/index.php/rxvt-unicode) (for noobs: [see this tutorial](https://www.youtube.com/watch?v=_kjbj-Ez1vU&feature=youtu.be))
 * **Notification daemon**: [Simple Notification Daemon](https://github.com/htylo/simplenotifydaemon) in combination with [my script](https://github.com/tudurom/dotfiles/blob/master/home/.scripts/notifyd)
-* **Window manager**: bspwm
-  * **Panel**: lemonbar (see `~/.scripts/panel*`)
+* **Window manager**: [bspwm](https://wiki.archlinux.org/index.php/Bspwm)
+  * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `~/.scripts/panel*`)
 * **Browser**: Firefox
   * **Theme**: Twily's modified
   * I will make a start page soon!
-* **Music player**: mpd + ncmpcpp
+* **Music player**: [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) + [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp)
+
+Inspiration / People where I steal from
+---------------------------------------
+
+* [dylanaraps](http://github.com/dylanaraps/dotfiles) - little bits from the nvim config and from the color scheme
+* [xero](http://git.io/.files) - bits from the tmux config
+* [onodera-punpun](http://github.com/onodera-punpun/dotfiles) - ncmpcpp config. Made it better, check it out!
+* I think that's it.
 
 TODO
 ----
