@@ -1,5 +1,8 @@
 # Host and music location
 mpd_host = "::"
+mpd_port = "6600"
+# /gamez is my big files folder
+mpd_music_dir = "/gamez/Music"
 
 # Playlist look
 playlist_display_mode = "classic"

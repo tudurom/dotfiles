@@ -25,5 +25,5 @@ elif surprise or rnd == 2:
 elif custom:
     os.system('feh --bg-fill %s' % custom)
 else:
-    os.system('feh --bg-fill ~/Pictures/nomanssky.png')
+    os.system('feh --bg-fill ~/Pictures/madeon-pillar.png')
 

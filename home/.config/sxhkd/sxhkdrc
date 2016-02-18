@@ -134,6 +134,9 @@ super + Return
 super + space
   ~/.scripts/run_dmenu
 
+Print
+  ~/.scripts/screenie
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd

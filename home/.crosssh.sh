@@ -4,14 +4,14 @@
 # by tudurom
 # bits shared between different shells (bash, mksh, zsh)
 
-if [[ $- == *i* ]] && [[ -z "$TMUX" ]]; then
-  if [[ $(tmux ls | grep -v "attached" | wc -l) -gt 0 ]]; then
-    # Auto-attach to the first detached one
-    exec tmux a -t $(tmux ls | grep -v "attached" | head -n 1 | awk -F: '{print $1}')
-  else
-    exec tmux
-  fi
-fi
+#if [[ $- == *i* ]] && [[ -z "$TMUX" ]]; then
+#  if [[ $(tmux ls | grep -v "attached" | wc -l) -gt 0 ]]; then
+#    # Auto-attach to the first detached one
+#    exec tmux a -t $(tmux ls | grep -v "attached" | head -n 1 | awk -F: '{print $1}')
+#  else
+#    exec tmux
+#  fi
+#fi
 
 export EDITOR=nvim
 export VISUAL=nvim
