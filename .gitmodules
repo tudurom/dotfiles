@@ -4,3 +4,6 @@
 [submodule "home/.config/luakit/luakit-adblock"]
 	path = home/.config/luakit/luakit-adblock
 	url = https://github.com/Plaque-fcc/luakit-adblock/
+[submodule "home/startpage"]
+	path = home/startpage
+	url = https://github.com/tudurom/startpage.git
