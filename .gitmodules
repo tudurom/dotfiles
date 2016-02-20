@@ -7,3 +7,6 @@
 [submodule "home/startpage"]
 	path = home/startpage
 	url = https://github.com/tudurom/startpage.git
+[submodule "home/khaled"]
+	path = home/khaled
+	url = https://github.com/onodera-punpun/khaled.git

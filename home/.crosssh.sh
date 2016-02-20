@@ -59,3 +59,4 @@ ghclone() {
   git clone https://github.com/${1}.git
 }
 
+fortune khaled | echo "$(toilet -f term --gay)\n"
