@@ -25,7 +25,7 @@ List of programs
   * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `~/.scripts/panel*`)
 * **Browser**: Firefox
   * **Theme**: Twily's modified
-  * I will make a start page soon!
+  * ~~I will make a start page soon!~~ Done!
 * **Music player**: [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) + [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp)
 
 Inspiration / People where I steal from
@@ -40,7 +40,7 @@ TODO
 ----
 
 - [x] Fix strange colors in `shblah.vim` (I think I did it)
-- [ ] Firefox start page
+- [x] Firefox start page
 - [x] Note taking script
 
 Screenshots

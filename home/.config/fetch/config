@@ -288,7 +288,7 @@ font_width=5
 # Image size
 # The image is half the terminal width by default.
 # --size half, px
-image_size="half"
+image_size="auto"
 
 # Right gap between image and text
 # --gap num
