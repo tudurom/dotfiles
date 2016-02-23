@@ -18,6 +18,7 @@ export VISUAL=nvim
 export GOPATH=$HOME/Go
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$HOME/.scripts:.scripts/clint:$GOPATH/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=$HOME/.node/bin:$PATH
 eval "$(rbenv init -)"
 
 # Aliases aka hacks
@@ -30,6 +31,7 @@ alias tls="tmux ls"
 alias tswitch="tmux switch -t"
 alias tkill="tmux kill-session -t"
 alias rm="rm -i"
+alias fkh="fortune khaled"
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 #source ~/.scripts/base16-ocean.dark.sh
