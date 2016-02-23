@@ -194,24 +194,26 @@ block_width=3
 
 
 # --title_color num
-title_color=4
+#title_color=4
+#
+## Color of "@" symbol in title
+## --at_color num
+#at_color=6
+#
+## --subtitle_color num
+#subtitle_color=1
+#
+## --colon_color num
+#colon_color=8
+#
+## --underline_color num
+#underline_color=8
+#
+## --info_color num
+#info_color=6
 
-# Color of "@" symbol in title
-# --at_color num
-at_color=6
-
-# --subtitle_color num
-subtitle_color=1
-
-# --colon_color num
-colon_color=8
-
-# --underline_color num
-underline_color=8
-
-# --info_color num
-info_color=6
-
+#colors=(4 6 8 1 8 6)
+colors=(distro)
 
 # }}}
 
