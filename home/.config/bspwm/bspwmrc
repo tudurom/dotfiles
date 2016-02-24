@@ -1,6 +1,6 @@
 #! /bin/sh
 
-sxhkd &
+sxhkd -c "$HOME/.config/sxhkd/sxhkdrc-bspwm" &
 
 if [ -e "$BSPWM_STATE" ]; then
   bspc wm -l "$BSPWM_STATE"
