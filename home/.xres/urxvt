@@ -5,7 +5,7 @@ URxvt.scrollBar: false
 URxvt.letterSpace: 0
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
-URxvt.internalBorder: 10
+URxvt.internalBorder: 20
 URxvt.depth: 32
 
 ! Clipboard copy/paste with C-Shift-c and C-Shift-p
