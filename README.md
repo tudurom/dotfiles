@@ -8,14 +8,14 @@ A mix of style and usability, these are my dotfiles. This repo is structured in 
 Managing
 --------
 
-I manage my dotfiles using [homeshick](https://github.com/andsens/homeshick).
+I manage my dotfiles using GNU Stow. [Here's a neat article about managing your dotfiles with stow](http://blog.xero.nu/managing_dotfiles_with_gnu_stow).
 
 List of programs
 -----------------
 
 * **Operating System**: [Arch Linux](http://archlinux.org) (tell everyone that some (handsome) guy who calls himself tudurom uses Arch. YEAH! I'M USING ARCH!)
 * **Text editor**: [neovim](http://neovim.io)
-  * See `~/.config/nvim/init.vim` for plugins
+  * See `nvim/.config/nvim/init.vim` for plugins
 * **Color scheme**: [cloudy](https://github.com/tudurom/dotfiles/blob/master/home/.xres/colors/cloudy)
 * **Shell**: [mksh](https://www.mirbsd.org/mksh.htm)
   * Also using [tmux](https://wiki.archlinux.org/index.php/tmux).
@@ -32,16 +32,15 @@ Inspiration / People where I steal from
 ---------------------------------------
 
 * [dylanaraps](http://github.com/dylanaraps/dotfiles) - little bits from the nvim config and from the color scheme
-* [xero](http://git.io/.files) - bits from the tmux config
+* [xero](http://git.io/.files) - bits from the tmux config. nice article about stow!
 * [onodera-punpun](http://github.com/onodera-punpun/dotfiles) - ncmpcpp config. Made it better, check it out!
 * I think that's it.
 
 TODO
 ----
 
-- [x] Fix strange colors in `shblah.vim` (I think I did it)
-- [x] Firefox start page
-- [x] Note taking script
+- [ ] Switch from Arch to [Crux](http://crux.nu)
+- [ ] Switch from bspwm to [wmutils[(http://wmutils.io)
 
 Screenshots
 -----------

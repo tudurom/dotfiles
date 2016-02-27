@@ -1,0 +1,13 @@
+#! /bin/bash
+
+single_ext="on"
+ext_monitor=$(xrandr | grep " connected" | grep -v "LVDS-1" | awk '{print $1}')
+if [[ $ext_monitor == "" ]]; then
+  xrandr --output "LVDS-1" --primary
+else
+  xrandr --output "$ext_monitor" --auto --left-of "LVDS-1" --primary
+  bspc config -m "LVDS-1" top_padding 0
+  if [[ $single_ext == "on" ]]; then
+    xrandr --output "LVDS-1" --off
+  fi
+fi

@@ -10,3 +10,6 @@
 [submodule "home/khaled"]
 	path = home/khaled
 	url = https://github.com/onodera-punpun/khaled.git
+[submodule "startpage/startpage"]
+	path = startpage/startpage
+	url = https://github.com/tudurom/startpage.git

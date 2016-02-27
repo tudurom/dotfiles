@@ -1,4 +1,5 @@
-URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*
+!URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*
+URxvt.font: xft:Fantasque Sans Mono:pixelsize:12
 ! No bold font
 URxvt.boldFont:
 URxvt.scrollBar: false

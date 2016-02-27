@@ -1,0 +1,5 @@
+nvim/.config/nvim/bundle
+!nvim/.config/nvim/bundle/lightline.vim/autoload/lightline/colorscheme/cloudy.vim
+nvim/.config/nvim/tmp
+mpd/.mpd/mpd.log
+vimperator/.vimperator/info
