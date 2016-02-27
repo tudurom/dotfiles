@@ -16,16 +16,15 @@ List of programs
 * **Operating System**: [Arch Linux](http://archlinux.org) (tell everyone that some (handsome) guy who calls himself tudurom uses Arch. YEAH! I'M USING ARCH!)
 * **Text editor**: [neovim](http://neovim.io)
   * See `nvim/.config/nvim/init.vim` for plugins
-* **Color scheme**: [cloudy](https://github.com/tudurom/dotfiles/blob/master/home/.xres/colors/cloudy)
+* **Color scheme**: [cloudy](https://github.com/tudurom/dotfiles/blob/master/x/.xres/colors/cloudy)
 * **Shell**: [mksh](https://www.mirbsd.org/mksh.htm)
   * Also using [tmux](https://wiki.archlinux.org/index.php/tmux).
 * **Terminal emulator**: [urxvt](https://wiki.archlinux.org/index.php/rxvt-unicode) (for noobs: [see this tutorial](https://www.youtube.com/watch?v=_kjbj-Ez1vU&feature=youtu.be))
-* **Notification daemon**: [Simple Notification Daemon](https://github.com/htylo/simplenotifydaemon) in combination with [my script](https://github.com/tudurom/dotfiles/blob/master/home/.scripts/notifyd)
+* **Notification daemon**: [Simple Notification Daemon](https://github.com/htylo/simplenotifydaemon) in combination with [my script](https://github.com/tudurom/dotfiles/blob/master/scripts/.scripts/notifyd)
 * **Window manager**: [bspwm](https://wiki.archlinux.org/index.php/Bspwm)
   * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `~/.scripts/panel*`)
 * **Browser**: Firefox
   * **Theme**: Twily's modified
-  * ~~I will make a start page soon!~~ Done!
 * **Music player**: [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) + [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp)
 
 Inspiration / People where I steal from
