@@ -22,7 +22,7 @@ List of programs
 * **Terminal emulator**: [urxvt](https://wiki.archlinux.org/index.php/rxvt-unicode) (for noobs: [see this tutorial](https://www.youtube.com/watch?v=_kjbj-Ez1vU&feature=youtu.be))
 * **Notification daemon**: [Simple Notification Daemon](https://github.com/htylo/simplenotifydaemon) in combination with [my script](https://github.com/tudurom/dotfiles/blob/master/scripts/.scripts/notifyd)
 * **Window manager**: [bspwm](https://wiki.archlinux.org/index.php/Bspwm)
-  * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `~/.scripts/panel*`)
+  * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `scripts/.scripts/panel*`)
 * **Browser**: Firefox
   * **Theme**: Twily's modified
 * **Music player**: [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) + [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp)
@@ -39,7 +39,7 @@ TODO
 ----
 
 - [ ] Switch from Arch to [Crux](http://crux.nu)
-- [ ] Switch from bspwm to [wmutils[(http://wmutils.io)
+- [ ] Switch from bspwm to [wmutils](http://wmutils.io)
 
 Screenshots
 -----------
