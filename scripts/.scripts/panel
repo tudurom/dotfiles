@@ -80,6 +80,6 @@ done > "$PANEL_FIFO" &
 
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -n "$PANEL_WM_NAME" -g "$BAR_GEOMETRY" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -U "$COLOR_UNDERLINE" -a 30 -u 2| bash &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -d -n "$PANEL_WM_NAME" -g "$BAR_GEOMETRY" -f "$PANEL_FONT_FAMILY" -f "$PANEL_ICON_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -U "$COLOR_UNDERLINE" -a 30 -u 2| bash &
 
 wait

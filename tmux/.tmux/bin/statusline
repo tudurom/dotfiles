@@ -16,7 +16,7 @@ clock() {
 }
 
 mem() {
-  echo "#[fg=colour0,bg=colour4] $(fetch --stdout memory | awk '{print $1}')$reset#[fg=colour4]▓▒░"
+  echo "#[fg=colour0,bg=colour4] $(neofetch --stdout memory | awk '{print $1}')$reset#[fg=colour4]▓▒░"
 }
 
 echo "$(mem) $reset $(clock)"

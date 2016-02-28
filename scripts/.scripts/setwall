@@ -1,4 +1,4 @@
-#!/bin/python
+#! /usr/bin/python
 #rnd=$(($RANDOM % 100))
 #if [ -z $OVER ]; then OVER=0; fi
 #echo $rnd
@@ -19,11 +19,11 @@ date = time.strftime('%d/%m')
 rnd = random.randrange(1, 101)
 
 if donger or date == '01/04':
-    os.system('feh --bg-fill ~/Pictures/april_wall.png')
+    os.system('feh --bg-fill ~/wallpapers/april_wall.png')
 elif surprise or rnd == 2:
-    os.system('feh --bg-fill ~/Pictures/snowden.jpg')
+    os.system('feh --bg-fill ~/wallpapers/snowden.jpg')
 elif custom:
     os.system('feh --bg-fill %s' % custom)
 else:
-    os.system('feh --bg-fill ~/Pictures/madeon-pillar.png')
+    os.system('feh --bg-fill ~/wallpapers/madeon-pillar.png')
 

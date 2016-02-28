@@ -6,3 +6,7 @@ mpd/.mpd/*
 !mpd/.mpd/mpd.conf
 
 vimperator/.vimperator/info
+
+wmrc/contrib/killwa/killwa
+wmrc/contrib/killwa/killwa.o
+wmrc/contrib/killwa/util.o

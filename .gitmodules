@@ -13,3 +13,6 @@
 [submodule "startpage/startpage"]
 	path = startpage/startpage
 	url = https://github.com/tudurom/startpage.git
+[submodule "contrib"]
+	path = wmrc/contrib
+	url = https://github.com/wmutils/contrib
