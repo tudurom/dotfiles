@@ -16,3 +16,9 @@
 [submodule "contrib"]
 	path = wmrc/contrib
 	url = https://github.com/wmutils/contrib
+[submodule "scripts/clint"]
+	path = scripts/clint
+	url = https://github.com/tudurom/clint.git
+[submodule "scripts/.scripts/clint"]
+	path = scripts/.scripts/clint
+	url = https://github.com/tudurom/clint.git
