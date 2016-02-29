@@ -15,7 +15,6 @@
 │       ├── panel - launch panel
 │       ├── panel.rb - main panel script
 │       └── volume - get volume
-├── exitbspwm - still alpha.
 ├── gifbackground - sets an animated gif as a wallpaper. Just for the looks (I bet you can't do this on Windows pretty easily)
 ├── i3blocks - i3blocks scripts
 │   ├── battery
