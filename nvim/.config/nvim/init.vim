@@ -7,42 +7,41 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Plugins {{{
-  set rtp+=~/.config/nvim/bundle/Vundle.vim
-  call vundle#begin('~/.config/nvim/bundle')
+  call plug#begin('~/.config/nvim/bundle')
   
-  Plugin 'gmarik/Vundle.vim'
+  Plug 'gmarik/Vundle.vim'
 
   " Colorschemes
-  Plugin 'chriskempson/base16-vim'
-  Plugin 'noahfrederick/vim-noctu'
+  Plug 'chriskempson/base16-vim'
+  Plug 'noahfrederick/vim-noctu'
 
   " Focusing
-  Plugin 'junegunn/goyo.vim'
+  Plug 'junegunn/goyo.vim'
 
   " Others
   " File tree. Sometimes useful and sometimes it looks good
-  Plugin 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdtree'
 
   " For obvious reasons
-  Plugin 'ntpeters/vim-better-whitespace'
+  Plug 'ntpeters/vim-better-whitespace'
 
   " Statusline
-  Plugin 'itchyny/lightline.vim'
+  Plug 'itchyny/lightline.vim'
 
   " Syntax plugins
-  Plugin 'gabrielelana/vim-markdown'
-  Plugin 'othree/html5.vim'
+  Plug 'gabrielelana/vim-markdown'
+  Plug 'othree/html5.vim'
 
   " Simple tab completion
   "Plug 'ervandew/supertab'
-  Plugin 'valloric/youcompleteme'
+  Plug 'valloric/youcompleteme'
 
-  Plugin 'airblade/vim-gitgutter'
+  Plug 'airblade/vim-gitgutter'
 
   " One plugin to rule them all
-  Plugin 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
 
-  call vundle#end()            " required
+  call plug#end()            " required
   filetype plugin indent on    " required
 " }}}
 
