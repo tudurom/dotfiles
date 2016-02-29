@@ -1,4 +1,4 @@
-defaults.pcm.rate_converter "samplerate_best"
+defaults.pcm.rate_converter "speexrate_best"
 
 pcm.!default {
   type hw
