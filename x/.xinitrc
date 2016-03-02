@@ -6,7 +6,7 @@
 # by tudurom
 # no login manager since forever
 
-# Strange things from de default .xinitrc {{{
+# Strange things from the default .xinitrc {{{
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources

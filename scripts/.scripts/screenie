@@ -1,0 +1,5 @@
+#! /bin/bash
+
+scrot -q 100 /tmp/screenie.png
+
+notify-send "Screenshot taken"
