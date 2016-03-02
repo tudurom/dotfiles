@@ -64,7 +64,7 @@ source = /tmp/mpd.fifo
 # visual styles, may be 'stereo' or 'mono'.
 # Stereo mirrors both channels with low frequencies in center.
 # Mono avrages both channels and outputs left to right lowest to highest frequencies
-style = stereo
+style = mono
 
 
 [color]
