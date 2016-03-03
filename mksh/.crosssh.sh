@@ -17,9 +17,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export GOPATH=$HOME/Go
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$HOME/.scripts:.scripts/clint:$GOPATH/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=$HOME/.node/bin:$PATH
-eval "$(rbenv init -)"
 
 # Aliases aka hacks
 alias :q=exit
