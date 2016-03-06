@@ -39,7 +39,11 @@ TODO
 ----
 
 - [ ] Switch from Arch to [Crux](http://crux.nu)
-- [ ] Switch from bspwm to [wmutils](http://wmutils.io)
+- [x] Switch from bspwm to [wmutils](http://wmutils.io)
+  - [ ] Scripts.
+- [ ] Document this setup more
+  - [ ] This README
+  - [ ] A big article at the `gh-pages` branch
 
 Screenshots
 -----------
