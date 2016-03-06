@@ -1,0 +1,7 @@
+#! /bin/sh
+
+sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils &
+wew | wewhandle &
+setwall &
+infobar &
+xwait

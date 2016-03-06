@@ -1,0 +1,24 @@
+#! /bin/sh
+
+# returns the id of the first window at the given coordinates
+# (c) tudurom 2016 - wtfpl
+
+usage() {
+  echo "usage: $(basename $0) <x> <y>"
+  exit 1
+}
+
+test $# -ne 2 && usage
+
+x=$1
+y=$2
+lsw | while read -r wid; do
+  data=$(wattr xywh $wid)
+  wx=$(echo $data | cut -d' ' -f1)
+  wy=$(echo $data | cut -d' ' -f2)
+  ww=$(echo $data | cut -d' ' -f3)
+  wh=$(echo $data | cut -d' ' -f4)
+  test $x -ge $wx && test $x -le $((wx + ww - 1)) && \
+    test $y -ge $wy && test $y -le $((wy + wh - 1)) && \
+    echo $wid && break
+done

@@ -50,8 +50,11 @@ setxkbmap -option ctrl:nocaps
 autocutsel -selection clipboard -fork &
 
 source ~/.scripts/screenlayout
-compton -b &
+compton -b --backend xr_glx_hybrid --glx-swap-method 2 --glx-no-stencil --vsync opengl -cC -l -18 -t -18 -o 0.1
 # It's unclutter-xfixes-git
 unclutter -b
 mpd &
-exec wm
+notifyd &
+xsetroot -cursor_name left_ptr &
+#exec wm
+exec startwmutils

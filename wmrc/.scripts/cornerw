@@ -1,0 +1,34 @@
+#! /bin/sh
+
+# puts a window in a given corner or in the middle of the screen
+# (c) tudurom 2016 - wtfpl
+
+pfw="${2:-$(pfw)}"
+root="$(lsw -r)"
+screen_width="$(wattr w $root)"
+screen_height="$(wattr h $root)"
+
+border_width="$(wattr b $pfw)"
+width="$(wattr w $pfw)"
+height="$(wattr h $pfw)"
+
+x=0
+y=0
+
+case $1 in
+  tr)
+    x=$(( screen_width - width - 2 * border_width ))
+    ;;
+  bl)
+    y=$(( screen_height - height - 2 * border_width ))
+    ;;
+  br)
+    x=$(( screen_width - width - 2 * border_width ))
+    y=$(( screen_height - height - 2 * border_width ))
+    ;;
+  md)
+    x=$(( screen_width / 2 - width /  2 - border_width ))
+    y=$(( screen_height / 2 - height / 2 - border_width ))
+esac
+
+wtp $x $y $width $height $pfw

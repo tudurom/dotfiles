@@ -1,12 +1,4 @@
 #! /usr/bin/python
-#rnd=$(($RANDOM % 100))
-#if [ -z $OVER ]; then OVER=0; fi
-#echo $rnd
-#if [ $rnd -eq 2 ] || [ $OVER -eq 1 ]; then
-#  feh --bg-scale ~/Pictures/surprise_wall.png
-#else
-#  feh --bg-scale ~/Pictures/wallpaper.png
-#fi
 import os
 import time
 import random
@@ -19,11 +11,11 @@ date = time.strftime('%d/%m')
 rnd = random.randrange(1, 101)
 
 if donger or date == '01/04':
-    os.system('feh --bg-fill ~/wallpapers/april_wall.png')
+    os.system('hsetroot -fill ~/wallpapers/april_wall.png')
 elif surprise or rnd == 2:
-    os.system('feh --bg-fill ~/wallpapers/snowden.jpg')
+    os.system('hsetroot -fill ~/wallpapers/snowden.jpg')
 elif custom:
-    os.system('feh --bg-fill %s' % custom)
+    os.system('hsetroot -fill %s' % custom)
 else:
-    os.system('feh --bg-fill ~/wallpapers/madeon-pillar.png')
+    os.system('hsetroot -tile ~/wallpapers/wov.png')
 

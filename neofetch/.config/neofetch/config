@@ -47,7 +47,7 @@ printinfo () {
     info "${c01}▉▉  | $(tput sgr0)$(tput setaf 1)Uptime" uptime
     info "${c09}  ▉▉| $(tput sgr0)$(tput setaf 1)Packages" packages
     info "${c02}▉▉  | $(tput sgr0)$(tput setaf 1)Shell" shell
-    info "${c10}  ▉▉| $(tput sgr0)$(tput setaf 1)Window Manager" wm
+    prin "${c10}  ▉▉| $(tput sgr0)$(tput setaf 1)Window Manager $(tput setaf 6)wmutils"
     info "${c03}▉▉  | $(tput sgr0)$(tput setaf 1)GTK Theme" theme
     info "${c11}  ▉▉| $(tput sgr0)$(tput setaf 1)Icons" icons
     info "${c04}▉▉  | $(tput sgr0)$(tput setaf 1)CPU" cpu
@@ -212,8 +212,8 @@ block_width=3
 ## --info_color num
 #info_color=6
 
-#colors=(4 6 8 1 8 6)
-colors=(distro)
+colors=(4 6 8 1 8 6)
+#colors=(distro)
 
 # }}}
 

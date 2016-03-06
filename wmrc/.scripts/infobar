@@ -1,0 +1,27 @@
+#! /bin/sh
+
+source wmrc
+source panelsrc
+source iconsrc
+
+clock() {
+  format='%a %d %B %H:%M'
+  while true; do
+    echo -e "%{c}%{T2}%{F$PANEL_ACCENT_COLOR}$ICON_CLOCK%{T-}%{F-} $(date "+$format")"
+    sleep 1
+  done
+}
+
+width=110
+height=5
+root_window=$(lsw -r)
+root_width=$(wattr w $root_window)
+root_height=$(wattr h $root_window)
+
+panel_width=$(( width + 2 * WINDOW_GAP ))
+panel_height=$(( height + 2 * WINDOW_GAP ))
+panel_x=$(( root_width - panel_width - WINDOW_GAP ))
+panel_y=$(( root_height - panel_height - WINDOW_GAP ))
+panel_opts="$PANEL_OPTS -g ${panel_width}x${panel_height}+${panel_x}+${panel_y}"
+
+clock | lemonbar $panel_opts

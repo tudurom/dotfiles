@@ -1,4 +1,4 @@
-#! /bin/bash -x
+#! /bin/bash
 
 # Get coords of the monitor
 monitor_x=$(xrandr | grep "primary" | awk '{print $4}' | awk -F+ '{print $2}')
@@ -29,7 +29,7 @@ sind -d -f '%s^%b' |\
     # To be precise
     text_width=$(txtw -f $font "${summary}${body}")
     width=$((2 * in_pad + text_width))
-    bar_opts="-g ${width}x${height}+$((monitor_x + monitor_width - pad_x - width))+$((monitor_y + monitor_height - pad_y - height)) -B $color_bg -f $font"
+    bar_opts="-d -g ${width}x${height}+$((monitor_x + monitor_width - pad_x - width))+$((monitor_y + monitor_height - pad_y - height)) -B $color_bg -f $font"
     # Show it and wait 3 seconds
     (echo "%{c}%{F$color_summary}${summary}${space}%{F$color_fg}${body}"; sleep 3) | lemonbar ${bar_opts}
   done

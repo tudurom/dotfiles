@@ -31,5 +31,3 @@ fi
 
 panel &
 setwall &
-xsetroot -cursor_name left_ptr &
-notifyd &

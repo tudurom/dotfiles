@@ -1,0 +1,8 @@
+#! /bin/bash
+
+# dummy script
+# (c) tudurom 2016 - wtfpl
+
+while true; do
+  sleep 1
+done

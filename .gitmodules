@@ -10,15 +10,15 @@
 [submodule "home/khaled"]
 	path = home/khaled
 	url = https://github.com/onodera-punpun/khaled.git
-[submodule "startpage/startpage"]
-	path = startpage/startpage
-	url = https://github.com/tudurom/startpage.git
-[submodule "contrib"]
-	path = wmrc/contrib
-	url = https://github.com/wmutils/contrib
 [submodule "scripts/clint"]
 	path = scripts/clint
 	url = https://github.com/tudurom/clint.git
 [submodule "scripts/.scripts/clint"]
 	path = scripts/.scripts/clint
 	url = https://github.com/tudurom/clint.git
+[submodule "scripts/.scripts/--force"]
+	path = scripts/.scripts/--force
+	url = https://github.com/tudurom/clint.git
+[submodule "startpage/startpage"]
+	path = startpage/startpage
+	url = https://github.com/tudurom/startpage.git
