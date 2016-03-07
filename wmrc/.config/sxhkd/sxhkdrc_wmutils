@@ -74,7 +74,7 @@ XF86AudioPrev
 
 # exit X session
 super + alt + Escape
-  pkill startwmutils
+  pkill xwait
 
 # close window
 super + w

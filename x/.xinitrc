@@ -57,4 +57,4 @@ mpd &
 notifyd &
 xsetroot -cursor_name left_ptr &
 #exec wm
-exec startwmutils
+source ~/.scripts/startwmutils

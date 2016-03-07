@@ -7,23 +7,25 @@
 while IFS=: read ev wid; do
   #sleep 0.1
   case $ev in
-    # Window open
+    # Window creation
     16)
-      wattr o "$wid" || {
-        cornerw md "$wid" && focusw "$wid"
-      }
+      if ! wattr o $wid; then
+        cornerw md $wid
+      fi
       ;;
-    # Window closed / unmapped (aka minimized)
-    17|18)
-      wattr o "$wid" || {
-        focusw "$(closestw prev)"
-      }
-      ;;
-    # Window mapped
+
+    # Mapping request aka group activated
     19)
-      wattr o  $wid || {
-        focusw "$wid"
-      }
+      if ! wattr o $wid; then
+        focusw $wid
+      fi
+      ;;
+
+    # Window closed
+    18)
+      if ! wattr $(pfw); then
+        focusw $(closestw prev)
+      fi
       ;;
   esac
 done
