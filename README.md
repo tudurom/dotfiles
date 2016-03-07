@@ -21,11 +21,46 @@ List of programs
   * Also using [tmux](https://wiki.archlinux.org/index.php/tmux).
 * **Terminal emulator**: [urxvt](https://wiki.archlinux.org/index.php/rxvt-unicode) (for noobs: [see this tutorial](https://www.youtube.com/watch?v=_kjbj-Ez1vU&feature=youtu.be))
 * **Notification daemon**: [Simple Notification Daemon](https://github.com/htylo/simplenotifydaemon) in combination with [my script](https://github.com/tudurom/dotfiles/blob/master/scripts/.scripts/notifyd)
-* **Window manager**: [bspwm](https://wiki.archlinux.org/index.php/Bspwm)
-  * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `scripts/.scripts/panel*`)
+* **Window manager**: [wmutils](http://wmutils.io) + [my scripts](https://github.com/tudurom/dotfiles/tree/master/wmrc/.scripts)
+  * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `wmrc/.scripts/*panel`)
 * **Browser**: Firefox
   * **Theme**: Twily's modified
 * **Music player**: [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) + [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp)
+
+Directory structure
+-------------------
+
+```bash
+tud|| ~/dotfiles > tree -L 1
+```
+
+```
+. <- you're here
+├── alsa - Advanced Linux Sound Architecture config
+├── bspwm - old bspwm rice
+├── cava - configs for cava, a sound visualizer
+├── compton - configuration for compton, the best window compozitor
+├── git - configuration file for git, the version control system
+├── gtk - config for gtk and a micro stylesheet to avoid some bugs with some gtk themes
+├── herbstluftwm - old herblasfhjasdklwm rice
+├── i3 - ancient i3 (n00b) rice
+├── mksh - Mir Korn SHell - my shell config. very simple shell
+├── mpd - Music Player Daemon configuration
+├── ncmpcpp - configration file for ncmpcpp, an ncurses Music Player Daemon (MPD) client
+├── neofetch - neofetch config. very cool project
+├── npm - small config for the Node Package Manager. i save all the packages in the home directory
+├── nvim - configuration files for Neovim, the best text editor known to the mankind
+├── README.md - README, the novel, written by tudurom
+├── scripts - all my shell scripts used in my workflow
+├── startpage - startpage
+├── tmux - Terminal MUltipleXer configuration file and status bar script
+├── vimperator - config for a neat extension for firefox. theme included
+├── wallpapers - collection of wallpapers
+├── wmrc - all files related to my wmutils setup - scripts and sxhkd config
+└── x - x resources and xinitrc
+
+21 directories, 1 file
+```
 
 Inspiration / People where I steal from
 ---------------------------------------
@@ -33,14 +68,20 @@ Inspiration / People where I steal from
 * [dylanaraps](http://github.com/dylanaraps/dotfiles) - little bits from the nvim config and from the color scheme
 * [xero](http://git.io/.files) - bits from the tmux config. nice article about stow!
 * [onodera-punpun](http://github.com/onodera-punpun/dotfiles) - ncmpcpp config. Made it better, check it out!
+* [z3bra](http://git.z3bra.org/scripts/files.html) - bits (or whole chunks) from his wmutils scripts.
 * I think that's it.
+
+Thanks
+------
+
+* [z3bra](http://z3bra.org) and [dcat](https://github.com/dcat) for [wmutils](https://github.com/wmutils)
+* [baskerville](https://github.com/baskerville) for bspwm and sxhkd
 
 TODO
 ----
 
 - [ ] Switch from Arch to [Crux](http://crux.nu)
 - [x] Switch from bspwm to [wmutils](http://wmutils.io)
-  - [ ] Scripts.
 - [ ] Document this setup more
   - [ ] This README
   - [ ] A big article at the `gh-pages` branch

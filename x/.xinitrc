@@ -50,7 +50,7 @@ setxkbmap -option ctrl:nocaps
 autocutsel -selection clipboard -fork &
 
 source ~/.scripts/screenlayout
-compton -b --backend xr_glx_hybrid --glx-swap-method 2 --glx-no-stencil --vsync opengl -cC -l -18 -t -18 -o 0.1
+compton -b
 # It's unclutter-xfixes-git
 unclutter -b
 mpd &
