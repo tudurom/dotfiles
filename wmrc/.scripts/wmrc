@@ -1,1 +1,5 @@
+# Environment variables for the whole desktop environment
+# (c) tudurom 2016 - wtfpl
+#
+
 WINDOW_GAP=20

@@ -1,1 +1,11 @@
+# Environment variables for different icons
+# (c) tudurom 2016 - wtfpl
+#
+
+# Clock bar
 ICON_CLOCK="\ue015"
+
+# Music bar
+ICON_PLAY="\ue058"
+ICON_PAUSE="\ue059"
+ICON_STOP="\ue057"

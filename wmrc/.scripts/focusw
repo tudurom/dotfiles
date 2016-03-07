@@ -2,6 +2,7 @@
 #
 # z3bra & tudurom - 2014 (c) wtfpl
 # window focus wrapper that sets borders
+#
 
 BW=${BW:-2}                    # border width
 ACTIVE=${ACTIVE:-0x63a69b}     # active border color

@@ -1,3 +1,6 @@
+# Standard variables for panels
+# (c) tudurom 2016 - wtfpl
+
 PANEL_FONT="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"
 PANEL_ICON_FONT="-wuncon-siji-medium-*-*-*-10-*-*-*-*-*-*-*"
 PANEL_BG_COLOR="#1d2a30"

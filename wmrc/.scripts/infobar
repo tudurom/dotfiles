@@ -1,4 +1,7 @@
 #! /bin/sh
+# A little panel that shows the current time in the corner
+# (c) tudurom 2016 - wtfpl
+#
 
 source wmrc
 source panelsrc
@@ -6,10 +9,7 @@ source iconsrc
 
 clock() {
   format='%a %d %B %H:%M'
-  while true; do
-    echo -e "%{c}%{T2}%{F$PANEL_ACCENT_COLOR}$ICON_CLOCK%{T-}%{F-} $(date "+$format")"
-    sleep 1
-  done
+  echo -e "%{c}%{T2}%{F$PANEL_ACCENT_COLOR}$ICON_CLOCK%{T-}%{F-} $(date "+$format")"
 }
 
 width=110
@@ -24,4 +24,7 @@ panel_x=$(( root_width - panel_width - WINDOW_GAP ))
 panel_y=$(( root_height - panel_height - WINDOW_GAP ))
 panel_opts="$PANEL_OPTS -g ${panel_width}x${panel_height}+${panel_x}+${panel_y}"
 
-clock | lemonbar $panel_opts
+while true; do
+  clock
+  sleep 1
+done | lemonbar $panel_opts

@@ -2,6 +2,7 @@
 
 # puts a window in a given corner or in the middle of the screen
 # (c) tudurom 2016 - wtfpl
+#
 
 pfw="${2:-$(pfw)}"
 root="$(lsw -r)"

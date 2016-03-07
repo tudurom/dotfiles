@@ -89,7 +89,7 @@ alt + {h,j,k,l}
   focusw $(closestw {h, j, k, l})
 
 # focus next window
-super + Tab
+alt + Tab
   focusw $(closestw next)
 
 # move window
