@@ -21,7 +21,7 @@ while IFS=: read ev wid; do
     19)
       if ! wattr o $wid; then
         focusw $wid
-        test $(lsw | wc -l) -eq 1 && hsetroot -fill $BLUR
+        test $(lsw | wc -l) -ge 1 && hsetroot -fill $BLUR
       fi
       ;;
 
@@ -34,3 +34,5 @@ while IFS=: read ev wid; do
       ;;
   esac
 done
+
+# vim: set ft=sh :
