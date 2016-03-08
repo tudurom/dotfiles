@@ -3,7 +3,7 @@
 # z3bra - 2014 (c) wtfpl
 # arrange windows in a tiled pattern
 
-source wmrc
+. wmrc
 
 # default values for gaps and master area
 PANEL=${PANEL:-0}
