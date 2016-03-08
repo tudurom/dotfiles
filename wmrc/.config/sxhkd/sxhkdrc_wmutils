@@ -137,3 +137,6 @@ super + t
 
 alt + @button1
   focusw $(windowat $(wmp))
+
+ctrl + !button1
+  chwso -r $(pfw); wmv -a %i %i $(pfw)
