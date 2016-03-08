@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/dash
 # returns the id of the first window at the given coordinates
 # (c) tudurom 2016 - wtfpl
 #

@@ -17,5 +17,6 @@ elif surprise or rnd == 2:
 elif custom:
     os.system('hsetroot -fill %s' % custom)
 else:
-    os.system('hsetroot -tile ~/wallpapers/wov.png')
+    os.system('hsetroot -fill ~/wallpapers/trees.jpg')
+    os.system('convert ~/wallpapers/trees.jpg -blur 0x8 ~/.blur.png')
 

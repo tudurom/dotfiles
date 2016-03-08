@@ -1,12 +1,12 @@
-#! /bin/sh
+#! /bin/bash
 #
 # Little panel to show current playing song
 # (c) tudurom 2016 - wtfpl
 #
 
-source wmrc
-source panelsrc
-source iconsrc
+. wmrc
+. panelsrc
+. iconsrc
 
 last_title="-"
 music() {

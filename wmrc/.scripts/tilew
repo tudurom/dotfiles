@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 #
 # z3bra - 2014 (c) wtfpl
 # arrange windows in a tiled pattern

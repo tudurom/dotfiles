@@ -1,11 +1,11 @@
-#! /bin/sh
+#! /bin/bash
 # A little panel that shows the current time in the corner
 # (c) tudurom 2016 - wtfpl
 #
 
-source wmrc
-source panelsrc
-source iconsrc
+. wmrc
+. panelsrc
+. iconsrc
 
 clock() {
   format='%a %d %B %H:%M'

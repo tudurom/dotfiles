@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/dash
 # Starts the environment
 # (c) tudurom 2016 - wtfpl
 #

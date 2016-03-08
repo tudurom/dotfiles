@@ -1,0 +1,4 @@
+st.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
+st.bold_font: 0
+st.termname: xterm-256color
+! vim: set ft=xdefaults :
