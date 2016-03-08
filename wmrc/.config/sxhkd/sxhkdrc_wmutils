@@ -115,6 +115,9 @@ super + {1,2,3,4,5,6}
 super + shift + {1,2,3,4,5,6}
   groaw -a {1,2,3,4,5,6}
 
+super + ctrl + {1,2,3,4,5,6}
+  groaw -d {1,2,3,4,5,6}
+
 # remove from group
 super + alt + {1,2,3,4,5,6}
   groaw -d {1,2,3,4,5,6}
@@ -131,3 +134,6 @@ super + {Prior,Delete,Next,End}
 # tile windows
 super + t
   tilew
+
+alt + @button1
+  focusw $(windowat $(wmp))

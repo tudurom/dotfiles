@@ -1,0 +1,1 @@
+ffmpeg -f x11grab -s $RESOLUTION -an -r 16 -loglevel quiet -i :0.0 -b:v 5M -y workflow-compil-${USER}.webm

@@ -14,7 +14,7 @@ test $# -ne 2 && usage
 
 x=$1
 y=$2
-lsw | while read -r wid; do
+lsw | tac | while read -r wid; do
   data=$(wattr xywh $wid)
   wx=$(echo $data | cut -d' ' -f1)
   wy=$(echo $data | cut -d' ' -f2)
@@ -24,3 +24,5 @@ lsw | while read -r wid; do
     test $y -ge $wy && test $y -le $((wy + wh - 1)) && \
     echo $wid && break
 done
+
+# vim: set ft=sh :

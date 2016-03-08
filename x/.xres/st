@@ -1,4 +1,6 @@
-st.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
+st.font: Erusfont
 st.bold_font: 0
 st.termname: xterm-256color
+st.bellvolume: 0
+st.tabspaces: 4
 ! vim: set ft=xdefaults :
