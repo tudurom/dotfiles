@@ -1,5 +1,5 @@
 !URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*
-URxvt.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
+URxvt.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*,xft:Symbola
 !URxvt.font: xft:Fantasque Sans Mono:pixelsize:12
 ! No bold font
 URxvt.boldFont:
