@@ -135,8 +135,8 @@ super + {Prior,Delete,Next,End}
 super + t
   tilew
 
-alt + @button1
+alt + @button2
   focusw $(windowat $(wmp))
 
-ctrl + !button1
+ctrl + !button2
   chwso -r $(pfw); wmv -a %i %i $(pfw)
