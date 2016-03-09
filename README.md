@@ -76,6 +76,7 @@ Thanks
 
 * [z3bra](http://z3bra.org) and [dcat](https://github.com/dcat) for [wmutils](https://github.com/wmutils)
 * [baskerville](https://github.com/baskerville) for bspwm and sxhkd
+* [Nixers](https://nixers.net) for being cool ;)
 
 TODO
 ----
