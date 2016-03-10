@@ -3,6 +3,7 @@
 # (c) tudurom 2016 - wtfpl
 #
 
+compton -b
 sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils &
 wew | wewhandle &
 setwall &

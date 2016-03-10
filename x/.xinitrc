@@ -50,7 +50,6 @@ setxkbmap -option ctrl:nocaps
 autocutsel -selection clipboard -fork &
 
 source ~/.scripts/screenlayout
-compton -b
 # It's unclutter-xfixes-git
 unclutter -b
 mpd &
