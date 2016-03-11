@@ -5,10 +5,10 @@
 # * Full battery
 # * Half battery
 # * Empty battery
-#, the icon font index for lemonbar and the color for the icon
+# * The icon font index for lemonbar and the color for the icon
 
 if ARGV.length != 6
-  puts "Expecting 6 arguments"
+  puts "Usage: battery <icon_charging> <icon_full> <icon_half> <icon_empty> <font_index> <font_color>"
   exit 1
 end
 

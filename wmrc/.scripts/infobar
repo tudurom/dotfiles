@@ -18,10 +18,10 @@ root_window=$(lsw -r)
 root_width=$(wattr w $root_window)
 root_height=$(wattr h $root_window)
 
-panel_width=$(( width + 2 * WINDOW_GAP ))
-panel_height=$(( height + 2 * WINDOW_GAP ))
-panel_x=$(( root_width - panel_width - WINDOW_GAP ))
-panel_y=$(( root_height - panel_height - WINDOW_GAP ))
+panel_width=$(( width + 2 * GENERAL_GAP ))
+panel_height=$(( height + 2 * GENERAL_GAP ))
+panel_x=$(( root_width - panel_width - GENERAL_GAP ))
+panel_y=$(( root_height - panel_height - GENERAL_GAP ))
 panel_opts="$PANEL_OPTS -g ${panel_width}x${panel_height}+${panel_x}+${panel_y}"
 
 while true; do

@@ -8,7 +8,7 @@ filetype off                  " required
 
 " Plugins {{{
   call plug#begin('~/.config/nvim/bundle')
-  
+
   Plug 'gmarik/Vundle.vim'
 
   " Colorschemes
@@ -33,8 +33,8 @@ filetype off                  " required
   Plug 'othree/html5.vim'
 
   " Simple tab completion
-  "Plug 'ervandew/supertab'
-  Plug 'valloric/youcompleteme'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'zchee/deoplete-clang'
 
   Plug 'airblade/vim-gitgutter'
 
@@ -142,4 +142,22 @@ filetype off                  " required
 
 " Completion {{{
   let g:deoplete#enable_at_startup = 1
+
+  " C/C++ things
+  let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+  let g:deoplete#sources#clang#clang_header = '/usr/include/clang/'
+  " C or C++ standard version
+  let g:deoplete#sources#clang#std#c = 'c11'
+  " or c++
+  let g:deoplete#sources#clang#std#cpp = 'c++11'
+
+  " Tab completion
+  imap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#mappings#manual_complete()
+  function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction"}}}
 " }}}

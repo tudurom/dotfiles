@@ -1,9 +1,15 @@
 # Standard variables for panels
 # (c) tudurom 2016 - wtfpl
 
+. wmrc
+
 PANEL_FONT="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"
 PANEL_ICON_FONT="-wuncon-siji-medium-*-*-*-10-*-*-*-*-*-*-*"
 PANEL_BG_COLOR="#1d2a30"
 PANEL_FG_COLOR="#71c2af"
 PANEL_ACCENT_COLOR="#c27171"
 PANEL_OPTS="-d -f $PANEL_FONT -f $PANEL_ICON_FONT -B $PANEL_BG_COLOR -F $PANEL_FG_COLOR"
+
+PANEL_STATUS_HEIGHT="$(( 20 + 10 ))"
+
+# vim: set ft=sh :

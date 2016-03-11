@@ -6,8 +6,8 @@
 . wmrc
 
 # default values for gaps and master area
-PANEL=${PANEL:-0}
-GAP=${GAP:-$WINDOW_GAP}
+PANEL=${PANEL:-$(( 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT + 2 ))}
+GAP=${GAP:-$GENERAL_GAP}
 MASTER=${MASTER:-900}
 
 # get current window id and its borderwidth

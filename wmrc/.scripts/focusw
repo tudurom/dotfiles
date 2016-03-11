@@ -5,8 +5,8 @@
 #
 
 BW=${BW:-2}                    # border width
-ACTIVE=${ACTIVE:-0x63a69b}     # active border color
-INACTIVE=${INACTIVE:-0x273941} # inactive border color
+ACTIVE=${ACTIVE:-0x63a690}     # active border color
+INACTIVE=${INACTIVE:-0x456472} # inactive border color
 
 # get current window id
 CUR=$(pfw)

@@ -4,9 +4,6 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-BLUR="$HOME/.blur.png"
-WALL="$HOME/wallpapers/trees.jpg"
-
 while IFS=: read ev wid; do
   #sleep 0.1
   case $ev in
@@ -29,6 +26,7 @@ while IFS=: read ev wid; do
     18)
       if ! wattr $(pfw); then
         focusw $(closestw prev)
+        groaw # Force cleanup
         #test -z "$(lsw)" && hsetroot -fill $WALL
       fi
       ;;

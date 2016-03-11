@@ -2,4 +2,7 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-WINDOW_GAP=20
+# Gap to use for most of the things
+GENERAL_GAP=20
+
+# vim: set ft=sh :

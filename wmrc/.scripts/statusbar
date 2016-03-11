@@ -1,0 +1,211 @@
+#! /bin/dash
+#
+# Simple status bar
+# (c) tudurom 2016 - wtfpl
+#
+
+. wmrc
+. panelsrc
+
+# Setup {{{
+
+  # Create fifo
+  FIFO_PATH=/tmp/status.fifo
+  test -e "$FIFO_PATH" && rm "$FIFO_PATH"
+  mkfifo "$FIFO_PATH"
+
+  # Color definitions
+  C0="$(xrq '*color0')"
+  C1="$(xrq '*color1')"
+  C2="$(xrq '*color2')"
+  C3="$(xrq '*color3')"
+  C4="$(xrq '*color4')"
+  C5="$(xrq '*color5')"
+  C6="$(xrq '*color6')"
+  C7="$(xrq '*color7')"
+  C8="$(xrq '*color8')"
+  C9="$(xrq '*color9')"
+  C10="$(xrq '*color10')"
+  C11="$(xrq '*color11')"
+  C12="$(xrq '*color12')"
+  C13="$(xrq '*color13')"
+  C14="$(xrq '*color14')"
+  C15="$(xrq '*color15')"
+  CF="$(xrq '*foreground')"
+  CB="$(xrq '*background')"
+
+  # TERMINATE THIS HERO
+  trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+  ROOT_WINDOW="$(lsw -r)"
+  ROOT_WINDOW_WIDTH="$(wattr w $ROOT_WINDOW)"
+  ROOT_WINDOW_HEIGHT="$(wattr h $ROOT_WINDOW)"
+
+  BAR_WIDTH="$(echo "$ROOT_WINDOW_WIDTH * 0.7" | bc | cut -d. -f1)"
+  BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
+  BAR_X="$(echo "$ROOT_WINDOW_WIDTH * 0.15" | bc | cut -d. -f1)"
+  BAR_Y="$GENERAL_GAP"
+
+  SEP_SMALL="        "
+  SEP_BIG="            "
+
+  GNUMBER=6
+
+  # Bar options
+  BAR_OPTS=""
+  # Because wmutils
+  BAR_OPTS="${BAR_OPTS} -d"
+  # Gonna position it centered and respect the gaps
+  BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
+  # Colors
+  BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF} -U ${C9}"
+  BAR_OPTS="${BAR_OPTS} -u 2"
+  BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT}"
+
+# }}}
+
+# Gather info {{{
+
+  # Current time
+  time_format='%a %d %B %H:%M'
+  # If it's first of April, show the Epoch time
+  test "$(date +"%d %m")" = "01 04" && time_format='%s'
+  while true; do
+    # That LC_ALL=C is to disable localization. Still thinking about it
+    echo "T%{F$C5}%{F-} $(LC_ALL=C date +"$time_format")"
+    sleep 1
+  done > "$FIFO_PATH" &
+
+  # Music
+  while true; do
+    if [ $(mpc status | wc -l) -eq 3 ]; then
+      last_title="$(mpc status | head -n 1)"
+    elif [ $(mpc status | wc -l) -eq 0 ]; then
+      last_title="-"
+    fi
+
+    if [ -n "$(mpc status | grep pause)" ]; then
+      icon=""
+    elif [ -n "$(mpc status | grep playing)" ]; then
+      icon=""
+    else
+      icon=""
+    fi
+    echo "M%{A1:mpc toggle:}%{F$C5}${icon}%{F-} ${last_title}%{A}"
+    sleep 0.5
+  done > "$FIFO_PATH" &
+
+  # Battery status
+  while true; do
+    echo "B$(~/.scripts/battery     2 $C6)"
+    sleep 10
+  done > "$FIFO_PATH" &
+
+  # CPU Usage
+  while true; do
+    echo "P%{F$C4}%{F-} $(mpstat | grep -A 5 "%idle" | tail -n 1 | awk -F " " '{print 100 -  $ 12}'a)%"
+    sleep 1
+  done > "$FIFO_PATH" &
+
+  # Volume
+  while true; do
+    # Not quering pulse because it uses a hell lot of CPU
+    state=$(amixer get Master | grep 'Mono: Playback' | grep '\[on]')
+    volume=$(amixer -D pulse get Master | grep 'Front Left: Playback' | grep -o '...%' | sed 's/\[//' | sed 's/%//' | sed 's/ //')
+    if [ "$state" ]; then
+      if [ $volume -ge 50 ]; then
+        vicon=
+      else
+        vicon=
+      fi
+    else
+      vicon=
+    fi
+    echo "V%{A3:amixer sset Master toggle:}%{A4:amixer sset Master 5%+ unmute:}%{A5:amixer sset Master 5%- unmute:}%{F$C2}$vicon%{F-} $volume%{A}%{A}%{A}"
+    sleep 0.5
+  done > "$FIFO_PATH" &
+
+  # Group status
+  while true; do
+    g_out="G"
+    # Check each group
+    for gid in $(seq 1 $GNUMBER); do
+      # If we find no icon, fall back to group id
+      g_icon="$gid"
+      # Get the first window in the group, if there's any
+      g_window="$(ls -1 /tmp/groaw/$gid | sort -n | head -n 1)"
+      g_name="$(xtitle $g_window)"
+
+      case $g_name in
+        *Vimperator*)
+          g_icon=""
+          ;;
+        *urxvt*)
+          g_icon=""
+          ;;
+        Transmission)
+          g_icon=""
+          ;;
+        imv*)
+          g_icon=""
+          ;;
+        *"File Manager"*)
+          g_icon=""
+          ;;
+        *LibreOffice*)
+          g_icon=""
+          ;;
+        *Thunderbird)
+          g_icon=""
+          ;;
+        *)
+          test -z "$g_name" || g_icon=""
+          ;;
+      esac
+      if groaw -p $gid; then
+        g_this_out="%{+u} ${g_icon} %{-u}"
+      else
+        g_this_out=" ${g_icon} "
+      fi
+      test -z "$g_name" && g_this_out="%{F$C8}${g_this_out}%{F-}"
+      g_this_out="%{A1:groaw -t ${gid}:}${g_this_out}%{A}"
+      g_out="${g_out}${g_this_out}"
+    done
+    echo "$g_out"
+    sleep 0.3
+  done > "$FIFO_PATH" &
+
+# }}}
+
+# Process the data and show it {{{
+
+  cat "$FIFO_PATH" | \
+  while read -r line; do
+    case $line in
+      # Time
+      T*)
+        time="${line#?}"
+        ;;
+      G*)
+        groups="${line#?}"
+        ;;
+      M*)
+        music="${line#?}"
+        ;;
+      B*)
+        batt="${line#?}"
+        ;;
+      V*)
+        vol="${line#?}"
+        ;;
+      P*)
+        cpu="${line#?}"
+        ;;
+      esac
+    # Show time!
+    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}%{c}${groups}%{r}${cpu}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
+  done |\
+  lemonbar $BAR_OPTS | dash
+# }}}
+
+# vim: set ft=sh :
