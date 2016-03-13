@@ -1,22 +1,10 @@
 #! /bin/bash
 
-C1="#a66363"
-C2="#63a67a"
-C3="#a6a663"
-C4="#6385a6"
-C5="#a66390"
-C6="#63a69b"
-C7="#c0c5cf"
-
 reset="#[fg=default,bg=colour0]"
 
 clock() {
-  format="%H:%M %a %d %B"
-  echo "#[fg=colour8]$(date +"$format")"
+  format="%a %d %b %H:%M"
+  echo "#[fg=colour8]$(LC_ALL=C date +"$format")"
 }
 
-mem() {
-  echo "#[fg=colour0,bg=colour4] $(neofetch --stdout memory | awk '{print $1}')$reset#[fg=colour4]▓▒░"
-}
-
-echo "$(mem) $reset $(clock)"
+echo "$(clock)"

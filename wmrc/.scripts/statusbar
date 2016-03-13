@@ -107,6 +107,13 @@
     sleep 1
   done > "$FIFO_PATH" &
 
+  # Memory usage
+  while true; do
+    # Why bother getting the RAM, when I can use neofetch's "hidden" feature ;)
+    echo "R%{F$C1}%{F-}$(neofetch --stdout memory | cut -d' ' -f1)"
+    sleep 1
+  done > "$FIFO_PATH" &
+
   # Volume
   while true; do
     # Not quering pulse because it uses a hell lot of CPU
@@ -201,9 +208,12 @@
       P*)
         cpu="${line#?}"
         ;;
+      R*)
+        ram="${line#?}"
+        ;;
       esac
     # Show time!
-    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}%{c}${groups}%{r}${cpu}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
+    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}%{c}${groups}%{r}${cpu}${SEP_SMALL}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
   done |\
   lemonbar $BAR_OPTS | dash
 # }}}
