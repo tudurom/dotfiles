@@ -110,7 +110,7 @@
   # Memory usage
   while true; do
     # Why bother getting the RAM, when I can use neofetch's "hidden" feature ;)
-    echo "R%{F$C1}%{F-}$(neofetch --stdout memory | cut -d' ' -f1)"
+    echo "R%{F$C1}%{F-} $(neofetch --stdout memory | cut -d' ' -f1)"
     sleep 1
   done > "$FIFO_PATH" &
 
