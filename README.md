@@ -103,7 +103,7 @@ Screenshots
 Sub-projects
 ------------
 
-This project has some sub-projects in it, defined as submodules:
+This project has some sub-projects in it, defined as submodules[:](https://github.com/tudurom/dotfiles/blob/master/wallpapers/wallpapers/xero_said_this_one_is_rad.png)
 
 * [clint](https://github.com/tudurom/clint) - notes script.
 * [startpage](https://github.com/tudurom/startpage) - yes.
