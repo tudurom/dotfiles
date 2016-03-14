@@ -72,7 +72,7 @@
   test "$(date +"%d %m")" = "01 04" && time_format='%s'
   while true; do
     # That LC_ALL=C is to disable localization. Still thinking about it
-    echo "T%{F$C5}%{F-} $(LC_ALL=C date +"$time_format")"
+    echo "T%{F$C14}%{F-} $(LC_ALL=C date +"$time_format")"
     sleep 1
   done > "$FIFO_PATH" &
 
@@ -91,7 +91,7 @@
     else
       icon=""
     fi
-    echo "M%{A1:mpc toggle:}%{F$C5}${icon}%{F-} ${last_title}%{A}"
+    echo "M%{A1:mpc toggle:}%{F$C10}${icon}%{F-} ${last_title}%{A}"
     sleep 0.5
   done > "$FIFO_PATH" &
 
