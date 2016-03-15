@@ -33,9 +33,6 @@ alias fkh="fortune khaled"
 alias ls="ls -N"
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
-#source ~/.scripts/base16-ocean.dark.sh
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-
 # The Fuck is real
 eval $(thefuck --alias)
 

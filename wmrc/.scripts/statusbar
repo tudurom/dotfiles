@@ -91,13 +91,13 @@
     else
       icon=""
     fi
-    echo "M%{A1:mpc toggle:}%{F$C10}${icon}%{F-} ${last_title}%{A}"
+    echo "M%{A1:mpc toggle:}%{F$C9}${icon}%{F-} ${last_title}%{A}"
     sleep 0.5
   done > "$FIFO_PATH" &
 
   # Battery status
   while true; do
-    echo "B$(~/.scripts/battery     2 $C6)"
+    echo "B$(~/.scripts/battery     2 $C3)"
     sleep 10
   done > "$FIFO_PATH" &
 
@@ -213,7 +213,7 @@
         ;;
       esac
     # Show time!
-    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}%{c}${groups}%{r}${cpu}${SEP_SMALL}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
+    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}${cpu}%{c}${groups}%{r}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
   done |\
   lemonbar $BAR_OPTS | dash
 # }}}
