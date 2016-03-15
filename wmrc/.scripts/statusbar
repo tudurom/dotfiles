@@ -31,8 +31,10 @@
   C13="$(xrq '*color13')"
   C14="$(xrq '*color14')"
   C15="$(xrq '*color15')"
-  CF="$(xrq '*foreground')"
-  CB="$(xrq '*background')"
+  #CF="$(xrq '*foreground')"
+  CF="$C6"
+  #CB="$(xrq '*background')"
+  CB="#1d2a30"
 
   # TERMINATE THIS HERO
   trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
@@ -58,7 +60,7 @@
   # Gonna position it centered and respect the gaps
   BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
   # Colors
-  BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF} -U ${C9}"
+  BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF} -U ${C1}"
   BAR_OPTS="${BAR_OPTS} -u 2"
   BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT}"
 
@@ -103,14 +105,14 @@
 
   # CPU Usage
   while true; do
-    echo "P%{F$C4}%{F-} $(mpstat | grep -A 5 "%idle" | tail -n 1 | awk -F " " '{print 100 -  $ 12}'a)%"
+    echo "P%{F$C12}%{F-} $(mpstat | grep -A 5 "%idle" | tail -n 1 | awk -F " " '{print 100 -  $ 12}'a)%"
     sleep 1
   done > "$FIFO_PATH" &
 
   # Memory usage
   while true; do
     # Why bother getting the RAM, when I can use neofetch's "hidden" feature ;)
-    echo "R%{F$C1}%{F-} $(neofetch --stdout memory | cut -d' ' -f1)"
+    echo "R%{F$C9}%{F-} $(neofetch --stdout memory | cut -d' ' -f1)"
     sleep 1
   done > "$FIFO_PATH" &
 
@@ -128,7 +130,7 @@
     else
       vicon=
     fi
-    echo "V%{A3:amixer sset Master toggle:}%{A4:amixer sset Master 5%+ unmute:}%{A5:amixer sset Master 5%- unmute:}%{F$C2}$vicon%{F-} $volume%{A}%{A}%{A}"
+    echo "V%{A3:amixer sset Master toggle:}%{A4:amixer sset Master 5%+ unmute:}%{A5:amixer sset Master 5%- unmute:}%{F$C10}$vicon%{F-} $volume%{A}%{A}%{A}"
     sleep 0.5
   done > "$FIFO_PATH" &
 
@@ -170,7 +172,7 @@
           ;;
       esac
       if groaw -p $gid; then
-        g_this_out="%{+u} ${g_icon} %{-u}"
+        g_this_out="%{+u} %{F$C6}${g_icon}%{F-} %{-u}"
       else
         g_this_out=" ${g_icon} "
       fi

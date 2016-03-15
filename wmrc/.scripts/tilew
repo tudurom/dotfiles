@@ -8,7 +8,7 @@
 # default values for gaps and master area
 PANEL=${PANEL:-$(( 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT + 2 ))}
 GAP=${GAP:-$GENERAL_GAP}
-MASTER=${MASTER:-900}
+MASTER=${MASTER:-940}
 
 # get current window id and its borderwidth
 PFW=$(pfw)
@@ -39,3 +39,5 @@ for wid in $(lsw|grep -v $PFW); do
     wtp $X $Y $W $H $wid
     Y=$((Y + H + GAP + 2*BW))
 done
+
+# vim: set ft=sh :
