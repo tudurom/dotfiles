@@ -13,7 +13,7 @@ I manage my dotfiles using GNU Stow. [Here's a neat article about managing your 
 List of programs
 -----------------
 
-* **Operating System**: [Arch Linux](http://archlinux.org) (tell everyone that some (handsome) guy who calls himself tudurom uses Arch. YEAH! I'M USING ARCH!)
+* **Operating System**: [Arch Linux](http://archlinux.org)
 * **Text editor**: [neovim](http://neovim.io)
   * See `nvim/.config/nvim/init.vim` for plugins
 * **Color scheme**: [cloudy](https://github.com/tudurom/dotfiles/blob/master/x/.xres/colors/cloudy)
