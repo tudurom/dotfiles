@@ -1,8 +1,11 @@
 #! /bin/dash
-
+set -x
 # puts a window in a given corner or in the middle of the screen
 # (c) tudurom 2016 - wtfpl
 #
+
+. wmrc
+. panelsrc
 
 pfw="${2:-$(pfw)}"
 root="$(lsw -r)"
@@ -18,14 +21,16 @@ y=0
 
 case $1 in
   tr)
-    x=$(( screen_width - width - 2 * border_width ))
+    x=$(( screen_width - width - 2 * border_width - GENERAL_GAP ))
+    y=$(( 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT ))
     ;;
   bl)
-    y=$(( screen_height - height - 2 * border_width ))
+    x=$GENERAL_GAP
+    y=$(( screen_height - height - 2 * border_width - GENERAL_GAP ))
     ;;
   br)
-    x=$(( screen_width - width - 2 * border_width ))
-    y=$(( screen_height - height - 2 * border_width ))
+    x=$(( screen_width - width - 2 * border_width - GENERAL_GAP ))
+    y=$(( screen_height - height - 2 * border_width - GENERAL_GAP))
     ;;
   md)
     x=$(( screen_width / 2 - width /  2 - border_width ))
@@ -33,3 +38,5 @@ case $1 in
 esac
 
 wtp $x $y $width $height $pfw
+
+# vim: set ft=sh :

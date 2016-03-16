@@ -5,12 +5,12 @@
 
 ! special
 *.foreground:   #c0c5ce
-*.background:   #1d2a30
+*.background:   #273941
 *.cursorColor:  #c0c5ce
 URxvt.cursorColor: #eff1f5
 
 ! black
-*.color0:       #1d2a30
+*.color0:       #273941
 *.color8:       #456472
 
 ! red

@@ -105,7 +105,7 @@
 
   # CPU Usage
   while true; do
-    echo "P%{F$C12}%{F-} $(mpstat | grep -A 5 "%idle" | tail -n 1 | awk -F " " '{print 100 -  $ 12}'a)%"
+    echo "P%{F$C12}%{F-} $(mpstat | grep -A 5 "%idle" | tail -n 1 | awk '{print int(100 -  $ 12)}')"
     sleep 1
   done > "$FIFO_PATH" &
 
