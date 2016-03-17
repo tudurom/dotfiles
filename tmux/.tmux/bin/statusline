@@ -4,7 +4,7 @@ reset="#[fg=default,bg=colour0]"
 
 clock() {
   format="%a %d %b %H:%M"
-  echo "#[fg=colour8]$(LC_ALL=C date +"$format")"
+  echo "#[fg=colour8]$(date +"$format")"
 }
 
 echo "$(clock)"

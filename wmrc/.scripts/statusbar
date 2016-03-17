@@ -74,7 +74,7 @@
   test "$(date +"%d %m")" = "01 04" && time_format='%s'
   while true; do
     # That LC_ALL=C is to disable localization. Still thinking about it
-    echo "T%{F$C14}%{F-} $(LC_ALL=C date +"$time_format")"
+    echo "T%{F$C14}%{F-} $(date +"$time_format")"
     sleep 1
   done > "$FIFO_PATH" &
 
