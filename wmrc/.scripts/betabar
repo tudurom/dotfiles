@@ -47,7 +47,7 @@
   BAR_X="$GENERAL_GAP"
   BAR_Y="$GENERAL_GAP"
 
-  SEP_SMALL="        "
+  SEP_SMALL="    "
   SEP_BIG="            "
 
   GNUMBER=6
@@ -55,13 +55,16 @@
   # Bar options
   BAR_OPTS=""
   # Because wmutils
-  BAR_OPTS="${BAR_OPTS} -d"
+  BAR_OPTS="${BAR_OPTS} -d -a 30"
   # Gonna position it centered and respect the gaps
   BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
   # Colors
   BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF} -U ${C1}"
   BAR_OPTS="${BAR_OPTS} -u 2"
   BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT}"
+
+  CPU_ICON=""
+  RAM_ICON=""
 
 # }}}
 
@@ -98,20 +101,33 @@
 
   # Battery status
   while true; do
-    echo "B$(~/.scripts/battery     2 $C3)"
+    query="$(acpi | sed 's/[,:]/ /g' | sed 's/  / /g')"
+    batt_status="$(echo $query | cut -d' ' -f3)"
+    batt_percentage="$(echo $query | cut -d' ' -f4 | sed 's/%//g')"
+    if [ "$batt_status" = "Charging" ]; then
+      BATT_ICON=""
+    elif [ "$batt_percentage" -ge 75 ]; then
+      BATT_ICON=""
+    elif [ "$batt_percentage" -ge 50 ]; then
+      BATT_ICON=""
+    else
+      BATT_ICON=""
+    fi
+    echo "BI$BATT_ICON"
+    echo "B$batt_percentage"
     sleep 10
   done > "$FIFO_PATH" &
 
   # CPU Usage
   while true; do
-    echo "P%{F$C12}%{F-} $(mpstat | grep -A 5 "%idle" | tail -n 1 | awk '{print int(100 -  $ 12)}')"
+    echo "P$(mpstat | grep -A 5 "%idle" | tail -n 1 | awk '{print int(100 -  $ 12)}')"
     sleep 1
   done > "$FIFO_PATH" &
 
   # Memory usage
   while true; do
     # Why bother getting the RAM, when I can use neofetch's "hidden" feature ;)
-    echo "R%{F$C9}%{F-} $(neofetch --stdout memory | cut -d' ' -f1)"
+    echo "R$(neofetch --stdout memory | cut -d' ' -f1 | sed 's/MB//g')"
     sleep 1
   done > "$FIFO_PATH" &
 
@@ -129,7 +145,8 @@
     else
       vicon=
     fi
-    echo "V%{A3:amixer sset Master toggle:}%{A4:amixer sset Master 5%+ unmute:}%{A5:amixer sset Master 5%- unmute:}%{F$C10}$vicon%{F-} $volume%{A}%{A}%{A}"
+    echo "VI$vicon"
+    echo "V$volume"
     sleep 0.5
   done > "$FIFO_PATH" &
 
@@ -190,7 +207,6 @@
   cat "$FIFO_PATH" | \
   while read -r line; do
     case $line in
-      # Time
       T*)
         time="${line#?}"
         ;;
@@ -200,23 +216,35 @@
       M*)
         music="${line#?}"
         ;;
+      BI*)
+        BATT_ICON="${line#??}"
+        ;;
       B*)
         batt="${line#?}"
+        batt="%{A1:secpanel "$batt" &:}%{F$C11}$BATT_ICON%{F-}%{A}"
+        ;;
+      VI*)
+        VOL_ICON="${line#??}"
         ;;
       V*)
         vol="${line#?}"
+        vol="%{A1:secpanel "$vol" &:}%{A3:amixer sset Master toggle:}%{A4:amixer sset Master 5%+:}%{A5:amixer sset Master 5%-:}%{F$C10}$VOL_ICON%{F-}%{A}%{A}%{A}%{A}"
         ;;
       P*)
         cpu="${line#?}"
+        cpu="%{A1:secpanel "$cpu" &:}%{F$C12}$CPU_ICON%{F-}%{A}"
         ;;
       R*)
         ram="${line#?}"
+        ram="%{A1:secpanel "$ram" &:}%{F$C9}$RAM_ICON%{F-}%{A}"
         ;;
       esac
     # Show time!
-    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}${cpu}%{c}${groups}%{r}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
+    echo "%{l}${SEP_BIG}${time}${SEP_SMALL}${music}%{c}${groups}%{r}${batt}${SEP_SMALL}${vol}${SEP_SMALL}${cpu}${SEP_SMALL}${ram}${SEP_BIG}"
   done |\
   lemonbar $BAR_OPTS | dash
 # }}}
+
+wait
 
 # vim: set ft=sh :
