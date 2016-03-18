@@ -1,0 +1,15 @@
+#!/bin/dash
+. wmrc
+. panelsrc
+
+text="$1"
+bar_width="$(txtw -f 'Erusfont' -F 'Siji' "$text")"
+bar_width="$(( bar_width + 2 * GENERAL_GAP ))"
+disp_size="$(dattr -w $(ppd))"
+bar_x="$(( (disp_size - bar_width) / 2 ))"
+bar_y="$(( 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT ))"
+bar_opts="$PANEL_OPTS -g ${bar_width}x${PANEL_STATUS_HEIGHT}+${bar_x}+${bar_y}"
+
+(echo "%{c}$text"; sleep 1) | lemonbar $bar_opts
+
+# vim: set ft=sh :
