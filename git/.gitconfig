@@ -1,6 +1,6 @@
 [user]
   # Subject to change
-	email = tudurom@gmail.com
+	email = xenogenesis@openmailbox.org
 	name = Tudor
 [mergetool]
   path = nvim

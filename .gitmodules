@@ -1,23 +1,8 @@
-[submodule "home/.scripts/clint"]
-	path = home/.scripts/clint
-	url = https://github.com/tudurom/clint.git
-[submodule "home/.config/luakit/luakit-adblock"]
-	path = home/.config/luakit/luakit-adblock
-	url = https://github.com/Plaque-fcc/luakit-adblock/
 [submodule "home/startpage"]
 	path = home/startpage
 	url = https://github.com/tudurom/startpage.git
-[submodule "home/khaled"]
-	path = home/khaled
-	url = https://github.com/onodera-punpun/khaled.git
-[submodule "scripts/clint"]
-	path = scripts/clint
-	url = https://github.com/tudurom/clint.git
 [submodule "scripts/.scripts/clint"]
 	path = scripts/.scripts/clint
-	url = https://github.com/tudurom/clint.git
-[submodule "scripts/.scripts/--force"]
-	path = scripts/.scripts/--force
 	url = https://github.com/tudurom/clint.git
 [submodule "startpage/startpage"]
 	path = startpage/startpage
