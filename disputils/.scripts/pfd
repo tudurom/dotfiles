@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# pfd - print focused display
+# (c) ix 2016
+#
+
+usage() {
+  echo "usage: $(basename $0) [-c X Y] [wid]"
+  exit ${1:-0}
+}
+
+ismonitor() {
+  [ $1 -ge $3 ] && [ $2 -ge $4 ] \
+  && [ $1 -le $5 ] && [ $2 -le $6 ]
+}
+
+checkmonitor() {
+  for MONITOR in $(lsd); do
+    if ismonitor $1 $2 $(dattr -a $MONITOR); then
+      echo $MONITOR
+    fi
+  done
+}
+
+while getopts c opt; do
+  case $opt in
+    c) COORDS=1 ;;
+    h) usage 0 ;;
+  esac
+done
+
+shift $(( $OPTIND - 1 ))
+
+if [ -z $1 ]; then
+  WINDOW=$(pfw)
+else
+  WINDOW=$1
+fi
+
+if [ $COORDS ]; then
+  checkmonitor $1 $2
+else
+  checkmonitor $(wattr xy $WINDOW)
+fi

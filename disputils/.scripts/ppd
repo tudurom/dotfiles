@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# ppd - print primary display
+# (c) tudurom 2016 - wtfpl
+#
+
+xrandr | grep -e "^.* primary" | cut -d' ' -f1
