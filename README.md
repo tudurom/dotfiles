@@ -37,6 +37,7 @@ tud|| ~/dotfiles > tree -L 1
 ```
 . <- you're here
 ├── alsa - Advanced Linux Sound Architecture config
+├── asciiart - Random asciiart from everywhere
 ├── bspwm - old bspwm rice
 ├── cava - configs for cava, a sound visualizer
 ├── compton - configuration for compton, the best window compozitor

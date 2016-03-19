@@ -41,6 +41,8 @@ filetype off                  " required
   " One plugin to rule them all
   Plug 'sheerun/vim-polyglot'
 
+  Plug 'mhinz/vim-startify'
+
   call plug#end()            " required
   filetype plugin indent on    " required
 " }}}
@@ -160,4 +162,10 @@ filetype off                  " required
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
   endfunction"}}}
+" }}}
+
+" Startify {{{
+
+  let g:startify_custom_header = map(split(system('cat ~/asciiart/neovim.logo.txt'), '\n'), '"   ". v:val')
+
 " }}}

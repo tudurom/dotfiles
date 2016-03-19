@@ -117,9 +117,8 @@
 
   # Volume
   while true; do
-    # Not quering pulse because it uses a hell lot of CPU
     state=$(amixer get Master | grep 'Mono: Playback' | grep '\[on]')
-    volume=$(amixer -D pulse get Master | grep 'Front Left: Playback' | grep -o '...%' | sed 's/\[//' | sed 's/%//' | sed 's/ //')
+    volume=$(amixer -D pulse get Master | grep "Front Left: Playback" | grep -o '...%' | sed 's/\[//g' | sed 's/%//g')
     if [ "$state" ]; then
       if [ $volume -ge 50 ]; then
         vicon=
