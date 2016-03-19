@@ -79,14 +79,6 @@ Thanks
 * [baskerville](https://github.com/baskerville) for bspwm and sxhkd
 * [Nixers](https://nixers.net) for being cool ;)
 
-Wallpaper authors
------------------
-
-* `Monody.jpg` - Jordan Grimmer
-* `april_wall.png` - [/u/Czakima](https://reddit.com/u/czakima)
-
-This list is WIP.
-
 TODO
 ----
 
