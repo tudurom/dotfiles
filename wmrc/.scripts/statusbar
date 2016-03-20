@@ -7,6 +7,13 @@
 . wmrc
 . panelsrc
 
+is_int() {
+  case $1 in
+    ''|*[!0-9]*) return 1 ;;
+    *) return 0 ;;
+  esac
+}
+
 # Setup {{{
 
   # Create fifo
@@ -98,7 +105,32 @@
 
   # Battery status
   while true; do
-    echo "B$(~/.scripts/battery     2 $C3)"
+    # Separate information with spaces
+    query="$(acpi | sed 's/[,:]/ /g' | sed 's/  / /g')"
+    # Charging/Discharging/Unknown
+    batt_status="$(echo $query | cut -d' ' -f3)"
+    batt_percentage="$(echo $query | cut -d' ' -f4 | sed 's/%//g')"
+    # Icons
+    if [ "$batt_status" = "Charging" ]; then
+      BATT_ICON=""
+    elif [ "$batt_percentage" -ge 75 ]; then
+      BATT_ICON=""
+    elif [ "$batt_percentage" -ge 50 ]; then
+      BATT_ICON=""
+    else
+      BATT_ICON=""
+    fi
+    # Get time until full {charge,discharge}
+    # No such thing? Don't display it!
+    hours="$(echo $query | cut -d' ' -f5)"
+    is_int "$hours" && hours="${hours}:" || hours=""
+    minutes="$(echo $query | cut -d' ' -f6)"
+    is_int "$minutes" && minutes="${minutes}:" || minutes=""
+    secs="$(echo $query | cut -d' ' -f7)"
+    is_int "$secs" && secs="${secs}" || secs=""
+    time_completed="${hours}${minutes}${secs}"
+    test -n "$(echo $time_completed)" && time_completed=" (${time_completed})"
+    echo "B%{F$C11}${BATT_ICON}%{F-} ${batt_percentage}${time_completed}"
     sleep 10
   done > "$FIFO_PATH" &
 
