@@ -1,4 +1,4 @@
-URxvt.font: -erus-erusfont-medium-r-normal--11-80-100-100-c-60-iso10646-1,xft:Noto Sans,xft:Symbola
+URxvt.font: -erus-erusfont-medium-r-normal--11-80-100-100-c-60-iso10646-1,xft:Symbola
 ! No bold font
 URxvt.boldFont:
 URxvt.scrollBar: false

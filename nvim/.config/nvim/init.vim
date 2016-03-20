@@ -7,18 +7,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Plugins {{{
+
   call plug#begin('~/.config/nvim/bundle')
 
-  Plug 'gmarik/Vundle.vim'
-
-  " Colorschemes
-  Plug 'chriskempson/base16-vim'
-  Plug 'noahfrederick/vim-noctu'
-
-  " Focusing
-  Plug 'junegunn/goyo.vim'
-
-  " Others
   " File tree. Sometimes useful and sometimes it looks good
   Plug 'scrooloose/nerdtree'
 
@@ -36,15 +27,18 @@ filetype off                  " required
   Plug 'Shougo/deoplete.nvim'
   Plug 'zchee/deoplete-clang'
 
+  " Syntax checking
+  Plug 'scrooloose/syntastic'
+
+  " Show changes
   Plug 'airblade/vim-gitgutter'
 
   " One plugin to rule them all
   Plug 'sheerun/vim-polyglot'
 
-  Plug 'mhinz/vim-startify'
-
-  call plug#end()            " required
+  call plug#end()              " required
   filetype plugin indent on    " required
+
 " }}}
 
 " Essential things {{{
@@ -66,14 +60,12 @@ filetype off                  " required
   set smartcase
   " Make it natural
   set splitright
-  " Fuck YCM
-  let g:ycm_global_ycm_extra_conf = '/home/tudurom/problems/.ycm_extra_conf.py'
 
   " Nope
   set noswapfile
   " Set backup/undo dirs
-  set backupdir=~/.config/nvim/tmp/backups//
-  set undodir=~/.config/nvim/tmp/undo//
+  set backupdir=~/.config/nvim/tmp/backups/
+  set undodir=~/.config/nvim/tmp/undo/
 
   " Make the folders automatically if they don't already exist.
   if !isdirectory(expand(&backupdir))
@@ -88,6 +80,7 @@ filetype off                  " required
   set undofile
   set undolevels=500
   set undoreload=500
+
 " }}}
 
 " Keybindings {{{
@@ -99,23 +92,27 @@ filetype off                  " required
 " }}}
 
 " Colors {{{
-  set t_Co=256
+
   set background=dark
   colo shblah
+
 " }}}
 
 " NERD things {{{
+
   " Toggle NERDTree
   map <C-n> :NERDTreeToggle<CR>
+
 " }}}
 
 " Statusline {{{
-  set laststatus=2
+
+  set laststatus=2 " Make the bar permanent
   let g:lightline = {
     \ 'colorscheme': 'cloudy',
     \ 'active': {
     \   'left': [ [ 'filename' ],
-    \             [ 'readonly', 'fugitive' ] ],
+    \             [ 'readonly' ] ],
     \   'right': [ [ 'percent', 'lineinfo' ],
     \              [ 'fileencoding', 'filetype' ],
     \              [ 'fileformat', 'syntastic' ] ]
@@ -123,26 +120,27 @@ filetype off                  " required
     \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
     \ 'subseparator': { 'left': '▒', 'right': '░' }
     \ }
+
 " }}}
 
 " Clipboard setting {{{
+
   set clipboard^=unnamed,unnamedplus
+
 " }}}
 
 " Word wrapping {{{
+
   set wrap
   set linebreak
   set nolist
   set textwidth=0
   set wrapmargin=0
-" }}}
 
-" Focusing {{{
-  let g:goyo_width='80%'
-  let g:goyo_height='90%'
 " }}}
 
 " Completion {{{
+
   let g:deoplete#enable_at_startup = 1
 
   " C/C++ things
@@ -158,14 +156,19 @@ filetype off                  " required
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ deoplete#mappings#manual_complete()
+
   function! s:check_back_space() abort "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
   endfunction"}}}
+
 " }}}
 
-" Startify {{{
+" Syntax checking {{{
 
-  let g:startify_custom_header = map(split(system('cat ~/asciiart/neovim.logo.txt'), '\n'), '"   ". v:val')
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
 
 " }}}

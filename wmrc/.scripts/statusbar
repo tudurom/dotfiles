@@ -74,7 +74,7 @@
   while true; do
     # That LC_ALL=C is to disable localization. Still thinking about it
     echo "T%{F$C14}%{F-} $(date +"$time_format")"
-    sleep 1
+    sleep 10
   done > "$FIFO_PATH" &
 
   # Music
@@ -93,7 +93,7 @@
       icon=""
     fi
     echo "M%{A1:mpc toggle:}%{F$C9}${icon}%{F-} ${last_title}%{A}"
-    sleep 0.5
+    sleep 1
   done > "$FIFO_PATH" &
 
   # Battery status
@@ -105,20 +105,20 @@
   # CPU Usage
   while true; do
     echo "P%{F$C12}%{F-} $(mpstat | grep -A 5 "%idle" | tail -n 1 | awk '{print int(100 -  $ 12)}')"
-    sleep 1
+    sleep 10
   done > "$FIFO_PATH" &
 
   # Memory usage
   while true; do
     # Why bother getting the RAM, when I can use neofetch's "hidden" feature ;)
     echo "R%{F$C9}%{F-} $(neofetch --stdout memory | cut -d' ' -f1)"
-    sleep 1
+    sleep 10
   done > "$FIFO_PATH" &
 
   # Volume
   while true; do
     state=$(amixer get Master | grep 'Mono: Playback' | grep '\[on]')
-    volume=$(amixer -D pulse get Master | grep "Front Left: Playback" | grep -o '...%' | sed 's/\[//g' | sed 's/%//g')
+    volume=$(amixer get Master | grep "Mono: " | grep -o '...%' | sed 's/\[//g' | sed 's/%//g')
     if [ "$state" ]; then
       if [ $volume -ge 50 ]; then
         vicon=
