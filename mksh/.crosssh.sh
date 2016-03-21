@@ -36,17 +36,13 @@ export LESS='-F -g -i -M -R -S -w -X -z-4'
 # The Fuck is real
 eval $(thefuck --alias)
 
-#fortune | lolcat
-
 # Remove unnecessary packages
 pclean() {
-  sudo pacman -Rsn $(pacman -Qdtq)
+  sudo pacman -Rns $(pacman -Qdtq)
 }
 
 testnet() {
-  while true; do
-    ping google.com
-  done
+  ping duckduckgo.com
 }
 
 cless() {
@@ -57,4 +53,13 @@ ghclone() {
   git clone https://github.com/${1}.git
 }
 
+transfer() {
+  local tmpfile="$(mktemp -t tranferXXX)"
+  curl --progress-bar --upload-file $1 "https://transfer.sh/$(basename $1)" >> $tmpfile
+  cat $tmpfile
+  rm -rf $tmpfile
+  unset tmpfile
+}
+
+# This is pretty old black magic I did. And it works!
 fortune khaled | echo "$(toilet -f term --gay)\n"
