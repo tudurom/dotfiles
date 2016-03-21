@@ -33,7 +33,7 @@ case $1 in
     y=$(( screen_height - height - 2 * border_width - GENERAL_GAP))
     ;;
   md)
-    x=$(( screen_width / 2 - width /  2 - border_width ))
+    x=$(( (screen_width - width - 2 * border_width) / 2 ))
     y=$(( screen_height / 2 - height / 2 - border_width ))
 esac
 

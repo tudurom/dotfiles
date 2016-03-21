@@ -4,8 +4,7 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-while IFS=: read ev wid; do
-  #sleep 0.1
+while IFS=: read -r ev wid; do
   case $ev in
     # Window creation
     16)
@@ -18,7 +17,6 @@ while IFS=: read ev wid; do
     19)
       if ! wattr o $wid; then
         focusw $wid
-        #test $(lsw | wc -l) -ge 1 && hsetroot -fill $BLUR
       fi
       ;;
 
@@ -27,7 +25,6 @@ while IFS=: read ev wid; do
       if ! wattr $(pfw); then
         focusw $(closestw prev)
         groaw # Force cleanup
-        #test -z "$(lsw)" && hsetroot -fill $WALL
       fi
       ;;
   esac
