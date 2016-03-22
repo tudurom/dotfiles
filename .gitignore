@@ -6,6 +6,9 @@ nvim/.config/nvim/tmp
 mpd/.mpd/*
 !mpd/.mpd/mpd.conf
 
+st/st
+st/st.o
+
 vimperator/.vimperator/info
 
 wmrc/contrib/killwa/killwa
