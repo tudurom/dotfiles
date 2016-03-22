@@ -10,7 +10,7 @@ super + space
 
 # launch a term
 super + Return
-  urxvt
+  st
 
 # screenshot
 Print

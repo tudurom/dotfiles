@@ -8,9 +8,9 @@
 
 #include "colors/cloudy.h"
 
-static char font[] = "Metis";
+static char font[] = "Metis,Symbola";
 static int bold_font = 0;
-static int borderpx = 15;
+static int borderpx = 20;
 static char shell[] = "/bin/mksh";
 static char *utmp = NULL;
 static char stty_args[] = "stty raw -echo -iexten echonl";
@@ -20,7 +20,7 @@ static char vtiden[] = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 0.4;
-static float chscale = 1;
+static float chscale = 1.;
 
 /*
  * word delimiter string
@@ -86,7 +86,7 @@ static Shortcut shortcuts[] = {
 	{ MODKEY|ShiftMask,     XK_C,           clipcopy,       {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_V,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
-  { MODKEY,               XK_u,           externalpipe,   {.v = "xurls | menu -l 5 -p 'url' | xargs -r open" } },
+  { MODKEY,               XK_u,           externalpipe,   {.v = "xurls | dmenu | xargs -r xdg-open" } },
 };
 
 /*
@@ -131,7 +131,7 @@ static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
  * modifier, set to 0 to not use it. */
 static uint forceselmod = ShiftMask;
 
-static Key key[] = {
+static Key key[] = { //{{{
 	/* keysym           mask            string      appkey appcursor crlf */
 	{ XK_KP_Home,       ShiftMask,      "\033[2J",       0,   -1,    0},
 	{ XK_KP_Home,       ShiftMask,      "\033[1;2H",     0,   +1,    0},
@@ -328,7 +328,7 @@ static Key key[] = {
 	{ XK_F33,           XK_NO_MOD,      "\033[20;5~",    0,    0,    0},
 	{ XK_F34,           XK_NO_MOD,      "\033[21;5~",    0,    0,    0},
 	{ XK_F35,           XK_NO_MOD,      "\033[23;5~",    0,    0,    0},
-};
+}; //}}}
 
 /*
  * Selection types' masks.
