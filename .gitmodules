@@ -7,3 +7,6 @@
 [submodule "startpage/startpage"]
 	path = startpage/startpage
 	url = https://github.com/tudurom/startpage.git
+[submodule "st"]
+	path = st
+	url = https://github.com/tudurom/st.git
