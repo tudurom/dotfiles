@@ -91,7 +91,9 @@ TODO
 Screenshots
 -----------
 
-### [Current state](http://pub.iotek.org/p/9DIdJjP.png)
+### [Current state](http://pub.iotek.org/p/YdrGGvR.png)
+
+### [First wmutils screenie](http://pub.iotek.org/p/9DIdJjP.png)
 
 ### [Previous BSPWM desktop](http://goo.gl/2vj5Yk)
 

@@ -8,4 +8,3 @@
 #include ".xres/rofi"
 #include ".xres/colors/cloudy"
 #include ".xres/urxvt"
-#include ".xres/st"

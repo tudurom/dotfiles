@@ -13,14 +13,13 @@ alias rename="/usr/bin/rename"
 
 prompt () {
   _ERR=$?
-  exit_color=4
+  exit_color=6
   if [[ $_ERR -ne 0 ]]; then
     exit_color=1
   fi
-  prename="tud$(tput setaf $exit_color)||"
-  arrow="$(tput setaf 6)>"
-  dir="$(tput setaf 7)$(pwd | sed -e "s/\/home\/$USER/~/")"
-  echo -n "${prename} ${dir} ${arrow}$(tput sgr0) "
+  dir="$(tput setaf 8)$(pwd | sed -e "s/\/home\/$USER/~/")"
+  arrow="$(tput setaf $exit_color)───"
+  echo -n "${dir}\n${arrow}$(tput sgr0) "
 }
 
 PS1='$(prompt)'

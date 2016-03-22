@@ -61,5 +61,3 @@ transfer() {
   unset tmpfile
 }
 
-# This is pretty old black magic I did. And it works!
-fortune khaled | echo "$(toilet -f term --gay)\n"
