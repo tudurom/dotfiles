@@ -4,7 +4,7 @@
 # window focus wrapper that sets borders
 #
 
-BW=${BW:-2}                    # border width
+BW=${BW:-3}                    # border width
 ACTIVE=${ACTIVE:-0x63a690}     # active border color
 INACTIVE=${INACTIVE:-0x456472} # inactive border color
 

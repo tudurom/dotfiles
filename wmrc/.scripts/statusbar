@@ -179,7 +179,7 @@ is_int() {
         *Vimperator*)
           g_icon=""
           ;;
-        *urxvt*)
+        *urxvt*|*st*)
           g_icon=""
           ;;
         Transmission)

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-monitor_width=$(xrandr | grep "primary" | awk -F'[ x+]' '{print $4}')
+monitor_width=$(dattr -w $(ppd))
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1"
 
 dmenu_run -s 0 -nf "#71c2af" -nb "#273941" -sb "#1d2a30" -sf "#c27171" -i -h 30 -w "${monitor_width}" -q -x 0 -y 0 -fn "${font}" -p ">" -l 3
