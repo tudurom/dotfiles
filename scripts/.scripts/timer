@@ -1,0 +1,17 @@
+#!/bin/dash
+# Timer script. Launch it first to start the timer, launch it the second time to stop it
+# (c) tudurom 2016 - wtfpl
+#
+
+TEMP_FILE="$HOME/.timerfile"
+
+if [ -f "$TEMP_FILE" ]; then
+  start_time="$(cat "$TEMP_FILE")"
+  end_time="$(date +%s)"
+  echo "$(( end_time - start_time ))"
+  rm "$TEMP_FILE"
+else
+  echo "$(date +%s)" > "$TEMP_FILE"
+fi
+
+# vim: set ft=sh :
