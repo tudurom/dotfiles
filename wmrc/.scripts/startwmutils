@@ -9,3 +9,5 @@ wew | wewhandle &
 wall-e &
 statusbar &
 xwait
+
+# vim: set ft=sh :
