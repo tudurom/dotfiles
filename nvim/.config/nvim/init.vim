@@ -93,9 +93,8 @@ filetype off                  " required
 
 " Colors {{{
 
-  set background=dark
-  colo shblah
-
+  set background=light
+  colo shblah_light
 " }}}
 
 " NERD things {{{
@@ -109,7 +108,7 @@ filetype off                  " required
 
   set laststatus=2 " Make the bar permanent
   let g:lightline = {
-    \ 'colorscheme': 'cloudy',
+    \ 'colorscheme': 'woody',
     \ 'active': {
     \   'left': [ [ 'filename' ],
     \             [ 'readonly' ] ],

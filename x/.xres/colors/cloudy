@@ -7,7 +7,6 @@
 *.foreground:   #c0c5ce
 *.background:   #273941
 *.cursorColor:  #c0c5ce
-URxvt.cursorColor: #eff1f5
 
 ! black
 *.color0:       #273941
