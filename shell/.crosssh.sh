@@ -61,3 +61,7 @@ transfer() {
   unset tmpfile
 }
 
+pi() {
+  ssh 192.168.12.122 $1
+}
+
