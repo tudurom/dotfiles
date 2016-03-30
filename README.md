@@ -19,7 +19,7 @@ List of programs
 * **Color scheme**: [cloudy](https://github.com/tudurom/dotfiles/blob/master/x/.xres/colors/cloudy)
 * **Shell**: [mksh](https://www.mirbsd.org/mksh.htm)
   * Also using [tmux](https://wiki.archlinux.org/index.php/tmux).
-* **Terminal emulator**: [urxvt](https://wiki.archlinux.org/index.php/rxvt-unicode) (for noobs: [see this tutorial](https://www.youtube.com/watch?v=_kjbj-Ez1vU&feature=youtu.be))
+* **Terminal emulator**: [suckless st](https://wiki.archlinux.org/index.php/St)
 * **Notification daemon**: [Simple Notification Daemon](https://github.com/htylo/simplenotifydaemon) in combination with [my script](https://github.com/tudurom/dotfiles/blob/master/scripts/.scripts/notifyd)
 * **Window manager**: [wmutils](http://wmutils.io) + [my scripts](https://github.com/tudurom/dotfiles/tree/master/wmrc/.scripts)
   * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `wmrc/.scripts/*panel`)
