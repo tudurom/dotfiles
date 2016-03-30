@@ -8,9 +8,8 @@
 . panelsrc
 
 pfw="${2:-$(pfw)}"
-root="$(lsw -r)"
-screen_width="$(wattr w $root)"
-screen_height="$(wattr h $root)"
+screen_width="$PPD_W"
+screen_height="$PPD_H"
 
 border_width="$(wattr b $pfw)"
 width="$(wattr w $pfw)"

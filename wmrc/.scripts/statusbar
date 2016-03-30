@@ -4,6 +4,12 @@
 # (c) tudurom 2016 - wtfpl
 #
 
+# Cache primary monitor info {{{
+
+  dattr $(ppd) > ".cache/ppd_sizes"
+
+# }}}
+
 . wmrc
 . panelsrc
 

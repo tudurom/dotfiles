@@ -1,6 +1,6 @@
 #! /bin/bash
 
-LAPTOP_SCREEN="LVDS-1"
+LAPTOP_SCREEN="$(xrandr | grep "LVDS-[0-9]" | cut -d' ' -f1)"
 
 single_ext="on"
 ext_monitor=$(xrandr | grep " connected" | grep -v "$LAPTOP_SCREEN" | awk '{print $1}')

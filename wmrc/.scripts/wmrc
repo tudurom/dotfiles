@@ -5,4 +5,9 @@
 # Gap to use for most of the things
 GENERAL_GAP=20
 
+PPD_X="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f1)"
+PPD_Y="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f2)"
+PPD_W="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f3)"
+PPD_H="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f4)"
+
 # vim: set ft=sh :
