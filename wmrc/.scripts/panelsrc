@@ -3,7 +3,7 @@
 
 . wmrc
 
-PANEL_FONT="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"
+PANEL_FONT="-*-metis-normal-r-normal--11-90-75-75-p-58-iso10646-1"
 PANEL_ICON_FONT="-wuncon-siji-medium-*-*-*-10-*-*-*-*-*-*-*"
 PANEL_BG_COLOR="#1d2a30"
 PANEL_FG_COLOR="#71c2af"
