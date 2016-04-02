@@ -1,11 +1,4 @@
 defaults.pcm.rate_converter "speexrate_best"
 
-pcm.!default {
-  type hw
-  card 0
-}
-
-ctl.!default {
-  type hw
-  card 0
-}
+defaults.pcm.card 0
+defaults.ctl.card 0

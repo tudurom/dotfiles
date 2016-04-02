@@ -1,8 +1,7 @@
 # Host and music location
-mpd_host = "::"
+mpd_host = "localhost"
 mpd_port = "6600"
-# /gamez is my big files folder
-mpd_music_dir = "/gamez/Music"
+mpd_music_dir = "/home/tudurom/Music"
 
 # Playlist look
 playlist_display_mode = "classic"
