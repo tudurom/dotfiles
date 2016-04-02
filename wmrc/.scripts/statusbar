@@ -1,6 +1,6 @@
 #! /bin/dash
 #
-# Simple status bar
+# "Simple" status bar
 # (c) tudurom 2016 - wtfpl
 #
 
@@ -63,6 +63,7 @@ is_int() {
   SEP_SMALL="        "
   SEP_BIG="            "
 
+  # Number of groups
   GNUMBER=6
 
   # Bar options
@@ -111,11 +112,8 @@ is_int() {
 
   # Battery status
   while true; do
-    # Separate information with spaces
-    query="$(acpi | sed 's/[,:]/ /g' | sed 's/  / /g')"
-    # Charging/Discharging/Unknown
-    batt_status="$(echo $query | cut -d' ' -f3)"
-    batt_percentage="$(echo $query | cut -d' ' -f4 | sed 's/%//g')"
+    batt_status="$(cat /sys/class/power_supply/BAT0/status)"
+    batt_percentage="$(cat /sys/class/power_supply/BAT0/capacity)"
     # Icons
     if [ "$batt_status" = "Charging" ]; then
       BATT_ICON=""
@@ -126,30 +124,26 @@ is_int() {
     else
       BATT_ICON=""
     fi
-    # Get time until full {charge,discharge}
-    # No such thing? Don't display it!
-    hours="$(echo $query | cut -d' ' -f5)"
-    is_int "$hours" && hours="${hours}:" || hours=""
-    minutes="$(echo $query | cut -d' ' -f6)"
-    is_int "$minutes" && minutes="${minutes}:" || minutes=""
-    secs="$(echo $query | cut -d' ' -f7)"
-    is_int "$secs" && secs="${secs}" || secs=""
-    time_completed="${hours}${minutes}${secs}"
-    test -n "$(echo $time_completed)" && time_completed=" (${time_completed})"
-    echo "B%{F$C11}${BATT_ICON}%{F-} ${batt_percentage}${time_completed}"
+    echo "B%{F$C11}${BATT_ICON}%{F-} ${batt_percentage}"
     sleep 10
   done > "$FIFO_PATH" &
 
   # CPU Usage
   while true; do
-    echo "P%{F$C12}%{F-} $(mpstat | grep -A 5 "%idle" | tail -n 1 | awk '{print int(100 -  $ 12)}')"
+    cpu_usage="$(top -bn1 | grep "Cpu(s)" | sed 's/.*, *\([0-9.]*\)%* id.*/\1/' | awk '{print 100 - $1}')"
+    echo "P%{F$C12}%{F-} ${cpu_usage}"
     sleep 10
   done > "$FIFO_PATH" &
 
   # Memory usage
   while true; do
-    # Why bother getting the RAM, when I can use neofetch's "hidden" feature ;)
-    echo "R%{F$C9}%{F-} $(neofetch --stdout memory | cut -d' ' -f1)"
+    t=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+    f=$(grep MemFree  /proc/meminfo | awk '{print $2}')
+    b=$(grep ^Buffers /proc/meminfo | awk '{print $2}')
+    c=$(grep ^Cached  /proc/meminfo | awk '{print $2}')
+
+    mem=`echo "($t - $f - $c - $b) / 1024" | bc`
+    echo "R%{F$C9}%{F-} $mem"
     sleep 10
   done > "$FIFO_PATH" &
 
