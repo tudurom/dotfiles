@@ -49,11 +49,11 @@ setxkbmap -option ctrl:nocaps
 # URxvt clipboard magic
 autocutsel -selection clipboard -fork &
 
-source ~/.scripts/screenlayout
-# It's unclutter-xfixes-git
+screenlayout
+# It's unclutter-xfixes
 unclutter -b
 mpd &
 notifyd &
 xsetroot -cursor_name left_ptr &
 #exec wm
-source ~/.scripts/startwmutils
+. ~/.scripts/startwmutils

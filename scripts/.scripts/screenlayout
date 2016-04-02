@@ -8,7 +8,6 @@ if [[ $ext_monitor == "" ]]; then
   xrandr --output "$LAPTOP_SCREEN" --primary
 else
   xrandr --output "$ext_monitor" --auto --left-of "$LAPTOP_SCREEN" --primary
-  bspc config -m "$LAPTOP_SCREEN" top_padding 0
   if [[ $single_ext == "on" ]]; then
     xrandr --output "$LAPTOP_SCREEN" --off
   fi

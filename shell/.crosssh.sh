@@ -16,7 +16,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export GOPATH=$HOME/Go
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:$HOME/.scripts:.scripts/clint:$GOPATH/bin:$PATH"
+export PATH="$HOME/.scripts:.scripts/clint:$GOPATH/bin:$PATH"
 export PATH=$HOME/.node/bin:$PATH
 
 # Aliases aka hacks
@@ -32,9 +32,6 @@ alias rm="rm -I"
 alias fkh="fortune khaled"
 alias ls="ls -N"
 export LESS='-F -g -i -M -R -S -w -X -z-4'
-
-# The Fuck is real
-eval $(thefuck --alias)
 
 # Remove unnecessary packages
 pclean() {

@@ -1,19 +1,19 @@
 #!/bin/sh
 #
-# ufetch-arch - tiny system info for arch
+# ufetch - tiny system info for crux
 #
 
 ## INFO
 
 # user is already defined
 HOST="$(hostname)"
-OS="Arch Linux"
+OS="$(crux)"
 KERNEL="$(uname -sr)"
 UPTIME="$(uptime -p | sed s:"up "::)"
-PACKAGES="$(pacman -Q | wc -l)"
+PACKAGES="$(pkginfo -i | wc -l)"
 # shell is already defined
 if [ -z "$WM" ]; then
-	WM="$(grep -v "^#" "${HOME}/.xinitrc" | tail -n 1 | cut -d " " -f2)"
+    WM="$(grep -v "^#" "${HOME}/.xinitrc" | tail -n 1 | cut -d " " -f2)"
 fi
 
 ## DEFINE COLORS
@@ -32,19 +32,20 @@ rc="$(tput sgr0)"	# reset
 
 # you can change these
 lc="${bc}${c6}"		# labels
-nc="${c2}"		# user and hostname
-tc="${c7}"		# text
-fc="${bc}${c0}"		# first color
-sc="${bc}${c0}"		# second color
+nc="${bc}${c6}"		# user and hostname
+tc="${bc}${c7}"		# text
+pc="${c6}"		# penguin
 
 ## OUTPUT
 
 cat <<EOF
-${fc}        /\\${rc}        ${nc}${USER}${rc}${tc}@${rc}${nc}${HOST}${rc}
-${fc}       /^^\\${rc}       ${lc}OS:${rc}       ${tc}${OS}${rc}
-${fc}      /\   \\${rc}      ${lc}KERNEL:${rc}   ${tc}${KERNEL}${rc}
-${fc}     /${rc}  ${sc}__  \\${rc}     ${lc}UPTIME:${rc}   ${tc}${UPTIME}${rc}
-${sc}    /  (  )  \\${rc}    ${lc}PACKAGES:${rc} ${tc}${PACKAGES}${rc}
-${sc}   / __|  |__\\\\${rc}   ${lc}SHELL:${rc}    ${tc}${SHELL}${rc}
-${sc}  ///        \\\\\\${rc}  ${lc}WM:${rc}       ${tc}${WM}${rc}
+
+${pc}      ___${rc}     ${nc}${USER}${rc}${tc}@${rc}${nc}${HOST}${rc}
+${pc}     (${rc}${c7}.·${rc} ${pc}|${rc}    ${lc}OS:${rc}       ${tc}${OS}${rc}
+${pc}     (${rc}${c3}<>${rc} ${pc}|${rc}    ${lc}KERNEL:${rc}   ${tc}${KERNEL}${rc}
+${pc}    /${rc} ${c7}__${rc}  ${pc}\\${rc}   ${lc}UPTIME:${rc}   ${tc}${UPTIME}${rc}
+${pc}   (${rc} ${c7}/  \\${rc} ${pc}/|${rc}  ${lc}PACKAGES:${rc} ${tc}${PACKAGES}${rc}
+${c3}  _${pc}/\\${rc} ${c7}__)${rc}${pc}/${rc}${c3}_${rc}${pc})${rc}  ${lc}SHELL:${rc}    ${tc}${SHELL}${rc}
+${c3}  \/${pc}-____${rc}${c3}\/${rc}   ${lc}WM:${rc}       ${tc}${WM}${rc}
+
 EOF

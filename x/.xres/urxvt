@@ -1,4 +1,4 @@
-URxvt.font: -erus-erusfont-medium-r-normal--11-80-100-100-c-60-iso10646-1,xft:Symbola
+URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*,xft:Symbola
 ! No bold font
 URxvt.boldFont:
 URxvt.scrollBar: false
@@ -11,7 +11,7 @@ URxvt.geometry: 100x30
 ! Clipboard copy/paste with C-Shift-c and C-Shift-p
 URxvt.iso14755: false
 URxvt.iso14755_52: false
-URxvt.perl-ext-common: default,clipboard,matcher
+!URxvt.perl-ext-common: default,clipboard,matcher
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
