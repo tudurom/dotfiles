@@ -52,6 +52,14 @@ XF86AudioNext
 XF86AudioPrev
   mpc prev
 
+# Brightness
+XF86MonBrightnessUp
+  xbacklight -inc 10%
+
+XF86MonBrightnessDown
+  xbacklight -dec 10%
+
+
 #  _________________
 # < Here be dragons >
 #  -----------------

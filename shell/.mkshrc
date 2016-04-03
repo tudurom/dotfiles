@@ -23,6 +23,7 @@ prompt () {
 }
 
 PS1='$(prompt)'
+PS2='> '
 
 # Colored man pages
 man() {
