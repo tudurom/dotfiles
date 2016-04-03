@@ -1,0 +1,105 @@
+#
+# ~/.cwmrc
+#
+
+# set default font
+fontname "-kori-metis-normal-r-normal--11-90-75-75-p-58-iso10646-1"
+
+# set border width
+borderwidth 3
+
+# fuck you're slow
+moveamount 10
+
+# colors
+color activeborder   '#63a690'
+color inactiveborder '#456472'
+color font           '#e8eaec'
+color menubg         '#212121'
+color menufg         '#e8eaec'
+color groupborder    '#ef9a89'
+color ungroupborder  '#eec87c'
+color urgencyborder  '#ef9a89'
+
+# autogroups
+autogroup 2 Firefox
+autogroup 3 mpv
+
+# menu
+command term    /usr/local/bin/st
+command lock    /usr/local/bin/slock
+
+command st      /usr/local/bin/st
+command firefox /usr/local/bin/firefox
+
+# binds
+bind 4-v      vmaximize
+bind 4-b      hmaximize
+bind 4-f      maximize
+bind 4M-h     resizeleft
+bind 4M-j     resizedown
+bind 4M-k     resizeup
+bind 4M-l     resizeright
+bind 4MS-h    bigresizeleft
+bind 4MS-j    bigresizedown
+bind 4MS-k    bigresizeup
+bind 4MS-l    bigresizeright
+
+bind 4-h      moveleft
+bind 4-j      movedown
+bind 4-k      moveup
+bind 4-l      moveright
+bind 4S-h     bigmoveleft
+bind 4S-j     bigmovedown
+bind 4S-k     bigmoveup
+bind 4S-l     bigmoveright
+
+bind 4-comma  label
+bind 4-w     delete
+
+bind 4-Tab    cycle
+bind 4S-Tab   rcycle
+
+bind 4-g      grouptoggle
+bind 4MC-l    cyclegroup
+bind 4MC-h    rcyclegroup
+bind 4-1      group1
+bind 4-2      group2
+bind 4-3      group3
+bind 4-4      group4
+bind 4-5      group5
+bind 4-6      group6
+bind 4-7      group7
+bind 4-8      group8
+bind 4-9      group9
+bind 4-0      nogroup
+bind 4M-1     grouponly1
+bind 4M-2     grouponly2
+bind 4M-3     grouponly3
+bind 4M-4     grouponly4
+bind 4M-5     grouponly5
+bind 4M-6     grouponly6
+bind 4M-7     grouponly7
+bind 4M-8     grouponly8
+bind 4M-9     grouponly9
+
+bind 4M-r     restart
+bind 4M-q     quit
+
+bind 4-d      exec
+bind 4-n      ssh
+bind 4-s      search
+
+# Unbind
+bind M-Left   unbind
+bind M-Right  unbind
+bind M-Return unbind
+bind M-h      unbind
+bind M-j      unbind
+bind M-k      unbind
+bind M-l      unbind
+
+# mousebinds
+mousebind 4-1 window_move
+mousebind 4-2 window_grouptoggle
+mousebind 4-3 window_resize

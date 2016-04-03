@@ -6,7 +6,8 @@
 . wmrc
 
 # default values for gaps and master area
-PANEL=${PANEL:-$(( 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT + 2 ))}
+#PANEL=${PANEL:-$(( 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT + 2 ))}
+PANEL=0
 GAP=${GAP:-$GENERAL_GAP}
 MASTER=${MASTER:-940}
 
