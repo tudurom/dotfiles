@@ -7,7 +7,8 @@ compton -b
 sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils &
 wew | wewhandle &
 wall-e &
-statusbar &
+#statusbar &
+infobar &
 xwait
 
 # vim: set ft=sh :
