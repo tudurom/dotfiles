@@ -72,7 +72,9 @@ autocutsel -selection clipboard -fork &
 screenlayout
 # It's unclutter-xfixes
 unclutter -b
-mpd &
+if ! pidof mpd; then
+  mpd &
+fi
 notifyd &
 xsetroot -cursor_name left_ptr &
 
