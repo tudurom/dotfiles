@@ -91,9 +91,7 @@ bind 4-n      ssh
 bind 4-s      search
 
 # Unbind
-bind M-Left   unbind
-bind M-Right  unbind
-bind M-Return unbind
+# bind M-Return unbind
 bind M-h      unbind
 bind M-j      unbind
 bind M-k      unbind

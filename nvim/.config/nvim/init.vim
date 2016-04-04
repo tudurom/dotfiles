@@ -10,9 +10,6 @@ filetype off                  " required
 
   call plug#begin('~/.config/nvim/bundle')
 
-  " File tree. Sometimes useful and sometimes it looks good
-  Plug 'scrooloose/nerdtree'
-
   " For obvious reasons
   Plug 'ntpeters/vim-better-whitespace'
 
