@@ -135,6 +135,14 @@ filetype off                  " required
 
 " }}}
 
+" Leader hax {{{
+
+  map <Space> <Leader>
+  nmap <Leader>- :split<CR>
+  nmap <Leader>\| :vsplit<CR>
+
+" }}}
+
 " Completion {{{
 
   let g:deoplete#enable_at_startup = 1
