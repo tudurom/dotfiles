@@ -1,11 +1,11 @@
-#! /bin/bash
+#! /bin/sh
 
 # Get coords of the monitor
-monitor_x=$(xrandr | grep "primary" | awk '{print $4}' | awk -F+ '{print $2}')
-monitor_y=$(xrandr | grep "primary" | awk '{print $4}' | awk -F+ '{print $3}')
+monitor_x="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f1)"
+monitor_y="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f2)"
 # Get the size of the monitor
-monitor_width=$(xrandr | grep "primary" | awk -F'[ x+]' '{print $4}')
-monitor_height=$(xrandr | grep "primary" | awk -F'[ x+]' '{print $5}')
+monitor_width="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f3)"
+monitor_height="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f4)"
 # Panel size
 pad_x="50"
 pad_y="30"
@@ -13,7 +13,7 @@ height="50"
 # Padding of the text in the panel
 in_pad="30"
 # Yes.
-font="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"
+font="-*-metis-normal-*-*-*-11-*-*-*-*-*-*-*"
 
 color_summary="#71c2af"
 color_bg="#1d2a30"
@@ -22,7 +22,7 @@ color_fg="#c27171"
 dismiss=3
 
 TEMP_FILE=$(mktemp)
-trap "rm $TEMP_FILE" SIGINT
+trap "rm $TEMP_FILE" INT
 # No notifications on screen
 echo "0" > $TEMP_FILE
 

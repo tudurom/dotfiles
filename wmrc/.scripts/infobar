@@ -14,14 +14,15 @@ clock() {
 
 width=110
 height=5
-root_window=$(lsw -r)
-root_width=$(wattr w $root_window)
-root_height=$(wattr h $root_window)
+pd_x="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f1)"
+pd_y="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f2)"
+pd_width="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f3)"
+pd_height="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f4)"
 
 panel_width=$(( width + 2 * GENERAL_GAP ))
 panel_height=$(( height + 2 * GENERAL_GAP ))
-panel_x=$(( root_width - panel_width - GENERAL_GAP ))
-panel_y=$(( root_height - panel_height - GENERAL_GAP ))
+panel_x=$(( (pd_x + pd_width) - panel_width - GENERAL_GAP ))
+panel_y=$(( (pd_y + pd_height) - panel_height - GENERAL_GAP ))
 panel_opts="$PANEL_OPTS -g ${panel_width}x${panel_height}+${panel_x}+${panel_y}"
 
 while true; do

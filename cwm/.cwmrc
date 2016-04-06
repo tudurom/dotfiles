@@ -27,10 +27,6 @@ autogroup 3 mpv
 
 # menu
 command term    /usr/local/bin/st
-command lock    /usr/local/bin/slock
-
-command st      /usr/local/bin/st
-command firefox /usr/local/bin/firefox
 
 # binds
 bind 4-v      vmaximize

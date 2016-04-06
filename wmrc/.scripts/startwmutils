@@ -7,7 +7,6 @@ compton -b
 sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils &
 wew | wewhandle &
 wall-e &
-#statusbar &
 infobar &
 xwait
 

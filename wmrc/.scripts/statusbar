@@ -4,12 +4,6 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-# Cache primary monitor info {{{
-
-  dattr $(ppd) > ".cache/ppd_sizes"
-
-# }}}
-
 . wmrc
 . panelsrc
 
@@ -49,14 +43,13 @@ is_int() {
   #CB="$(xrq '*background')"
   CB="#1d2a30"
 
-  ROOT_WINDOW="$(lsw -r)"
-  ROOT_WINDOW_WIDTH="$(wattr w $ROOT_WINDOW)"
-  ROOT_WINDOW_HEIGHT="$(wattr h $ROOT_WINDOW)"
+  PD_X="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f1)"
+  PD_Y="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f2)"
+  PD_WIDTH="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f3)"
+  PD_HEIGHT="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f4)"
 
-  #BAR_WIDTH="$(echo "$ROOT_WINDOW_WIDTH * 0.7" | bc | cut -d. -f1)"
-  BAR_WIDTH="$(( ROOT_WINDOW_WIDTH - 2 * GENERAL_GAP ))"
+  BAR_WIDTH="$(( PD_WIDTH - 2 * GENERAL_GAP ))"
   BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
-  #BAR_X="$(echo "$ROOT_WINDOW_WIDTH * 0.15" | bc | cut -d. -f1)"
   BAR_X="$GENERAL_GAP"
   BAR_Y="$GENERAL_GAP"
 
