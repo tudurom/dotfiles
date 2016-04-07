@@ -1,9 +1,7 @@
-#! /bin/dash
+#! /bin/sh
 # returns the id of the first window at the given coordinates
 # (c) tudurom 2016 - wtfpl
 #
-
-# TODO: find a use for this
 
 usage() {
   echo "usage: $(basename $0) <x> <y>"

@@ -5,7 +5,9 @@
 # modified by tudurom to show only currently used displays
 #
 
-xrandr | grep -e "^.* connected" | \
+XRANDR_DUMP=${XRANDR_DUMP:-$HOME/.cache/xrandr_dump}
+
+cat "$XRANDR_DUMP" | grep -e "^.* connected" | \
 while read -r MONITOR; do
   test1="$(echo $MONITOR | cut -d' ' -f3 | cut -c1-1)"
   test2="$(echo $MONITOR | cut -d' ' -f4 | cut -c1-1)"

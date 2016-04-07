@@ -3,9 +3,9 @@
 #
 
 # Clock bar
-ICON_CLOCK="\ue015"
+export ICON_CLOCK="\ue015"
 
 # Music bar
-ICON_PLAY="\ue058"
-ICON_PAUSE="\ue059"
-ICON_STOP="\ue057"
+export ICON_PLAY="\ue058"
+export ICON_PAUSE="\ue059"
+export ICON_STOP="\ue057"

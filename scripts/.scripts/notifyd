@@ -1,11 +1,11 @@
 #! /bin/sh
 
 # Get coords of the monitor
-monitor_x="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f1)"
-monitor_y="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f2)"
+monitor_x="$(dattr -x $(pfd))"
+monitor_y="$(dattr -y $(pfd))"
 # Get the size of the monitor
-monitor_width="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f3)"
-monitor_height="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f4)"
+monitor_width="$(dattr -w $(pfd))"
+monitor_height="$(dattr -h $(pfd))"
 # Panel size
 pad_x="50"
 pad_y="30"

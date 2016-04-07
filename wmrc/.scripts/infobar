@@ -3,10 +3,6 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-. wmrc
-. panelsrc
-. iconsrc
-
 clock() {
   format='%a %d %B %H:%M'
   echo -e "%{c}%{T2}%{F$PANEL_ACCENT_COLOR}$ICON_CLOCK%{T-}%{F-} $(date "+$format")"
@@ -14,10 +10,10 @@ clock() {
 
 width=110
 height=5
-pd_x="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f1)"
-pd_y="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f2)"
-pd_width="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f3)"
-pd_height="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f4)"
+pd_x="$(dattr -x $(ppd))"
+pd_y="$(dattr -y $(ppd))"
+pd_width="$(dattr -w $(ppd))"
+pd_height="$(dattr -h $(ppd))"
 
 panel_width=$(( width + 2 * GENERAL_GAP ))
 panel_height=$(( height + 2 * GENERAL_GAP ))

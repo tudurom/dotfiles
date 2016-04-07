@@ -1,6 +1,4 @@
-#!/bin/dash
-. wmrc
-. panelsrc
+#!/bin/sh
 
 text="$1"
 bar_width="$(txtw -f 'Erusfont' -F 'Siji' "$text")"

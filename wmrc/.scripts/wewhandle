@@ -1,4 +1,4 @@
-#! /bin/dash
+#! /bin/sh
 #
 # handle wew events
 # (c) tudurom 2016 - wtfpl

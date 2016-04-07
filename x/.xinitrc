@@ -78,6 +78,4 @@ fi
 notifyd &
 xsetroot -cursor_name left_ptr &
 
-dispcache
-
-start_cwm
+start_wmutils

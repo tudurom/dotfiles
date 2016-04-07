@@ -1,9 +1,7 @@
-#!/bin/dash
+#!/bin/sh
 #
 # z3bra - 2014 (c) wtfpl
 # arrange windows in a tiled pattern
-
-. wmrc
 
 # default values for gaps and master area
 #PANEL=${PANEL:-$(( 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT + 2 ))}

@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 #
 # z3bra - 2014 (c) wtfpl
 # toggle the fullscreen state of a window

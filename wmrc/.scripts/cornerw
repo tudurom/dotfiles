@@ -1,39 +1,38 @@
-#! /bin/dash
+#! /bin/sh
 #
-# puts a window in a given corner or in the middle of the screen
+# puts a window in a given corner or in the middle of the scree
 # (c) tudurom 2016 - wtfpl
 #
 
-. wmrc
-. panelsrc
-
 pfw="${2:-$(pfw)}"
-screen_width="$PPD_W"
-screen_height="$PPD_H"
+screen_width="$(dattr -w $(pfd))"
+screen_height="$(dattr -h $(pfd))"
+screen_x="$(dattr -x $(pfd))"
+screen_y="$(dattr -y $(pfd))"
 
 border_width="$(wattr b $pfw)"
 width="$(wattr w $pfw)"
 height="$(wattr h $pfw)"
 
-x=0
-y=0
+x=$screen_x
+y=$screen_y
 
 case $1 in
   tr)
-    x=$(( screen_width - width - 2 * border_width - GENERAL_GAP ))
-    y=$(( 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT ))
+    x=$(( x + screen_width - width - 2 * border_width - GENERAL_GAP ))
+    y=$(( y + 2 * GENERAL_GAP + PANEL_STATUS_HEIGHT ))
     ;;
   bl)
-    x=$GENERAL_GAP
-    y=$(( screen_height - height - 2 * border_width - GENERAL_GAP ))
+    x=$(( x + $GENERAL_GAP ))
+    y=$(( y + screen_height - height - 2 * border_width - GENERAL_GAP ))
     ;;
   br)
-    x=$(( screen_width - width - 2 * border_width - GENERAL_GAP ))
-    y=$(( screen_height - height - 2 * border_width - GENERAL_GAP))
+    x=$(( x + screen_width - width - 2 * border_width - GENERAL_GAP ))
+    y=$(( y + screen_height - height - 2 * border_width - GENERAL_GAP))
     ;;
   md)
-    x=$(( (screen_width - width - 2 * border_width) / 2 ))
-    y=$(( screen_height / 2 - height / 2 - border_width ))
+    x=$(( x + (screen_width - width - 2 * border_width) / 2 ))
+    y=$(( y + screen_height / 2 - height / 2 - border_width ))
 esac
 
 wtp $x $y $width $height $pfw

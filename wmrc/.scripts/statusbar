@@ -1,11 +1,8 @@
-#! /bin/dash
+#! /bin/sh
 #
 # "Simple" status bar
 # (c) tudurom 2016 - wtfpl
 #
-
-. wmrc
-. panelsrc
 
 is_int() {
   case $1 in
@@ -43,10 +40,10 @@ is_int() {
   #CB="$(xrq '*background')"
   CB="#1d2a30"
 
-  PD_X="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f1)"
-  PD_Y="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f2)"
-  PD_WIDTH="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f3)"
-  PD_HEIGHT="$(cat $HOME/.cache/ppd_sizes | cut -d' ' -f4)"
+  PD_X="$(dattr -x $(ppd))"
+  PD_Y="$(dattr -y $(ppd))"
+  PD_WIDTH="$(dattr -w $(ppd))"
+  PD_HEIGHT="$(dattr -h $(ppd))"
 
   BAR_WIDTH="$(( PD_WIDTH - 2 * GENERAL_GAP ))"
   BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
@@ -240,7 +237,7 @@ is_int() {
     # Show time!
     echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}${cpu}%{c}${groups}%{r}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
   done |\
-  lemonbar $BAR_OPTS | dash
+  lemonbar $BAR_OPTS | sh
 # }}}
 
 # vim: set ft=sh :

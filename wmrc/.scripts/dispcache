@@ -1,3 +1,0 @@
-#!/bin/sh
-
-dattr $(ppd) > ".cache/ppd_sizes"

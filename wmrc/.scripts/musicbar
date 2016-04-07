@@ -4,10 +4,6 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-. wmrc
-. panelsrc
-. iconsrc
-
 last_title="-"
 music() {
   if [ $(mpc status | wc -l ) -eq 3 ]; then
