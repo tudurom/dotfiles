@@ -4,5 +4,6 @@
 
 # Gap to use for most of the things
 export GENERAL_GAP=20
+export BW 3
 
 # vim: set ft=sh :
