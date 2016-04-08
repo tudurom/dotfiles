@@ -1,7 +1,8 @@
 [user]
   # Subject to change
 	email = xenogenesis@openmailbox.org
-	name = Tudor
+  name = Tudor
+  signingkey = "F39C12DA"
 [mergetool]
   path = nvim
 [alias]

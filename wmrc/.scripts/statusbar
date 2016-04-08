@@ -118,13 +118,6 @@ is_int() {
     sleep 10
   done > "$FIFO_PATH" &
 
-  # CPU Usage
-  while true; do
-    cpu_usage="$(top -bn1 | grep "Cpu(s)" | sed 's/.*, *\([0-9.]*\)%* id.*/\1/' | awk '{print 100 - $1}')"
-    echo "P%{F$C12}%{F-} ${cpu_usage}"
-    sleep 10
-  done > "$FIFO_PATH" &
-
   # Memory usage
   while true; do
     t=$(grep MemTotal /proc/meminfo | awk '{print $2}')
@@ -227,15 +220,12 @@ is_int() {
       V*)
         vol="${line#?}"
         ;;
-      P*)
-        cpu="${line#?}"
-        ;;
       R*)
         ram="${line#?}"
         ;;
       esac
     # Show time!
-    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}${cpu}%{c}${groups}%{r}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
+    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}%{c}${groups}%{r}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
   done |\
   lemonbar $BAR_OPTS | sh
 # }}}
