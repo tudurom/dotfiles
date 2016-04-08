@@ -5,5 +5,10 @@
 # Gap to use for most of the things
 export GENERAL_GAP=20
 export BW=3
+export FSFILE=~/.fwin
+export NOTIFY_FIFO_PATH=/tmp/notifyd.fifo
+export NOTIFY_COUNTER_PATH=/tmp/notifyd.cnt
+export POPUP_FONT=Metis
+export POPUP_DURATION=5
 
 # vim: set ft=sh :

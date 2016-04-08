@@ -45,9 +45,9 @@ is_int() {
   PD_WIDTH="$(dattr -w $(ppd))"
   PD_HEIGHT="$(dattr -h $(ppd))"
 
-  BAR_WIDTH="$(( PD_WIDTH - 2 * GENERAL_GAP ))"
+  BAR_WIDTH=$(echo "$(dattr -w `ppd`)*0.7" | bc | cut -d'.' -f1)
   BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
-  BAR_X="$GENERAL_GAP"
+  BAR_X="$(echo "($(dattr -w `ppd`) - $BAR_WIDTH) / 2" | bc)"
   BAR_Y="$GENERAL_GAP"
 
   SEP_SMALL="        "

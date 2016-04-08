@@ -1,4 +1,4 @@
-URxvt.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*,xft:Symbola
+*.font: -*-metis-normal-*-*-*-11-*-*-*-*-*-*-*
 ! No bold font
 URxvt.boldFont:
 URxvt.scrollBar: false

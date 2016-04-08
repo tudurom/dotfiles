@@ -1,8 +1,9 @@
-#! /bin/sh
+#
 # Starts the environment
 # (c) tudurom 2016 - wtfpl
 #
 
+dump_xrandr
 compton -b
 sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils &
 wew | wewhandle &

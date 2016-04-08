@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# notifyd - notification daemon
+# (c) tudurom 2016 - wtfpl
+#
+
+NOTIFY_FIFO_PATH=${NOTIFY_FIFO_PATH:-/tmp/notifyd.fifo}
+NOTIFY_COUNTER_PATH=${NOTIFY_COUNTER_PATH:-/tmp/notifyd.cnt}
+
+# create fifo
+test -p /tmp/notifyd.fifo || mkfifo /tmp/notifyd.fifo
+
+# display vars
+DISPLAY_X="$(dattr -x `ppd`)"
+DISPLAY_Y="$(dattr -y `ppd`)"
+DISPLAY_W="$(dattr -w `ppd`)"
+DISPLAY_H="$(dattr -h `ppd`)"
+
+NOTIFY_W="${NOTIFY_W:-150}"
+NOTIFY_H="${NOTIFY_H:-35}"
+NOTIFY_X="$(( DISPLAY_X + DISPLAY_W - GENERAL_GAP ))"
+NOTIFY_Y="$GENERAL_GAP"
+
+n=0
+echo "$n" > "$NOTIFY_COUNTER_PATH"
+
+tail -f "$NOTIFY_FIFO_PATH" | while IFS= read -r message; do
+  # increment counter
+  n="$(cat "$NOTIFY_COUNTER_PATH")"
+  n="$(( n + 1 ))"
+  echo "$n" > "$NOTIFY_COUNTER_PATH"
+
+  {
+    popup $(( NOTIFY_X - $NOTIFY_W )) $(( DISPLAY_H - (NOTIFY_H + NOTIFY_Y) * n )) $NOTIFY_W $NOTIFY_H "$message"
+    n="$(cat "$NOTIFY_COUNTER_PATH")"
+    n="$(( n - 1 ))"
+    echo "$n" > "$NOTIFY_COUNTER_PATH"
+  } &
+done

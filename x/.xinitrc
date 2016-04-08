@@ -40,26 +40,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 # }}}
 
-# Start {{{
-
-  start_bspwm() {
-    exec wm
-  }
-
-  start_wmutils() {
-    . ~/.scripts/startwmutils
-  }
-
-  start_cwm() {
-    compton -b &
-    wall-e &
-    sxhkd -c ~/.config/sxhkd/sxhkdrc_cwm &
-    infobar &
-    exec cwm
-  }
-
-# }}}
-
 # Load fonts
 xset +fp ~/.fonts
 xset fp rehash
@@ -75,7 +55,7 @@ unclutter -b
 if ! pidof mpd; then
   mpd &
 fi
-notifyd &
 xsetroot -cursor_name left_ptr &
+/home/tudurom/.scripts/notifyd &
 
-start_wmutils
+. $HOME/.scripts/startwmutils

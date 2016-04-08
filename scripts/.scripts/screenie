@@ -2,4 +2,4 @@
 
 scrot /tmp/screenie.png
 
-notify-send "Screenshot taken"
+echo "Screenshot taken" > "$NOTIFY_FIFO_PATH"

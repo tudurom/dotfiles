@@ -64,3 +64,6 @@ pi() {
   ssh 192.168.12.122 $1
 }
 
+iotek() {
+  ssh vps.iotek.org $1
+}

@@ -1,11 +1,11 @@
 #! /bin/sh
 
 # Get coords of the monitor
-monitor_x="$(dattr -x $(pfd))"
-monitor_y="$(dattr -y $(pfd))"
+monitor_x="$(dattr -x `pfd`)"
+monitor_y="$(dattr -y `pfd`)"
 # Get the size of the monitor
-monitor_width="$(dattr -w $(pfd))"
-monitor_height="$(dattr -h $(pfd))"
+monitor_width="$(dattr -w `pfd`)"
+monitor_height="$(dattr -h `pfd`)"
 # Panel size
 pad_x="50"
 pad_y="30"
@@ -21,7 +21,7 @@ color_fg="#c27171"
 
 dismiss=3
 
-TEMP_FILE=$(mktemp)
+TEMP_FILE=$(mktemp notifydXXX)
 trap "rm $TEMP_FILE" INT
 # No notifications on screen
 echo "0" > $TEMP_FILE

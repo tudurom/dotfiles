@@ -106,14 +106,14 @@ super + {h,j,k,l}
 
 # move window at warp speed
 super + shift + {h,j,k,l}
-  wmv {-40 0, 0 40, 0 -40, 40 0} $(pfw)
+  wmv {-50 0, 0 50, 0 -50, 50 0} $(pfw)
 
 # resize window
 super + alt + {h,j,k,l}
   wrs {-20 0, 0 20, 0 -20, 20 0} $(pfw)
 
 super + alt + shift + {h,j,k,l}
-  wrs {-40 0, 0 40, 0 -40, 40 0} $(pfw)
+  wrs {-50 0, 0 50, 0 -50, 50 0} $(pfw)
 
 # toggle group
 super + {1,2,3,4,5,6}
