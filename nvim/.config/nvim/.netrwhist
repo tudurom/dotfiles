@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/tudurom/projects/crux-ports/skroll/skroll'
 let g:netrw_dirhist_2='/home/tudurom/.tmux'
 let g:netrw_dirhist_3='/home/tudurom/projects/crux-ports/skroll'
 let g:netrw_dirhist_4='/home/tudurom/dotfiles/disputils'
 let g:netrw_dirhist_5='/usr/ports/core/man-db'
+let g:netrw_dirhist_6='/usr/ports/core/curl'
