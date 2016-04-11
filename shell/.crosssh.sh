@@ -67,3 +67,7 @@ pi() {
 iotek() {
   ssh vps.iotek.org $1
 }
+
+z3bra() {
+  ssh phobos.z3bra.org $1
+}
