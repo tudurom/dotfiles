@@ -13,7 +13,7 @@ I manage my dotfiles using GNU Stow. [Here's a neat article about managing your 
 List of programs
 -----------------
 
-* **Operating System**: [Arch Linux](http://archlinux.org)
+* **Operating System**: [CRUX](http://crux.nu)
 * **Text editor**: [neovim](http://neovim.io)
   * See `nvim/.config/nvim/init.vim` for plugins
 * **Color scheme**: [cloudy](https://github.com/tudurom/dotfiles/blob/master/x/.xres/colors/cloudy)
@@ -82,7 +82,7 @@ Thanks
 TODO
 ----
 
-- [ ] Switch from Arch to [Crux](http://crux.nu)
+- [x] Switch from Arch to [Crux](http://crux.nu)
 - [x] Switch from bspwm to [wmutils](http://wmutils.io)
 - [ ] Document this setup more
   - [x] This README
