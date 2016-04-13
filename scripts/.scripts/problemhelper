@@ -1,4 +1,4 @@
-#! /bin/ruby
+#! /usr/bin/ruby
 
 $pwd = Dir.pwd
 $problem_name = Dir.pwd.split('/')[-1]
