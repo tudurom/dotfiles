@@ -136,8 +136,8 @@ super + alt + shift + Return
 
 
 # snap window to corner/middle of the screen
-super + {Prior,Delete,Next,End}
-  cornerw {tr, bl, br, md} $(pfw)
+super + {Insert,Prior,Delete,Next,End}
+  cornerw {tl, tr, bl, br, md} $(pfw)
 
 # tile windows
 super + t
