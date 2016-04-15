@@ -1,11 +1,11 @@
 #!/bin/sh
-set -x
 #
 # z3bra - 2014 (c) wtfpl
+# modified by tudurom for multimonitor support and fixes
 # arrange windows in a tiled pattern
 
 # default values for gaps and master area
-PANEL="$(( PANEL_STATUS_HEIGHT + GENERAL_GAP ))"
+PANEL="$(( PANEL_STATUS_HEIGHT ))"
 GAP=${GAP:-$GENERAL_GAP}
 MASTER=${MASTER:-940}
 
@@ -40,11 +40,11 @@ done
 
 # calculate usable screen size (without borders and gaps)
 SW=$((SW - GAP - 2*BW))
-SH=$((SH - GAP - 2*BW - PANEL))
+SH=$((SH - GAP - PANEL))
 
 Y=$((0 + GAP + PANEL))
 # put current window in master area
-wtp $(( SX + GAP )) $(( SY + Y )) $((MASTER - GAP - 2*BW)) $((SH - GAP)) $PFW
+wtp $(( SX + GAP )) $(( SY + Y )) $((MASTER - GAP - 2*BW)) $((SH - GAP - 2 * BW)) $PFW
 
 # and now, stack up all remaining windows on the right
 X=$(( SX + MASTER + GAP ))

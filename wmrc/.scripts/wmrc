@@ -3,8 +3,8 @@
 #
 
 # Gap to use for most of the things
-export GENERAL_GAP=20
-export BW=3
+export GENERAL_GAP=0
+export BW=2
 export FSFILE=~/.fwin
 export NOTIFY_FIFO_PATH=/tmp/notifyd.fifo
 export NOTIFY_COUNTER_PATH=/tmp/notifyd.cnt
