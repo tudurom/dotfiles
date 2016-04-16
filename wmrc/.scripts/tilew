@@ -6,8 +6,9 @@
 
 # default values for gaps and master area
 PANEL="$(( PANEL_STATUS_HEIGHT ))"
+test `pfd` = `ppd` || PANEL=0
 GAP=${GAP:-$GENERAL_GAP}
-MASTER=${MASTER:-940}
+MASTER="$(( $(dattr -w $(pfd)) / 2 ))"
 
 # get current window id and its borderwidth
 PFW=$(pfw)
