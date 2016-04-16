@@ -43,9 +43,9 @@ filetype off                  " required
   " Syntax and tabs
   syntax enable " Enable syntax highlighting, duh
   set number    " Looks better
-  set tabstop=2
+  set tabstop=4
   set expandtab
-  set shiftwidth=2
+  set shiftwidth=4
   set smartindent
   set cindent
   " Make things snappy
@@ -57,6 +57,7 @@ filetype off                  " required
   set smartcase
   " Make it natural
   set splitright
+  set splitbelow
 
   " Nope
   set noswapfile
