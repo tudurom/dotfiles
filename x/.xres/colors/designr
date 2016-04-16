@@ -1,0 +1,38 @@
+! special
+*.foreground:   #c4c4b5
+*.background:   #20292d
+*.cursorColor:  #c4c4b5
+
+! black
+*.color0:       #2b3135
+*.color8:       #4c5356
+
+! red
+*.color1:       #a66959
+*.color9:       #a66959
+
+! green
+*.color2:       #769070
+*.color10:      #769070
+
+! yellow
+*.color3:       #ac8d6e
+*.color11:      #ac8d6e
+
+! blue
+*.color4:       #607a86
+*.color12:      #607a86
+
+! orange
+*.color5:       #80757e
+*.color13:      #80757e
+
+! cyan
+*.color6:       #60867f
+*.color14:      #60867f
+
+! white
+*.color7:       #c4c4b5
+*.color15:      #c4c4b5
+
+! vim: set ft=xdefaults :
