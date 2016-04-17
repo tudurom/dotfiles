@@ -18,6 +18,7 @@ export VISUAL=nvim
 export GOPATH=$HOME/Go
 export PATH="$HOME/.scripts:.scripts/clint:$GOPATH/bin:$PATH"
 export PATH=$HOME/.node/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.3/bin:$PATH
 
 # Aliases aka hacks
 alias :q=exit
@@ -64,10 +65,7 @@ pi() {
   ssh 192.168.12.122 $1
 }
 
-iotek() {
-  ssh vps.iotek.org $1
+arcetera() {
+  ssh yuuko $1
 }
 
-z3bra() {
-  ssh phobos.z3bra.org $1
-}
