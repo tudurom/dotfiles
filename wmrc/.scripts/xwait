@@ -3,6 +3,6 @@
 # (c) every stupid idiot who knows bash 2016 - wtfpl
 #
 
-while true; do
+while :; do
   sleep 1
 done

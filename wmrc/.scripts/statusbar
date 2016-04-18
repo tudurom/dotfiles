@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/sh -x
 #
 # "Simple" status bar
 # (c) tudurom 2016 - wtfpl
