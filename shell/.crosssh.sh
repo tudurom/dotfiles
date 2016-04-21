@@ -62,10 +62,6 @@ transfer() {
 }
 
 pi() {
-  ssh 192.168.12.122 $1
-}
-
-arcetera() {
-  ssh yuuko $1
+  ssh tudoo $1
 }
 

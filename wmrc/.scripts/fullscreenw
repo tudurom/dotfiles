@@ -5,7 +5,7 @@
 # depends on: focusw
 
 # this file is used to store the previous geometry of a window
-FSFILE=${FSFILE:-~/.fwin}
+FSFILE="$HOME/.fsfile_$(pfd)"
 
 # it's pretty simple, but anyway...
 usage() {

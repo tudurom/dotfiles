@@ -7,7 +7,6 @@
 BW=${BW:-3}                    # border width
 ACTIVE=${ACTIVE:-0xac8d6e}     # active border color
 INACTIVE=${INACTIVE:-0x4c5356} # inactive border color
-FSFILE=${FSFILE:-~/.fwin}
 
 # get current window id
 CUR=$(pfw)
@@ -40,7 +39,8 @@ esac
 # exit if we can't find another window to focus
 test -z "$wid" && echo "$(basename $0): can't find a window to focus" >&2 && exit 1
 
+wtf $wid                # set focus on it
+FSFILE="$HOME/.fsfile_$(ppd)"
 setborder inactive $CUR # set inactive border on current window
 setborder active $wid   # activate the new window
 chwso -r $wid           # put it on top of the stack
-wtf $wid                # set focus on it
