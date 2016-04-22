@@ -6,5 +6,5 @@
 
 #include ".xres/xft"
 #include ".xres/rofi"
-#include ".xres/colors/designr"
+#include ".xres/colors/cloudy"
 #include ".xres/urxvt"

@@ -5,8 +5,8 @@
 #
 
 BW=${BW:-3}                    # border width
-ACTIVE=${ACTIVE:-0xac8d6e}     # active border color
-INACTIVE=${INACTIVE:-0x4c5356} # inactive border color
+ACTIVE=${ACTIVE:-0x63a69b}     # active border color
+INACTIVE=${INACTIVE:-0x456472} # inactive border color
 
 # get current window id
 CUR=$(pfw)
@@ -23,7 +23,15 @@ setborder() {
     wattr $2 || return
 
     # do not modify border of fullscreen windows
-    test -f "$FSFILE" && test "$2" = $(cat "$FSFILE" | rev | cut -d' ' -f1 | rev) && return
+    mod="no"
+    for fsfile in $HOME/.fsfile_*; do
+        if [ "$(cat "$fsfile" | rev | cut -d' ' -f1 | rev)" = "$2"]; then
+            mod="yes"
+            break
+        fi
+    done
+
+    test "$mod" = "yes" && return
 
     case $1 in
         active)   chwb -s $BW -c $ACTIVE $2 ;;
