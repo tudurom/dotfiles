@@ -1,12 +1,12 @@
-#!/bin/sh -x
+#!/bin/sh
 #
 # z3bra & tudurom - 2014 (c) wtfpl
 # window focus wrapper that sets borders
 #
 
 BW=${BW:-3}                    # border width
-ACTIVE=${ACTIVE:-0x63a69b}     # active border color
-INACTIVE=${INACTIVE:-0x456472} # inactive border color
+ACTIVE=${ACTIVE:-0xac8d6e}     # active border color
+INACTIVE=${INACTIVE:-0x4c5356} # inactive border color
 
 # get current window id
 CUR=$(pfw)

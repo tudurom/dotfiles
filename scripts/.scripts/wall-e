@@ -14,7 +14,7 @@ elif [ $# -ge 1 ]; then
   test -n $2 && option="$2"
   feh --bg-${option} $1
 else
-  hsetroot -fill $DEFAULT_WALL
+  hsetroot -tile $DEFAULT_WALL
 fi
 
 # vim: set ft=sh :
