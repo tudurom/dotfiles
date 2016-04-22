@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 #
 # z3bra & tudurom - 2014 (c) wtfpl
 # window focus wrapper that sets borders
@@ -25,7 +25,7 @@ setborder() {
     # do not modify border of fullscreen windows
     mod="no"
     for fsfile in $HOME/.fsfile_*; do
-        if [ "$(cat "$fsfile" | rev | cut -d' ' -f1 | rev)" = "$2"]; then
+        if [ "$(cat "$fsfile" | rev | cut -d' ' -f1 | rev)" = "$2" ]; then
             mod="yes"
             break
         fi
