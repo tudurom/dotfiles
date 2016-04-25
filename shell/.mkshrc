@@ -13,9 +13,6 @@ set -o bgnice
 # use coreutils' rename
 alias rename="/usr/bin/rename"
 
-# vi mode
-set -o vi
-
 prompt () {
   _ERR=$?
   exit_color=6
