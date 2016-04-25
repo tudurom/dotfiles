@@ -31,7 +31,8 @@ Directory structure
 -------------------
 
 ```bash
-tud|| ~/dotfiles > tree -L 1
+~
+─── tree -L 1
 ```
 
 ```
@@ -63,27 +64,9 @@ tud|| ~/dotfiles > tree -L 1
 21 directories, 1 file
 ```
 
-Inspiration / People where I steal from
----------------------------------------
-
-* [dylanaraps](http://github.com/dylanaraps/dotfiles) - little bits from the nvim config and from the color scheme
-* [xero](http://git.io/.files) - bits from the tmux config. nice article about stow!
-* [onodera-punpun](http://github.com/onodera-punpun/dotfiles) - ncmpcpp config. Made it better, check it out!
-* [z3bra](http://git.z3bra.org/scripts/files.html) - bits (or whole chunks) from his wmutils scripts.
-* I think that's it.
-
-Thanks
-------
-
-* [z3bra](http://z3bra.org) and [dcat](https://github.com/dcat) for [wmutils](https://github.com/wmutils)
-* [baskerville](https://github.com/baskerville) for bspwm and sxhkd
-* [Nixers](https://nixers.net) for being cool ;)
-
 TODO
 ----
 
-- [x] Switch from Arch to [Crux](http://crux.nu)
-- [x] Switch from bspwm to [wmutils](http://wmutils.io)
 - [ ] Document this setup more
   - [x] This README
   - [ ] A big article at the `gh-pages` branch
@@ -103,10 +86,3 @@ Screenshots
 
 ### [i3](http://tudurom.github.io/albumify/view.html#eyJ0aXRsZSI6ImkzIC0gRmlyc3QgcmljZSIsImRlc2NyaXB0aW9uIjoiIiwiYWxidW0iOlt7InBpY1NyYyI6Imh0dHA6Ly9pLmltZ3VyLmNvbS96YVo0dHBoLnBuZyIsInRpdGxlIjoiQ2xlYW4ifSx7InBpY1NyYyI6Imh0dHA6Ly9pLmltZ3VyLmNvbS84blgxSGFlLnBuZyIsInRpdGxlIjoiRGlydHkifSx7InBpY1NyYyI6Imh0dHA6Ly9pLmltZ3VyLmNvbS9lNjVIN21JLnBuZyIsInRpdGxlIjoiQmx1ZSByb2ZpIn0seyJwaWNTcmMiOiJodHRwOi8vaS5pbWd1ci5jb20vOXdQYTA5WC5wbmciLCJ0aXRsZSI6IlNjcmVlbmZldGNoIn1dfQ==)
 
-Sub-projects
-------------
-
-This project has some sub-projects in it, defined as submodules[:](https://github.com/tudurom/dotfiles/blob/master/wallpapers/wallpapers/xero_said_this_one_is_rad.png)
-
-* [clint](https://github.com/tudurom/clint) - notes script.
-* [startpage](https://github.com/tudurom/startpage) - yes.
