@@ -9,7 +9,12 @@ source ~/.crosssh.sh
 HISTFILE="$HOME/.mksh_history"
 typeset ret_code
 set -o bgnice
+
+# use coreutils' rename
 alias rename="/usr/bin/rename"
+
+# vi mode
+set -o vi
 
 prompt () {
   _ERR=$?
