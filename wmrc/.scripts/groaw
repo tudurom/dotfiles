@@ -4,8 +4,8 @@
 # groaw - group, organize and arrange windows (or just a bear behind you)
 # mod by tudurom - keeps track of currently mapped groups
 
-GROOT=/tmp/groaw
-GNUMBER=6
+GROOT=${GROAW:-/tmp/groaw}
+GNUMBER=${GNUMBER:-6}
 
 usage() {
         echo "$(basename $0) [-h] [-admtu <gid>]"

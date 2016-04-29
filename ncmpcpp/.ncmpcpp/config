@@ -18,9 +18,8 @@ main_window_highlight_color = "white"
 discard_colors_if_item_is_selected = "no"
 
 # Progressbar look
-progressbar_look = "___"
-progressbar_color = "234"
-progressbar_elapsed_color = "white"
+progressbar_look = "━━━"
+progressbar_elapsed_color = "cyan"
 progressbar_boldness = "no"
 
 # Misc

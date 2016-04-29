@@ -56,6 +56,6 @@ if ! pidof mpd; then
   mpd &
 fi
 xsetroot -cursor_name left_ptr &
-/home/tudurom/.scripts/notifyd &
+notifyd &
 
 . $HOME/.scripts/startwmutils

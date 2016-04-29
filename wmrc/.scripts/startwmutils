@@ -5,9 +5,10 @@
 
 dump_xrandr
 compton -b
-sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils &
+sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils ~/.config/sxhkd/commons &
 wew | wewhandle &
 wall-e &
+groupbar &
 statusbar &
 xwait
 

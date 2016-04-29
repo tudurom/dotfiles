@@ -1,4 +1,4 @@
-#! /bin/sh -x
+#! /bin/sh
 #
 # "Simple" status bar
 # (c) tudurom 2016 - wtfpl
@@ -37,7 +37,7 @@ is_int() {
   C15="$(xrq '*color15')"
   #CF="$(xrq '*foreground')"
   CF="$C6"
-  CB="$(xrq '*.color0')"
+  CB="$(xrq '*.background')"
   #CB="#1d2a30"
 
   PD_X="$(dattr -x $(ppd))"
@@ -45,14 +45,14 @@ is_int() {
   PD_WIDTH="$(dattr -w $(ppd))"
   PD_HEIGHT="$(dattr -h $(ppd))"
 
-  #BAR_WIDTH=$(echo "$(dattr -w `ppd`)*0.7" | bc | cut -d'.' -f1)
-  #BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
-  #BAR_X="$(echo "($(dattr -w `ppd`) - $BAR_WIDTH) / 2" | bc)"
-  #BAR_Y="$GENERAL_GAP"
-  BAR_WIDTH="$(dattr -w `ppd`)"
+  BAR_WIDTH=$(echo "$(dattr -w `ppd`)*0.5" | bc | cut -d'.' -f1)
   BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
-  BAR_X="0"
-  BAR_Y="0"
+  BAR_X="$(echo "($(dattr -w `ppd`) - $BAR_WIDTH) / 2" | bc)"
+  BAR_Y="$GENERAL_GAP"
+  # BAR_WIDTH="$(dattr -w `ppd`)"
+  # BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
+  # BAR_X="0"
+  # BAR_Y="0"
 
   SEP_SMALL="        "
   SEP_BIG="            "
@@ -152,54 +152,54 @@ is_int() {
   done > "$FIFO_PATH" &
 
   # Group status
-  while true; do
-    g_out="G"
-    # Check each group
-    for gid in $(seq 1 $GNUMBER); do
-      # If we find no icon, fall back to group id
-      g_icon="$gid"
-      # Get the first window in the group, if there's any
-      g_window="$(ls -1 /tmp/groaw/$gid | sort -n | head -n 1)"
-      g_name="$(xtitle $g_window)"
+  # while true; do
+  #   g_out="G"
+  #   # Check each group
+  #   for gid in $(seq 1 $GNUMBER); do
+  #     # If we find no icon, fall back to group id
+  #     g_icon="$gid"
+  #     # Get the first window in the group, if there's any
+  #     g_window="$(ls -1 /tmp/groaw/$gid | sort -n | head -n 1)"
+  #     g_name="$(xtitle $g_window)"
 
-      case $g_name in
-        *Vimperator*)
-          g_icon=""
-          ;;
-        *urxvt*|*st*)
-          g_icon=""
-          ;;
-        Transmission)
-          g_icon=""
-          ;;
-        imv*)
-          g_icon=""
-          ;;
-        *"File Manager"*)
-          g_icon=""
-          ;;
-        *LibreOffice*)
-          g_icon=""
-          ;;
-        *Thunderbird)
-          g_icon=""
-          ;;
-        *)
-          test -z "$g_name" || g_icon=""
-          ;;
-      esac
-      if groaw -p $gid; then
-        g_this_out="%{+u} %{F$C6}${g_icon}%{F-} %{-u}"
-      else
-        g_this_out=" ${g_icon} "
-      fi
-      test -z "$g_name" && g_this_out="%{F$C8}${g_this_out}%{F-}"
-      g_this_out="%{A1:groaw -t ${gid}:}${g_this_out}%{A}"
-      g_out="${g_out}${g_this_out}"
-    done
-    echo "$g_out"
-    sleep 0.3
-  done > "$FIFO_PATH" &
+  #     case $g_name in
+  #       *Vimperator*)
+  #         g_icon=""
+  #         ;;
+  #       *urxvt*|*st*)
+  #         g_icon=""
+  #         ;;
+  #       Transmission)
+  #         g_icon=""
+  #         ;;
+  #       imv*)
+  #         g_icon=""
+  #         ;;
+  #       *"File Manager"*)
+  #         g_icon=""
+  #         ;;
+  #       *LibreOffice*)
+  #         g_icon=""
+  #         ;;
+  #       *Thunderbird)
+  #         g_icon=""
+  #         ;;
+  #       *)
+  #         test -z "$g_name" || g_icon=""
+  #         ;;
+  #     esac
+  #     if groaw -p $gid; then
+  #       g_this_out="%{+u} %{F$C6}${g_icon}%{F-} %{-u}"
+  #     else
+  #       g_this_out=" ${g_icon} "
+  #     fi
+  #     test -z "$g_name" && g_this_out="%{F$C8}${g_this_out}%{F-}"
+  #     g_this_out="%{A1:groaw -t ${gid}:}${g_this_out}%{A}"
+  #     g_out="${g_out}${g_this_out}"
+  #   done
+  #   echo "$g_out"
+  #   sleep 0.3
+  # done > "$FIFO_PATH" &
 
 # }}}
 
@@ -212,9 +212,9 @@ is_int() {
       T*)
         time="${line#?}"
         ;;
-      G*)
-        groups="${line#?}"
-        ;;
+      # G*)
+      #   groups="${line#?}"
+      #   ;;
       M*)
         music="${line#?}"
         ;;
@@ -229,9 +229,10 @@ is_int() {
         ;;
       esac
     # Show time!
-    echo "%{l}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}%{c}${groups}%{r}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
+    echo "%{c}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
   done |\
   lemonbar $BAR_OPTS | sh
 # }}}
 
-# vim: set ft=sh :
+wait
+
