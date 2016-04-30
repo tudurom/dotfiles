@@ -17,7 +17,7 @@ BAR_Y="$GENERAL_GAP"
 BAR_BG="$(xrq '*.background')"
 BAR_FG="$(xrq '*.foreground')"
 BAR_UN="$(xrq '*.color9')"
-BAR_FONT="-dylex-terminal-medium-r-*-*-10-*-*-*-*-*-*-*"
+BAR_FONT="$PANEL_FONT"
 BAR_ICON_FONT="-*-siji-*-*-*-*-10-*-*-*-*-*-*-*"
 BAR_OPT="-d -b -f $BAR_FONT -f $BAR_ICON_FONT -g ${BAR_W}x${BAR_H}+${BAR_X}+${BAR_Y} -B $BAR_BG -F $BAR_FG -U $BAR_UN -u 2 -a 30"
 
