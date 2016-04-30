@@ -1,17 +1,16 @@
-#!/bin/dash
-# Timer script. Launch it first to start the timer, launch it the second time to stop it
-# (c) tudurom 2016 - wtfpl
-#
+#!/bin/sh
 
-TEMP_FILE="$HOME/.timerfile"
+usage() {
+    echo "Usage: timer <hour>:<minute> [message]"
+    exit 1
+}
 
-if [ -f "$TEMP_FILE" ]; then
-  start_time="$(cat "$TEMP_FILE")"
-  end_time="$(date +%s)"
-  echo "$(( end_time - start_time ))"
-  rm "$TEMP_FILE"
-else
-  echo "$(date +%s)" > "$TEMP_FILE"
-fi
+{
+while [ "$(date +%H:%M)" != $1 ]; do
+    sleep 1
+done
 
-# vim: set ft=sh :
+message=${2:-"RING RING!"}
+
+echo "$message" > "$NOTIFY_FIFO_PATH"
+} &
