@@ -3,7 +3,6 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-dump_xrandr
 compton -b
 sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils ~/.config/sxhkd/commons &
 wew | wewhandle &

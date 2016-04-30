@@ -111,9 +111,9 @@ is_int() {
     # Icons
     if [ "$batt_status" = "Charging" ]; then
       BATT_ICON=""
-    elif [ "$batt_percentage" -ge 75 ]; then
+    elif [ "$batt_percentage" -gt 50 ]; then
       BATT_ICON=""
-    elif [ "$batt_percentage" -ge 50 ]; then
+    elif [ "$batt_percentage" -gt 30 ]; then
       BATT_ICON=""
     else
       BATT_ICON=""

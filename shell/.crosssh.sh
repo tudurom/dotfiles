@@ -16,7 +16,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export GOPATH=$HOME/Go
-export PATH="$HOME/.scripts:.scripts/clint:$GOPATH/bin:$PATH"
+export PATH="$HOME/.scripts/clint:$HOME/.scripts:$GOPATH/bin:$PATH"
 export PATH=$HOME/.node/bin:$PATH
 export PATH=$HOME/.gem/ruby/2.3/bin:$PATH
 
