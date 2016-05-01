@@ -22,7 +22,9 @@ Plug 'othree/html5.vim'
 
 " Simple tab completion
 Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-clang'
+if executable('clang')
+    Plug 'zchee/deoplete-clang'
+endif
 
 " Syntax checking
 Plug 'scrooloose/syntastic'
