@@ -25,6 +25,9 @@ Plug 'Shougo/deoplete.nvim'
 if executable('clang')
     Plug 'zchee/deoplete-clang'
 endif
+if executable('go')
+    Plug 'zchee/deoplete-go', { 'do': 'make'}
+endif
 
 " Syntax checking
 Plug 'scrooloose/syntastic'

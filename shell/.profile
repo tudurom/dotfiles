@@ -5,6 +5,6 @@ export IOUP_TOKEN="$(cat ~/.iotoken)"
 
 export GOROOT="/usr/lib/go"
 
-. $HOME/.scripts/wmrc
-. $HOME/.scripts/panelsrc
-. $HOME/.scripts/iconsrc
+test -f $HOME/.scripts/wmrc && . $HOME/.scripts/wmrc
+test -f $HOME/.scripts/panelsrc && . $HOME/.scripts/panelsrc
+test -f $HOME/.scripts/iconsrc && . $HOME/.scripts/iconsrc
