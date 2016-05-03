@@ -7,13 +7,12 @@ mpd_music_dir = "/home/tudurom/Music"
 playlist_display_mode = "classic"
 song_list_format = "$2{%a}|{%A}$8 $6-$8 $7%t$8"
 
-song_status_format = "$8%a$9 - $8%t$9"
+song_status_format = "{$2%t $b$1- %a}|{%f}"
 now_playing_prefix = "$b"
 now_playing_suffix = "$/b"
 
 header_visibility = "no"
 autocenter_mode = "yes"
-statusbar_visibility = "no"
 main_window_highlight_color = "white"
 discard_colors_if_item_is_selected = "no"
 
@@ -21,6 +20,15 @@ discard_colors_if_item_is_selected = "no"
 progressbar_look = "━━━"
 progressbar_elapsed_color = "cyan"
 progressbar_boldness = "no"
+
+# Visualizer
+visualizer_in_stereo = "yes"
+visualizer_sync_interval = "30"
+visualizer_output_name = "Pipe"
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_type = "spectrum"
+visualizer_color = 9
+visualizer_look = "▋▋"
 
 # Misc
 display_bitrate = "no"
@@ -42,14 +50,14 @@ enable_window_title = "no"
 # %d - disc
 # %C - comment
 # $R - begin right alignment
-  # colors
-  # $0 - default window color
-  # $1 - black
-  # $2 - red
-  # $3 - green
-  # $4 - yellow
-  # $5 - blue
-  # $6 - magenta
-  # $7 - cyan
-  # $8 - white
-  # $9 - end of current color
+# colors
+# $0 - default window color
+# $1 - black
+# $2 - red
+# $3 - green
+# $4 - yellow
+# $5 - blue
+# $6 - magenta
+# $7 - cyan
+# $8 - white
+# $9 - end of current color

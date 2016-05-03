@@ -20,12 +20,13 @@ List of programs
 * **Shell**: [mksh](https://www.mirbsd.org/mksh.htm)
   * Also using [tmux](https://wiki.archlinux.org/index.php/tmux).
 * **Terminal emulator**: [suckless st](https://wiki.archlinux.org/index.php/St)
-* **Notification daemon**: [Simple Notification Daemon](https://github.com/htylo/simplenotifydaemon) in combination with [my script](https://github.com/tudurom/dotfiles/blob/master/scripts/.scripts/notifyd)
 * **Window manager**: [wmutils](http://wmutils.io) + [my scripts](https://github.com/tudurom/dotfiles/tree/master/wmrc/.scripts)
-  * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `wmrc/.scripts/*panel`)
+  * **Panel**: [lemonbar](https://wiki.archlinux.org/index.php/Lemonbar) (see `wmrc/.scripts/*bar`)
 * **Browser**: Firefox
   * **Theme**: Twily's modified
 * **Music player**: [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) + [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp)
+* **Special Sauce**: [Rainbou](https://github.com/tudurom/rainbou) (configration
+  file generator)
 
 Directory structure
 -------------------
@@ -74,7 +75,11 @@ TODO
 Screenshots
 -----------
 
-### [Current state](http://pub.iotek.org/p/YdrGGvR.png)
+### [Sanity](http://pub.iotek.org/p/vBEtVnd.png)
+
+### [2AM Ricing](http://pub.iotek.org/p/VsbSaGT.png)
+
+### [Lost cat](http://pub.iotek.org/p/YdrGGvR.png)
 
 ### [First wmutils screenie](http://pub.iotek.org/p/9DIdJjP.png)
 

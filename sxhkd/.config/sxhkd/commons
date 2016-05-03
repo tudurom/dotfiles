@@ -10,8 +10,7 @@ super + space
 
 # launch a term
 super + Return
-#st -g 100x30
-  urxvt
+  st -g 100x30
 
 # screenshot
 Print
