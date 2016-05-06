@@ -15,10 +15,23 @@
 
 export EDITOR=nvim
 export VISUAL=nvim
-export GOPATH=$HOME/gopath
-export PATH="$HOME/.scripts/clint:$HOME/.scripts:$GOPATH/bin:$PATH"
-export PATH=$HOME/.node/bin:$PATH
-export PATH=$HOME/.gem/ruby/2.3/bin:$PATH
+
+# Golang specific variables
+if [ -d /usr/local/go ]; then
+    export GOPATH=$HOME/gopath
+    export GOROOT=/usr/local/go
+    export PATH="$GOROOT/bin:$PATH"
+    export PATH="$GOPATH/bin:$PATH"
+fi
+
+# Ruby
+if [ -f /usr/bin/ruby ]; then
+    export PATH=$HOME/.node/bin:$PATH
+    export PATH=$HOME/.gem/ruby/2.3/bin:$PATH
+fi
+
+# Source local scripts
+export PATH="$HOME/bin/clint:$HOME/bin:$PATH"
 
 # Aliases aka hacks
 alias :q=exit
@@ -38,30 +51,30 @@ export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # Remove unnecessary packages
 pclean() {
-  sudo pacman -Rns $(pacman -Qdtq)
+    sudo pacman -Rns $(pacman -Qdtq)
 }
 
 testnet() {
-  ping duckduckgo.com
+    ping duckduckgo.com
 }
 
 cless() {
-  pygmentize -f terminal "$1" | less -R
+    pygmentize -f terminal "$1" | less -R
 }
 
 ghclone() {
-  git clone https://github.com/${1}.git
+    git clone https://github.com/${1}.git
 }
 
 transfer() {
-  local tmpfile="$(mktemp -t tranferXXX)"
-  curl --progress-bar --upload-file $1 "https://transfer.sh/$(basename $1)" >> $tmpfile
-  cat $tmpfile
-  rm -rf $tmpfile
-  unset tmpfile
+    local tmpfile="$(mktemp -t tranferXXX)"
+    curl --progress-bar --upload-file $1 "https://transfer.sh/$(basename $1)" >> $tmpfile
+    cat $tmpfile
+    rm -rf $tmpfile
+    unset tmpfile
 }
 
 pi() {
-  ssh tudoo $1
+    ssh tudoo $1
 }
 

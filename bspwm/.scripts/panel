@@ -72,8 +72,7 @@ done > "$PANEL_FIFO" &
 
 # Battery percentage and time until full charge/discharge
 while true; do
-  #~/.scripts/i3blocks/battery | read batt_status
-  batt_status="$(~/.scripts/battery $ICON_BATTERY_CHARGING $ICON_BATTERY_FULL $ICON_BATTERY_HALF $ICON_BATTERY_EMPTY 2 $COLOR_ICON)"
+  batt_status="$(battery $ICON_BATTERY_CHARGING $ICON_BATTERY_FULL $ICON_BATTERY_HALF $ICON_BATTERY_EMPTY 2 $COLOR_ICON)"
   echo "B$batt_status"
   sleep $REFRESH_BATTERY
 done > "$PANEL_FIFO" &

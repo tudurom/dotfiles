@@ -91,7 +91,14 @@ set undoreload=500
 
 " C-d to hide find results
 nnoremap <silent> <C-d> :noh<CR>
+" Esc in terminal
 tnoremap <Esc> <C-\><C-n>
+" jk to exit insert mode
+inoremap jk <ESC>
+" Navigate long lines easily
+map j gj
+map k gk
+" Just in case
 cabbr W w
 cabbr Q q
 

@@ -2,7 +2,6 @@
 ! No bold font
 URxvt.boldFont:
 URxvt.scrollBar: false
-URxvt.letterSpace: 0
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
 URxvt.internalBorder: 20
