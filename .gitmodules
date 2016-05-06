@@ -10,3 +10,6 @@
 [submodule "st"]
 	path = st
 	url = https://github.com/tudurom/st.git
+[submodule "gtk/.themes/oomox-cloudy"]
+	path = gtk/.themes/oomox-cloudy
+	url = https://github.com/tudurom/cloudy-gtk
