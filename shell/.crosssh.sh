@@ -27,7 +27,8 @@ fi
 # Ruby
 if [ -f /usr/bin/ruby ]; then
     export PATH=$HOME/.node/bin:$PATH
-    export PATH=$HOME/.gem/ruby/2.3/bin:$PATH
+    ruby_ver="$(ls -1 $HOME/.gem/ruby | sort -nr | head -n 1)"
+    export PATH=$HOME/.gem/ruby/$ruby_ver/bin:$PATH
 fi
 
 # Source local scripts

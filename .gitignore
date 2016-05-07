@@ -3,6 +3,7 @@ nvim/.config/nvim/autoload
 !nvim/.config/nvim/bundle/lightline.vim/autoload/lightline/colorscheme/cloudy.vim
 nvim/.config/nvim/tmp
 nvim/.config/nvim/.netrwhist
+nvim/.config/htop
 
 mpd/.mpd/*
 !mpd/.mpd/mpd.conf
