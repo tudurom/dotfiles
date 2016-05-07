@@ -5,5 +5,5 @@
 ! managed like they are supposed to be
 
 #include ".xres/xft"
-#include ".xres/colors/cloudy"
+#include ".xres/colors/moonbow"
 #include ".xres/urxvt"
