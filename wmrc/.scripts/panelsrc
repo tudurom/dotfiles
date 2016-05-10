@@ -4,10 +4,6 @@
 #export PANEL_FONT="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"
 export PANEL_FONT="-*-anorexia-medium-*-*-*-11-*-*-*-*-*-*-*"
 export PANEL_ICON_FONT="-wuncon-siji-medium-*-*-*-10-*-*-*-*-*-*-*"
-export PANEL_BG_COLOR="#1d2a30"
-export PANEL_FG_COLOR="#71c2af"
-export PANEL_ACCENT_COLOR="#c27171"
-export PANEL_OPTS="-d -a 30 -f $PANEL_FONT -f $PANEL_ICON_FONT -B $PANEL_BG_COLOR -F $PANEL_FG_COLOR"
 
 export PANEL_STATUS_HEIGHT="30"
 

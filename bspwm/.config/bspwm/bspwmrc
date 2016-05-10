@@ -7,7 +7,7 @@ if [ -e "$BSPWM_STATE" ]; then
   rm "$BSPWM_STATE"
 fi
 
-bspc config window_gap          0
+bspc config window_gap          $GENERAL_GAP
 bspc config border_width        2
 
 bspc config split_ratio         0.50
@@ -22,12 +22,13 @@ bspc config active_border_color "$(bspc config normal_border_color)"
 
 
 if [ $(bspc query -M | wc -l) -eq 2 ]; then
-  bspc monitor LVDS-0 -d 4 5 6
-  bspc monitor $(bspc query -M | grep -v "LVDS-0" | head -n 1) -d 1 2 3
+  bspc monitor LVDS-1 -d 4 5 6
+  bspc monitor $(bspc query -M | grep -v "LVDS-1" | head -n 1) -d 1 2 3
 else
   bspc monitor -d 1 2 3 4 5 6
 fi
 
 compton -b
-panel &
-setwall &
+statusbar &
+bspc config -m "$(ppd)" top_padding $(( PANEL_STATUS_HEIGHT + GENERAL_GAP ))
+wall-e &

@@ -44,18 +44,33 @@ fi
 xset +fp ~/.fonts
 xset fp rehash
 
+# Start nice programs {{{
+
 # Map Caps to Ctrl
 setxkbmap -option ctrl:nocaps
 # URxvt clipboard magic
-autocutsel -selection clipboard -fork &
+autocutsel -selection clipboard -fork
 
+# Multi monitor
 screenlayout
-# It's unclutter-xfixes
+# Github: airblader/unclutter-xfixes
 unclutter -b
+
+# Music!
 if ! pidof mpd; then
   mpd &
 fi
+# Set cursor from X to pointer
 xsetroot -cursor_name left_ptr &
+# Listen to popup requests
 notifyd &
+# Window compositor
+compton -b
+# Wallpaper
+wall-e &
 
-. $HOME/.scripts/startwmutils
+# }}}
+
+statusbar &
+sxhkd -c ~/.config/sxhkd/sxhkdrc_cwm ~/.config/sxhkd/commons &
+exec cwm

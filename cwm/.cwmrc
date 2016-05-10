@@ -12,8 +12,8 @@ borderwidth 3
 moveamount 10
 
 # colors
-color activeborder   '#63a690'
-color inactiveborder '#456472'
+color activeborder   '#3c5a5d'
+color inactiveborder '#374650'
 color font           '#e8eaec'
 color menubg         '#212121'
 color menufg         '#e8eaec'
@@ -24,6 +24,9 @@ color urgencyborder  '#ef9a89'
 # autogroups
 autogroup 2 Firefox
 autogroup 3 mpv
+autogroup 6 Mumble
+
+sticky no
 
 # menu
 command term    /usr/local/bin/st
@@ -79,8 +82,8 @@ bind 4M-7     grouponly7
 bind 4M-8     grouponly8
 bind 4M-9     grouponly9
 
-bind 4M-r     restart
-bind 4M-q     quit
+bind 4M-r        restart
+bind 4M-Escape   quit
 
 bind 4-d      exec
 bind 4-n      ssh

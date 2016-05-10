@@ -1,39 +1,4 @@
 #
-## my hotkeys
-#
-
-# Lock screen
-super + shift + x
-  lock.sh
-
-XF86AudioRaiseVolume
-  amixer sset Master 5%+ unmute
-
-XF86AudioLowerVolume
-  amixer sset Master 5%- unmute
-
-XF86AudioMute
-  amixer sset Master toggle
-
-XF86MonBrightnessUp
-  xbacklight -inc 10%
-
-XF86MonBrightnessDown
-  xbacklight -dec 10%
-
-XF86AudioPlay
-  mpc toggle
-
-XF86AudioStop
-  mpc stop
-
-XF86AudioNext
-  mpc next
-
-XF86AudioPrev
-  mpc prev
-
-#
 ## bspwm hotkeys
 #
 
@@ -124,23 +89,3 @@ super + button{1-3}
 super + @button{1-3}
 	bspc pointer -u
 
-#
-# wm independent hotkeys
-#
-
-super + Return
-	urxvt
-
-super + space
-  ~/.scripts/run_dmenu
-
-Print
-  ~/.scripts/screenie
-
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd
-
-# Shortcuts
-super + shift + f
-  firefox &

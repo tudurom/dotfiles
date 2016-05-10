@@ -3,10 +3,7 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-compton -b
-sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils ~/.config/sxhkd/commons &
 wew | wewhandle &
-wall-e &
 groupbar &
 statusbar &
 xwait

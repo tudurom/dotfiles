@@ -2,6 +2,7 @@ export PATH="$PATH:$HOME/.scripts"
 export BSPWM_STATE="/tmp/bspwm-state.json"
 export PANEL_FIFO="/tmp/panel-fifo"
 test -f $HOME/.iotoken && export IOUP_TOKEN="$(cat ~/.iotoken)"
+test -f $HOME/.srtoken && export SHRT_TOKEN="$(cat ~/.srtoken)"
 
 export GOROOT="/usr/lib/go"
 

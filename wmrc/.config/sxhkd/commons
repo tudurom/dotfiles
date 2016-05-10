@@ -1,30 +1,19 @@
-## wm-independent hotkeys
-
 # reload sxhkd
 super + Escape
-	pkill -USR1 -x sxhkd
+  pkill -USR1 -x sxhkd
 
-# launch dmenu
-super + space
-  ~/.scripts/run_dmenu
-
-# launch a term
 super + Return
   st -g 100x30
 
-# screenshot
-Print
-  ~/.scripts/screenie
+super + space
+  run_dmenu
 
-# launch a browser
 super + shift + f
   firefox
 
-# lock screen
 super + shift + x
-  lock.sh
+  slock
 
-# media keys things
 XF86AudioRaiseVolume
   amixer sset Master 5%+ unmute
 
@@ -35,10 +24,10 @@ XF86AudioMute
   amixer sset Master toggle
 
 XF86MonBrightnessUp
-  light -A 10
+  xbacklight -inc 10%
 
 XF86MonBrightnessDown
-  light -U 10
+  xbacklight -dec 10%
 
 XF86AudioPlay
   mpc toggle
@@ -52,3 +41,5 @@ XF86AudioNext
 XF86AudioPrev
   mpc prev
 
+Print
+  screenie

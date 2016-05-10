@@ -5,7 +5,7 @@
 # arrange windows in a tiled pattern
 
 # default values for gaps and master area
-PANEL="$(( PANEL_STATUS_HEIGHT ))"
+PANEL="${PANEL:-$(( PANEL_STATUS_HEIGHT ))}"
 test `pfd` = `ppd` || PANEL=0
 GAP=${GAP:-$GENERAL_GAP}
 MASTER="$(( $(dattr -w $(pfd)) / 2 ))"
