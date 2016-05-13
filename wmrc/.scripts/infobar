@@ -1,4 +1,4 @@
-#! /bin/sh -x
+#! /bin/sh
 # A little panel that shows the current time in the corner
 # (c) tudurom 2016 - wtfpl
 #
@@ -6,6 +6,7 @@
 PANEL_ACCENT_COLOR="$(xrq '*.color9')"
 PANEL_BG_COLOR="$(xrq '*background')"
 PANEL_FG_COLOR="$(xrq '*.color14')"
+PANEL_BORDER_COLOR="$(xrq '*.color6')"
 
 clock() {
   format='%a %d %B %H:%M'
@@ -23,7 +24,7 @@ panel_width=$(( width + 2 * GENERAL_GAP ))
 panel_height=$(( height + 2 * GENERAL_GAP ))
 panel_x=$(( (pd_x + pd_width) - panel_width - GENERAL_GAP ))
 panel_y=$(( (pd_y + pd_height) - panel_height - GENERAL_GAP ))
-panel_opts="-d -a 30 -f $PANEL_FONT -f $PANEL_ICON_FONT -B $PANEL_BG_COLOR -F $PANEL_FG_COLOR -g ${panel_width}x${panel_height}+${panel_x}+${panel_y}"
+panel_opts="-d -a 30 -f $PANEL_FONT -f $PANEL_ICON_FONT -B $PANEL_BG_COLOR -F $PANEL_FG_COLOR -R $PANEL_BORDER_COLOR -r 3 -g ${panel_width}x${panel_height}+${panel_x}+${panel_y}"
 
 while true; do
   clock

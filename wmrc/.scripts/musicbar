@@ -1,8 +1,13 @@
-#! /bin/bash
+#! /bin/sh
 #
 # Little panel to show current playing song
 # (c) tudurom 2016 - wtfpl
 #
+
+PANEL_ACCENT_COLOR="$(xrq '*.color9')"
+PANEL_BG_COLOR="$(xrq '*.background')"
+PANEL_FG_COLOR="$(xrq '*.color14')"
+PANEL_BORDER_COLOR="$(xrq '*.color6')"
 
 last_title="-"
 music() {

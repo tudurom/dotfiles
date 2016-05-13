@@ -1,4 +1,4 @@
-*.font: -*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*
+*.font: -*-lemon-medium-*-*-*-10-*-*-*-*-*-*-*
 ! No bold font
 URxvt.boldFont:
 URxvt.scrollBar: false

@@ -67,7 +67,7 @@ is_int() {
   # Gonna position it centered and respect the gaps
   BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
   # Colors
-  BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF} -U ${C1}"
+  BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF}"
   BAR_OPTS="${BAR_OPTS} -u 2"
   BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT}"
 
@@ -80,8 +80,7 @@ is_int() {
   # If it's first of April, show the Epoch time
   test "$(date +"%d %m")" = "01 04" && time_format='%s'
   while true; do
-    # That LC_ALL=C is to disable localization. Still thinking about it
-    echo "T%{F$C14}%{F-} $(date +"$time_format")"
+    echo "T%{F$C14}%{F-} $(date +"$time_format")"
     sleep 10
   done > "$FIFO_PATH" &
 

@@ -29,7 +29,9 @@ autogroup 6 Mumble
 sticky no
 
 # menu
-command term    /usr/local/bin/st
+command term    /usr/local/bin/st -g 100x30
+command lock    /usr/bin/slock
+command firefox /usr/bin/firefox
 
 # binds
 bind 4-v      vmaximize

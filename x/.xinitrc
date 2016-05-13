@@ -71,6 +71,6 @@ wall-e &
 
 # }}}
 
-statusbar &
+infobar &
 sxhkd -c ~/.config/sxhkd/sxhkdrc_cwm ~/.config/sxhkd/commons &
 exec cwm
