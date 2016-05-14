@@ -31,7 +31,7 @@ tail -f "$NOTIFY_FIFO_PATH" | while IFS= read -r message; do
   echo "$n" > "$NOTIFY_COUNTER_PATH"
 
   {
-    popup $(( NOTIFY_X - NOTIFY_W )) $(( DISPLAY_H - (NOTIFY_H + NOTIFY_Y) * n )) $NOTIFY_W $NOTIFY_H "$message"
+      popup $NOTIFY_X $(( NOTIFY_Y - (NOTIFY_H + GENERAL_GAP) * (n - 1) )) $NOTIFY_W $NOTIFY_H "$message"
     n="$(cat "$NOTIFY_COUNTER_PATH")"
     n="$(( n - 1 ))"
     echo "$n" > "$NOTIFY_COUNTER_PATH"

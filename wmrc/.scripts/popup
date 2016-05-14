@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 #
 # popup - display popup
 # (c) tudurom 2016 - wtfpl

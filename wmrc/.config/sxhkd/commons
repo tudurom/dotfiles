@@ -3,7 +3,7 @@ super + Escape
   pkill -USR1 -x sxhkd
 
 super + Return
-  st -g 100x30
+  st
 
 super + space
   run_dmenu
