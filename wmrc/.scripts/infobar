@@ -21,8 +21,8 @@ pd_width="$(dattr -w $(ppd))"
 pd_height="$(dattr -h $(ppd))"
 
 panel_width=$(( width + 2 * GENERAL_GAP ))
-panel_height=$(( height + 2 * GENERAL_GAP ))
-panel_x=$(( (pd_x + pd_width) - panel_width - GENERAL_GAP ))
+panel_height=$PANEL_STATUS_HEIGHT
+panel_x=$(((pd_width - panel_width) / 2))
 panel_y=$(( (pd_y + pd_height) - panel_height - GENERAL_GAP ))
 panel_opts="-d -a 30 -f $PANEL_FONT -f $PANEL_ICON_FONT -B $PANEL_BG_COLOR -F $PANEL_FG_COLOR -R $PANEL_BORDER_COLOR -r 3 -g ${panel_width}x${panel_height}+${panel_x}+${panel_y}"
 

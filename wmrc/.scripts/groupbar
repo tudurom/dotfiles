@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 ppd=`ppd`
 DISP_W=`dattr -w $ppd`

@@ -1,4 +1,0 @@
-curl \
-         -F key=$SRHT_TOKEN \
-         -F file=@example.png \
-         https://sr.ht/api/upload
