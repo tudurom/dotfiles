@@ -72,6 +72,17 @@ TODO
   - [x] This README
   - [ ] A big article at the `gh-pages` branch
 
+Backups
+-------
+
+In case of fire, these dotfiles are mirrored on a number of servers:
+
+- [GitHub](https://github.com/tudurom/dotfiles)
+- [notabug](https://notabug.org/tudurom/dotfiles)
+- [sr.ht](https://gogs.sr.ht/xenogenesis/dotfiles)
+- [gitgud](https://gitgud.io/tudurom/dotfiles_backup)
+- [my server](http://thetudor.ddns.net/git/dotfiles/log.html)
+
 Screenshots
 -----------
 
