@@ -54,11 +54,11 @@ autocutsel -selection clipboard -fork
 # Multi monitor
 screenlayout
 # Github: airblader/unclutter-xfixes
-unclutter -b
+# unclutter -b
 
 # Music!
-if ! pidof mpd; then
-  mpd &
+if ! pidof musicpd; then
+  musicpd &
 fi
 # Set cursor from X to pointer
 xsetroot -cursor_name left_ptr &

@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 # Reads list of urls, shows them in a nice menu and then opens the selected url
 # (c) tudurom 2016 - wtfpl
 #
@@ -8,6 +8,6 @@ font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-*"
 
 while read -r line; do
   echo "$line"
-done | dmenu -s 0 -nf "#71c2af" -nb "#273941" -sb "#1d2a30" -sf "#c27171" -i -h 30 -w "${monitor_width}" -x 0 -y 0 -fn "${font}" -p ">" -l 3 | xargs xdg-open
+done | dmenu | xargs xdg-open
 
 # vim: set ft=sh :

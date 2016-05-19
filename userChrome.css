@@ -18,20 +18,20 @@
     /*--bg-light: #524C59; --bg-dark: #282333;*/
     /*--fg-light: #D6CCDC; --fg-dark: #AAA5AD;*/
     /*--bg-light: #273941; */
-    --bg-light: #20292d;
-    --bg-dark: #20292d;
-    --fg-light: #a66959;
-    --fg-dark: #60867f;
+    --bg-light: #1b2227;
+    --bg-dark: #1b2227;
+    --fg-light: #8a6270;
+    --fg-dark: #548084;
     --tab-triangle-correction: -1px;
     --tab-height: 28px; --tab-icon-size: 10px; --tab-strip-margin: -11px; --tab-overlap: -5px;
-    --tab-fonts: "M+ 1m", monospace,"Dejavu Sans"; --tab-font-size: 10pt;
+    --tab-fonts: "erusfont", monospace,"Dejavu Sans"; --tab-font-size: 10pt;
     --tab-text-align: center; /* left | center | right */
     --tab-triangle: block; /* block | none */
 
     /* URL VARIABLES */
     --url-background: var(--bg-light); --url-color: var(--fg-light);
     --url-height: 18px; --url-right-margin: 5px;
-    --url-fonts: "M+ 1m",monospace,"Dejavu Sans"; --url-font-size: 7pt;
+    --url-fonts: "erusfont",monospace,"Dejavu Sans"; --url-font-size: 7pt;
     --url-text-align: center; /* left | center | right */
     --url-position: absolute; /* absolute == top (under tabs) || fixed == bottom of browser */
 

@@ -33,7 +33,7 @@ endif
 Plug 'scrooloose/syntastic'
 
 " Show changes
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 
 " One plugin to rule them all
 Plug 'sheerun/vim-polyglot'

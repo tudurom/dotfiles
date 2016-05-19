@@ -4,7 +4,7 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-POPUP_FONT=${POPUP_FONT:-Anorexia}
+POPUP_FONT=${POPUP_FONT:-lemon}
 POPUP_DURATION=${POPUP_DURATION:-5}
 
 BAR_X="$1"
@@ -20,7 +20,6 @@ BAR_FONT="$PANEL_FONT"
 bar_opts="-g ${BAR_W}x${BAR_H}+${BAR_X}+${BAR_Y} -B${BAR_BG} -F${BAR_FG} -f ${BAR_FONT} -d"
 
 (
-char_len="$(txtw -f "$POPUP_FONT" "#")"
 tx_len="35"
 echo "$MESSAGE" | skroll -r -l -n $tx_len &
 sleep "$POPUP_DURATION" && kill $!

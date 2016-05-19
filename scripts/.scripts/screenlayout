@@ -1,14 +1,16 @@
 #! /bin/sh
 
-LAPTOP_SCREEN="$(lsd | grep "LVDS-*[0-9]")"
+screens="$(xrandr | grep " connected" | cut -d' ' -f1)"
+
+laptop_screen="$(echo "$screens" | grep "LVDS-*[0-9]")"
 
 single_ext="on"
-ext_monitor=$(lsd | grep -v "$LAPTOP_SCREEN" | tail -n 1)
+ext_monitor=$(echo "$screens" | grep -v "$laptop_screen" | tail -n 1)
 if [ -z "$ext_monitor" ]; then
-  xrandr --output "$LAPTOP_SCREEN" --primary
+  xrandr --output "$laptop_screen" --primary
 else
-  xrandr --output "$ext_monitor" --auto --left-of "$LAPTOP_SCREEN" --primary
+  xrandr --output "$ext_monitor" --auto --left-of "$laptop_screen" --primary
   if [ $single_ext = "on" ]; then
-    xrandr --output "$LAPTOP_SCREEN" --off
+    xrandr --output "$laptop_screen" --off
   fi
 fi

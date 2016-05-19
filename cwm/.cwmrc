@@ -29,7 +29,7 @@ autogroup 6 Mumble
 sticky no
 
 # menu
-command term    /usr/local/bin/st -g 100x30
+command term    /usr/local/bin/st
 command lock    /usr/bin/slock
 command firefox /usr/bin/firefox
 

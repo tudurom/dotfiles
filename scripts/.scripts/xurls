@@ -1,7 +1,3 @@
 #!/bin/sh
 
-protocols='[a-zA-Z]+://'
-hostchars='[-a-zA-Z0-9._+]+'
-pathchars='[-a-zA-Z0-9._+#=?&:;%/!~()]+'
-
-grep -aPo "${protocols}${hostchars}${pathchars}" | tac
+grep -Eo '(http|https)://[^/"]+' | tail -r
