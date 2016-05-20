@@ -24,14 +24,14 @@
     --fg-dark: #548084;
     --tab-triangle-correction: -1px;
     --tab-height: 28px; --tab-icon-size: 10px; --tab-strip-margin: -11px; --tab-overlap: -5px;
-    --tab-fonts: "erusfont", monospace,"Dejavu Sans"; --tab-font-size: 10pt;
+    --tab-fonts: "GohuFont", monospace,"Dejavu Sans"; --tab-font-size: 7pt;
     --tab-text-align: center; /* left | center | right */
     --tab-triangle: block; /* block | none */
 
     /* URL VARIABLES */
     --url-background: var(--bg-light); --url-color: var(--fg-light);
     --url-height: 18px; --url-right-margin: 5px;
-    --url-fonts: "erusfont",monospace,"Dejavu Sans"; --url-font-size: 7pt;
+    --url-fonts: "GohuFont",monospace,"Dejavu Sans"; --url-font-size: 7pt;
     --url-text-align: center; /* left | center | right */
     --url-position: absolute; /* absolute == top (under tabs) || fixed == bottom of browser */
 
@@ -67,7 +67,7 @@
     /* --- Uncomment the section below to enable the New Tab Button [EXPERIMENTAL] --- */
     /**/
     .tabs-newtab-button { display: block !important; background: transparent !important; margin: 0 8px 0 0 !important; width: 24px !important; }
-    .tabs-newtab-button::before { content: "+" !important; font-family: Hack;}
+    .tabs-newtab-button::before { content: "+" !important; font-family: GohuFont;}
     /**/
 
     .tab-drop-indicator { margin-bottom: 0 !important; }
@@ -296,7 +296,7 @@
 
 
 /* background color around/behind pictures opened in firefox (require html namespace on top) */
-@-moz-document regexp("(https?://|file:///)(.*)\.(jpeg|jpg|gif|png|apng|svg|bmp|webm|webp)") {
+@-moz-document regexp("(https?://|file:///)(.*)\\.(jpeg|jpg|gif|png|apng|svg|bmp|webm|webp)") {
     body { background: var(--bg-light) !important; }
     img.decoded { background-color: transparent !important; }
 }
@@ -326,4 +326,4 @@ tabbrowser tabpanels, #appcontent > #content { background: var(--bg-light) !impo
 }
 /**/
 
-/* vim: set ft=css :
+/* vim: set ft=css : */

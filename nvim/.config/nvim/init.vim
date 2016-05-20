@@ -3,8 +3,7 @@
 " ╹╹ ╹╹ ╹ ╹┗┛ ╹╹ ╹
 " init.vim written with extensibility in mind
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype off
 
 " Plugins {{{
 
@@ -13,20 +12,19 @@ call plug#begin('~/.config/nvim/bundle')
 " For obvious reasons
 Plug 'ntpeters/vim-better-whitespace'
 
-" Statusline
-" Plug 'itchyny/lightline.vim'
-
-" Syntax plugins
+" Markdown syntax and spell checking
 Plug 'gabrielelana/vim-markdown'
-Plug 'othree/html5.vim'
 
 " Simple tab completion
-Plug 'Shougo/deoplete.nvim'
-if executable('clang')
-    Plug 'zchee/deoplete-clang'
-endif
-if executable('go')
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
+" neovim-python is required
+if has("python3")
+    Plug 'Shougo/deoplete.nvim'
+    if executable('clang')
+        Plug 'zchee/deoplete-clang'
+    endif
+    if executable('go')
+        Plug 'zchee/deoplete-go', { 'do': 'make'}
+    endif
 endif
 
 " Syntax checking

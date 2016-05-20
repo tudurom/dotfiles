@@ -4,15 +4,6 @@
 # by tudurom
 # bits shared between different shells (bash, mksh, zsh)
 
-# if [[ $- == *i* ]] && [[ -z "$TMUX" ]]; then
-#   if [[ $(tmux ls | grep -v "attached" | wc -l) -gt 0 ]]; then
-#     # Auto-attach to the first detached one
-#     exec tmux a -t $(tmux ls | grep -v "attached" | head -n 1 | cut -d: -f1)
-#   else
-#     exec tmux
-#   fi
-# fi
-
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -25,7 +16,7 @@ if [ -d /usr/local/go ]; then
 fi
 
 # Ruby
-if [ -f /usr/bin/ruby ]; then
+if [ -f /usr/local/bin/ruby ]; then
     export PATH=$HOME/.node/bin:$PATH
     ruby_ver="$(ls -1 $HOME/.gem/ruby | sort -nr | head -n 1)"
     export PATH=$HOME/.gem/ruby/$ruby_ver/bin:$PATH
@@ -47,6 +38,7 @@ alias rm="rm -I"
 alias fkh="fortune khaled"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
+alias tput="/usr/local/bin/tput"
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # Remove unnecessary packages
