@@ -13,8 +13,6 @@ st/st.o
 
 vimperator/.vimperator/info
 
-wmrc/contrib/killwa/killwa
-wmrc/contrib/killwa/killwa.o
-wmrc/contrib/killwa/util.o
+wmrc/.scripts/xwait
 
 gtk/.config/gtk-2.0/gtkfilechooser.ini

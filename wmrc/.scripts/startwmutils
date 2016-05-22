@@ -5,7 +5,6 @@
 
 wew | wewhandle &
 groupbar &
-statusbar &
 xwait
 
 # vim: set ft=sh :

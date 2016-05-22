@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# Rings when it should ring
+# (c) tudurom 2016 - wtfpl
+#
 
 usage() {
     echo "Usage: timer <hour>:<minute> [message]"

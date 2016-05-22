@@ -19,7 +19,7 @@ prompt () {
   if [[ $_ERR -ne 0 ]]; then
     exit_color=1
   fi
-  dir="$(tput setaf 8)$(pwd | sed -e "s/\/home\/$USER/~/")"
+  dir="$(tput setaf 8)$(pwd | sed -e "s/\/usr\/home\/$USER/~/" | sed -e "s/\/home\/$USER/~/")"
   arrow="$(tput setaf $exit_color)───"
   echo -n "${dir}\n${arrow}$(tput sgr0) "
 }

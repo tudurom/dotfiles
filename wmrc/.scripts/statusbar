@@ -1,8 +1,10 @@
-#! /bin/sh
+#!/bin/sh
 #
 # "Simple" status bar
 # (c) tudurom 2016 - wtfpl
 #
+
+test -z "$DISPLAY" && echo "statusbar needs a working X environment" && exit 1
 
 is_int() {
   case $1 in
@@ -63,7 +65,7 @@ is_int() {
   # Bar options
   BAR_OPTS=""
   # Because wmutils
-  BAR_OPTS="${BAR_OPTS} -d"
+  BAR_OPTS="${BAR_OPTS} -d -b -R $C8 -r 3"
   # Gonna position it centered and respect the gaps
   BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
   # Colors
@@ -105,39 +107,27 @@ is_int() {
 
   # Battery status
   while true; do
-    batt_status="$(cat /sys/class/power_supply/BAT0/status)"
-    batt_percentage="$(cat /sys/class/power_supply/BAT0/capacity)"
+    batt_status="$(apm -b)"
+    batt_percentage="$(apm -l)"
     # Icons
-    if [ "$batt_status" = "Charging" ]; then
+    if [ "$batt_status" -eq 3 ]; then
       BATT_ICON=""
-    elif [ "$batt_percentage" -gt 50 ]; then
+    elif [ "$batt_status" -eq 0 ]; then
       BATT_ICON=""
-    elif [ "$batt_percentage" -gt 30 ]; then
+    elif [ "$batt_status" -eq 1 ]; then
       BATT_ICON=""
     else
       BATT_ICON=""
     fi
-    echo "B%{F$C11}${BATT_ICON}%{F-} ${batt_percentage}"
-    sleep 10
-  done > "$FIFO_PATH" &
-
-  # Memory usage
-  while true; do
-    t=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-    f=$(grep MemFree  /proc/meminfo | awk '{print $2}')
-    b=$(grep ^Buffers /proc/meminfo | awk '{print $2}')
-    c=$(grep ^Cached  /proc/meminfo | awk '{print $2}')
-
-    mem=`echo "($t - $f - $c - $b) / 1024" | bc`
-    echo "R%{F$C9}%{F-} $mem"
+    echo "B%{F$C13}${BATT_ICON}%{F-} ${batt_percentage}"
     sleep 10
   done > "$FIFO_PATH" &
 
   # Volume
   while true; do
-    state=$(amixer get Master | grep 'Mono: Playback' | grep '\[on]')
-    volume=$(amixer get Master | grep "Mono: " | grep -o '...%' | sed 's/\[//g' | sed 's/%//g')
-    if [ "$state" ]; then
+    pcm=$(mixer -S pcm | cut -d':' -f2)
+    volume=$(mixer -S vol | cut -d':' -f2)
+    if [ "$pcm" -gt 0 ]; then
       if [ $volume -ge 50 ]; then
         vicon=
       else
@@ -146,59 +136,9 @@ is_int() {
     else
       vicon=
     fi
-    echo "V%{A3:amixer sset Master toggle:}%{A4:amixer sset Master 5%+ unmute:}%{A5:amixer sset Master 5%- unmute:}%{F$C10}$vicon%{F-} $volume%{A}%{A}%{A}"
+    echo "V%{A3:mute:}%{A4:mixer vol +5:}%{A5:mixer vol -5:}%{F$C12}$vicon%{F-} $volume%{A}%{A}%{A}"
     sleep 0.5
   done > "$FIFO_PATH" &
-
-  # Group status
-  # while true; do
-  #   g_out="G"
-  #   # Check each group
-  #   for gid in $(seq 1 $GNUMBER); do
-  #     # If we find no icon, fall back to group id
-  #     g_icon="$gid"
-  #     # Get the first window in the group, if there's any
-  #     g_window="$(ls -1 /tmp/groaw/$gid | sort -n | head -n 1)"
-  #     g_name="$(xtitle $g_window)"
-
-  #     case $g_name in
-  #       *Vimperator*)
-  #         g_icon=""
-  #         ;;
-  #       *urxvt*|*st*)
-  #         g_icon=""
-  #         ;;
-  #       Transmission)
-  #         g_icon=""
-  #         ;;
-  #       imv*)
-  #         g_icon=""
-  #         ;;
-  #       *"File Manager"*)
-  #         g_icon=""
-  #         ;;
-  #       *LibreOffice*)
-  #         g_icon=""
-  #         ;;
-  #       *Thunderbird)
-  #         g_icon=""
-  #         ;;
-  #       *)
-  #         test -z "$g_name" || g_icon=""
-  #         ;;
-  #     esac
-  #     if groaw -p $gid; then
-  #       g_this_out="%{+u} %{F$C6}${g_icon}%{F-} %{-u}"
-  #     else
-  #       g_this_out=" ${g_icon} "
-  #     fi
-  #     test -z "$g_name" && g_this_out="%{F$C8}${g_this_out}%{F-}"
-  #     g_this_out="%{A1:groaw -t ${gid}:}${g_this_out}%{A}"
-  #     g_out="${g_out}${g_this_out}"
-  #   done
-  #   echo "$g_out"
-  #   sleep 0.3
-  # done > "$FIFO_PATH" &
 
 # }}}
 
@@ -211,9 +151,6 @@ is_int() {
       T*)
         time="${line#?}"
         ;;
-      # G*)
-      #   groups="${line#?}"
-      #   ;;
       M*)
         music="${line#?}"
         ;;
@@ -223,12 +160,9 @@ is_int() {
       V*)
         vol="${line#?}"
         ;;
-      R*)
-        ram="${line#?}"
-        ;;
       esac
     # Show time!
-    echo "%{c}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}${ram}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
+    echo "%{c}${SEP_BIG}${music}${SEP_SMALL}${vol}${SEP_SMALL}${batt}${SEP_SMALL}${time}${SEP_BIG}"
   done |\
   lemonbar $BAR_OPTS | sh
 # }}}

@@ -71,6 +71,7 @@ wall-e &
 
 # }}}
 
-infobar &
-sxhkd -c ~/.config/sxhkd/sxhkdrc_cwm ~/.config/sxhkd/commons &
-exec cwm
+statusbar &
+sxhkd -c ~/.config/sxhkd/sxhkdrc_wmutils ~/.config/sxhkd/commons &
+#exec cwm
+. bin/startwmutils

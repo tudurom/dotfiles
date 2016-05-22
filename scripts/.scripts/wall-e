@@ -4,7 +4,7 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-DEFAULT_WALL="$HOME/wallpapers/venice.jpg"
+DEFAULT_WALL="$HOME/wallpapers/test_tile7.png"
 APRIL_WALL="$HOME/wallpapers/april_wall.png"
 
 if [ "$(date +"%d/%m")" = "01/04" ]; then
@@ -14,6 +14,6 @@ elif [ $# -ge 1 ]; then
   test -n "$2" && option="$2"
   feh --bg-${option} $1
 else
-  feh --bg-fill $DEFAULT_WALL
+  feh --bg-tile $DEFAULT_WALL
 fi
 

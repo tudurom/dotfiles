@@ -17,7 +17,7 @@ BAR_BG=`xrq '*.background'`
 BAR_FG=`xrq '*.color14'`
 BAR_FONT="$PANEL_FONT"
 
-bar_opts="-g ${BAR_W}x${BAR_H}+${BAR_X}+${BAR_Y} -B${BAR_BG} -F${BAR_FG} -f ${BAR_FONT} -d"
+bar_opts="-g ${BAR_W}x${BAR_H}+${BAR_X}+${BAR_Y} -B${BAR_BG} -F${BAR_FG} -f ${BAR_FONT} -d -r $BW -R `xrq *.color6`"
 
 (
 tx_len="35"
