@@ -6,7 +6,7 @@ super + Return
   st
 
 super + space
-  run_dmenu
+  dmenu_run
 
 super + shift + f
   firefox

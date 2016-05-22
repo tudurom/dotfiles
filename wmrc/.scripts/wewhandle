@@ -5,29 +5,29 @@
 #
 
 while IFS=: read -r ev wid; do
-  case $ev in
-    # Window creation
-    16)
-      if ! wattr o $wid; then
-        cornerw md $wid
-      fi
-      ;;
+    case $ev in
+        # Window creation
+        16)
+        if ! wattr o $wid; then
+            cornerw md $wid
+        fi
+        ;;
 
-    # Mapping request aka group activated
-    19)
-      if ! wattr o $wid; then
-        focusw $wid
-      fi
-      ;;
+        # Mapping request aka group activated
+        19)
+        if ! wattr o $wid; then
+            focusw $wid
+        fi
+        ;;
 
-    # Window closed
-    18)
-      if ! wattr $(pfw); then
-        focusw $(closestw prev)
-        groaw # Force cleanup
-      fi
-      ;;
-  esac
+        # Window closed
+        18)
+        if ! wattr $(pfw); then
+            focusw $(closestw prev)
+            groaw # Force cleanup
+        fi
+        ;;
+esac
 done
 
 # vim: set ft=sh :

@@ -1,4 +1,4 @@
-#! /usr/bin/ruby
+#!/usr/bin/env ruby
 
 $pwd = Dir.pwd
 $problem_name = Dir.pwd.split('/')[-1]
@@ -10,7 +10,7 @@ def center(s)
 end
 
 def compile
-  puts `gcc #{$problem_name}.c -o #{$problem_name} -Wall -O2`
+  puts `cc #{$problem_name}.c -o #{$problem_name} -Wall -O2`
 end
 
 def run

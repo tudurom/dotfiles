@@ -31,7 +31,7 @@ endif
 Plug 'scrooloose/syntastic'
 
 " Show changes
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " One plugin to rule them all
 Plug 'sheerun/vim-polyglot'
@@ -99,6 +99,7 @@ map k gk
 " Just in case
 cabbr W w
 cabbr Q q
+cabbr Wq wq
 
 " }}}
 
