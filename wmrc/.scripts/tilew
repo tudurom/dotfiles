@@ -41,7 +41,7 @@ done
 
 # calculate usable screen size (without borders and gaps)
 SW=$((SW - GAP - 2*BW))
-SH=$((SH - 3 * GAP - 2 * PANEL))
+SH=$((SH - 2 * GAP - PANEL))
 
 Y=$((2 * GAP + PANEL))
 # put current window in master area
