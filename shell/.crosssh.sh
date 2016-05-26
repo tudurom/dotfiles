@@ -25,6 +25,9 @@ fi
 # Source local scripts
 export PATH="$HOME/bin/clint:$HOME/bin:$PATH"
 
+# god's own os
+export PATH="$PATH:/usr/local/plan9/bin"
+
 # Aliases aka hacks
 alias :q=exit
 alias irb=pry

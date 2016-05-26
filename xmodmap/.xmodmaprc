@@ -1,0 +1,7 @@
+! remove caps
+clear lock
+remove Lock = Caps_Lock
+remove Shift = Caps_Lock
+
+! make caps esc
+keysym Caps_Lock = Escape

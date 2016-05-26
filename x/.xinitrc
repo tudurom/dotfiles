@@ -46,8 +46,7 @@ xset fp rehash
 
 # Start nice programs {{{
 
-# Map Caps to Ctrl
-setxkbmap -option ctrl:nocaps
+xmodmap ~/.xmodmaprc
 # URxvt clipboard magic
 autocutsel -selection clipboard -fork
 
