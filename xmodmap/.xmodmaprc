@@ -5,3 +5,10 @@ remove Shift = Caps_Lock
 
 ! make caps esc
 keysym Caps_Lock = Escape
+
+keycode 92 = XF86AudioPlay
+keycode 170 = XF86AudioStop
+keycode 184 = XF86AudioPrev
+keycode 189 = XF86AudioMute
+keycode 207 = XF86AudioRaiseVolume
+keycode 190 = XF86AudioLowerVolume
