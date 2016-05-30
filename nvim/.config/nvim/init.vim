@@ -19,9 +19,9 @@ Plug 'gabrielelana/vim-markdown'
 " neovim-python is required
 if has("python3")
     Plug 'Shougo/deoplete.nvim'
-    if executable('clang')
-        Plug 'zchee/deoplete-clang'
-    endif
+    " if executable('clang')
+    "     Plug 'zchee/deoplete-clang'
+    " endif
     if executable('go')
         Plug 'zchee/deoplete-go', { 'do': 'make'}
     endif
