@@ -41,7 +41,7 @@ filetype plugin indent on    " required
 
 " }}}
 
-" Essential things {{{
+" Essential settings {{{
 
 " Syntax and tabs
 syntax enable " Enable syntax highlighting, duh
@@ -62,6 +62,11 @@ set smartcase
 " Make it natural
 set splitright
 set splitbelow
+" Show a color column to limit the line width to 80 chars
+set cc=80
+" SCREAM
+set cursorline
+set cursorcolumn
 
 " Nope
 set noswapfile
