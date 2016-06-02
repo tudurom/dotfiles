@@ -5,6 +5,8 @@
 
 filetype off
 
+let g:uname = substitute(system("uname"), '\n\+$', '', '')
+
 " Plugins {{{
 
 call plug#begin('~/.config/nvim/bundle')
@@ -19,9 +21,9 @@ Plug 'gabrielelana/vim-markdown'
 " neovim-python is required
 if has("python3")
     Plug 'Shougo/deoplete.nvim'
-    " if executable('clang')
-    "     Plug 'zchee/deoplete-clang'
-    " endif
+    if executable('clang')
+        "Plug 'zchee/deoplete-clang'
+    endif
     if executable('go')
         Plug 'zchee/deoplete-go', { 'do': 'make'}
     endif
@@ -64,9 +66,6 @@ set splitright
 set splitbelow
 " Show a color column to limit the line width to 80 chars
 set cc=80
-" SCREAM
-set cursorline
-set cursorcolumn
 
 " Nope
 set noswapfile
@@ -176,6 +175,9 @@ let g:deoplete#enable_at_startup = 1
 
 " C/C++ things
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+if g:uname == "FreeBSD"
+    let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm37/lib/libclang.so'
+endif
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang/'
 " C or C++ standard version
 let g:deoplete#sources#clang#std#c = 'c11'

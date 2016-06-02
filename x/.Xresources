@@ -7,5 +7,5 @@
 Xcursor.theme: HumanAzul
 
 #include ".xres/xft"
-#include ".xres/colors/moonbow"
+#include ".xres/colors/thunder"
 #include ".xres/urxvt"

@@ -41,7 +41,7 @@ alias rm="rm -I"
 alias fkh="fortune khaled"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
-alias tput="/usr/local/bin/tput"
+test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # Remove unnecessary packages
