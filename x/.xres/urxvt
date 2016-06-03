@@ -1,4 +1,4 @@
-*.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
+*.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
 ! No bold font
 URxvt.boldFont:
 URxvt.scrollBar: false
