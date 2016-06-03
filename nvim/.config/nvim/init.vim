@@ -26,6 +26,7 @@ if has("python3")
     endif
     if executable('go')
         Plug 'zchee/deoplete-go', { 'do': 'make'}
+        Plug 'fatih/vim-go'
     endif
 endif
 
@@ -170,7 +171,6 @@ map <Leader>l <C-w>l
 " Completion {{{
 
 let g:deoplete#enable_at_startup = 1
-set completeopt+=noinsert
 " C/C++ things
 let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm37/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/local/llvm37/include/clang/'
@@ -195,6 +195,23 @@ function! s:check_back_space() abort "{{{
 endfunction"}}}
 "}}}
 
+" }}}
+
+" Golang {{{
+let g:go_fmt_command = "goimports"
+let g:go_term_mode = "split"
+let g:go_term_enabled = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
+au FileType go nmap <leader>rt <Plug>(go-run-tab)
+au FileType go nmap <Leader>rs <Plug>(go-run-split)
+au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
 " }}}
 
 " Syntax checking {{{
