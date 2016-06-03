@@ -44,21 +44,12 @@ alias reboot="sudo reboot"
 test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
-# Remove unnecessary packages
-pclean() {
-    sudo pacman -Rns $(pacman -Qdtq)
-}
-
 testnet() {
     ping duckduckgo.com
 }
 
-cless() {
-    pygmentize -f terminal "$1" | less -R
-}
-
 ghclone() {
-    git clone https://github.com/${1}.git
+    git clone https://github.com/${1}.git ${2}
 }
 
 transfer() {
@@ -73,3 +64,9 @@ pi() {
     ssh tudoo $1
 }
 
+push() {
+    local branch="${1:-master}"
+    git remote | while read -r line; do
+        git push $line $branch
+    done
+}

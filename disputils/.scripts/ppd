@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# ppd - print primary display
-# (c) tudurom 2016 - wtfpl
-#
-
-XRANDR_DUMP=${XRANDR_DUMP:-$HOME/.cache/xrandr_dump}
-
-cat "$XRANDR_DUMP" | grep -e "^.* primary" | cut -d' ' -f1

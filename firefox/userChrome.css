@@ -18,20 +18,20 @@
     /*--bg-light: #524C59; --bg-dark: #282333;*/
     /*--fg-light: #D6CCDC; --fg-dark: #AAA5AD;*/
     /*--bg-light: #273941; */
-    --bg-light: #1b2227;
-    --bg-dark: #1b2227;
-    --fg-light: #8a6270;
-    --fg-dark: #548084;
+    --bg-light: #1d2a30;
+    --bg-dark: #1d2a30;
+    --fg-light: #c27171;
+    --fg-dark: #71c2af;
     --tab-triangle-correction: -1px;
     --tab-height: 28px; --tab-icon-size: 10px; --tab-strip-margin: -11px; --tab-overlap: -5px;
-    --tab-fonts: "GohuFont", monospace,"Dejavu Sans"; --tab-font-size: 7pt;
+    --tab-fonts: "Gohufont", monospace,"Dejavu Sans"; --tab-font-size: 7pt;
     --tab-text-align: center; /* left | center | right */
     --tab-triangle: block; /* block | none */
 
     /* URL VARIABLES */
     --url-background: var(--bg-light); --url-color: var(--fg-light);
     --url-height: 18px; --url-right-margin: 5px;
-    --url-fonts: "GohuFont",monospace,"Dejavu Sans"; --url-font-size: 7pt;
+    --url-fonts: "Gohufont",monospace,"Dejavu Sans"; --url-font-size: 7pt;
     --url-text-align: center; /* left | center | right */
     --url-position: absolute; /* absolute == top (under tabs) || fixed == bottom of browser */
 
@@ -67,7 +67,7 @@
     /* --- Uncomment the section below to enable the New Tab Button [EXPERIMENTAL] --- */
     /**/
     .tabs-newtab-button { display: block !important; background: transparent !important; margin: 0 8px 0 0 !important; width: 24px !important; }
-    .tabs-newtab-button::before { content: "+" !important; font-family: GohuFont;}
+    .tabs-newtab-button::before { content: "+" !important; font-family: Gohufont;}
     /**/
 
     .tab-drop-indicator { margin-bottom: 0 !important; }

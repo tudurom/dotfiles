@@ -64,8 +64,6 @@ set smartcase
 " Make it natural
 set splitright
 set splitbelow
-" Show a color column to limit the line width to 80 chars
-set cc=80
 
 " Nope
 set noswapfile

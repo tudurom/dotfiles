@@ -1,5 +1,0 @@
-#!/bin/sh
-
-XRANDR_DUMP=${XRANDR_DUMP:-$HOME/.cache/xrandr_dump}
-
-xrandr > "$XRANDR_DUMP"
