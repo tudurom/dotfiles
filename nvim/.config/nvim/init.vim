@@ -22,7 +22,7 @@ Plug 'gabrielelana/vim-markdown'
 if has("python3")
     Plug 'Shougo/deoplete.nvim'
     if executable('clang')
-        "Plug 'zchee/deoplete-clang'
+        Plug 'zchee/deoplete-clang'
     endif
     if executable('go')
         Plug 'zchee/deoplete-go', { 'do': 'make'}
@@ -170,28 +170,30 @@ map <Leader>l <C-w>l
 " Completion {{{
 
 let g:deoplete#enable_at_startup = 1
-
+set completeopt+=noinsert
 " C/C++ things
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-if g:uname == "FreeBSD"
-    let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm37/lib/libclang.so'
-endif
-let g:deoplete#sources#clang#clang_header = '/usr/include/clang/'
+let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm37/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/local/llvm37/include/clang/'
 " C or C++ standard version
 let g:deoplete#sources#clang#std#c = 'c11'
 " or c++
 let g:deoplete#sources#clang#std#cpp = 'c++11'
 
-" Tab completion
+" Stolen from shougo {{{
 imap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ deoplete#mappings#manual_complete()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 
 function! s:check_back_space() abort "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
+"}}}
 
 " }}}
 

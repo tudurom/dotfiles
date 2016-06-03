@@ -1,7 +1,10 @@
 " python3 plugins
-call remote#host#RegisterPlugin('python3', '/home/tudurom/.config/nvim/bundle/deoplete.nvim/rplugin/python3/deoplete.py', [
-      \ {'sync': 1, 'name': '_deoplete', 'opts': {}, 'type': 'function'},
+call remote#host#RegisterPlugin('python3', '/usr/home/tudurom/.config/nvim/bundle/deoplete.nvim/rplugin/python3/deoplete', [
+      \ {'sync': v:true, 'name': '_deoplete', 'type': 'function', 'opts': {}},
      \ ])
+
+
+" ruby plugins
 
 
 " python plugins
