@@ -70,6 +70,7 @@ wall-e &
 
 # }}}
 
+urxvtd &
 statusbar &
 sxhkd -c ~/.config/sxhkd/sxhkdrc_cwm ~/.config/sxhkd/commons &
 exec cwm

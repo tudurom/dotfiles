@@ -1,19 +1,17 @@
 *.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
 ! No bold font
 URxvt.boldFont:
-URxvt.scrollBar: false
+*.scrollBar: false
 URxvt.cursorBlink: true
-URxvt.cursorUnderline: false
+URxvt.cursorUnderline: true
 URxvt.internalBorder: 20
 !URxvt.geometry: 100x30
 
-! Clipboard copy/paste with C-Shift-c and C-Shift-p
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/firefox
-URxvt.matcher.button: 1
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.perl-ext-common: default,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/env xdg-open
+URxvt.url-select.underline: false
+!URxvt.url-launcher: /usr/local/bin/firefox
+!URxvt.matcher.button: 1
 
 ! vim: set ft=xdefaults :

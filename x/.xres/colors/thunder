@@ -4,7 +4,7 @@
 *.cursorColor:  #c0c5ce
 
 ! black
-*.color0:       #273941
+*.color0:       #1d2a30
 *.color8:       #456472
 
 ! red
@@ -23,7 +23,7 @@
 *.color4:       #6385a6
 *.color12:      #719bc2
 
-! orange
+! magenta (or orange)
 *.color5:       #BF9C86
 *.color13:      #BF9C86
 

@@ -24,7 +24,7 @@ NOTIFY_Y="$(( DISPLAY_Y + DISPLAY_H - NOTIFY_H - GENERAL_GAP ))"
 n=0
 echo "$n" > "$NOTIFY_COUNTER_PATH"
 
-tail -f "$NOTIFY_FIFO_PATH" | while IFS= read -r message; do
+while IFS= read -r message < "$NOTIFY_FIFO_PATH"; do
   # increment counter
   n="$(cat "$NOTIFY_COUNTER_PATH")"
   n="$(( n + 1 ))"

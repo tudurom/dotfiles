@@ -28,6 +28,9 @@ export PATH="$HOME/bin/clint:$HOME/bin:$PATH"
 # god's own os
 export PATH="$PATH:/usr/local/plan9/bin"
 
+# Python packages
+export PATH="$PATH:$HOME/.local/bin"
+
 # Aliases aka hacks
 alias :q=exit
 alias irb=pry
@@ -38,7 +41,7 @@ alias tls="tmux ls"
 alias tswitch="tmux switch -t"
 alias tkill="tmux kill-session -t"
 alias rm="rm -I"
-alias fkh="fortune khaled"
+alias clip="xclip -selection clipboard"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
 test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"

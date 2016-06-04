@@ -14,9 +14,6 @@ call plug#begin('~/.config/nvim/bundle')
 " For obvious reasons
 Plug 'ntpeters/vim-better-whitespace'
 
-" Markdown syntax and spell checking
-Plug 'gabrielelana/vim-markdown'
-
 " Simple tab completion
 " neovim-python is required
 if has("python3")
@@ -148,9 +145,8 @@ filetype plugin indent on
 augroup Filetypes
     au!
 
-    au BufRead,BufNewFile *.md setlocal textwidth=80
+    au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en_us
 
-    au FileType mail,gitcommit setlocal tw=68 cursorcolumn=69 spell
 augroup end
 
 " }}}
