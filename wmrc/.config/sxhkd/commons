@@ -8,6 +8,9 @@ super + Return
 super + space
   dmenu_run
 
+super + q
+  showtodo
+
 super + shift + f
   firefox
 

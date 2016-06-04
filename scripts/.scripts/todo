@@ -42,8 +42,8 @@ elif [ "$1" = '-d' ]; then
     echo "missing option"
     echo "pass an item number to delete"
   else
-      new="$(sed "$2"'d' $file)"
-      echo "$new" > "$file"
+      new="$(sed "${2}d" $file)"
+      echo "$new" | tee "$file"
       unset new
   fi
 elif [ "$1" = '-a' ]; then

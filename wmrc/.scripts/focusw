@@ -5,8 +5,8 @@
 #
 
 BW=${BW:-3}                    # border width
-ACTIVE=${ACTIVE:-0x3c5a5d}     # active border color
-INACTIVE=${INACTIVE:-0x374650} # inactive border color
+ACTIVE=${ACTIVE:-0x$(xrq '*.color6' | cut -d'#' -f2)}     # active border color
+INACTIVE=${INACTIVE:-0x$(xrq '*.color6' | cut -d'#' -f2)} # inactive border color
 
 # get current window id
 CUR=$(pfw)
