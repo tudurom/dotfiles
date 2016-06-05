@@ -73,3 +73,7 @@ push() {
         git push $line $branch
     done
 }
+
+radio() {
+    mpv http://radio.2f30.org:8000/live.mp3
+}

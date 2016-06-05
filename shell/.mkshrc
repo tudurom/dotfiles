@@ -14,15 +14,18 @@ set -o bgnice
 alias rename="/usr/bin/rename"
 
 prompt () {
-    echo -n "\033]0;$last\007"
-    _ERR=$?
     exit_color=6
+    b="$(tput bold)"
+    l="$(echo -n $b; tput setaf 0)"
+    z="$(tput sgr0)"
+    e="$(tput setaf $exit_color)"
+    _ERR=$?
     if [ $_ERR -ne 0 ]; then
         exit_color=1
     fi
-    dir="$(tput setaf 8)$(pwd | sed -e "s/\/usr\/home\/$USER/~/" | sed -e "s/\/home\/$USER/~/")"
-    arrow="$(tput setaf $exit_color)───"
-    echo -n "${dir}\n${arrow}$(tput sgr0) "
+    dir="${l}$(pwd | sed -e "s/\/usr\/home\/$USER/~/" | sed -e "s/\/home\/$USER/~/")"
+    arrow="${e}───"
+    echo -n "${dir}\n${arrow}${z} "
 }
 
 PS1='$(prompt)'

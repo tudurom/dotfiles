@@ -17,7 +17,7 @@ let g:colors_name="shblah_orig"
 
 " Actual colours and styles.
 highlight ColorColumn  term=NONE cterm=NONE ctermfg=NONE ctermbg=0
-highlight Comment      term=NONE cterm=NONE ctermfg=8    ctermbg=NONE
+highlight Comment      term=NONE cterm=bold ctermfg=0    ctermbg=NONE
 highlight Constant     term=NONE cterm=NONE ctermfg=6    ctermbg=NONE
 highlight Cursor       term=NONE cterm=bold ctermfg=3    ctermbg=NONE
 highlight CursorLine   term=NONE cterm=NONE ctermfg=NONE ctermbg=0
@@ -50,7 +50,7 @@ highlight Todo         term=NONE cterm=bold ctermfg=7    ctermbg=1
 highlight Type         term=NONE cterm=bold ctermfg=4    ctermbg=NONE
 highlight Underlined   term=underline cterm=underline ctermfg=NONE   ctermbg=NONE
 highlight VertSplit    term=NONE cterm=bold ctermfg=0    ctermbg=NONE
-highlight Visual       term=NONE cterm=NONE ctermfg=0    ctermbg=8
+highlight Visual       term=NONE cterm=reverse,bold ctermfg=0    ctermbg=NONE
 highlight WarningMsg   term=NONE cterm=bold ctermfg=3    ctermbg=NONE
 
 " General highlighting group links.

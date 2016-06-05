@@ -3,7 +3,7 @@ super + Escape
   pkill -USR1 -x sxhkd
 
 super + Return
-  urxvtc
+  urxvtcd
 
 super + space
   dmenu_run

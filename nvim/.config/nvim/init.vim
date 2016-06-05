@@ -19,7 +19,7 @@ Plug 'ntpeters/vim-better-whitespace'
 if has("python3")
     Plug 'Shougo/deoplete.nvim'
     if executable('clang')
-        Plug 'zchee/deoplete-clang'
+        Plug 'Rip-Rip/clang_complete'
     endif
     if executable('go')
         Plug 'zchee/deoplete-go', { 'do': 'make'}
@@ -167,13 +167,6 @@ map <Leader>l <C-w>l
 " Completion {{{
 
 let g:deoplete#enable_at_startup = 1
-" C/C++ things
-let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm37/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/local/llvm37/include/clang/'
-" C or C++ standard version
-let g:deoplete#sources#clang#std#c = 'c11'
-" or c++
-let g:deoplete#sources#clang#std#cpp = 'c++11'
 
 " Stolen from shougo {{{
 imap <silent><expr> <TAB>
