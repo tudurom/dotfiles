@@ -71,5 +71,4 @@ wall-e &
 # }}}
 
 statusbar &
-sxhkd -c ~/.config/sxhkd/sxhkdrc_cwm ~/.config/sxhkd/commons &
-exec cwm
+exec startwm cwm

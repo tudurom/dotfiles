@@ -1,0 +1,17 @@
+#
+# Starts the environment
+# (c) tudurom 2016 - wtfpl
+#
+wm="$1"
+
+sxhkd -c ~/.config/sxhkd/sxhkdrc_${wm} ~/.config/sxhkd/commons &
+case "$1" in
+    "wmutils")
+        wew | wewhandle &
+        xwait
+        ;;
+    *)
+        $1
+esac
+
+# vim: set ft=sh :
