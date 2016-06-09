@@ -4,7 +4,9 @@
 # by tudurom
 # not sucking since forever
 
-. ~/.crosssh.sh
+for dot in $HOME/.shell.d/*; do
+    . $dot
+done
 
 HISTFILE="$HOME/.mksh_history"
 typeset ret_code
