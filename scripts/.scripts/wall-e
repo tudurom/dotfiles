@@ -10,8 +10,7 @@ APRIL_WALL="$HOME/wallpapers/april_wall.png"
 if [ "$(date +"%d/%m")" = "01/04" ]; then
   feh -fill "$APRIL_WALL"
 elif [ $# -ge 1 ]; then
-  option="fill"
-  test -n "$2" && option="$2"
+  option="${2:-fill}"
   feh --bg-${option} $1
 else
   feh --bg-tile $DEFAULT_WALL

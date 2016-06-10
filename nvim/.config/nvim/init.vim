@@ -15,16 +15,12 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'ntpeters/vim-better-whitespace'
 
 " Simple tab completion
-" neovim-python is required
-if has("python3")
-    Plug 'Shougo/deoplete.nvim'
-    if executable('clang')
-        Plug 'Rip-Rip/clang_complete'
-    endif
-    if executable('go')
-        Plug 'zchee/deoplete-go', { 'do': 'make'}
-        Plug 'fatih/vim-go'
-    endif
+Plug 'ajh17/vimcompletesme'
+if executable('clang')
+    Plug 'Rip-Rip/clang_complete'
+endif
+if executable('go')
+    Plug 'fatih/vim-go'
 endif
 
 " Syntax checking
@@ -145,7 +141,7 @@ filetype plugin indent on
 augroup Filetypes
     au!
 
-    au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en_us
+    au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en_us let b:vcm_tab_complete = 'dict'
 
 augroup end
 
@@ -166,7 +162,9 @@ map <Leader>l <C-w>l
 
 " Completion {{{
 
-let g:deoplete#enable_at_startup = 1
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+let b:vcm_tab_complete = 'omni'
 
 " Stolen from shougo {{{
 imap <silent><expr> <TAB>

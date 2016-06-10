@@ -9,7 +9,7 @@ file="$HOME/.todo"
 if [ -z $1 ] ; then
   echo "┌──────[ todo ]──[ version 0.0.2 ]─────── ─ ─"
   echo "│ usage: todo <options>"
-  echo "│ author: xero, arc and tudurom"
+  echo "│ authors: xero, arc and tudurom"
   echo "├────────────────[ options ]"───────────── ─ ─
   echo "│ -s          display the todo list"
   echo "│ -a <string> add a todo item"
