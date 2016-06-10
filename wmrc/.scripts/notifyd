@@ -1,14 +1,14 @@
-#!/bin/sh
+#!/bin/sh -x
 #
 # notifyd - notification daemon
 # (c) tudurom 2016 - wtfpl
 #
 
-NOTIFY_FIFO_PATH=${NOTIFY_FIFO_PATH:-/tmp/notifyd.fifo}
-NOTIFY_COUNTER_PATH=${NOTIFY_COUNTER_PATH:-/tmp/notifyd.cnt}
+NOTIFY_FIFO_PATH=${NOTIFY_FIFO_PATH:-$HOME/tmp/notifyd.fifo}
+NOTIFY_COUNTER_PATH=${NOTIFY_COUNTER_PATH:-$HOME/tmp/notifyd.cnt}
 
 # create fifo
-test -p /tmp/notifyd.fifo || mkfifo /tmp/notifyd.fifo
+test -p $NOTIFY_FIFO_PATH || mkfifo $NOTIFY_FIFO_PATH
 
 # display vars
 DISPLAY_X="$(dattr -x `ppd`)"
@@ -23,8 +23,8 @@ NOTIFY_Y="$(( DISPLAY_Y + DISPLAY_H - NOTIFY_H - GENERAL_GAP ))"
 
 n=0
 echo "$n" > "$NOTIFY_COUNTER_PATH"
-
-while IFS= read -r message < "$NOTIFY_FIFO_PATH"; do
+tail -f "$NOTIFY_FIFO_PATH" | \
+while IFS= read -r message; do
   # increment counter
   n="$(cat "$NOTIFY_COUNTER_PATH")"
   n="$(( n + 1 ))"

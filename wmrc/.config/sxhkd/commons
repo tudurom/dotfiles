@@ -18,13 +18,13 @@ super + shift + x
   slock
 
 XF86AudioRaiseVolume
-  mixer vol +5
+  amixer -q sset Master 5%+ unmute
 
 XF86AudioLowerVolume
-  mixer vol -5
+  amixer -q sset Master 5%- unmute
 
 XF86AudioMute
-  mute
+  amixer -q sset Master mute
 
 XF86MonBrightnessUp
   xbacklight -inc 10%
