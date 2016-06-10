@@ -56,8 +56,8 @@ screenlayout
 # unclutter -b
 
 # Music!
-if ! pidof musicpd; then
-  musicpd &
+if ! pidof mpd; then
+  mpd &
 fi
 # Set cursor from X to pointer
 xsetroot -cursor_name left_ptr &

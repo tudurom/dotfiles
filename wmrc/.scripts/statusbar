@@ -107,14 +107,14 @@ is_int() {
 
   # Battery status
   while true; do
-    batt_status="$(apm -b)"
-    batt_percentage="$(apm -l)"
+    batt_status="$(cat /sys/class/power_supply/BAT0/status)"
+    batt_percentage="$(cat /sys/class/power_supply/BAT0/capacity)"
     # Icons
-    if [ "$batt_status" -eq 3 ]; then
+    if [ "$batt_status" = "Charging" ]; then
       BATT_ICON=""
-    elif [ "$batt_status" -eq 0 ]; then
+    elif [ "$batt_percentage" -gt 50 ]; then
       BATT_ICON=""
-    elif [ "$batt_status" -eq 1 ]; then
+    elif [ "$batt_percentage" -gt 30 ]; then
       BATT_ICON=""
     else
       BATT_ICON=""
@@ -125,9 +125,9 @@ is_int() {
 
   # Volume
   while true; do
-    pcm=$(mixer -S pcm | cut -d':' -f2)
-    volume=$(mixer -S vol | cut -d':' -f2)
-    if [ "$pcm" -gt 0 ]; then
+    mute=$(amixer get Master | sed -n 5p | cut -d' ' -f8)
+    volume=$(amixer get Master | sed -n 5p | cut -d' ' -f5)
+    if [ "$mute" = "[on]" ]; then
       if [ $volume -ge 50 ]; then
         vicon=
       else
