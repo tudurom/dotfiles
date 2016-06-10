@@ -6,7 +6,6 @@
 filetype off
 
 let g:uname = substitute(system("uname"), '\n\+$', '', '')
-
 " Plugins {{{
 
 call plug#begin('~/.config/nvim/bundle')
@@ -165,24 +164,7 @@ map <Leader>l <C-w>l
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 let b:vcm_tab_complete = 'omni'
-
-" Stolen from shougo {{{
-imap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
 "}}}
-
-" }}}
 
 " Golang {{{
 let g:go_fmt_command = "goimports"
