@@ -1,19 +1,24 @@
 export EDITOR=nvim
 export VISUAL=nvim
+export PAGER=less
 
 # Golang specific variables
-if [ -d /usr/local/go ]; then
+if [ -f /usr/bin/go ]; then
     export GOPATH=$HOME/gopath
-    export GOROOT=/usr/local/go
+    export GOROOT=/usr/lib/go
     export PATH="$GOROOT/bin:$PATH"
     export PATH="$GOPATH/bin:$PATH"
 fi
 
 # Ruby
-if [ -f /usr/local/bin/ruby ]; then
-    export PATH=$HOME/.node/bin:$PATH
+if [ -f /usr/bin/ruby ]; then
     ruby_ver="$(ls -1 $HOME/.gem/ruby | sort -nr | head -n 1)"
     export PATH=$HOME/.gem/ruby/$ruby_ver/bin:$PATH
+fi
+
+# JS
+if [ -f /usr/bin/node ]; then
+    export PATH=$HOME/.node/bin:$PATH
 fi
 
 # Source local scripts

@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 #
 # notifyd - notification daemon
 # (c) tudurom 2016 - wtfpl

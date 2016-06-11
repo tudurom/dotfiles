@@ -140,7 +140,7 @@ filetype plugin indent on
 augroup Filetypes
     au!
 
-    au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en_us let b:vcm_tab_complete = 'dict'
+    au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en_us
 
 augroup end
 
