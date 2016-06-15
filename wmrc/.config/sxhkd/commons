@@ -12,7 +12,7 @@ super + q
   showtodo
 
 super + shift + f
-  firefox
+  chromium
 
 super + shift + x
   slock

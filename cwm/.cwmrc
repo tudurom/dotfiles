@@ -23,6 +23,7 @@ color urgencyborder  '#ef9a89'
 
 # autogroups
 autogroup 2 Firefox
+autogroup 2 chromium
 autogroup 3 mpv
 autogroup 6 Mumble
 

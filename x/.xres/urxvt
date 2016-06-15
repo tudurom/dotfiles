@@ -1,4 +1,4 @@
-*.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
+*.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*, xft:Symbola
 ! No bold font
 URxvt.boldFont:
 *.scrollBar: false

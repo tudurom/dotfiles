@@ -6,6 +6,7 @@
 filetype off
 
 let g:uname = substitute(system("uname"), '\n\+$', '', '')
+
 " Plugins {{{
 
 call plug#begin('~/.config/nvim/bundle')
@@ -83,7 +84,7 @@ set undoreload=500
 " Keybindings {{{
 
 " C-d to hide find results
-nnoremap <silent> <C-d> :noh<CR>
+nnoremap <silent> <Leader>d :noh<CR>
 " Esc in terminal
 tnoremap <Esc> <C-\><C-n>
 " jk to exit insert mode
@@ -193,13 +194,13 @@ let g:syntastic_check_on_wq = 0
 " }}}
 
 " Hard mode {{{
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
+"noremap <Up> <NOP>
+"noremap <Down> <NOP>
+"noremap <Left> <NOP>
+"noremap <Right> <NOP>
+"
+"inoremap <Up> <NOP>
+"inoremap <Down> <NOP>
+"inoremap <Left> <NOP>
+"inoremap <Right> <NOP>
 " }}}

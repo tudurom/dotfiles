@@ -4,8 +4,7 @@
 ! by tudurom
 ! managed like they are supposed to be
 
-Xcursor.theme: HumanAzul
-
 #include ".xres/xft"
 #include ".xres/colors/thunder"
 #include ".xres/urxvt"
+#include ".xres/misc"
