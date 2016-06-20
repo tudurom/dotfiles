@@ -10,6 +10,7 @@ alias rm="rm -I"
 alias clip="xclip -selection clipboard"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
+alias startx="xinit"
 test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"
 
 testnet() {
