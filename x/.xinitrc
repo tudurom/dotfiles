@@ -71,4 +71,4 @@ wall-e &
 # }}}
 
 statusbar &
-exec startwm cwm
+exec startwm bspwm

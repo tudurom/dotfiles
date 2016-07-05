@@ -43,3 +43,7 @@ push() {
 radio() {
     mpv http://radio.2f30.org:8000/live.mp3
 }
+
+trinitas() {
+    mpv http://live.radiotrinitas.ro:8003
+}

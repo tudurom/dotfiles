@@ -12,5 +12,8 @@ export POPUP_FONT=Metis
 export POPUP_DURATION=5
 export GROOT=/tmp/groaw
 export GNUMBER=6
+export WALL_DIR=$HOME/wallpapers
+export WALL=trees.jpg
+export WALL_TYPE=fill
 
 # vim: set ft=sh :

@@ -12,13 +12,22 @@ borderwidth 3
 moveamount 10
 
 # colors
-color activeborder   '#63a69b'
-color inactiveborder '#456472'
-color font           '#c0c5ce'
-color menubg         '#1d2a30'
-color menufg         '#c0c5ce'
-color groupborder    '#a66363'
-color ungroupborder  '#a6a663'
+
+# color 6
+color activeborder   '#60867f'
+# color 8
+color inactiveborder '#4c5356'
+# color 7
+color font           '#c4c4b5'
+# color 0
+color menubg         '#2b3135'
+# color 7
+color menufg         '#c4c4b5'
+# color 1
+color groupborder    '#a66959'
+# color 3
+color ungroupborder  '#ac8d6e'
+# color meh
 color urgencyborder  '#ef9a89'
 
 # autogroups

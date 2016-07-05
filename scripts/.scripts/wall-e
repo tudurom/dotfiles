@@ -1,18 +1,19 @@
-#! /bin/sh -x
+#! /bin/sh
 #
 # Set wallpaper
 # (c) tudurom 2016 - wtfpl
 #
 
-DEFAULT_WALL="$HOME/wallpapers/test_tile7_1.png"
+DEFAULT_WALL="${WALL_DIR}/${WALL}"
+DEFAULT_WALL_TYPE="${WALL_TYPE-TYPE:-tile}"
 APRIL_WALL="$HOME/wallpapers/april_wall.png"
 
 if [ "$(date +"%d/%m")" = "01/04" ]; then
-  feh -fill "$APRIL_WALL"
+  feh --bg-fill "$APRIL_WALL"
 elif [ $# -ge 1 ]; then
   option="${2:-fill}"
   feh --bg-${option} $1
 else
-  feh --bg-tile $DEFAULT_WALL
+  feh --bg-${DEFAULT_WALL_TYPE} $DEFAULT_WALL
 fi
 

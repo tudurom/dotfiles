@@ -65,7 +65,9 @@ is_int() {
   # Bar options
   BAR_OPTS=""
   # Because wmutils
-  BAR_OPTS="${BAR_OPTS} -d -R $C8 -r 3"
+  BAR_OPTS="${BAR_OPTS} -d"
+  # Borders
+  BAR_OPTS="${BAR_OPTS} -R $C8 -r 3"
   # Gonna position it centered and respect the gaps
   BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
   # Colors

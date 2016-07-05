@@ -1,64 +1,94 @@
 #
-## bspwm hotkeys
+# wm independent hotkeys
 #
 
-# Quit bspwm and kill the panel
-super + alt + Escape
-#~/.scripts/exitbspwm
-  pkill panel; bspc quit 1
-super + alt + shift + Escape
-  pkill panel; bspc wm -d > "$BSPWM_STATE"; bspc quit
-# Close the focused window
-super + w
-	bspc node -c
+# terminal emulator
+super + Return
+	urxvt
 
-# Toggle monocle layout
-super + n
+# program launcher
+super + space
+	dmenu_run
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# bspwm hotkeys
+#
+
+# quit bspwm normally
+super + alt + Escape
+	bspc quit
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
 	bspc desktop -l next
 
-# Change selected window's mode into tiled, pseudo-tiled, floating or fullscreen
-super + {t,p,s,f}
+# if the current node is automatic, send it to the last manual, otherwise pull the last leaf
+super + y
+	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# Focus the last window/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+# set the node flags
+super + ctrl + {x,y,z}
+	bspc node -g {locked,sticky,private}
 
-# Swap the focused window with the last window
-super + apostrophe
-	bspc node -s last
+#
+# focus/swap
+#
 
-# Focus the next older/newer window
-super + {o,i}
-	bspc control --record-history off; \
-	bspc node {older,newer} -f; \
-	bspc control --record-history on
+# focus the node in the given direction
+alt + {h,j,k,l}
+    bspc node -f {west,south,north,east}
 
+# focus the node in the given direction
+super + shift + {h,j,k,l}
+	bspc node -s {west,south,north,east}
 
-super + y
-	bspc node -n last.!automatic
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
 
-super + m
-	bspc node -s biggest
-
-
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
-
-super + {_,shift + }c
+# focus the next/previous node
+alt + {_,shift + }Tab
 	bspc node -f {next,prev}
 
-super + {comma,period}
-	bspc desktop -C {backward,forward}
-
+# focus the next/previous desktop
 super + bracket{left,right}
 	bspc desktop -f {prev,next}
 
+# focus or send to the given desktop
+super + {_,shift + }{1-5,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
-super + ctrl + {_,shift + }space
-	bspc {node -p cancel,desktop -c}
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+#
+# resize tiled/floating
+#
 
 # expand the tiled space in the given direction
 super + alt + {h,j,k,l}
@@ -68,24 +98,26 @@ super + alt + {h,j,k,l}
 super + alt + shift + {h,j,k,l}
 	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
 
-super + ctrl + {1-9}
-	bspc node -r 0.{1-9}
-
+# move a floating window
 super + {Left,Down,Up,Right}
-	xdo move {-x -20,-y +20,-y -20,-x +20}
+	wmv {-20 0,0 20,0 -20,20 0} $(pfw)
 
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+# move a floating window fast
+super + shift + {Left,Down,Up,Right}
+	wmv {-50 0,0 50,0 -50,50 0} $(pfw)
 
-super + shift + s
-  bspc node -g sticky
+#
+# pointer focus/move/resize
+#
 
+# focus
 ~button1
 	bspc pointer -g focus
 
+# start move/resize
 super + button{1-3}
 	; bspc pointer -g {move,resize_side,resize_corner}
 
+# end move/resize
 super + @button{1-3}
 	bspc pointer -u
-
