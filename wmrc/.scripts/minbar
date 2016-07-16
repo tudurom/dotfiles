@@ -159,15 +159,6 @@ get_music_icon() {
 }
 # }}}
 
-# Listen for notifications {{{
-NOTIFY_FIFO_PATH="${NOTIFY_FIFO_PATH:-$HOME/tmp/notifyd.fifo}"
-test -p "$NOTIFY_FIFO_PATH" || mkfifo "$NOTIFY_FIFO_PATH"
-tail -f "$NOTIFY_FIFO_PATH" |\
-while IFS= read -r message; do
-    echo "notif\n${message}" > "$COMMAND_FILE"
-done &
-# }}}
-
 # Main loop {{{
 while :; do
     # The command is on the first line
@@ -187,7 +178,7 @@ while :; do
             prev_song="$song"
             # If the song's name is too long, skroll it
             if [ "$(get_music | wc -m)" -gt "$(( SKROLL_CHARS - 3 ))" ]; then
-                echo "$song" | skroll -r -n "$(( SKROLL_CHARS - 3 ))" | while IFS='' read -r line; do
+                echo "$song" | skroll -r -n "$(( SKROLL_CHARS - 3 ))" -d 0.1 | while IFS='' read -r line; do
                     ico="$(i $(get_music_icon))"
                     song="$(get_music)"
                     # If the song changed, stop skrolling

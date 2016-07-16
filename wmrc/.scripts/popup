@@ -21,6 +21,5 @@ bar_opts="-g ${BAR_W}x${BAR_H}+${BAR_X}+${BAR_Y} -B${BAR_BG} -F${BAR_FG} -f ${BA
 
 (
 tx_len="35"
-echo "$MESSAGE" | skroll -r -l -n $tx_len &
-sleep "$POPUP_DURATION" && kill $!
+echo "$MESSAGE" | skroll -r -n $tx_len
 ) | lemonbar ${bar_opts}
