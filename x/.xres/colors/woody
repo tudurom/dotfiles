@@ -1,7 +1,4 @@
-# ╻ ╻┏━┓┏━┓╺┳┓╻ ╻
-# ┃╻┃┃ ┃┃ ┃ ┃┃┗┳┛
-# ┗┻┛┗━┛┗━┛╺┻┛ ╹
-# brownish light theme by tudurom
+! woody by tudurom
 
 ! special
 *.foreground:   #3f3a3c
@@ -28,7 +25,7 @@
 *.color4:       #486078
 *.color12:      #3e5e87
 
-! orange
+! magenta (or orange)
 *.color5:       #784878
 *.color13:      #873e87
 

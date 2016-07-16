@@ -1,0 +1,40 @@
+! diner by dkeg
+
+! special
+*.foreground:   #aba599
+*.background:   #3f4a4b
+*.cursorColor:  #aba599
+
+! black
+*.color0:       #414d4e
+*.color8:       #626f71
+
+! red
+*.color1:       #9c7f5d
+*.color9:       #9c7f5d
+
+! green
+*.color2:       #8e958f
+*.color10:      #8e958f
+
+! yellow
+*.color3:       #b8af97
+*.color11:      #b8af97
+
+! blue
+*.color4:       #828882
+*.color12:      #828882
+
+! magenta (or orange)
+*.color5:       #bb9a7f
+*.color13:      #bb9a7f
+
+! cyan
+*.color6:       #9daba2
+*.color14:      #9daba2
+
+! white
+*.color7:       #aba599
+*.color15:      #aba599
+
+! vim: set ft=xdefaults :

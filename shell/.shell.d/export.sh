@@ -1,6 +1,8 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
+export BROWSER=firefox
+export LS_COLORS=''
 
 # Golang specific variables
 if [ -f /usr/bin/go ]; then
@@ -20,6 +22,10 @@ fi
 if [ -f /usr/bin/node ]; then
     export PATH="$PATH:$HOME/.node/bin"
 fi
+
+# Android
+export PATH="$PATH:$HOME/usr/android/android-studio/bin"
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 # Source local scripts
 export PATH="$PATH:$HOME/bin/clint:$HOME/bin"

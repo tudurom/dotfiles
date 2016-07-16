@@ -1,3 +1,5 @@
+! moonbow by inami
+
 ! special
 *.foreground:   #7b8695
 *.background:   #1b2227
@@ -23,7 +25,7 @@
 *.color4:       #424a64
 *.color12:      #626c94
 
-! orange
+! magenta (or orange)
 *.color5:       #4d3e4c
 *.color13:      #665064
 

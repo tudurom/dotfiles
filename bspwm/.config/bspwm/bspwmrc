@@ -1,7 +1,7 @@
 #!/bin/sh
 
-bspc config border_width         $BW
-bspc config window_gap           $GENERAL_GAP
+bspc config border_width          $BW
+bspc config window_gap            $GENERAL_GAP
 
 bspc config split_ratio           0.5
 bspc config borderless_monocle    true
@@ -20,4 +20,7 @@ for monitor in $(bspc query -M); do
 done
 
 bspc rule -a chromium  desktop=^2
+bspc rule -a Firefox   desktop=^2
 bspc rule -a mpv       state=floating
+
+wmname LG3D

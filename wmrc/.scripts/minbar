@@ -1,0 +1,214 @@
+#!/bin/sh
+#
+# Simple status bar. Really.
+# (c) tudurom 2016 - wtfpl
+#
+
+# Commands:
+# over - overview, print date and occasionally the battery level, time until full {dis,}charge etc.
+# awesome - print binary clock using braille characters (requires brclock installed)
+# music - now playing tune
+# notif - print notification
+
+# Setup {{{
+# file to receive commands from
+COMMAND_FILE="/tmp/minbar.cmd"
+test -f "$COMMAND_FILE" && rm "$COMMAND_FILE"
+# over is the default mode
+echo "over" > "$COMMAND_FILE"
+
+# Color definitions
+C0="$(xrq '*color0')"
+C1="$(xrq '*color1')"
+C2="$(xrq '*color2')"
+C3="$(xrq '*color3')"
+C4="$(xrq '*color4')"
+C5="$(xrq '*color5')"
+C6="$(xrq '*color6')"
+C7="$(xrq '*color7')"
+C8="$(xrq '*color8')"
+C9="$(xrq '*color9')"
+C10="$(xrq '*color10')"
+C11="$(xrq '*color11')"
+C12="$(xrq '*color12')"
+C13="$(xrq '*color13')"
+C14="$(xrq '*color14')"
+C15="$(xrq '*color15')"
+CFG="$(xrq '*foreground')"
+CBG="$(xrq '*.background')"
+
+# actual colors for the foreground and background of the bar
+CB="$CBG"
+CF="$C6"
+
+PD_X="$(dattr -x `ppd`)"
+PD_Y="$(dattr -y `ppd`)"
+PD_WIDTH="$(dattr -w `ppd`)"
+PD_HEIGHT="$(dattr -h `ppd`)"
+
+BAR_X="$(( PD_X + GENERAL_GAP ))"
+BAR_Y="$(( PD_Y + GENERAL_GAP ))"
+BAR_WIDTH="300"
+BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
+
+SEP_SMALL="        "
+SEP_BIG="            "
+
+# Bar options
+BAR_OPTS=""
+# Make it wmutils compatible
+BAR_OPTS="${BAR_OPTS} -d"
+# Add borders
+BAR_OPTS="${BAR_OPTS} -R $C8 -r $BW"
+# Position it
+BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
+# Colors
+BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF}"
+# Underline width
+BAR_OPTS="${BAR_OPTS} -u 3"
+# Fonts
+BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT} -f -*-metis-normal-*-*-*-11-*-*-*-*-*-*-* -o -1"
+
+# Seconds to sleep
+SLEEP_TIME="1"
+
+SKROLL_CHARS=60
+
+# }}}
+
+# Icons {{{
+CLOCK_ICON=""
+DATE_ICON=""
+# }}}
+
+# Functions {{{
+
+# Print icon
+i() {
+    echo "%{F$C9}${1}%{F-}"
+}
+
+get_time() {
+    local format="%H:%M"
+    test "$(date +"%d %m")" = "01 04" && format='%s'
+    local out="$(date +"$format" | sed 's/ //')"
+
+    echo "$out"
+}
+
+get_braille_time() {
+    echo "$(brclock | tr '\n' ' ' | sed 's/ //g')"
+}
+
+get_date() {
+    local out="$(date '+%a, %B %d' | tr [:upper:] [:lower:])"
+
+    echo "$out"
+}
+
+get_battery() {
+    for bat in /sys/class/power_supply/BAT*; do
+        cat "${bat}/capacity"
+        break
+    done
+}
+
+get_battery_icon() {
+    local status=""
+    local perc=""
+    for bat in /sys/class/power_supply/BAT*; do
+        status="$(cat "$bat/status")"
+        perc="$(cat "$bat/capacity")"
+        break
+    done
+
+    local ico=""
+    if [ "$status" = "Charging" ]; then
+        ico=""
+    elif [ "$status" = "Full" ] || [ "$status" = "Unknown" ]; then
+        ico=""
+    elif [ "$perc" -gt 60 ]; then
+        ico=""
+    elif [ "$perc" -gt 30 ]; then
+        ico=""
+    else
+        ico=""
+    fi
+
+    echo "$ico"
+}
+
+get_music() {
+    local song="$(mpc current -f "[[%artist%|%album%] - %title%]|%file%")"
+
+    echo "$song"
+}
+
+get_music_icon() {
+    local status="$(mpc status | sed -n 2p | cut -d' ' -f 1)"
+    local ico=""
+    if [ "$status" = "[playing]" ]; then
+        ico=""
+    elif [ "$status" = "[paused]" ]; then
+        ico=""
+    else
+        ico=""
+    fi
+
+    echo "$ico"
+}
+# }}}
+
+# Listen for notifications {{{
+NOTIFY_FIFO_PATH="${NOTIFY_FIFO_PATH:-$HOME/tmp/notifyd.fifo}"
+test -p "$NOTIFY_FIFO_PATH" || mkfifo "$NOTIFY_FIFO_PATH"
+tail -f "$NOTIFY_FIFO_PATH" |\
+while IFS= read -r message; do
+    echo "notif\n${message}" > "$COMMAND_FILE"
+done &
+# }}}
+
+# Main loop {{{
+while :; do
+    # The command is on the first line
+    # Arguments on the second
+    mode="$(head -n 1 "$COMMAND_FILE")"
+    arg="$(sed -n '2{p;q}' "$COMMAND_FILE")"
+
+    out=""
+    case $mode in
+        over)
+            out="%{c}$(i $CLOCK_ICON) $(get_time)${SEP_SMALL}$(i $DATE_ICON) $(get_date)${SEP_SMALL}$(i $(get_battery_icon)) $(get_battery)"
+            echo "$out"
+            ;;
+        music)
+            ico="$(i $(get_music_icon))"
+            song="$(get_music)"
+            prev_song="$song"
+            # If the song's name is too long, skroll it
+            if [ "$(get_music | wc -m)" -gt "$(( SKROLL_CHARS - 3 ))" ]; then
+                echo "$song" | skroll -r -n "$(( SKROLL_CHARS - 3 ))" | while IFS='' read -r line; do
+                    ico="$(i $(get_music_icon))"
+                    song="$(get_music)"
+                    # If the song changed, stop skrolling
+                    test "$song" != "$prev_song" && break
+                    echo " ${ico} ${line}"
+                done
+            else
+                echo "%{c}$(i $(get_music_icon)) $(get_music)"
+            fi
+            ;;
+        notif)
+            echo "$arg" | skroll -r -n $SKROLL_CHARS
+            echo "over" > "$COMMAND_FILE"
+            ;;
+        awesome)
+            out="%{c}$(i $CLOCK_ICON) $(get_braille_time)"
+            echo "$out"
+            ;;
+    esac
+
+    sleep "$SLEEP_TIME"
+done | lemonbar $BAR_OPTS
+# }}}
+

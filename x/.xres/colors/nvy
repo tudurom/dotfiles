@@ -1,0 +1,40 @@
+! Navy and Ivory by hal
+
+! special
+*.foreground:   #e8dfd6
+*.background:   #021b21
+*.cursorColor:  #2e3340
+
+! black
+*.color0:       #032c36
+*.color8:       #065f73
+
+! red
+*.color1:       #c2454e
+*.color9:       #ef5847
+
+! green
+*.color2:       #7cbf9e
+*.color10:      #a2d9b1
+
+! yellow
+*.color3:       #8a7a63
+*.color11:      #beb090
+
+! blue
+*.color4:       #2e3340
+*.color12:      #61778d
+
+! magenta (or orange)
+*.color5:       #ff5879
+*.color13:      #ff99a1
+
+! cyan
+*.color6:       #44b5b1
+*.color14:      #9ed9d8
+
+! white
+*.color7:       #f2f1b9
+*.color15:      #f6f6c9
+
+! vim: set ft=xdefaults :

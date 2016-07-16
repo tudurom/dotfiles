@@ -12,23 +12,16 @@ borderwidth 3
 moveamount 10
 
 # colors
+# moonbow by inami
+# drop this into your .cwmrc
 
-# color 6
-color activeborder   '#60867f'
-# color 8
-color inactiveborder '#4c5356'
-# color 7
-color font           '#c4c4b5'
-# color 0
-color menubg         '#2b3135'
-# color 7
-color menufg         '#c4c4b5'
-# color 1
-color groupborder    '#a66959'
-# color 3
-color ungroupborder  '#ac8d6e'
-# color meh
-color urgencyborder  '#ef9a89'
+color activeborder   '#3c5a5d'
+color inactiveborder '#374650'
+color font           '#7b8695'
+color menubg         '#1b2227'
+color menufg         '#7b8695'
+color groupborder    '#785561'
+color ungroupborder  '#7e735a'
 
 # autogroups
 autogroup 2 Firefox

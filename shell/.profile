@@ -9,3 +9,5 @@ export GOROOT="/usr/lib/go"
 test -f $HOME/.scripts/wmrc && . $HOME/.scripts/wmrc
 test -f $HOME/.scripts/panelsrc && . $HOME/.scripts/panelsrc
 test -f $HOME/.scripts/iconsrc && . $HOME/.scripts/iconsrc
+
+. $HOME/.shell.d/export.sh

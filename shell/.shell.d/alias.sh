@@ -47,3 +47,11 @@ radio() {
 trinitas() {
     mpv http://live.radiotrinitas.ro:8003
 }
+
+les() {
+    test -d "$1" && ls -al "$1" || less "$1"
+}
+
+x0st() {
+    curl -F"file=@${1}" https://0x0.st
+}

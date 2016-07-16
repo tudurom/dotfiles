@@ -12,10 +12,19 @@ super + q
   showtodo
 
 super + shift + f
-  chromium
+  $BROWSER
 
 super + shift + x
   slock
+
+super + F1
+  echo "over" > /tmp/minbar.cmd
+
+super + F2
+  echo "music" > /tmp/minbar.cmd
+
+super + F3
+  echo "awesome" > /tmp/minbar.cmd
 
 XF86AudioRaiseVolume
   amixer -q sset Master 5%+ unmute
