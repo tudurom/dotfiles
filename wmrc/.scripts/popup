@@ -13,7 +13,7 @@ BAR_W="$3"
 BAR_H="$4"
 MESSAGE="$5"
 
-BAR_BG=`xrq '*.background'`
+BAR_BG="$PANEL_BG_COLOR"
 BAR_FG=`xrq '*.color14'`
 BAR_FONT="$PANEL_FONT"
 

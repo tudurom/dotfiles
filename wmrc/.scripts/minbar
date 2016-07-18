@@ -38,7 +38,7 @@ CFG="$(xrq '*foreground')"
 CBG="$(xrq '*.background')"
 
 # actual colors for the foreground and background of the bar
-CB="$CBG"
+CB="$PANEL_BG_COLOR"
 CF="$C6"
 
 PD_X="$(dattr -x `ppd`)"
@@ -101,7 +101,7 @@ get_braille_time() {
 }
 
 get_date() {
-    local out="$(date '+%a, %B %d' | tr [:upper:] [:lower:])"
+    local out="$(date '+%a, %d %B' | tr [:upper:] [:lower:])"
 
     echo "$out"
 }

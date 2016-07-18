@@ -4,7 +4,12 @@
 #export PANEL_FONT="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"
 export PANEL_FONT="-benis-lemon-*-*-*-*-10-*-*-*-*-*-*-*"
 export PANEL_ICON_FONT="-wuncon-siji-medium-*-*-*-10-*-*-*-*-*-*-*"
+export PANEL_FONT_NAME="lemon"
 
 export PANEL_STATUS_HEIGHT="30"
+export PANEL_BG_COLOR="`xrq '*.background'`"
+
+export PANEL_INNER_GAP="20"
+export PANEL_OUTER_GAP="20"
 
 # vim: set ft=sh :

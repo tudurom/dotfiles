@@ -8,7 +8,7 @@ bspc config borderless_monocle    true
 bspc config gapless_monocle       true
 bspc config focus_by_distance     true
 bspc config history_aware_focus   true
-bspc config top_padding           $(( 2 * $BW + $GENERAL_GAP + $PANEL_STATUS_HEIGHT ))
+bspc config top_padding           $(( 2 * BW + PANEL_STATUS_HEIGHT + GENERAL_GAP ))
 
 bspc config normal_border_color   $(xrq '*.color8')
 bspc config active_border_color   $(xrq '*.color8')
