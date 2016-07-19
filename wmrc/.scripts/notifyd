@@ -18,8 +18,8 @@ DISPLAY_H="$(dattr -h `ppd`)"
 
 NOTIFY_W="$(( 110 + 2 * PANEL_INNER_GAP ))"
 NOTIFY_H="$(( $PANEL_STATUS_HEIGHT ))"
-NOTIFY_X="$(( DISPLAY_X + DISPLAY_W - NOTIFY_W - PANEL_OUTER_GAP ))"
-NOTIFY_Y="$(( DISPLAY_Y + DISPLAY_H - NOTIFY_H - PANEL_OUTER_GAP ))"
+NOTIFY_X="$(( DISPLAY_X + GENERAL_GAP + 300 + GENERAL_GAP ))"
+NOTIFY_Y="$(( DISPLAY_Y + GENERAL_GAP ))"
 
 n=0
 echo "$n" > "$NOTIFY_COUNTER_PATH"
@@ -31,7 +31,7 @@ while IFS= read -r message; do
   echo "$n" > "$NOTIFY_COUNTER_PATH"
 
   {
-    popup $NOTIFY_X $(( NOTIFY_Y - (NOTIFY_H + GENERAL_GAP) * (n - 1) )) $NOTIFY_W $NOTIFY_H "$message"
+      popup $(( NOTIFY_X + (n - 1) * (NOTIFY_W + GENERAL_GAP) )) $NOTIFY_Y $NOTIFY_W $NOTIFY_H "$message"
     n="$(cat "$NOTIFY_COUNTER_PATH")"
     n="$(( n - 1 ))"
     echo "$n" > "$NOTIFY_COUNTER_PATH"
