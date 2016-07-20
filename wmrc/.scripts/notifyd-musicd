@@ -1,19 +1,21 @@
 #!/bin/sh -x
 
 while :; do
-    mpc idle > /dev/null
-    curr="$(mpc status)"
+    upd=`mpc idle`
+    if [ "$upd" = "player" ]; then
+        curr="$(mpc status)"
 
-    status="$(echo "$curr" | sed -n 2p | cut -d' ' -f1)"
-    ico=""
-    if [ "$status" = "[playing]" ]; then
-        ico=""
-    elif [ "$status" = "[paused]" ]; then
-        ico=""
-    else
-        ico=""
+        status="$(echo "$curr" | sed -n 2p | cut -d' ' -f1)"
+        ico=""
+        if [ "$status" = "[playing]" ]; then
+            ico=""
+        elif [ "$status" = "[paused]" ]; then
+            ico=""
+        else
+            ico=""
+        fi
+        song="$(mpc current)"
+
+        echo "%{F$(xrq '*.color9')}${ico}%{F-} ${song}" > "$NOTIFY_FIFO_PATH"
     fi
-    song="$(mpc current)"
-
-    echo "%{F$(xrq '*.color9')}${ico}%{F-} ${song}" > "$NOTIFY_FIFO_PATH"
 done
