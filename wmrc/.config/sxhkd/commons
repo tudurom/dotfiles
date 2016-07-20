@@ -27,13 +27,13 @@ super + F3
   echo "awesome" > /tmp/minbar.cmd
 
 XF86AudioRaiseVolume
-  amixer -q sset Master 5%+ unmute
+  echo `vol i` `vol +` > "$NOTIFY_FIFO_PATH"
 
 XF86AudioLowerVolume
-  amixer -q sset Master 5%- unmute
+  echo `vol i` `vol -` > "$NOTIFY_FIFO_PATH"
 
 XF86AudioMute
-  amixer -q sset Master mute
+  echo `vol i` `vol m` > "$NOTIFY_FIFO_PATH"
 
 XF86MonBrightnessUp
   xbacklight -inc 10%

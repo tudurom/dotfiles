@@ -45,4 +45,7 @@ wmname LG3D
 
 # Start the thing
 minbar &
+for s in $HOME/bin/notifyd-*; do
+    $s &
+done
 exec startwm bspwm

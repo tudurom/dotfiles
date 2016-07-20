@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# amixer wrapper
+# (c) tudurom 2016 - wtfpl
+#
+
+level() {
+    amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p' | uniq
+}
+
+state() {
+    amixer get Master | sed -n 's/^.*\[\(o[nf]\+\)]$/\1/p' | uniq
+}
+
+usage() {
+    echo "usage `basename $0` [+|-|m|state|level]" && exit 1
+}
+
+i() {
+    echo "%{F$(xrq '*.color9')}%{F-}"
+}
+
+case $1 in
+    +)
+        amixer sset Master 5%+ unmute > /dev/null
+        level
+        ;;
+    -)
+        amixer sset Master 5%- unmute > /dev/null
+        level
+        ;;
+    m)
+        amixer sset Master toggle > /dev/null
+        state
+        ;;
+    state|level|i)
+        $1
+        ;;
+    *)
+        usage
+        ;;
+esac

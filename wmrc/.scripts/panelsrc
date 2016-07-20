@@ -2,9 +2,10 @@
 # (c) tudurom 2016 - wtfpl
 
 #export PANEL_FONT="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"
-export PANEL_FONT="-benis-lemon-*-*-*-*-10-*-*-*-*-*-*-*"
+export PANEL_FONT="-*-yuki-*-*-*-*-10-*-*-*-*-*-*-*"
 export PANEL_ICON_FONT="-wuncon-siji-medium-*-*-*-10-*-*-*-*-*-*-*"
 export PANEL_FONT_NAME="lemon"
+export PANEL_ICON_FONT_NAME="siji"
 
 export PANEL_STATUS_HEIGHT="30"
 export PANEL_BG_COLOR="`xrq '*.background'`"

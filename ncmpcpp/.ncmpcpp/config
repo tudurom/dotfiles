@@ -33,7 +33,6 @@ visualizer_look = "▋▋"
 # Misc
 display_bitrate = "no"
 enable_window_title = "no"
-execute_on_song_change="echo $(mpc current) > /tmp/notifyd.fifo"
 
 # cheat sheet
 # %l - length

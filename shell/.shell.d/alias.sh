@@ -55,3 +55,7 @@ les() {
 x0st() {
     curl -F"file=@${1}" https://0x0.st
 }
+
+mtp() {
+    sudo simple-mtpfs /mnt -o allow_other
+}
