@@ -6,7 +6,7 @@ super + Return
   urxvt
 
 super + space
-  dmenu_run
+  dmenu_wrapper
 
 super + q
   showtodo

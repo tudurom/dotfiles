@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dmenu_run -nb `xrq '*.background'` -nf `xrq '*.foreground'` -sb `xrq '*.foreground'` -sf `xrq '*.background'`
