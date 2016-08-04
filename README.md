@@ -3,7 +3,7 @@ tudurom's dotfiles
 
 > you are your dotfiles
 
-A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time Linux users and ricers can understand what's going on, with explications for each directory.
+A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time UNIX users and ricers can understand what's going on, with explications for each directory.
 
 Managing
 --------
@@ -52,7 +52,5 @@ In case of fire, my dotfiles are mirrored on a number of servers:
 
 - [GitHub](https://github.com/tudurom/dotfiles)
 - [notabug](https://notabug.org/tudurom/dotfiles)
-- [sr.ht](https://gogs.sr.ht/xenogenesis/dotfiles)
-- [gitgud](https://gitgud.io/tudurom/dotfiles_backup)
 - [my server](http://thetudor.ddns.net/git/dotfiles/log.html)
 

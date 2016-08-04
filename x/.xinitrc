@@ -49,4 +49,4 @@ for s in $HOME/bin/notifyd-*; do
     $s &
 done
 
-exec startwm wmutils
+exec startwm bspwm
