@@ -4,6 +4,10 @@
 # (c) tudurom 2016 - wtfpl
 #
 
+if [ "$(lsw | wc -l)" -eq 1 ]; then
+    focusw "$(lsw)"
+fi
+
 pfw="${2:-$(pfw)}"
 screen_width="$(dattr -w $(pfd))"
 screen_height="$(dattr -h $(pfd))"

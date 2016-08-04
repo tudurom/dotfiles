@@ -214,6 +214,17 @@ let g:syntastic_check_on_wq = 0
 
 " }}}
 
+" Romanian Digraphs {{{
+" Vim comes default with turkish ş and ţ
+
+dig S, 536
+dig s, 537
+
+dig T, 538
+dig t, 539
+
+" }}}
+
 " Hard mode {{{
 "noremap <Up> <NOP>
 "noremap <Down> <NOP>

@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 #
 # handle wew events
 # (c) tudurom 2016 - wtfpl
@@ -16,7 +16,8 @@ while IFS=: read -r ev wid; do
         # Mapping request aka group activated
         19)
         if ! wattr o $wid; then
-            focusw $wid
+            test "$wid" != "$(pfw)" && \
+                focusw $wid
         fi
         ;;
 
