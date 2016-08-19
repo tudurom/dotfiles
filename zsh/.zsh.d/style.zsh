@@ -16,7 +16,7 @@ setopt interactive_comments
 autoload -U colors && colors
 autoload -U zmv
 
-PROMPT='$fg_bold[black]$PWD
+PROMPT='$fg_bold[black]$(pwd | sed "s/\/home\/$USER/~/")
 %{$fg[red]%(? $fg[cyan] )%}─── %f'
 
 setopt extendedglob
