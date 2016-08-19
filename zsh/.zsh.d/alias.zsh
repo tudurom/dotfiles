@@ -4,6 +4,7 @@ alias ccat=pygmentize
 alias problemhelper="time problemhelper"
 alias ph=problemhelper
 alias tls="tmux ls"
+alias ls="ls -F"
 alias tswitch="tmux switch -t"
 alias tkill="tmux kill-session -t"
 alias rm="rm -I"
@@ -48,7 +49,7 @@ trinitas() {
 }
 
 les() {
-    if [ "$#" -gt 0 ]; then
+    if [[ "$#" -gt 0 ]]; then
         test -d "$1" && ls -al "$1" || less "$1"
     else
         ls

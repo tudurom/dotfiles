@@ -15,17 +15,15 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'ntpeters/vim-better-whitespace'
 
 " Simple tab completion
-"Plug 'ajh17/vimcompletesme'
+Plug 'ajh17/vimcompletesme'
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'zchee/deoplete-go'
-if executable('clang')
-    Plug 'Rip-Rip/clang_complete'
-endif
 if executable('go')
     Plug 'fatih/vim-go'
+endif
+if executable('clang')
+    Plug 'justmao945/vim-clang'
 endif
 
 " Syntax checking
@@ -162,31 +160,12 @@ map <Leader>h <C-w>h
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
+map <Leader>= <C-w>=
 
 " }}}
 
-" Completion {{{
-
 filetype plugin on
-"set omnifunc=syntaxcomplete#Complete
-"let b:vcm_tab_complete = 'omni'
-let g:deoplete#enable_at_startup = 1
-function! s:is_whitespace() "{{{
-	let col = col('.') - 1
-	return ! col || getline('.')[col - 1] =~? '\s'
-endfunction "}}}
-" <Tab> completion:
-" 1. If popup menu is visible, select and insert next item
-" 2. Otherwise, if preceding chars are whitespace, insert tab char
-" 3. Otherwise, start manual autocomplete
-imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
-	\ : (<SID>is_whitespace() ? "\<Tab>"
-	\ : deoplete#mappings#manual_complete())
-
-smap <silent><expr><Tab> pumvisible() ? "\<C-n>"
-	\ : (<SID>is_whitespace() ? "\<Tab>"
-\ : deoplete#mappings#manual_complete())
-"}}}
+set omnifunc=syntaxcomplete#Complete
 
 " Golang {{{
 let g:go_fmt_command = "goimports"
