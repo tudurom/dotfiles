@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "Torrent complete $1" > "$NOTIFY_FIFO_PATH"

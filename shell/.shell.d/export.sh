@@ -1,7 +1,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
-export BROWSER=firefox
+export BROWSER=chromium
 export LS_COLORS=''
 export CC=clang
 
@@ -22,6 +22,10 @@ fi
 # JS
 if [ -f /usr/bin/node ]; then
     export PATH="$PATH:$HOME/.node/bin"
+fi
+
+if [ -f /usr/bin/cabal ]; then
+    export PATH="$PATH:$HOME/.cabal/bin"
 fi
 
 # Android

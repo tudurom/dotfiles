@@ -1,7 +1,7 @@
 " ╻┏┓╻╻╺┳╸ ╻ ╻╻┏┳┓
 " ┃┃┗┫┃ ┃  ┃┏┛┃┃┃┃
 " ╹╹ ╹╹ ╹ ╹┗┛ ╹╹ ╹
-" init.vim written with extensibility in mind
+" init.vim without description
 
 filetype off
 
@@ -16,14 +16,11 @@ Plug 'ntpeters/vim-better-whitespace'
 
 " Simple tab completion
 Plug 'ajh17/vimcompletesme'
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
 if executable('go')
-    Plug 'fatih/vim-go'
+	Plug 'fatih/vim-go'
 endif
 if executable('clang')
-    Plug 'justmao945/vim-clang'
+	Plug 'rip-rip/clang_complete'
 endif
 
 " Syntax checking
@@ -32,12 +29,19 @@ Plug 'scrooloose/syntastic'
 " Show changes
 Plug 'airblade/vim-gitgutter'
 
-" One plugin to rule them all
-Plug 'sheerun/vim-polyglot'
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
-call plug#end()              " required
-filetype plugin indent on    " required
+Plug 'othree/html5.vim'
 
+" Tmux integration
+Plug 'christoomey/vim-tmux-navigator'
+
+call plug#end()
+filetype plugin indent on
+
+let g:vim_markdown_frontmatter = 1
 " }}}
 
 " Essential settings {{{
@@ -47,7 +51,10 @@ syntax enable " Enable syntax highlighting, duh
 set number    " Looks better
 set backspace=indent,eol,start
 set tabstop=4
-set expandtab
+set noexpandtab
+set copyindent
+set preserveindent
+set softtabstop=0
 set shiftwidth=4
 set smartindent
 set cindent
@@ -70,11 +77,11 @@ set undodir=~/.config/nvim/tmp/undo/
 
 " Make the folders automatically if they don't already exist.
 if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), "p")
+	call mkdir(expand(&backupdir), "p")
 endif
 
 if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
+	call mkdir(expand(&undodir), "p")
 endif
 
 " Make undo work after the file is closed
@@ -106,12 +113,13 @@ cabbr Wq wq
 
 set background=dark
 colo shblah
+
 " }}}
 
 " NERD things {{{
 
 " Toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
 
 " }}}
 
@@ -142,9 +150,9 @@ set wrapmargin=0
 
 filetype plugin indent on
 augroup Filetypes
-    au!
+	au!
 
-    au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en_us
+	au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en_us
 
 augroup end
 
@@ -164,8 +172,10 @@ map <Leader>= <C-w>=
 
 " }}}
 
+" Completion {{{
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+" }}}
 
 " Golang {{{
 let g:go_fmt_command = "goimports"
@@ -214,4 +224,18 @@ dig t, 539
 "inoremap <Down> <NOP>
 "inoremap <Left> <NOP>
 "inoremap <Right> <NOP>
+" }}}
+
+" Functions {{{
+:command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
+" }}}
+
+" Tmux integration {{{
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " }}}

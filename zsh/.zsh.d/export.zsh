@@ -1,12 +1,12 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
-export BROWSER=firefox
+export BROWSER=chromium
 export LS_COLORS=''
 export CC=clang
 
 # Golang specific variables
-if [ -f /usr/bin/go ]; then
+if [[ -f /usr/bin/go ]]; then
     export GOPATH=$HOME/gopath
     export GOROOT=/usr/lib/go
     export PATH="$PATH:$GOROOT/bin"
@@ -14,14 +14,18 @@ if [ -f /usr/bin/go ]; then
 fi
 
 # Ruby
-if [ -f /usr/bin/ruby ]; then
+if [[ -f /usr/bin/ruby ]]; then
     ruby_ver="$(ls -1 $HOME/.gem/ruby | sort -nr | head -n 1)"
     export PATH="$PATH:$HOME/.gem/ruby/$ruby_ver/bin"
 fi
 
 # JS
-if [ -f /usr/bin/node ]; then
+if [[ -f /usr/bin/node ]]; then
     export PATH="$PATH:$HOME/.node/bin"
+fi
+
+if [[ -f /usr/bin/cabal ]]; then
+    export PATH="$PATH:$HOME/.cabal/bin"
 fi
 
 # Android

@@ -7,4 +7,9 @@ clock() {
   echo "#[fg=colour8]$(date +"$format")"
 }
 
-echo "$(clock)"
+music() {
+    status="$(mpc status | sed -n 2p | cut -d' ' -f1)"
+    echo "#[fg=colour8]$status #[fg=colour2]$(mpc current)"
+}
+
+echo "$(music) $(clock)"

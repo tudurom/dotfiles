@@ -21,3 +21,4 @@ PROMPT='$fg_bold[black]$(pwd | sed "s/\/home\/$USER/~/")
 
 setopt extendedglob
 setopt nocaseglob
+setopt no_hup
