@@ -67,8 +67,8 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}
 
 # focus or send to the given desktop
-super + {_,shift + }{1-5,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+super + {_,shift + }{1-6}
+	bspc {desktop -f,node -d} '^{1-6}'
 
 #
 # preselect
