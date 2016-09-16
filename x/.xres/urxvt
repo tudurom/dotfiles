@@ -8,11 +8,8 @@ URxvt.cursorUnderline: true
 URxvt.internalBorder: 20
 !URxvt.geometry: 100x30
 
-URxvt.perl-ext-common: default,url-select
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: /usr/bin/env xdg-open
-URxvt.url-select.underline: false
-!URxvt.url-launcher: /usr/local/bin/firefox
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.keysym.M-u: perl:matcher:select
 !URxvt.matcher.button: 1
-
 ! vim: set ft=xdefaults :

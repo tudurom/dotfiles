@@ -1,0 +1,12 @@
+#!/bin/sh
+
+foc="$(xrq '*.color14' | sed 's/\#/0x/')"
+unfoc="$(xrq '*.color8' | sed 's/\#/0x/')"
+
+waitron wm_config border_width $BW
+waitron wm_config color_focused $foc
+waitron wm_config color_unfocused $unfoc
+waitron wm_config gap_width $GENERAL_GAP
+waitron wm_config cursor_position middle
+waitron wm_config groups_nr $GNUMBER
+waitron wm_config enable_sloppy_focus true

@@ -1,7 +1,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
-export BROWSER=chromium
+export BROWSER=firefox
 export LS_COLORS=''
 export CC=clang
 
@@ -28,6 +28,8 @@ if [[ -f /usr/bin/cabal ]]; then
     export PATH="$PATH:$HOME/.cabal/bin"
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.zsh
+
 # Android
 export PATH="$PATH:$HOME/usr/android/android-studio/bin"
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
@@ -37,6 +39,9 @@ export PATH="$PATH:$HOME/bin/clint:$HOME/bin"
 
 # Python packages
 export PATH="$PATH:$HOME/.local/bin"
+
+# local
+export PATH="$PATH:/usr/local/bin"
 
 # I totally forgot what all those flags do
 export LESS='-F -g -i -M -R -S -w -X -z-4'

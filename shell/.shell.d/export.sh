@@ -1,7 +1,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
-export BROWSER=chromium
+export BROWSER=firefox
 export LS_COLORS=''
 export CC=clang
 
@@ -28,11 +28,13 @@ if [ -f /usr/bin/cabal ]; then
     export PATH="$PATH:$HOME/.cabal/bin"
 fi
 
+[ "$SHELL" = "bash" ] && [ -f ~/.fzf.bash ] && . ~/.fzf.bash
+
 # Android
 export PATH="$PATH:$HOME/usr/android/android-studio/bin"
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
-# Source local scripts
+# source local scripts
 export PATH="$PATH:$HOME/bin/clint:$HOME/bin"
 
 # Python packages

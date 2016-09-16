@@ -38,6 +38,9 @@ Plug 'othree/html5.vim'
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
 
+" Resize mode
+Plug 'simeji/winresizer'
+
 call plug#end()
 filetype plugin indent on
 

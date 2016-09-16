@@ -67,7 +67,7 @@ BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF}"
 # Underline width
 BAR_OPTS="${BAR_OPTS} -u 3"
 # Fonts
-BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT} -f -*-metis-normal-*-*-*-11-*-*-*-*-*-*-* -o -1"
+BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT} -f -*-metis-normal-*-*-*-11-*-*-*-*-*-*-* -o -3"
 
 # Seconds to sleep
 SLEEP_TIME="1"
