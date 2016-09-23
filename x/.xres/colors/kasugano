@@ -1,0 +1,40 @@
+! kasugano by kori
+
+! special
+*.foreground:   #ffffff
+*.background:   #1b1b1b
+*.cursorColor:  #ffffff
+
+! black
+*.color0:       #3d3d3d
+*.color8:       #4d4d4d
+
+! red
+*.color1:       #6673bf
+*.color9:       #899aff
+
+! green
+*.color2:       #3ea290
+*.color10:      #52ad91
+
+! yellow
+*.color3:       #b0ead9
+*.color11:      #98c9bb
+
+! blue
+*.color4:       #31658c
+*.color12:      #477ab3
+
+! magenta (or orange)
+*.color5:       #596196
+*.color13:      #7882bf
+
+! cyan
+*.color6:       #8292b2
+*.color14:      #95a7cc
+
+! white
+*.color7:       #c8cacc
+*.color15:      #edeff2
+
+! vim: set ft=xdefaults :

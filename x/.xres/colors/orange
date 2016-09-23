@@ -1,0 +1,40 @@
+! orange by inakido
+
+! special
+*.foreground:   #ede4b1
+*.background:   #181818
+*.cursorColor:  #ede4b1
+
+! black
+*.color0:       #262322
+*.color8:       #524b49
+
+! red
+*.color1:       #665752
+*.color9:       #ff6633
+
+! green
+*.color2:       #75645e
+*.color10:      #bf4c26
+
+! yellow
+*.color3:       #85716a
+*.color11:      #803319
+
+! blue
+*.color4:       #947e76
+*.color12:      #80ecff
+
+! magenta (or orange)
+*.color5:       #a38b83
+*.color13:      #60b4bf
+
+! cyan
+*.color6:       #b89c93
+*.color14:      #406d80
+
+! white
+*.color7:       #ccada3
+*.color15:      #e8d7d1
+
+! vim: set ft=xdefaults :

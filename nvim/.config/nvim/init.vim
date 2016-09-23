@@ -100,8 +100,6 @@ set undoreload=500
 nnoremap <silent> <Leader>d :noh<CR>
 " Esc in terminal
 tnoremap <Esc> <C-\><C-n>
-" jk to exit insert mode
-inoremap jk <ESC>
 " Navigate long lines easily
 map j gj
 map k gk
