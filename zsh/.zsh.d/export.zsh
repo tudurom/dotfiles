@@ -28,6 +28,8 @@ if [[ -f /usr/bin/cabal ]]; then
     export PATH="$PATH:$HOME/.cabal/bin"
 fi
 
+export PATH="$PATH:$HOME/build/Telegram"
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.zsh
 
 # Android

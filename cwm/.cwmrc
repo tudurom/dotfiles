@@ -6,21 +6,21 @@
 fontname "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 
 # set border width
-borderwidth 3
+borderwidth 5
 
 # gotta go fast
 moveamount 10
 
 # colors
-# sea by tudurom
+# zent by dkeg
 
-color activeborder   '#3d637d'
-color inactiveborder '#003b4f'
-color font           '#b0b9b8'
-color menubg         '#00222b'
-color menufg         '#b0b9b8'
-color groupborder    '#85a5b3'
-color ungroupborder  '#0f3341'
+color activeborder   '#7b9899'
+color inactiveborder '#626262'
+color font           '#b6b6b6'
+color menubg         '#3e3e3e'
+color menufg         '#b6b6b6'
+color groupborder    '#a67979'
+color ungroupborder  '#baad8a'
 
 # autogroups
 autogroup 2 Firefox

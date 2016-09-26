@@ -175,7 +175,10 @@ map <Leader>= <C-w>=
 
 " Completion {{{
 filetype plugin on
+let b:vcm_tab_complete = 'omni'
 set omnifunc=syntaxcomplete#Complete
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+autocmd CompleteDone * pclose
 " }}}
 
 " Golang {{{
