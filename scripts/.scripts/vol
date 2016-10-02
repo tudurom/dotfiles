@@ -17,7 +17,7 @@ usage() {
 }
 
 i() {
-    echo "%{F$(xrq '*.color9')}%{F-}"
+    echo "%{F$PANEL_ACCENT_COLOR}%{F-}"
 }
 
 case $1 in

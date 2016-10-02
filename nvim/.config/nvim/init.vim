@@ -41,6 +41,13 @@ Plug 'christoomey/vim-tmux-navigator'
 " Resize mode
 Plug 'simeji/winresizer'
 
+" Colors
+Plug 'whatyouhide/vim-gotham'
+
+" Going mainstream
+"Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+
 call plug#end()
 filetype plugin indent on
 
@@ -113,7 +120,7 @@ cabbr Wq wq
 " Colors {{{
 
 set background=dark
-colo shblah
+colo gotham
 
 " }}}
 
@@ -174,11 +181,15 @@ map <Leader>= <C-w>=
 " }}}
 
 " Completion {{{
+
 filetype plugin on
 let b:vcm_tab_complete = 'omni'
 set omnifunc=syntaxcomplete#Complete
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd CompleteDone * pclose
+
+let g:clang_library_path='/usr/lib'
+
 " }}}
 
 " Golang {{{
@@ -242,4 +253,15 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+" }}}
+
+" Lightline {{{
+
+let g:airline_theme='gotham'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 2
+let g:airline#extensions#branch#enabled = 1
+let g:airline_skip_empty_sections = 1
+
 " }}}

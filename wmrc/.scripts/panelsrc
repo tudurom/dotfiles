@@ -9,6 +9,8 @@ export PANEL_ICON_FONT_NAME="siji"
 
 export PANEL_STATUS_HEIGHT="30"
 export PANEL_BG_COLOR="`xrq '*.background'`"
+export PANEL_BORDER_COLOR=`xrq '*.color12'`
+export PANEL_ACCENT_COLOR=`xrq '*.color4'`
 
 export PANEL_INNER_GAP="20"
 export PANEL_OUTER_GAP="20"

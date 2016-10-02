@@ -16,9 +16,12 @@ setopt interactive_comments
 autoload -U colors && colors
 autoload -U zmv
 
-PROMPT='$fg_bold[black]$(pwd | sed "s/\/home\/$USER/~/")
+PROMPT='$fg_bold[yellow]$(pwd | sed "s/\/home\/$USER/~/")
 %{$fg[red]%(? $fg[cyan] )%}─── %f'
 
 setopt extendedglob
 setopt nocaseglob
 setopt no_hup
+
+# gotham
+AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=11'

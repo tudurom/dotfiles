@@ -18,7 +18,7 @@ BAR_FG=`xrq '*.color14'`
 BAR_FONT="$PANEL_FONT"
 BAR_ICON_FONT="$PANEL_ICON_FONT"
 
-bar_opts="-g ${BAR_W}x${BAR_H}+${BAR_X}+${BAR_Y} -B${BAR_BG} -F${BAR_FG} -f ${BAR_FONT} -f ${BAR_ICON_FONT} -d -r $BW -R `xrq *.color8`"
+bar_opts="-g ${BAR_W}x${BAR_H}+${BAR_X}+${BAR_Y} -B${BAR_BG} -F${BAR_FG} -f ${BAR_FONT} -f ${BAR_ICON_FONT} -d -r $BW -R $PANEL_BORDER_COLOR"
 
 (
 echo "%{c}$MESSAGE"

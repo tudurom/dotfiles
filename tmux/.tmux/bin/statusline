@@ -2,14 +2,25 @@
 
 reset="#[fg=default,bg=colour0]"
 
+block() {
+	icon="$1"
+	bg="$2"
+	fg="$3"
+	text="$4"
+
+	echo "#[bg=${fg}, fg=${bg}, noreverse] ${icon} #[bg=${bg}, fg=${fg}] ${text} #[bg=black]"
+}
+
 clock() {
-  format="%a %d %b %H:%M"
-  echo "#[fg=colour8]$(date +"$format")"
+  #format="%a %d %b %H:%M"
+  format="%H:%M"
+  echo "$(block "clock" "brightgreen" "green" "$(date +"$format")")"
 }
 
 music() {
     status="$(mpc status | sed -n 2p | cut -d' ' -f1)"
-    echo "#[fg=colour8]$status #[fg=colour2]$(mpc current)"
+    echo "$(block "♫" "brightgreen" "blue" "$(mpc current)")"
+#    echo "#[fg=colour8]$status #[fg=colour2]$(mpc current)"
 }
 
 echo "$(music) $(clock)"

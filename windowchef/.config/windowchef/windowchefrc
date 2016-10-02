@@ -1,6 +1,6 @@
 #!/bin/sh
 
-foc="$(xrq '*.color14' | sed 's/\#/0x/')"
+foc="$(xrq '*.color12' | sed 's/\#/0x/')"
 unfoc="$(xrq '*.color8' | sed 's/\#/0x/')"
 
 waitron wm_config border_width $BW

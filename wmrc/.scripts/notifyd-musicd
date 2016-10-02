@@ -16,6 +16,6 @@ while :; do
         fi
         song="$(mpc current)"
 
-        echo "%{F$(xrq '*.color9')}${ico}%{F-} ${song}" > "$NOTIFY_FIFO_PATH"
+        echo "%{F$PANEL_ACCENT_COLOR}${ico}%{F-} ${song}" > "$NOTIFY_FIFO_PATH"
     fi
 done

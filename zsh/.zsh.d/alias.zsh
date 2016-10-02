@@ -68,7 +68,7 @@ mtp() {
 rec() {
     tmp=$(mktemp --suffix=.mkv)
     sleep 1
-    (sleep 0.3; echo "%{F$(xrq '*.color9')}%{F-} Recording started! Say 'cheese'!" > "$NOTIFY_FIFO_PATH") &
+    (sleep 0.3; echo "%{F$PANEL_ACCENT_COLOR}%{F-} Recording started! Say 'cheese'!" > "$NOTIFY_FIFO_PATH") &
     ffmpeg -y -f x11grab -s 1920x1080 -i :0.0 -vcodec mpeg4 -qscale 0 -framerate 60 "$tmp"
     wait
     echo "$tmp"

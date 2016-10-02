@@ -59,7 +59,7 @@ BAR_OPTS=""
 # Make it wmutils compatible
 BAR_OPTS="${BAR_OPTS} -d"
 # Add borders
-BAR_OPTS="${BAR_OPTS} -R $C8 -r $BW"
+BAR_OPTS="${BAR_OPTS} -R $PANEL_BORDER_COLOR -r $BW"
 # Position it
 BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
 # Colors
@@ -67,7 +67,7 @@ BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF}"
 # Underline width
 BAR_OPTS="${BAR_OPTS} -u 3"
 # Fonts
-BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT} -f -*-metis-normal-*-*-*-11-*-*-*-*-*-*-* -o -3"
+BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT}"
 
 # Seconds to sleep
 SLEEP_TIME="1"
@@ -85,7 +85,7 @@ DATE_ICON=""
 
 # Print icon
 i() {
-    echo "%{F$C9}${1}%{F-}"
+    echo "%{F$PANEL_ACCENT_COLOR}${1}%{F-}"
 }
 
 get_time() {

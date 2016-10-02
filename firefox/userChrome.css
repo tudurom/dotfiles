@@ -18,8 +18,8 @@
 
 :root {
     /* TAB VARIABLES */
-    --bg-light: #3e3e3e; --bg-dark: #3e3e3e;
-    --fg-light: #a67979; --fg-dark: #7b9899;
+    --bg-light: #0a0f14; --bg-dark: #0a0f14;
+    --fg-light: #d26939; --fg-dark: #33859d;
     --tab-triangle-correction: -1px;
     --tab-height: 28px; --tab-icon-size: 12px; --tab-strip-margin: -12px; --tab-overlap: -5px;
     --tab-fonts: "gohufont",monospace,"Dejavu Sans"; --tab-font-size: 7pt;
