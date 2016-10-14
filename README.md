@@ -1,6 +1,8 @@
 tudurom's dotfiles
 ==================
 
+###### Warning: this readme needs an update ASAP
+
 > you are your dotfiles
 
 A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time UNIX users and ricers can understand what's going on, with explications for each directory.
