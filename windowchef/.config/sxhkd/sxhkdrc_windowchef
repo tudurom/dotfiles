@@ -39,3 +39,18 @@ super + ctrl + r
 
 super + {Insert,Prior,Delete,Next,End}
   waitron window_snap {topleft,topright,bottomleft,bottomright,middle}
+
+super + {_,alt +}t
+  waitron mouse_toggle {move,resize}
+
+alt + h
+  closestw h | xargs wtf
+
+alt + j
+  closestw j | xargs wtf
+
+alt + k
+  closestw k | xargs wtf
+
+alt + l
+  closestw l | xargs wtf

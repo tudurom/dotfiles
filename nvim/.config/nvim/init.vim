@@ -5,6 +5,9 @@
 
 filetype off
 
+set encoding=utf-8
+scriptencoding utf-8
+
 let g:uname = substitute(system("uname"), '\n\+$', '', '')
 
 " Plugins {{{
@@ -45,8 +48,8 @@ Plug 'simeji/winresizer'
 Plug 'whatyouhide/vim-gotham'
 
 " Going mainstream
-"Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+"Plug 'vim-airline/vim-airline'
 
 call plug#end()
 filetype plugin indent on
@@ -72,12 +75,19 @@ set cindent
 set updatetime=250
 " Fold markers
 set fdm=marker
-" ingorecase + smartcase
+" Respect case in searches only if search query contains upper-case chars
 set ignorecase
 set smartcase
+set infercase
+" Other search tricks
+set hlsearch
+set incsearch
 " Make it natural
 set splitright
 set splitbelow
+
+" Kill lag
+set lazyredraw
 
 " Nope
 set noswapfile
@@ -98,6 +108,11 @@ endif
 set undofile
 set undolevels=500
 set undoreload=500
+
+" Wildmenu
+set wildmode=longest,list,full
+set wildmenu
+set wildignorecase
 
 " }}}
 
@@ -177,6 +192,7 @@ map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>= <C-w>=
+map <Leader><Space> <C-w><C-w>
 
 " }}}
 
@@ -255,13 +271,23 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " }}}
 
-" Lightline {{{
+" Airline {{{
 
 let g:airline_theme='gotham'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#whitespace#mixed_indent_algo = 2
 let g:airline#extensions#branch#enabled = 1
 let g:airline_skip_empty_sections = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
+" }}}
+
+" Lightline {{{
+let g:lightline = {
+	\ 'colorscheme': 'gotham',
+	\ 'subseparator': { 'left': '', 'right': '' }
+	\ }
+set noshowmode
 " }}}

@@ -1,5 +1,6 @@
-URxvt.font: xft:Hack:size=12
-URxvt.letterSpace: -1
+!URxvt.font: xft:Fixedsys Excelsior 3.01:size=12
+URxvt.font: -*-nixedsys-medium-*-*-*-15-*-*-*-*-*-*-*
+URxvt.letterSpace: 0
 ! No bold font
 URxvt.boldFont:
 *.scrollBar: false

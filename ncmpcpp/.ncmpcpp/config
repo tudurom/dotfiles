@@ -7,7 +7,7 @@ mpd_music_dir = "/home/tudurom/Music"
 playlist_display_mode = "classic"
 song_list_format = "$2{%a}|{%A}$8 $6-$8 $7%t$8"
 
-song_status_format = "{$2%t $b$1- %a}|{%f}"
+song_status_format = "{$2%t $b$4- %a}|{%f}"
 now_playing_prefix = "$b"
 now_playing_suffix = "$/b"
 
@@ -27,7 +27,7 @@ visualizer_sync_interval = "30"
 visualizer_output_name = "Pipe"
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_type = "spectrum"
-visualizer_color = 9
+visualizer_color = 13
 visualizer_look = "▋▋"
 
 # Misc

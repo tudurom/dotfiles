@@ -26,6 +26,9 @@ super + F2
 super + F3
   echo "awesome" > /tmp/minbar.cmd
 
+super + F4
+  pcpm
+
 XF86AudioRaiseVolume
   echo `vol i` `vol +` > "$NOTIFY_FIFO_PATH"
 
@@ -55,3 +58,6 @@ XF86AudioPrev
 
 Print
   screenie
+
+super + ctrl + k
+  killw `pfw`
