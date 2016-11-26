@@ -8,19 +8,18 @@ block() {
 	fg="$3"
 	text="$4"
 
-	echo "#[bg=${fg}, fg=${bg}, noreverse] ${icon} #[bg=${bg}, fg=${fg}] ${text} #[bg=black]"
+	echo "#[bg=${fg}, fg=white, noreverse] ${icon} #[bg=${bg}, fg=white] ${text} #[bg=black]"
 }
 
 clock() {
   #format="%a %d %b %H:%M"
   format="%H:%M"
-  echo "$(block "clock" "brightgreen" "green" "$(date +"$format")")"
+  echo "$(block "clock" "brightblack" "brightblue" "$(date +"$format")")"
 }
 
 music() {
     status="$(mpc status | sed -n 2p | cut -d' ' -f1)"
-    echo "$(block "♫" "brightgreen" "blue" "$(mpc current)")"
-#    echo "#[fg=colour8]$status #[fg=colour2]$(mpc current)"
+    echo "$(block "♫" "brightblack" "brightblue" "$(mpc current)")"
 }
 
 echo "$(music) $(clock)"

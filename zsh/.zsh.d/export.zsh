@@ -4,6 +4,8 @@ export PAGER=less
 export BROWSER=firefox
 export LS_COLORS=''
 export CC=clang
+MAKEFLAGS=-j5
+export MAKEFLAGS
 
 # Golang specific variables
 if [[ -f /usr/bin/go ]]; then

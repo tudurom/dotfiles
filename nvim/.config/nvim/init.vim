@@ -49,7 +49,6 @@ Plug 'whatyouhide/vim-gotham'
 
 " Going mainstream
 Plug 'itchyny/lightline.vim'
-"Plug 'vim-airline/vim-airline'
 
 call plug#end()
 filetype plugin indent on
@@ -135,7 +134,7 @@ cabbr Wq wq
 " Colors {{{
 
 set background=dark
-colo gotham
+colo shblah
 
 " }}}
 
@@ -175,7 +174,7 @@ filetype plugin indent on
 augroup Filetypes
 	au!
 
-	au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en_us
+	au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en,ro
 
 augroup end
 
@@ -271,22 +270,9 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " }}}
 
-" Airline {{{
-
-let g:airline_theme='gotham'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#whitespace#mixed_indent_algo = 2
-let g:airline#extensions#branch#enabled = 1
-let g:airline_skip_empty_sections = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-
-" }}}
-
 " Lightline {{{
 let g:lightline = {
-	\ 'colorscheme': 'gotham',
+	\ 'colorscheme': 'mein',
 	\ 'subseparator': { 'left': '', 'right': '' }
 	\ }
 set noshowmode

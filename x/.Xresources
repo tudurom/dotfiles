@@ -5,6 +5,6 @@
 ! managed like they are supposed to be
 
 #include ".xres/xft"
-#include ".xres/colors/gotham"
+#include ".xres/colors/stairs"
 #include ".xres/urxvt"
 #include ".xres/misc"

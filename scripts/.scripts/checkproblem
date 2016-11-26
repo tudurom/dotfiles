@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# run tests on cs solution
+# (c) tudurom 2016 - wtfpl
+#
+
+usage() {
+	echo "Usage: $0 <number of tests>"
+	exit 1
+}
+
+test "$#" -eq 0 && usage
+
+problem="$(basename `pwd`)"
+til="$1"
+
+for i in $(seq 1 "$til"); do
+	cp "./tests/${i}-${problem}.in" "${problem}.in"
+	./$problem
+	out="$(diff "${problem}.out" "./tests/${i}-${problem}.ok")"
+	if [ -z "$out" ]; then
+		printf "%s" "$(tput setaf 10)[ OK ]$(tput sgr0)"
+	else
+		printf "%s" "$(tput setaf 9)[FAIL]$(tput sgr0)"
+	fi
+
+	echo " Test $i"
+
+	if [ -n "$out" ]; then
+		echo "$out"
+	fi
+done

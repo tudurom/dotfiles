@@ -8,27 +8,27 @@ fontname "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 # set border width
 borderwidth 5
 
+sticky no
+
 # gotta go fast
 moveamount 10
 
 # colors
-# zent by dkeg
+# stairs by tudurom
 
-color activeborder   '#7b9899'
-color inactiveborder '#626262'
-color font           '#b6b6b6'
-color menubg         '#3e3e3e'
-color menufg         '#b6b6b6'
-color groupborder    '#a67979'
-color ungroupborder  '#baad8a'
+color activeborder   '#3b7279'
+color inactiveborder '#094657'
+color font           '#b5b5bc'
+color menubg         '#051d23'
+color menufg         '#b5b5bc'
+color groupborder    '#725c4c'
+color ungroupborder  '#584d44'
 
 # autogroups
 autogroup 2 Firefox
 autogroup 2 chromium
 autogroup 3 mpv
 autogroup 6 Mumble
-
-sticky no
 
 # menu
 command term    /usr/local/bin/st
@@ -104,3 +104,4 @@ bind M-l      unbind
 mousebind 4-1 window_move
 mousebind 4-2 window_grouptoggle
 mousebind 4-3 window_resize
+

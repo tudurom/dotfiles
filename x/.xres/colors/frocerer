@@ -1,0 +1,40 @@
+! frocerer by apk14
+
+! special
+*.foreground:   #665c64
+*.background:   #121212
+*.cursorColor:  #665c64
+
+! black
+*.color0:       #554444
+*.color8:       #c3c2c5
+
+! red
+*.color1:       #c58137
+*.color9:       #f0a655
+
+! green
+*.color2:       #485373
+*.color10:      #768dd0
+
+! yellow
+*.color3:       #8a7a64
+*.color11:      #beb090
+
+! blue
+*.color4:       #252b39
+*.color12:      #61778d
+
+! magenta (or orange)
+*.color5:       #33357f
+*.color13:      #6363be
+
+! cyan
+*.color6:       #6578b0
+*.color14:      #849eeb
+
+! white
+*.color7:       #f2f1b9
+*.color15:      #665c64
+
+! vim: set ft=xdefaults :

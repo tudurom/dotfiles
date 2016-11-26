@@ -43,10 +43,16 @@ wall-e &
 # Java fix
 wmname LG3D
 
-# Start the thing
-minbar &
-for s in $HOME/bin/notifyd-*; do
-    $s &
-done
+startBar() {
+	# Start the thing
+	minbar &
+	for s in $HOME/bin/notifyd-*; do
+	    $s &
+	done
+}
 
+mpDris2 &
+
+startBar
 exec startwm windowchef
+#exec gnome-session
