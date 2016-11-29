@@ -13,6 +13,8 @@ fi
 
 project_dir="${dir}/${proj_name}"
 
+test -d "$project_dir" && echo "Already exists." && exit 1
+
 echo "$(tput bold)"
 mkdir -p $project_dir
 echo "$(tput setaf 2)created $project_dir"

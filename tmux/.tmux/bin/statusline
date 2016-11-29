@@ -19,7 +19,7 @@ clock() {
 
 music() {
     status="$(mpc status | sed -n 2p | cut -d' ' -f1)"
-    echo "$(block "♫" "brightblack" "brightblue" "$(mpc current)")"
+    echo "$(block "music" "brightblack" "brightblue" "$(mpc current)")"
 }
 
 echo "$(music) $(clock)"

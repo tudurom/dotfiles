@@ -12,7 +12,7 @@ hi Normal               color: #b5b5bc; background: #051d23;
 hi CmdLine              background: #051d23; color: #b5b5bc; font-family: monospace; font-size: 8pt;
 hi CompDesc             color: #c6c6c6; width: 50%; font-family: monospace; font-size: 8pt;
 hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
-hi CompItem[selected]   background: #051d23; color: #a68479; font-family: monospace;
+hi CompItem[selected]   background: #051d23; color: #a67f72; font-family: monospace;
 hi CompMsg              font-family: monospace; font-style: monospace; margin-left: 16px; font-size: 8pt;
 hi CompResult           width: 45%; overflow: hidden;font-size: 8pt; font-family: monospace; font-weight: normal;
 hi CompTitle            color: $b5b5bc; background: #051d23; font-weight: bold; font-family: monospace; font-size: 8pt;

@@ -7,27 +7,27 @@
 
 ! black
 *.color0:       #051d23
-*.color8:       #094657
+*.color8:       #0c4857
 
 ! red
 *.color1:       #725c4c
-*.color9:       #a68479
+*.color9:       #a67f72
 
 ! green
 *.color2:       #195b6a
-*.color10:      #54939e
+*.color10:      #207e9e
 
 ! yellow
 *.color3:       #584d44
-*.color11:      #8c7777
+*.color11:      #8c7761
 
 ! blue
 *.color4:       #073b49
 *.color12:      #0b627d
 
 ! magenta (or orange)
-*.color5:       #6a7275
-*.color13:      #9da8a8
+*.color5:       #24616b
+*.color13:      #3f9e9e
 
 ! cyan
 *.color6:       #3b7279
