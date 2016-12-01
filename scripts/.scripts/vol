@@ -5,38 +5,50 @@
 #
 
 level() {
-    amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p' | uniq
+	amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p' | uniq
 }
 
 state() {
-    amixer get Master | sed -n 's/^.*\[\(o[nf]\+\)]$/\1/p' | uniq
+	amixer get Master | sed -n 's/^.*\[\(o[nf]\+\)]$/\1/p' | uniq
+}
+
+mic_state() {
+	amixer get Capture | sed -n 's/^.*\[\(o[nf]\+\)]$/\1/p' | uniq
 }
 
 usage() {
-    echo "usage `basename $0` [+|-|m|state|level]" && exit 1
+	echo "usage `basename $0` [+|-|m|state|level]" && exit 1
 }
 
 i() {
-    echo "%{F$PANEL_ACCENT_COLOR}%{F-}"
+	echo "%{F$PANEL_ACCENT_COLOR}%{F-}"
+}
+
+mic_icon() {
+	echo "%{F$PANEL_ACCENT_COLOR}%{F-}"
 }
 
 case $1 in
-    +)
-        amixer sset Master 5%+ unmute > /dev/null
-        level
-        ;;
-    -)
-        amixer sset Master 5%- unmute > /dev/null
-        level
-        ;;
-    m)
-        amixer sset Master toggle > /dev/null
-        state
-        ;;
-    state|level|i)
-        $1
-        ;;
-    *)
-        usage
-        ;;
+	+)
+		amixer sset Master 5%+ unmute > /dev/null
+		level
+		;;
+	-)
+		amixer sset Master 5%- unmute > /dev/null
+		level
+		;;
+	m)
+		amixer sset Master toggle > /dev/null
+		state
+		;;
+	u)
+		amixer sset Capture toggle > /dev/null
+		mic_state
+		;;
+	state|mic_state|level|i|mic_icon)
+		$1
+		;;
+	*)
+		usage
+		;;
 esac

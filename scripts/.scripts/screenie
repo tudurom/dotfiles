@@ -1,10 +1,16 @@
 #!/bin/sh
 
+select="false"
+test "$1" = "-s" && select="true"
+
 mkdir -p "$HOME/tmp/screenies"
 
 number="$(ls -1 $HOME/tmp/screenies | cut -d'.' -f1 | sort -n | tail -n 1)"
 number="$(( number + 1 ))"
 
-scrot "$HOME/tmp/screenies/${number}.png"
+opts=""
+test "$select" = "true" && opts="-s"
+
+maim $opts "$HOME/tmp/screenies/${number}.png"
 
 echo "Screenshot taken" > "$NOTIFY_FIFO_PATH"
