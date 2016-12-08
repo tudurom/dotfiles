@@ -1,8 +1,6 @@
 tudurom's dotfiles
 ==================
 
-###### Warning: this readme needs an update ASAP
-
 > you are your dotfiles
 
 A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time UNIX users and ricers can understand what's going on, with explications for each directory.
@@ -15,37 +13,7 @@ I manage my dotfiles using GNU Stow. [Here's a neat article about managing your 
 Directory structure
 -------------------
 
-```
-.
-├── README.md
-├── alsa - sound config for linux
-├── asciiart - ascii art bin
-├── bspwm - old rice, keeping it for historical purposes
-├── compton - window compositor
-├── cwm - window manager of choice
-├── firefox - theme for firefox
-├── git - global git config
-├── gtk - theme
-├── mpd - music player daemon
-├── ncmpcpp - client for mpd. theme file is here
-├── npm - Node.js package manager. i have a simple config for installing packages in the home folder
-├── nvim - text editor that i use
-├── ports - CRUX ports
-├── pre_magic.sh - script that does magic after stowing the files
-├── scripts
-├── shell - configuration files for mksh
-├── st - the terminal emulator i use
-├── startpage - startpage for firefox
-├── tmux - configs for Terminal MUltipleXer
-├── vimperator - cool firefox addon i use for vim style keybindings
-├── wallpapers
-├── wmrc - wmutils scripts
-├── x - x resources and .xinitrc
-├── xdg
-└── xmodmap - keybind changes and fixes for media keys under freebsd
-```
-
-24 directories, 2 files
+Each directory has a `README.md` file.
 
 Backups
 -------

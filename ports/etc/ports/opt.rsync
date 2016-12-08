@@ -1,3 +1,0 @@
-host=crux.nu
-collection=ports/crux-3.2/opt/
-destination=/usr/ports/opt

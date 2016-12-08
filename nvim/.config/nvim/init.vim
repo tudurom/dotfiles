@@ -10,7 +10,7 @@ scriptencoding utf-8
 
 let g:uname = substitute(system("uname"), '\n\+$', '', '')
 
-" Plugins {{{
+" Plugins {{{za
 
 call plug#begin('~/.config/nvim/bundle')
 
@@ -129,19 +129,23 @@ cabbr W w
 cabbr Q q
 cabbr Wq wq
 
+map <Space> <Leader>
+nmap <Leader>- :split<CR>
+nmap <Leader>\| :vsplit<CR>
+
+map <Leader>h <C-w>h
+map <Leader>j <C-w>j
+map <Leader>k <C-w>k
+map <Leader>l <C-w>l
+map <Leader>= <C-w>=
+map <Leader><Space> <C-w><C-w>
+
 " }}}
 
 " Colors {{{
 
 set background=dark
 colo shblah
-
-" }}}
-
-" NERD things {{{
-
-" Toggle NERDTree
-"map <C-n> :NERDTreeToggle<CR>
 
 " }}}
 
@@ -152,7 +156,7 @@ set showmode
 
 " }}}
 
-" Clipboard setting {{{
+" Clipboard settings {{{
 
 set clipboard^=unnamed,unnamedplus
 
@@ -177,21 +181,6 @@ augroup Filetypes
 	au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en,ro
 
 augroup end
-
-" }}}
-
-" Leader hax {{{
-
-map <Space> <Leader>
-nmap <Leader>- :split<CR>
-nmap <Leader>\| :vsplit<CR>
-
-map <Leader>h <C-w>h
-map <Leader>j <C-w>j
-map <Leader>k <C-w>k
-map <Leader>l <C-w>l
-map <Leader>= <C-w>=
-map <Leader><Space> <C-w><C-w>
 
 " }}}
 
