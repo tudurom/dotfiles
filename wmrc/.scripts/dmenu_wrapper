@@ -1,3 +1,7 @@
 #!/bin/sh
 
-dmenu_run -nb `xrq '*.background'` -nf `xrq '*.foreground'` -sb `xrq '*.foreground'` -sf `xrq '*.background'`
+command="dmenu"
+
+test "$1" = "run" && command="dmenu_run"
+
+$command -nb `xrq '*.background'` -nf `xrq '*.foreground'` -sb `xrq '*.foreground'` -sf `xrq '*.background'`

@@ -16,6 +16,9 @@ super + alt + Escape
 super + f
   waitron window_maximize
 
+super + m
+  waitron window_monocle
+
 super + w
   waitron window_close
 
@@ -40,8 +43,11 @@ super + ctrl + r
 super + {Insert,Prior,Delete,Next,End}
   waitron window_snap {topleft,topright,bottomleft,bottomright,middle}
 
-super + {_,alt +}t
-  waitron mouse_toggle {move,resize}
+super + alt + t
+  waitron mouse_toggle resize
+
+super + t
+  xmmv
 
 alt + h
   closestw h | xargs wtf

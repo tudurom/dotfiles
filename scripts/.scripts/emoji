@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'gemoji'
+
+puts Emoji.find_by_alias(ARGV[0]).raw

@@ -29,14 +29,10 @@ unclutter -b
 
 # Music!
 if ! pidof mpd; then
-  mpd &
+	mpd &
 fi
 # Set cursor from X to pointer
 xsetroot -cursor_name left_ptr &
-# Listen to popup requests
-notifyd &
-# Window compositor
-compton -b
 # Wallpaper
 wall-e &
 
@@ -53,6 +49,13 @@ startBar() {
 
 mpDris2 &
 
-startBar
-exec startwm windowchef
+wm() {
+	# Listen to popup requests
+	notifyd &
+	# Window compositor
+	compton -b
+	startBar
+	exec startwm windowchef
+}
+wm
 #exec gnome-session

@@ -1,4 +1,3 @@
-!URxvt.font: xft:Fixedsys Excelsior 3.01:size=12
 URxvt.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
 URxvt.letterSpace: 0
 ! No bold font
