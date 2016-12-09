@@ -2,4 +2,10 @@
 
 require 'gemoji'
 
-puts Emoji.find_by_alias(ARGV[0]).raw
+em = Emoji.find_by_alias(ARGV[0])
+
+if em != nil
+	puts em.raw
+else
+	abort "No such emoji"
+end

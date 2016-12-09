@@ -1,3 +1,0 @@
-#! /bin/bash
-
-amixer sset Headphone 100%,85%

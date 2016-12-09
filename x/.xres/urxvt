@@ -1,4 +1,4 @@
-URxvt.font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
+URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
 URxvt.letterSpace: 0
 ! No bold font
 URxvt.boldFont:

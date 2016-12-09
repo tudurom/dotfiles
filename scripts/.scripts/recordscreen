@@ -1,3 +1,0 @@
-#! /bin/sh
-
-ffmpeg -f x11grab -video_size $(dattr -w $(pfd))x$(dattr -h $(pfd)) -i $DISPLAY -r 30 -an ${1}

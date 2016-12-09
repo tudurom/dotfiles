@@ -64,14 +64,3 @@ x0st() {
 mtp() {
     sudo simple-mtpfs /mnt -o allow_other
 }
-
-rec() {
-	x=`dattr -w $(ppd)`
-	y=`dattr -h $(ppd)`
-    tmp=$(mktemp --suffix=.mkv)
-    sleep 1
-    (sleep 0.3; echo "%{F$PANEL_ACCENT_COLOR}%{F-} Recording started! Say 'cheese'!" > "$NOTIFY_FIFO_PATH") &
-    ffmpeg -y -f x11grab -s ${x}x${y} -i :0.0 -vcodec mpeg4 -qscale 0 -framerate 60 "$tmp"
-    wait
-    echo "$tmp"
-}

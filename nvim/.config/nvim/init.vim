@@ -10,7 +10,7 @@ scriptencoding utf-8
 
 let g:uname = substitute(system("uname"), '\n\+$', '', '')
 
-" Plugins {{{za
+" Plugins {{{
 
 call plug#begin('~/.config/nvim/bundle')
 
@@ -48,7 +48,7 @@ Plug 'simeji/winresizer'
 Plug 'whatyouhide/vim-gotham'
 
 " Going mainstream
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 
 call plug#end()
 filetype plugin indent on

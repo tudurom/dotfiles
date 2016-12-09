@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/sh
 
 # Updates the database
 mpc update
