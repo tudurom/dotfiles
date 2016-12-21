@@ -1,4 +1,6 @@
-#!/bin/sh -x
+#!/bin/sh
+
+. $HOME/bin/wmrc
 
 while :; do
     upd=`mpc idle`

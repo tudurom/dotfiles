@@ -1,0 +1,31 @@
+#!/bin/sh -x
+
+usage() {
+	echo "Usage: $(basename $0) <colorscheme>" >&2
+	exit 1
+}
+
+test -z "$1" && usage
+
+colorscheme="$1"
+test -f "$HOME/.xres/colors/$colorscheme" || \
+	(echo "$(basename $0): color scheme not found" >&2 && exit 1)
+
+changecolors "$HOME/.xres/colors/$colorscheme"
+
+# reload panel
+pkill minbar
+minbar > /dev/null &
+pkill notifyd
+notifyd > /dev/null &
+
+# reload wm
+pgrep windowchef > /dev/null && $HOME/.config/windowchef/windowchefrc
+pgrep bspwm > /dev/null && $HOME/.config/bspwm/bspwmrc
+pgrep herbstluftwm > /dev/null && herbstclient reload
+
+test -f "$HOME/.wm/themes/$colorscheme" || exit 0
+
+. $HOME/.wm/themes/$colorscheme
+
+wall-e "$wallpaper_path" "$wallpaper_style"

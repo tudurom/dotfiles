@@ -17,6 +17,9 @@ super + shift + f
 super + shift + x
   slock
 
+super + shift + p
+  theme_menu
+
 super + F1
   echo "over" > /tmp/minbar.cmd
 

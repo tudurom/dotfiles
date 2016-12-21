@@ -1,7 +1,4 @@
-!┏━╸╻  ┏━┓╻ ╻╺┳┓╻ ╻
-!┃  ┃  ┃ ┃┃ ┃ ┃┃┗┳┛
-!┗━╸┗━╸┗━┛┗━┛╺┻┛ ╹
-! by tudurom.
+! cloudy by tudurom
 
 ! special
 *.foreground:   #c0c5ce
@@ -9,7 +6,7 @@
 *.cursorColor:  #c0c5ce
 
 ! black
-*.color0:       #273941
+*.color0:       #2c4b59
 *.color8:       #456472
 
 ! red
@@ -28,9 +25,9 @@
 *.color4:       #6385a6
 *.color12:      #719bc2
 
-! orange
-*.color5:       #BF9C86
-*.color13:      #BF9C86
+! magenta (or orange)
+*.color5:       #bf9c86
+*.color13:      #bf9c86
 
 ! cyan
 *.color6:       #63a69b

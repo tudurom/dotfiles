@@ -22,7 +22,7 @@ done
 # Symlink
 echo "Deploying"
 for dir in */; do
-	(test "$dir" = "firefox" || test "$dir" = "startpage") && continue
+	(test "$dir" = "firefox/" || test "$dir" = "startpage/") && continue
 
 	echo "- ${dir}"
 	xstow -i README.md "$dir"

@@ -1,0 +1,50 @@
+# quit wm
+super + alt + Escape
+	herbstclient quit
+
+# reload wm
+super + shift + r
+	herbstclient reload
+
+# close window
+super + w
+	herbstclient close
+
+# focus clients
+alt + {h,j,k,l}
+	herbstclient focus {left,down,up,right}
+
+# move clients
+super + {h,j,k,l}
+	herbstclient shift {left,down,up,right}
+
+# split frames
+super + {u,o}
+	herbstclient split {bottom,right} 0.5
+
+# explode
+super + ctrl + space
+	herbstclient split explode
+
+# resize frames
+super + alt + {h,j,k,l}
+	herbstclient resize {left,down,up,right} +0.05
+
+# tags
+super + {_,shift} + {1-6}
+	herbstclient {use,move}_index $(( {1-6} - 1 ))
+
+# cycle
+super + ctrl + {_,shift} + Tab
+	herbstclient use_index {+,-}1 --skip-visible
+
+# layouts
+super + r
+	herbstclient remove
+
+super + {s,f,p}
+	herbstclient {floating,fullscreen,pseudotile} toggle
+
+# cycle
+alt + {_,shift} + Tab
+	herbstclient cycle_all {+,-}1

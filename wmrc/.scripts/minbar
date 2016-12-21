@@ -10,36 +10,42 @@
 # music - now playing tune
 # notif - print notification
 
+reload_settings() {
+	# load dependencies
+	. $HOME/bin/wmrc
+	# Color definitions
+	C0="$(xrq '*color0')"
+	C1="$(xrq '*color1')"
+	C2="$(xrq '*color2')"
+	C3="$(xrq '*color3')"
+	C4="$(xrq '*color4')"
+	C5="$(xrq '*color5')"
+	C6="$(xrq '*color6')"
+	C7="$(xrq '*color7')"
+	C8="$(xrq '*color8')"
+	C9="$(xrq '*color9')"
+	C10="$(xrq '*color10')"
+	C11="$(xrq '*color11')"
+	C12="$(xrq '*color12')"
+	C13="$(xrq '*color13')"
+	C14="$(xrq '*color14')"
+	C15="$(xrq '*color15')"
+	CFG="$(xrq '*foreground')"
+	CBG="$(xrq '*.background')"
+
+	# actual colors for the foreground and background of the bar
+	CB="$PANEL_BG_COLOR"
+	CF="$C6"
+}
+
+reload_settings
+
 # Setup {{{
 # file to receive commands from
 COMMAND_FILE="/tmp/minbar.cmd"
 test -f "$COMMAND_FILE" && rm "$COMMAND_FILE"
 # over is the default mode
 echo "over" > "$COMMAND_FILE"
-
-# Color definitions
-C0="$(xrq '*color0')"
-C1="$(xrq '*color1')"
-C2="$(xrq '*color2')"
-C3="$(xrq '*color3')"
-C4="$(xrq '*color4')"
-C5="$(xrq '*color5')"
-C6="$(xrq '*color6')"
-C7="$(xrq '*color7')"
-C8="$(xrq '*color8')"
-C9="$(xrq '*color9')"
-C10="$(xrq '*color10')"
-C11="$(xrq '*color11')"
-C12="$(xrq '*color12')"
-C13="$(xrq '*color13')"
-C14="$(xrq '*color14')"
-C15="$(xrq '*color15')"
-CFG="$(xrq '*foreground')"
-CBG="$(xrq '*.background')"
-
-# actual colors for the foreground and background of the bar
-CB="$PANEL_BG_COLOR"
-CF="$C6"
 
 PD_X="$(dattr -x `ppd`)"
 PD_Y="$(dattr -y `ppd`)"
@@ -67,7 +73,7 @@ BAR_OPTS="${BAR_OPTS} -B ${CB} -F ${CF}"
 # Underline width
 BAR_OPTS="${BAR_OPTS} -u 3"
 # Fonts
-BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT}"
+BAR_OPTS="${BAR_OPTS} -f ${PANEL_FONT} -f ${PANEL_ICON_FONT} -n minbar"
 
 # Seconds to sleep
 SLEEP_TIME="1"
@@ -85,7 +91,7 @@ DATE_ICON=""
 
 # Print icon
 i() {
-    echo "%{F$PANEL_ACCENT_COLOR}${1}%{F-}"
+    echo "%{F$PANEL_ACCENT_COLOR}${1}%{F$CF}"
 }
 
 get_time() {

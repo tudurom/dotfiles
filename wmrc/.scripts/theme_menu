@@ -1,0 +1,5 @@
+#!/bin/sh
+
+choice="$(ls -1 $HOME/.wm/themes | dmenu_wrapper)"
+
+swtheme "$choice"

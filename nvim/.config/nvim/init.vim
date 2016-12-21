@@ -2,6 +2,7 @@
 " ┃┃┗┫┃ ┃  ┃┏┛┃┃┃┃
 " ╹╹ ╹╹ ╹ ╹┗┛ ╹╹ ╹
 " init.vim without description
+" don't try it with vanilla vim
 
 filetype off
 
@@ -9,6 +10,7 @@ set encoding=utf-8
 scriptencoding utf-8
 
 let g:uname = substitute(system("uname"), '\n\+$', '', '')
+set rtp+=/usr/share/vim/vimfiles
 
 " Plugins {{{
 
@@ -46,6 +48,7 @@ Plug 'simeji/winresizer'
 
 " Colors
 Plug 'whatyouhide/vim-gotham'
+Plug 'tudurom/bleh.vim'
 
 " Going mainstream
 " Plug 'itchyny/lightline.vim'
@@ -145,7 +148,7 @@ map <Leader><Space> <C-w><C-w>
 " Colors {{{
 
 set background=dark
-colo shblah
+colo bleh
 
 " }}}
 
@@ -153,6 +156,7 @@ colo shblah
 
 set laststatus=2 " Make the bar permanent
 set showmode
+set ruler
 
 " }}}
 
@@ -179,6 +183,7 @@ augroup Filetypes
 	au!
 
 	au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en,ro
+	autocmd vimresized * execute "normal \<C-W>="
 
 augroup end
 

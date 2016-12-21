@@ -6,6 +6,8 @@
 # by tudurom
 # no login manager since forever
 
+. $HOME/bin/wmrc
+
 # Load X resources
 xrdb $HOME/.Xresources
 
@@ -42,9 +44,6 @@ wmname LG3D
 startBar() {
 	# Start the thing
 	minbar &
-	for s in $HOME/bin/notifyd-*; do
-	    $s &
-	done
 }
 
 mpDris2 &

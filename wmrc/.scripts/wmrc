@@ -3,7 +3,7 @@
 #
 
 # Gap to use for most of the things
-export GENERAL_GAP=20
+export GENERAL_GAP=8
 export BW=5
 export FSFILE=~/.fwin
 export NOTIFY_FIFO_PATH=/tmp/notifyd.fifo
@@ -15,5 +15,29 @@ export GNUMBER=6
 export WALL_DIR=$HOME/wallpapers
 export WALL=stairs.jpg
 export WALL_TYPE=fill
+
+test -z "$DISPLAY" && exit
+#export PANEL_FONT="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"
+export PANEL_FONT="-*-yuki-*-*-*-*-10-*-*-*-*-*-*-*"
+export PANEL_ICON_FONT="-wuncon-siji-medium-*-*-*-10-*-*-*-*-*-*-*"
+export PANEL_FONT_NAME="yuki"
+export PANEL_ICON_FONT_NAME="siji"
+
+export PANEL_STATUS_HEIGHT="30"
+export PANEL_BG_COLOR="`xrq '*.background'`"
+export PANEL_BORDER_COLOR=`xrq '*.color8'`
+export PANEL_ACCENT_COLOR=`xrq '*.color9'`
+export PANEL_BORDER_WIDTH=$BW
+
+export PANEL_INNER_GAP="20"
+export PANEL_OUTER_GAP="20"
+
+# Clock bar
+export ICON_CLOCK="\ue015"
+
+# Music bar
+export ICON_PLAY="\ue058"
+export ICON_PAUSE="\ue059"
+export ICON_STOP="\ue057"
 
 # vim: set ft=sh :

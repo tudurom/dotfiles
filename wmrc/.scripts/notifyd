@@ -4,12 +4,15 @@
 # (c) tudurom 2016 - wtfpl
 #
 
+. $HOME/bin/wmrc
+
 NOTIFY_FIFO_PATH="${NOTIFY_FIFO_PATH:-/tmp/notifyd.fifo}"
 NOTIFY_COUNTER_PATH="${NOTIFY_COUNTER_PATH:-/tmp/notifyd.cnt}"
 
 # create fifo
-test -p $NOTIFY_FIFO_PATH || mkfifo $NOTIFY_FIFO_PATH
-rm "$NOTIFY_COUNTER_PATH"; echo "0" > "$NOTIFY_COUNTER_PATH"
+test -p $NOTIFY_FIFO_PATH && rm "$NOTIFY_FIFO_PATH"
+mkfifo $NOTIFY_FIFO_PATH
+test -f "$NOTIFY_COUNTER_PATH" && rm "$NOTIFY_COUNTER_PATH"; echo "0" > "$NOTIFY_COUNTER_PATH"
 
 # display vars
 DISPLAY_X="$(dattr -x `ppd`)"
@@ -17,7 +20,7 @@ DISPLAY_Y="$(dattr -y `ppd`)"
 DISPLAY_W="$(dattr -w `ppd`)"
 DISPLAY_H="$(dattr -h `ppd`)"
 
-space_len="$(txtw -f "PANEL_FONT_NAME" " ")"
+space_len="$(txtw -f "$PANEL_FONT_NAME" " ")"
 NOTIFY_H="$(( $PANEL_STATUS_HEIGHT ))"
 NOTIFY_Y="$(( DISPLAY_Y + GENERAL_GAP ))"
 
@@ -31,6 +34,11 @@ sn() {
 
 sn "0"
 
+for s in $HOME/bin/notifyd-*; do
+	pkill "$(basename $s)"
+    $s &
+done
+
 tail -f "$NOTIFY_FIFO_PATH" | \
 while IFS= read -r message; do
     # increment counter
@@ -39,7 +47,7 @@ while IFS= read -r message; do
     {
         NOTIFY_W="$(( 4 * space_len + $(txtw -f "$PANEL_FONT_NAME" "$(echo "$message" | tr -cd '[[:alnum:]]._-')")  ))"
         NOTIFY_X="$(( DISPLAY_X + DISPLAY_W - (GENERAL_GAP + NOTIFY_W + 2 * BW) ))"
-        NOTIFY_Y="$(( DISPLAY_Y + GENERAL_GAP + ( $(gn) - 1 ) * (NOTIFY_H + GENERAL_GAP) ))"
+        NOTIFY_Y="$(( DISPLAY_Y + GENERAL_GAP + ( $(gn) - 1 ) * (NOTIFY_H + GENERAL_GAP + 2 * BW) + 2 * BW ))"
         popup $NOTIFY_X $NOTIFY_Y $NOTIFY_W $NOTIFY_H "$message"
 
         # decrement the counter

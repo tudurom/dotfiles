@@ -3,10 +3,10 @@
 ! special
 *.foreground:   #67828d
 *.background:   #00222b
-*.cursorColor:  #678284
+*.cursorColor:  #67828d
 
 ! black
-*.color0:       #00222b
+*.color0:       #0a2c35
 *.color8:       #003b4f
 
 ! red

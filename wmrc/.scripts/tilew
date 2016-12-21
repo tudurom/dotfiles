@@ -5,7 +5,7 @@
 # arrange windows in a tiled pattern
 
 # default values for gaps and master area
-PANEL="${PANEL:-$(( PANEL_STATUS_HEIGHT ))}"
+PANEL="$(( PANEL_STATUS_HEIGHT + 2 * BW ))"
 test `pfd` = `ppd` || PANEL=0
 GAP=${GAP:-$GENERAL_GAP}
 MASTER="$(( $(dattr -w $(pfd)) / 2 ))"
@@ -14,7 +14,7 @@ MASTER="$(( $(dattr -w $(pfd)) / 2 ))"
 PFW=$(pfw)
 BW=$(wattr b $PFW)
 
-# get root window's size (beware, multi-head setups...)
+# get monitor's size
 SW=$(dattr -w $(pfd))
 SH=$(dattr -h $(pfd))
 SX=$(dattr -x $(pfd))
@@ -41,9 +41,9 @@ done
 
 # calculate usable screen size (without borders and gaps)
 SW=$((SW - GAP - 2*BW))
-SH=$((SH - 2 * GAP - PANEL))
+SH=$((SH - 2 * GAP - 2 * BW - PANEL))
 
-Y=$((2 * GAP + PANEL))
+Y=$((2 * GAP + BW + PANEL))
 # put current window in master area
 wtp $(( SX + GAP )) $(( SY + Y )) $((MASTER - GAP - 2*BW)) $((SH - GAP - 2 * BW)) $PFW
 

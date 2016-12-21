@@ -1,4 +1,4 @@
-URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
+*.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
 URxvt.letterSpace: 0
 ! No bold font
 URxvt.boldFont:
@@ -6,7 +6,7 @@ URxvt.boldFont:
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: true
 URxvt.internalBorder: 20
-!URxvt.geometry: 100x30
+URxvt.geometry: 80x20
 
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open

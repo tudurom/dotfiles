@@ -4,6 +4,8 @@
 # (c) tudurom 2016 - wtfpl
 #
 
+. $HOME/bin/wmrc
+
 POPUP_FONT=${POPUP_FONT:-lemon}
 POPUP_DURATION=${POPUP_DURATION:-5}
 

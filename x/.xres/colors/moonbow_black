@@ -1,4 +1,4 @@
-! moonbow by inami
+! moonbow_black by tudurom
 
 ! special
 *.foreground:   #7b8695
@@ -6,7 +6,7 @@
 *.cursorColor:  #7b8695
 
 ! black
-*.color0:       #252C31
+*.color0:       #252c31
 *.color8:       #374650
 
 ! red
