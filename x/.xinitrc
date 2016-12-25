@@ -54,6 +54,7 @@ wm() {
 	# Window compositor
 	compton -b
 	startBar
+	touchpadopts
 	exec startwm windowchef
 }
 wm

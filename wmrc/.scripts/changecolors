@@ -1,4 +1,11 @@
-#!/bin/sh -x
+#!/bin/sh
+
+usage() {
+	echo "Usage: $(basename "$0") <color scheme>" >&2
+	exit 1
+}
+
+test -f "$1" || usage
 
 sequences=""
 

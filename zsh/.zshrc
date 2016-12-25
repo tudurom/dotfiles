@@ -5,3 +5,5 @@ for f in $HOME/.zsh.d/*.zsh; do
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+clear

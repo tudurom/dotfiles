@@ -123,7 +123,9 @@ set wildignorecase
 " C-d to hide find results
 nnoremap <silent> <Leader>d :noh<CR>
 " Esc in terminal
-tnoremap <Esc> <C-\><C-n>
+if has('nvim')
+	tnoremap <Esc> <C-\><C-n>
+endif
 " Navigate long lines easily
 map j gj
 map k gk
