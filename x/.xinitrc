@@ -55,7 +55,9 @@ wm() {
 	compton -b
 	startBar
 	touchpadopts
-	exec startwm windowchef
+	wm=windowchef
+	sxhkd -c $HOME/.config/sxhkd/sxhkd_${wm} $HOME/.config/sxhkd/commons
+	exec startwm $wm
 }
 wm
 #exec gnome-session

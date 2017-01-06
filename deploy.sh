@@ -27,3 +27,5 @@ for dir in */; do
 	echo "- ${dir}"
 	xstow -i README.md "$dir"
 done
+
+./pre_magic.sh

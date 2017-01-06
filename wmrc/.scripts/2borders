@@ -7,19 +7,16 @@
 # (c) 2016 Tudor Roman - wtfpl
 #
 
-inner="2"
-outer="4"
-
-inner="$(( BW / 2 ))"
-outer="$(( BW - inner))"
+inner="4"
+outer="2"
 
 focusedTint=80
 normalTint=20
 
-outerFocused="$(xrq '*.color4' | sed 's/\#/0x/')"
-innerFocused=`colort -l $focusedTint "$outerFocused"`
+outerFocused="$(xrq '*.color0' | sed 's/\#/0x/')"
+innerFocused="$(xrq '*.color6' | sed 's/\#/0x/')"
 outerNormal="$(xrq '*.color0' | sed 's/\#/0x/')"
-innerNormal=`colort -l $normalTint "$outerNormal"`
+innerNormal="$(xrq '*.color8' | sed 's/\#/0x/')"
 
 _chwb2() {
 	local colorType="$1"
@@ -36,6 +33,8 @@ _chwb2() {
 
 	chwb2 -I $innerColor -O $outerColor -i $inner -o $outer $window
 }
+
+(while :; do _chwb2 focused `pfw`; sleep 0.1; done) &
 
 wew -m 2097152 | \
 while read -r line; do

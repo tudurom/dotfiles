@@ -9,10 +9,10 @@ if [ "$(lsw | wc -l)" -eq 1 ]; then
 fi
 
 pfw="${2:-$(pfw)}"
-screen_width="$(dattr -w $(pfd))"
-screen_height="$(dattr -h $(pfd))"
-screen_x="$(dattr -x $(pfd))"
-screen_y="$(dattr -y $(pfd))"
+screen_width="$(dattr w $(pfd))"
+screen_height="$(dattr h $(pfd))"
+screen_x="$(dattr x $(pfd))"
+screen_y="$(dattr y $(pfd))"
 
 border_width="$(wattr b $pfw)"
 width="$(wattr w $pfw)"

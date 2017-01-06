@@ -8,17 +8,17 @@
 PANEL="$(( PANEL_STATUS_HEIGHT + 2 * BW ))"
 test `pfd` = `ppd` || PANEL=0
 GAP=${GAP:-$GENERAL_GAP}
-MASTER="$(( $(dattr -w $(pfd)) / 2 ))"
+MASTER="$(( $(dattr w $(pfd)) / 2 ))"
 
 # get current window id and its borderwidth
 PFW=$(pfw)
 BW=$(wattr b $PFW)
 
 # get monitor's size
-SW=$(dattr -w $(pfd))
-SH=$(dattr -h $(pfd))
-SX=$(dattr -x $(pfd))
-SY=$(dattr -y $(pfd))
+SW=$(dattr w $(pfd))
+SH=$(dattr h $(pfd))
+SX=$(dattr x $(pfd))
+SY=$(dattr y $(pfd))
 # The other limits of the monitor
 LX=$(( SX + SW ))
 LY=$(( SY + SH ))

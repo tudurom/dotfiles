@@ -47,10 +47,10 @@ test -f "$COMMAND_FILE" && rm "$COMMAND_FILE"
 # over is the default mode
 echo "over" > "$COMMAND_FILE"
 
-PD_X="$(dattr -x `ppd`)"
-PD_Y="$(dattr -y `ppd`)"
-PD_WIDTH="$(dattr -w `ppd`)"
-PD_HEIGHT="$(dattr -h `ppd`)"
+PD_X="$(dattr x `ppd`)"
+PD_Y="$(dattr y `ppd`)"
+PD_WIDTH="$(dattr w `ppd`)"
+PD_HEIGHT="$(dattr h `ppd`)"
 
 BAR_X="$(( PD_X + GENERAL_GAP ))"
 BAR_Y="$(( PD_Y + GENERAL_GAP ))"

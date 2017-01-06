@@ -5,6 +5,7 @@ alias problemhelper="time problemhelper"
 alias ph=problemhelper
 alias tls="tmux ls"
 alias ls="ls -F"
+alias ll="ls -alF"
 alias tswitch="tmux switch -t"
 alias tkill="tmux kill-session -t"
 alias rm="rm -I"

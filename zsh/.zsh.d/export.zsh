@@ -19,6 +19,7 @@ fi
 if [[ -f /usr/bin/ruby ]]; then
     ruby_ver="$(ls -1 $HOME/.gem/ruby | sort -nr | head -n 1)"
     export PATH="$PATH:$HOME/.gem/ruby/$ruby_ver/bin"
+    export GEM_HOME="$HOME/.gem"
 fi
 
 # JS

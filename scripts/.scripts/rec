@@ -1,7 +1,7 @@
 #!/bin/sh
 
-x=`dattr -w $(ppd)`
-y=`dattr -h $(ppd)`
+x=`dattr w $(ppd)`
+y=`dattr h $(ppd)`
 tmp=$(mktemp --suffix=.mp4)
 sleep 1
 (sleep 0.3; echo "%{F$PANEL_ACCENT_COLOR}%{F-} Recording started! Say 'cheese'!" > "$NOTIFY_FIFO_PATH") &

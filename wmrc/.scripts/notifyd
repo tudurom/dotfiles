@@ -15,10 +15,10 @@ mkfifo $NOTIFY_FIFO_PATH
 test -f "$NOTIFY_COUNTER_PATH" && rm "$NOTIFY_COUNTER_PATH"; echo "0" > "$NOTIFY_COUNTER_PATH"
 
 # display vars
-DISPLAY_X="$(dattr -x `ppd`)"
-DISPLAY_Y="$(dattr -y `ppd`)"
-DISPLAY_W="$(dattr -w `ppd`)"
-DISPLAY_H="$(dattr -h `ppd`)"
+DISPLAY_X="$(dattr x `ppd`)"
+DISPLAY_Y="$(dattr y `ppd`)"
+DISPLAY_W="$(dattr w `ppd`)"
+DISPLAY_H="$(dattr h `ppd`)"
 
 space_len="$(txtw -f "$PANEL_FONT_NAME" " ")"
 NOTIFY_H="$(( $PANEL_STATUS_HEIGHT ))"

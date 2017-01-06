@@ -57,3 +57,6 @@ alt + k
 
 alt + l
 	closestw l | xargs wtf
+
+~button1
+	hov=`hovered` && wtf $hov && chwso -r $hov

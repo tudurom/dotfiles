@@ -3,4 +3,4 @@
 # Symlink .scripts to bin
 cd $HOME
 
-ln -s .scripts bin
+test -h bin || ln -s .scripts bin

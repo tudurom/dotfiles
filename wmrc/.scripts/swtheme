@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 usage() {
 	echo "Usage: $(basename $0) <colorscheme>" >&2
@@ -29,3 +29,5 @@ test -f "$HOME/.wm/themes/$colorscheme" || exit 0
 . $HOME/.wm/themes/$colorscheme
 
 wall-e "$wallpaper_path" "$wallpaper_style"
+
+chwso -r `pfw`

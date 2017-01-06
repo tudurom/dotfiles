@@ -15,10 +15,10 @@ clock() {
 
 width=110
 height=5
-pd_x="$(dattr -x $(ppd))"
-pd_y="$(dattr -y $(ppd))"
-pd_width="$(dattr -w $(ppd))"
-pd_height="$(dattr -h $(ppd))"
+pd_x="$(dattr x $(ppd))"
+pd_y="$(dattr y $(ppd))"
+pd_width="$(dattr w $(ppd))"
+pd_height="$(dattr h $(ppd))"
 
 panel_width=$(( width + 2 * GENERAL_GAP ))
 panel_height=$PANEL_STATUS_HEIGHT

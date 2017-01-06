@@ -46,12 +46,11 @@ Plug 'christoomey/vim-tmux-navigator'
 " Resize mode
 Plug 'simeji/winresizer'
 
+Plug 'vim-scripts/Smart-Tabs'
+
 " Colors
 Plug 'whatyouhide/vim-gotham'
 Plug 'tudurom/bleh.vim'
-
-" Going mainstream
-" Plug 'itchyny/lightline.vim'
 
 call plug#end()
 filetype plugin indent on
@@ -144,6 +143,7 @@ map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>= <C-w>=
 map <Leader><Space> <C-w><C-w>
+nmap <Leader>r :WinResizerStartResize<CR>
 
 " }}}
 
@@ -185,6 +185,7 @@ augroup Filetypes
 	au!
 
 	au BufRead,BufNewFile *.md setlocal textwidth=80 spell spelllang=en,ro
+	au BufRead,BufNewFile *.html imap <C-Space> <C-X><C-O>
 	autocmd vimresized * execute "normal \<C-W>="
 
 augroup end
