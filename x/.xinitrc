@@ -56,8 +56,8 @@ wm() {
 	startBar
 	touchpadopts
 	wm=windowchef
-	sxhkd -c $HOME/.config/sxhkd/sxhkd_${wm} $HOME/.config/sxhkd/commons
-	exec startwm $wm
+	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
+	exec $wm
 }
 wm
 #exec gnome-session
