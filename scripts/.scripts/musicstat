@@ -1,0 +1,27 @@
+#!/bin/sh
+
+no="$1"
+
+curr="$(cmus-remote -C status)"
+
+status="$(echo "$curr" | grep status | cut -d' ' -f2)"
+ico=""
+if [ "$status" = "playing" ]; then
+	ico=""
+elif [ "$status" = "paused" ]; then
+	ico=""
+else
+	ico=""
+fi
+artist="$(echo "$curr" | grep '^tag artist ' | sed 's/^tag artist //')"
+title="$(echo "$curr" | grep '^tag title ' | sed 's/^tag title //')"
+song="${artist} - ${title}"
+
+out="%{F$PANEL_ACCENT_COLOR}${ico}%{F-} ${song}"
+if [ "$no" = "col" ]; then
+	out="${ico} ${song}"
+elif [ "$no" = "ico" ]; then
+	out="${song}"
+fi
+
+echo "$out"

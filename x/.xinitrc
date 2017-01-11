@@ -30,9 +30,7 @@ screenlayout
 unclutter -b
 
 # Music!
-if ! pidof mpd; then
-	mpd &
-fi
+cmuslauncher
 # Set cursor from X to pointer
 xsetroot -cursor_name left_ptr &
 # Wallpaper

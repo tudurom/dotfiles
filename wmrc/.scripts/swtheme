@@ -8,6 +8,7 @@ usage() {
 test -z "$1" && usage
 
 colorscheme="$1"
+
 test -f "$HOME/.xres/colors/$colorscheme" || \
 	(echo "$(basename $0): color scheme not found" >&2 && exit 1)
 
@@ -27,7 +28,13 @@ pgrep herbstluftwm > /dev/null && herbstclient reload
 test -f "$HOME/.wm/themes/$colorscheme" || exit 0
 
 . $HOME/.wm/themes/$colorscheme
+sed -i --follow-symlinks 's/CURRENT_THEME=.*/CURRENT_THEME='"$colorscheme"'/' "$HOME/bin/wmrc"
+sed -i --follow-symlinks 's/set background=.*/set background='"$color_style"'/' $HOME/.config/nvim/init.vim
+sed -i --follow-symlinks 's/\.xres\/colors\/.*/\.xres\/colors\/'"$colorscheme"'"/' $HOME/.Xresources
 
 wall-e "$wallpaper_path" "$wallpaper_style"
 
 chwso -r `pfw`
+
+. $HOME/bin/wmrc
+echo "%{F$PANEL_ACCENT_COLOR}%{F-} Theme '$colorscheme' loaded." > "$NOTIFY_FIFO_PATH"

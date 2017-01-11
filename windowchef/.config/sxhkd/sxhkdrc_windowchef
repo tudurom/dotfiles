@@ -44,7 +44,7 @@ super + {Insert,Prior,Delete,Next,End}
 	waitron window_snap {topleft,topright,bottomleft,bottomright,middle}
 
 super + {_,alt +} t
-	{xmmv,xmrs}
+	chwso -r `pfw` && {xmmv,xmrs}
 
 alt + h
 	closestw h | xargs wtf
@@ -58,5 +58,11 @@ alt + k
 alt + l
 	closestw l | xargs wtf
 
+super + shift + t
+	tilew
+
 ~button1
-	hov=`hovered` && wtf $hov && chwso -r $hov
+	hov=`hovered` && if [ $hov != `pfw` ]; then wtf $hov && chwso -r $hov; fi
+
+super + shift + r
+	$HOME/.config/windowchef/windowchefrc

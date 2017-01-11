@@ -26,12 +26,6 @@ super + F1
 super + F2
   echo "music" > /tmp/minbar.cmd
 
-super + F3
-  echo "awesome" > /tmp/minbar.cmd
-
-super + F4
-  pcpm
-
 XF86AudioRaiseVolume
   echo `vol i` `vol +` > "$NOTIFY_FIFO_PATH"
 
@@ -51,16 +45,16 @@ XF86MonBrightnessDown
   xbacklight -dec 10%
 
 XF86AudioPlay
-  mpc toggle
+  cmus-remote -u
 
 XF86AudioStop
-  mpc stop
+  cmus-remote -s
 
 XF86AudioNext
-  mpc next
+  cmus-remote -n
 
 XF86AudioPrev
-  mpc prev
+  cmus-remote -r
 
 Print
   screenie

@@ -7,4 +7,5 @@
 #include ".xres/xft"
 #include ".xres/colors/stairs"
 #include ".xres/urxvt"
+#include ".xres/st"
 #include ".xres/misc"

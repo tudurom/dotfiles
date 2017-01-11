@@ -27,8 +27,7 @@ reload_settings() {
 	C10="$(xrq '*color10')"
 	C11="$(xrq '*color11')"
 	C12="$(xrq '*color12')"
-	C13="$(xrq '*color13')"
-	C14="$(xrq '*color14')"
+	C13="$(xrq '*color13')" C14="$(xrq '*color14')"
 	C15="$(xrq '*color15')"
 	CFG="$(xrq '*foreground')"
 	CBG="$(xrq '*.background')"
@@ -52,10 +51,10 @@ PD_Y="$(dattr y `ppd`)"
 PD_WIDTH="$(dattr w `ppd`)"
 PD_HEIGHT="$(dattr h `ppd`)"
 
-BAR_X="$(( PD_X + GENERAL_GAP ))"
-BAR_Y="$(( PD_Y + GENERAL_GAP ))"
 BAR_WIDTH="300"
 BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
+BAR_X="$(( PD_X + (PD_WIDTH - BAR_WIDTH) / 2 ))"
+BAR_Y="$(( PD_Y + GENERAL_GAP ))"
 
 SEP_SMALL="        "
 SEP_BIG="            "
@@ -102,10 +101,6 @@ get_time() {
     echo "$out"
 }
 
-get_braille_time() {
-    echo "$(brclock | tr '\n' ' ' | sed 's/ //g')"
-}
-
 get_date() {
     local out="$(date '+%a, %d %B' | tr [:upper:] [:lower:])"
 
@@ -145,23 +140,11 @@ get_battery_icon() {
 }
 
 get_music() {
-    local song="$(mpc current -f "[[%artist%|%album%] - %title%]|%file%")"
-
-    echo "$song"
+    echo "$(musicstat ico)"
 }
 
 get_music_icon() {
-    local status="$(mpc status | sed -n 2p | cut -d' ' -f 1)"
-    local ico=""
-    if [ "$status" = "[playing]" ]; then
-        ico=""
-    elif [ "$status" = "[paused]" ]; then
-        ico=""
-    else
-        ico=""
-    fi
-
-    echo "$ico"
+	musicstat | cut -d' ' -f1
 }
 # }}}
 
@@ -194,14 +177,6 @@ while :; do
             else
                 echo "%{c}$(i $(get_music_icon)) $(get_music)"
             fi
-            ;;
-        notif)
-            echo "$arg" | skroll -r -n $SKROLL_CHARS
-            echo "over" > "$COMMAND_FILE"
-            ;;
-        awesome)
-            out="%{c}$(i $CLOCK_ICON) $(get_braille_time)"
-            echo "$out"
             ;;
     esac
 

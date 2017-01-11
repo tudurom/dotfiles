@@ -16,4 +16,6 @@ export PANEL_BORDER_WIDTH=$BW
 export PANEL_INNER_GAP="20"
 export PANEL_OUTER_GAP="20"
 
+export PANEL_MUSIC_NOTIFY_LAST_STATE="/tmp/notifyd-musicd-state"
+
 # vim: set ft=sh :

@@ -12,9 +12,7 @@ export POPUP_FONT=Metis
 export POPUP_DURATION=5
 export GROOT=/tmp/groaw
 export GNUMBER=6
-export WALL_DIR=$HOME/wallpapers
-export WALL=stairs.jpg
-export WALL_TYPE=fill
+export CURRENT_THEME=stairs
 
 test -z "$DISPLAY" && exit
 #export PANEL_FONT="-*-erusfont-medium-*-*-*-11-*-*-*-*-*-*-*"

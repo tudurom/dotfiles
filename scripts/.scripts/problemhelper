@@ -10,7 +10,7 @@ def center(s)
 end
 
 def compile
-  puts `cc #{$problem_name}.c -o #{$problem_name} -Wall -g`
+  puts `cc #{$problem_name}.c -o #{$problem_name} -Wall -g -lm`
 end
 
 def run

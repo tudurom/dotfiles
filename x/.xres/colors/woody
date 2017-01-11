@@ -7,7 +7,7 @@
 
 ! black
 *.color0:       #3f3a3c
-*.color8:       #8e7b71
+*.color8:       #3f3a3c
 
 ! red
 *.color1:       #784848
@@ -35,6 +35,6 @@
 
 ! white
 *.color7:       #d2bbad
-*.color15:      #d2bbad
+*.color15:      #8e7b71
 
 ! vim: set ft=xdefaults :

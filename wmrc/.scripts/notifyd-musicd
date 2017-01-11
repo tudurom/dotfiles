@@ -1,23 +1,15 @@
 #!/bin/sh
 
 . $HOME/bin/wmrc
+. $HOME/bin/panelsrc
 
+last=""
+test -f "$PANEL_MUSIC_NOTIFY_LAST_STATE" && last=`cat $PANEL_MUSIC_NOTIFY_LAST_STATE`
 while :; do
-    upd=`mpc idle`
-    if [ "$upd" = "player" ]; then
-        curr="$(mpc status)"
+	out="$(musicstat)"
+	test "$(musicstat col)" != "$last" && echo "$out" > "$NOTIFY_FIFO_PATH"
+	last="$(musicstat col)"
+	printf "%s" "$last" > "$PANEL_MUSIC_NOTIFY_LAST_STATE"
 
-        status="$(echo "$curr" | sed -n 2p | cut -d' ' -f1)"
-        ico=""
-        if [ "$status" = "[playing]" ]; then
-            ico=""
-        elif [ "$status" = "[paused]" ]; then
-            ico=""
-        else
-            ico=""
-        fi
-        song="$(mpc current)"
-
-        echo "%{F$PANEL_ACCENT_COLOR}${ico}%{F-} ${song}" > "$NOTIFY_FIFO_PATH"
-    fi
+	sleep 0.2
 done

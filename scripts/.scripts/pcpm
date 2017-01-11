@@ -1,3 +1,0 @@
-#!/bin/sh
-
-echo "$(mpc current)" > "$NOTIFY_FIFO_PATH"

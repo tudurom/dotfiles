@@ -1,0 +1,10 @@
+#!/bin/sh
+
+session="cmus"
+
+tmux start-server
+tmux has-session -t "$session"
+
+if [ "$?" -ne 0 ]; then
+	tmux new -d -s "$session" cmus
+fi

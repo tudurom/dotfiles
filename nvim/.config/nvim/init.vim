@@ -34,9 +34,11 @@ Plug 'scrooloose/syntastic'
 " Show changes
 Plug 'airblade/vim-gitgutter'
 
-" Markdown
+" Make tables
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+
+" Markdown
+Plug 'gabrielelana/vim-markdown'
 
 Plug 'othree/html5.vim'
 
@@ -45,8 +47,6 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " Resize mode
 Plug 'simeji/winresizer'
-
-Plug 'vim-scripts/Smart-Tabs'
 
 " Colors
 Plug 'whatyouhide/vim-gotham'

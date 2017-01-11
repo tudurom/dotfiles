@@ -16,12 +16,16 @@ setopt interactive_comments
 autoload -U colors && colors
 autoload -U zmv
 
-PROMPT='$fg_bold[black]$(pwd | sed "s/\/home\/$USER/~/")
+pwdcolor='$fg_bold[black]'
+if [ -f "$HOME/bin/wmrc" ] && [ -n "$DISPLAY" ]; then
+	. $HOME/bin/wmrc
+	if [ "$color_style" = "light" ]; then
+		pwdcolor='$fg_bold[white]'
+	fi
+fi
+PROMPT="$pwdcolor"'$(pwd | sed "s/\/home\/$USER/~/")
 %{$fg[red]%(? $fg[cyan] )%}─── %f'
 
 setopt extendedglob
 setopt nocaseglob
 setopt no_hup
-
-# gotham
-AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=11'

@@ -18,8 +18,8 @@
 
 :root {
     /* TAB VARIABLES */
-    --bg-light: #193137; --bg-dark: #051d23;
-    --fg-light: #a67f72; --fg-dark: #3b7279;
+    --bg-light: #{{index .ColorMap "00" "hex" }}; --bg-dark: #{{index .ColorMap "bg" "hex"}};
+    --fg-light: #{{index .ColorMap "09" "hex"}}; --fg-dark: #{{index .ColorMap "06" "hex"}};
     --tab-triangle-correction: -1px;
     --tab-height: 32px; --tab-icon-size: 16px; --tab-strip-margin: -12px; --tab-overlap: -5px;
     --tab-fonts: gohufont; --tab-font-size: 8pt;

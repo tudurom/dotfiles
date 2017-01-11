@@ -1,3 +1,4 @@
+set -x
 export PATH="$PATH:/usr/local/bin:/sbin:$HOME/bin"
 export BSPWM_STATE="/tmp/bspwm-state.json"
 export PANEL_FIFO="/tmp/panel-fifo"

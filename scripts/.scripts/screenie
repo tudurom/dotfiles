@@ -13,4 +13,5 @@ test "$select" = "true" && opts="-s"
 
 maim $opts "$HOME/tmp/screenies/${number}.png"
 
-echo "Screenshot taken" > "$NOTIFY_FIFO_PATH"
+. $HOME/bin/wmrc
+echo "%{F$PANEL_ACCENT_COLOR}%{F-} Screenshot taken" > "$NOTIFY_FIFO_PATH"

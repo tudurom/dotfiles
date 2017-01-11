@@ -1,9 +1,14 @@
 #!/bin/sh
 
 . $HOME/bin/wmrc
+. $HOME/.wm/themes/$CURRENT_THEME
 
 foc="$(xrq '*.color6' | sed 's/\#/0x/')"
-unfoc="$(xrq '*.color8' | sed 's/\#/0x/')"
+if [ "$color_style" = "dark" ]; then
+	unfoc="$(xrq '*.color8' | sed 's/\#/0x/')"
+else
+	unfoc="$(xrq '*.color15' | sed 's/\#/0x/')"
+fi
 
 waitron wm_config border_width $BW
 waitron wm_config color_focused $foc

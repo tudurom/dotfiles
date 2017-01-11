@@ -13,6 +13,7 @@ alias clip="xclip -selection clipboard"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
 alias rnb="toilet -f future"
+alias cmus="launchcmus"
 test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"
 
 testnet() {
@@ -64,4 +65,9 @@ x0st() {
 
 mtp() {
     sudo simple-mtpfs /mnt -o allow_other
+}
+
+launchcmus() {
+	tmux a -t cmus
+	test "$?" -ne 0 && cmuslauncher && launchcmus
 }

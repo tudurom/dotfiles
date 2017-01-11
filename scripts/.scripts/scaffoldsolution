@@ -2,6 +2,7 @@
 
 dir="$HOME/usr/work/problems"
 template="template.c"
+makefile="Makefile.sample"
 
 if [ $# -lt 1  ]; then
     printf "Project name? "
@@ -15,14 +16,16 @@ project_dir="${dir}/${proj_name}"
 
 test -d "$project_dir" && echo "Already exists." && exit 1
 
-echo "$(tput bold)"
+echo "$(tput bold)$(tput setaf 2)"
 mkdir -p $project_dir
-echo "$(tput setaf 2)created $project_dir"
+echo "created $project_dir"
 touch "${project_dir}/${proj_name}.in"
-echo "$(tput setaf 2)created ${project_dir}/${proj_name}.in"
+echo "created ${project_dir}/${proj_name}.in"
 touch "${project_dir}/${proj_name}.out"
-echo "$(tput setaf 2)created ${project_dir}/${proj_name}.out"
+echo "created ${project_dir}/${proj_name}.out"
 cp "${dir}/${template}" "${project_dir}/${proj_name}.c"
-echo "$(tput setaf 2)created ${project_dir}/${proj_name}.c"
+echo "created ${project_dir}/${proj_name}.c"
+cp "${dir}/${makefile}" "${project_dir}/Makefile"
+echo "created ${project_dir}/Makefile"
 echo "$(tput sgr0)"
 
