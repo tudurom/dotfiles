@@ -1,3 +1,18 @@
-wallpaper_path="$HOME/wallpapers/test_tile7_3.png"
-wallpaper_style="tile"
-color_style="dark"
+WALLPAPER_PATH="$HOME/wallpapers/test_tile7_3.png"
+WALLPAPER_STYLE="tile"
+COLOR_STYLE="dark"
+BORDER_WIDTH=5
+PANEL_FONT="-*-yuki-*-*-*-*-10-*-*-*-*-*-*-*"
+PANEL_ICON_FONT="-wuncon-siji-medium-*-*-*-10-*-*-*-*-*-*-*"
+PANEL_FONT_NAME="yuki"
+PANEL_ICON_FONT_NAME="siji"
+
+BORDER_COLOR_FOC=`xrq '*.color6'`
+BORDER_COLOR_UNFOC=`xrq '*.color8'`
+
+PANEL_STATUS_HEIGHT="30"
+PANEL_BG_COLOR="`xrq '*.background'`"
+PANEL_BORDER_COLOR=`xrq '*.color8'`
+PANEL_ACCENT_COLOR=`xrq '*.color9'`
+PANEL_BORDER_WIDTH=$BW
+TERM_FONT=-*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*

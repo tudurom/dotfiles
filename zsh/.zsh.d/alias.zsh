@@ -1,8 +1,6 @@
 alias :q=exit
 alias irb=pry
 alias ccat=pygmentize
-alias problemhelper="time problemhelper"
-alias ph=problemhelper
 alias tls="tmux ls"
 alias ls="ls -F"
 alias ll="ls -alF"

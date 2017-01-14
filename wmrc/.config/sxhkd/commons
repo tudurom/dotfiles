@@ -15,7 +15,7 @@ super + shift + f
   $BROWSER
 
 super + shift + x
-  slock
+  gotosleep
 
 super + shift + p
   theme_menu
@@ -64,3 +64,6 @@ Print + shift
 
 super + ctrl + k
   killw `pfw`
+
+{_,shift + }button10
+	screenie {_,-s}

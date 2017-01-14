@@ -1,14 +1,13 @@
-#! /bin/sh -x
+#! /bin/sh
 #
 # Set wallpaper
 # (c) tudurom 2016 - wtfpl
 #
 
 . $HOME/bin/wmrc
-. $HOME/.wm/themes/$CURRENT_THEME
 
-DEFAULT_WALL="$wallpaper_path"
-DEFAULT_WALL_TYPE="${wallpaper_style:-fill}"
+DEFAULT_WALL="$WALLPAPER_PATH"
+DEFAULT_WALL_TYPE="${WALLPAPER_STYLE:-fill}"
 APRIL_WALL="$HOME/wallpapers/april_wall.png"
 
 if [ "$(date +"%d/%m")" = "01/04" ]; then

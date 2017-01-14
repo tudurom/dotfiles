@@ -5,19 +5,19 @@
 " ==Ocean_Colorscheme_Settings==
 
 "StatusLine settings
-hi StatusLine           color: #b5b5bc; background: #051d23; font-size: 8pt; font-family: gohufont;
+hi StatusLine           color: #b5b5bc; background: #051d23; font-size: 8pt; font-family: monospace;
 
 "CmdLine settings excluding Gradient
 hi Normal               color: #b5b5bc; background: #051d23;
-hi CmdLine              background: #051d23; color: #b5b5bc; font-family: gohufont; font-size: 8pt;
-hi CompDesc             color: #b5b5bc; width: 50%; font-family: gohufont; font-size: 8pt;
+hi CmdLine              background: #051d23; color: #b5b5bc; font-family: monospace; font-size: 8pt;
+hi CompDesc             color: #b5b5bc; width: 50%; font-family: monospace; font-size: 8pt;
 hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
-hi CompItem[selected]   background: #051d23; color: #a67f72; font-family: gohufont;
-hi CompMsg              font-family: gohufont; font-style: gohufont; margin-left: 16px; font-size: 8pt;
-hi CompResult           width: 45%; overflow: hidden;font-size: 8pt; font-family: gohufont; font-weight: normal;
-hi CompTitle            color: $b5b5bc; background: #051d23; font-weight: bold; font-family: gohufont; font-size: 8pt;
-hi CompTitle>*          padding: 0 .5ex; font-family: gohufont; font-size: 8pt;
-hi Filter               font-weight: bold;color: #b5b5bc; font-family: gohufont; font-size: 8pt;
+hi CompItem[selected]   background: #051d23; color: #a67f72; font-family: monospace;
+hi CompMsg              font-family: monospace; font-style: monospace; margin-left: 16px; font-size: 8pt;
+hi CompResult           width: 45%; overflow: hidden;font-size: 8pt; font-family: monospace; font-weight: normal;
+hi CompTitle            color: $b5b5bc; background: #051d23; font-weight: bold; font-family: monospace; font-size: 8pt;
+hi CompTitle>*          padding: 0 .5ex; font-family: monospace; font-size: 8pt;
+hi Filter               font-weight: bold;color: #b5b5bc; font-family: monospace; font-size: 8pt;
 
 "Used with ]f and [f
 hi FrameIndicator       background-color: #051d23; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
@@ -27,7 +27,7 @@ hi ErrorMsg             color: #193137; background: #725c4c; font-weight: bold;
 
 
 "Hint section
-hi Hint               	font-family: gohufont; font-size: 12px; font-weight: bold; color: #725c4c; background-color: #051d23; border: solid 1px #0c4857;
+hi Hint               	font-family: monospace; font-size: 12px; font-weight: bold; color: #725c4c; background-color: #051d23; border: solid 1px #0c4857;
 hi Hint::after          content: attr(number);
 hi HintActive           background: #b5b5bc; color: #eee7e4;
 hi HintElem             background-color: #051d23; color: #a3be8c;

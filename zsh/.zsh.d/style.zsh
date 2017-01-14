@@ -19,7 +19,7 @@ autoload -U zmv
 pwdcolor='$fg_bold[black]'
 if [ -f "$HOME/bin/wmrc" ] && [ -n "$DISPLAY" ]; then
 	. $HOME/bin/wmrc
-	if [ "$color_style" = "light" ]; then
+	if [ "$COLOR_STYLE" = "light" ]; then
 		pwdcolor='$fg_bold[white]'
 	fi
 fi

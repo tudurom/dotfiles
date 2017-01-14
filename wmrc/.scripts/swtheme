@@ -1,4 +1,9 @@
-#!/bin/sh
+#!/bin/sh -x
+#
+# swtheme - switch theme
+# (c) tudurom 2017 - wtfpl
+# WARNING: EXPECT EXTREME HACKS
+#
 
 usage() {
 	echo "Usage: $(basename $0) <colorscheme>" >&2
@@ -12,29 +17,55 @@ colorscheme="$1"
 test -f "$HOME/.xres/colors/$colorscheme" || \
 	(echo "$(basename $0): color scheme not found" >&2 && exit 1)
 
+# change terminal colors
 changecolors "$HOME/.xres/colors/$colorscheme"
 
-# reload panel
-pkill minbar
-minbar > /dev/null &
-pkill notifyd
-notifyd > /dev/null &
+test -f "$HOME/.wm/themes/$colorscheme" || exit 0
+
+echo "$colorscheme" > "$CURRENT_THEME_PATH"
+. $HOME/bin/wmrc
+for term in /dev/pts/[0-9]*; do
+	printf '\33]50;%s\007' "$TERM_FONT" > "$term"
+done
+
+# I don't feel the need for templating
+sed -i --follow-symlinks 's/set background=.*/set background='"$COLOR_STYLE"'/' $HOME/.config/nvim/init.vim
+sed -i --follow-symlinks 's/\*\.font: .*/\*\.font: '"$TERM_FONT"'/' $HOME/.xres/urxvt
+sed -i --follow-symlinks 's/\.xres\/colors\/.*/\.xres\/colors\/'"$colorscheme"'"/' $HOME/.Xresources
+sed -i --follow-symlinks 's/colo .*/colo '"$colorscheme"'/' $HOME/.vimperatorrc
+
+# Reload firefox and change theme
+if pgrep firefox; then
+	firefox_profile="$(grep Path $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2 | head -n 1)"
+	rainbou "$colorscheme" "$HOME/.wm/templates/firefox_${COLOR_STYLE}" > "$HOME/.mozilla/firefox/$firefox_profile/chrome/userChrome.css"
+	wd=`pwd`
+	cd $HOME/dotfiles/startpage/scss
+	rainbou "$colorscheme" scss > colors.scss
+	cd ..
+	./gencss
+	cd "$wd"
+	for wid in $(lsw); do
+		if xprop -id $wid WM_CLASS | grep Firefox > /dev/null; then
+			killwa "$wid"
+		fi
+	done
+	# Firefox wants some sleep
+	sleep 0.5
+	firefox &
+fi
+
+wall-e "$WALLPAPER_PATH" "$WALLPAPER_STYLE"
 
 # reload wm
 pgrep windowchef > /dev/null && $HOME/.config/windowchef/windowchefrc
 pgrep bspwm > /dev/null && $HOME/.config/bspwm/bspwmrc
 pgrep herbstluftwm > /dev/null && herbstclient reload
 
-test -f "$HOME/.wm/themes/$colorscheme" || exit 0
+# reload panel
+pgrep minbar && pkill minbar && minbar > /dev/null &
+pgrep notifyd && pkill notifyd && notifyd > /dev/null &
 
-. $HOME/.wm/themes/$colorscheme
-sed -i --follow-symlinks 's/CURRENT_THEME=.*/CURRENT_THEME='"$colorscheme"'/' "$HOME/bin/wmrc"
-sed -i --follow-symlinks 's/set background=.*/set background='"$color_style"'/' $HOME/.config/nvim/init.vim
-sed -i --follow-symlinks 's/\.xres\/colors\/.*/\.xres\/colors\/'"$colorscheme"'"/' $HOME/.Xresources
+# I don't know why but notifyd wants a break
+sleep 0.3
 
-wall-e "$wallpaper_path" "$wallpaper_style"
-
-chwso -r `pfw`
-
-. $HOME/bin/wmrc
-echo "%{F$PANEL_ACCENT_COLOR}%{F-} Theme '$colorscheme' loaded." > "$NOTIFY_FIFO_PATH"
+echo -e "%{F$PANEL_ACCENT_COLOR}%{F-} Theme '$colorscheme' loaded." > /tmp/notifyd.fifo

@@ -2,6 +2,8 @@
 
 # this is a simple config for herbstluftwm
 
+. $HOME/bin/wmrc
+
 # Color definitions {{{
 C0="$(xrq '*color0')"
 C1="$(xrq '*color1')"
@@ -48,18 +50,18 @@ hc mousebind $Mod-Button3 resize
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color $C8
-hc set frame_border_normal_color $C0
-hc set frame_bg_normal_color $C8
-hc set frame_bg_active_color $C6
+hc set frame_border_active_color $BORDER_COLOR_FOC
+hc set frame_border_normal_color $BORDER_COLOR_UNFOC
+hc set frame_bg_normal_color $BORDER_COLOR_UNFOC
+hc set frame_bg_active_color $BORDER_COLOR_FOC
 hc set frame_border_width 0
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 5
 hc set frame_gap $GENERAL_GAP
 
-hc attr theme.active.color $C6
-hc attr theme.normal.color $C8
+hc attr theme.active.color $BORDER_COLOR_FOC
+hc attr theme.normal.color $BORDER_COLOR_UNFOC
 hc attr theme.urgent.color $C9
 hc attr theme.inner_width 0
 hc attr theme.inner_color black

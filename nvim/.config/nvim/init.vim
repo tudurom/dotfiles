@@ -38,9 +38,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 
 " Markdown
-Plug 'gabrielelana/vim-markdown'
+"Plug 'gabrielelana/vim-markdown'
 
 Plug 'othree/html5.vim'
+
+" Search through files
+Plug 'mileszs/ack.vim'
 
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
@@ -145,6 +148,8 @@ map <Leader>= <C-w>=
 map <Leader><Space> <C-w><C-w>
 nmap <Leader>r :WinResizerStartResize<CR>
 
+nmap <Leader>s :StripWhitespace<CR>
+
 " }}}
 
 " Colors {{{
@@ -204,29 +209,47 @@ let g:clang_library_path='/usr/lib'
 
 " }}}
 
-" Golang {{{
-let g:go_fmt_command = "goimports"
-let g:go_term_mode = "split"
-let g:go_term_enabled = 1
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_list_type = "quickfix"
-au FileType go nmap <leader>rt <Plug>(go-run-tab)
-au FileType go nmap <Leader>rs <Plug>(go-run-split)
-au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
+" Plugin settings {{{
+	" vim-go {{{
+	let g:go_fmt_command = "goimports"
+	let g:go_term_mode = "split"
+	let g:go_term_enabled = 1
+	let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+	let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+	let g:go_list_type = "quickfix"
+	au FileType go nmap <leader>rt <Plug>(go-run-tab)
+	au FileType go nmap <Leader>rs <Plug>(go-run-split)
+	au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
 
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-" }}}
+	au FileType go nmap <leader>r <Plug>(go-run)
+	au FileType go nmap <leader>b <Plug>(go-build)
+	au FileType go nmap <leader>t <Plug>(go-test)
+	au FileType go nmap <leader>c <Plug>(go-coverage)
+	" }}}
 
-" Syntax checking {{{
+	" syntastic {{{
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 0
+	" }}}
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+	" vim-tmux-navigator {{{
+	let g:tmux_navigator_no_mappings = 1
+
+	nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+	nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+	nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+	nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+	nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+	" }}}
+
+	" ack.vim {{{
+	" Use ag instead of ack
+	if executable('ag')
+  		let g:ackprg = 'ag --vimgrep'
+	endif
+	" }}}
 
 " }}}
 
@@ -241,36 +264,7 @@ dig t, 539
 
 " }}}
 
-" Hard mode {{{
-"noremap <Up> <NOP>
-"noremap <Down> <NOP>
-"noremap <Left> <NOP>
-"noremap <Right> <NOP>
-"
-"inoremap <Up> <NOP>
-"inoremap <Down> <NOP>
-"inoremap <Left> <NOP>
-"inoremap <Right> <NOP>
-" }}}
-
 " Functions {{{
 :command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 " }}}
 
-" Tmux integration {{{
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
-" }}}
-
-" Lightline {{{
-let g:lightline = {
-	\ 'colorscheme': 'mein',
-	\ 'subseparator': { 'left': '', 'right': '' }
-	\ }
-set noshowmode
-" }}}

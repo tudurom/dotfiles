@@ -10,9 +10,9 @@
 # music - now playing tune
 # notif - print notification
 
+. $HOME/bin/wmrc
 reload_settings() {
 	# load dependencies
-	. $HOME/bin/wmrc
 	# Color definitions
 	C0="$(xrq '*color0')"
 	C1="$(xrq '*color1')"
@@ -53,7 +53,7 @@ PD_HEIGHT="$(dattr h `ppd`)"
 
 BAR_WIDTH="300"
 BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
-BAR_X="$(( PD_X + (PD_WIDTH - BAR_WIDTH) / 2 ))"
+BAR_X="$(( PD_X + (PD_WIDTH - BAR_WIDTH - 2 * BW) / 2 ))"
 BAR_Y="$(( PD_Y + GENERAL_GAP ))"
 
 SEP_SMALL="        "

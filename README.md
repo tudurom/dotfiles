@@ -5,6 +5,10 @@ tudurom's dotfiles
 
 A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time UNIX users and ricers can understand what's going on, with explications for each directory.
 
+#### Note: I made my dotfiles public for educational purposes. Instead of
+copying entire files or directories from here, please study them first and
+copy the bits you need.
+
 Managing
 --------
 

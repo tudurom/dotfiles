@@ -39,11 +39,6 @@ wall-e &
 # Java fix
 wmname LG3D
 
-startBar() {
-	# Start the thing
-	minbar &
-}
-
 mpDris2 &
 
 wm() {
@@ -51,10 +46,11 @@ wm() {
 	notifyd &
 	# Window compositor
 	compton -b
-	startBar
+	minbar &
 	touchpadopts
 	wm=windowchef
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
+	(sleep 1 && swtheme stairs) &
 	exec $wm
 }
 wm
