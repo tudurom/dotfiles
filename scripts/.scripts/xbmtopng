@@ -1,0 +1,6 @@
+#!/bin/sh
+
+from="$1"
+to="$2"
+
+convert "$from" -colorspace RGB -fill "$(xrq '*.color8')" -opaque black -fill "$(xrq '*.background')" -opaque white "$to"

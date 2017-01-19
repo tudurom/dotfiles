@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. $HOME/bin/wmrc
+
+passmenu --type $DMENU_ARGS

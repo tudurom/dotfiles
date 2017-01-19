@@ -8,7 +8,7 @@ PANEL_FONT_NAME="yuki"
 PANEL_ICON_FONT_NAME="siji"
 
 BORDER_COLOR_FOC=`xrq '*.color6'`
-BORDER_COLOR_UNFOC=`xrq '*.color8'`
+BORDER_COLOR_UNFOC=`xrq '*.color0'`
 
 PANEL_STATUS_HEIGHT="30"
 PANEL_BG_COLOR="`xrq '*.background'`"

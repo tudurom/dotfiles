@@ -45,16 +45,16 @@ XF86MonBrightnessDown
   xbacklight -dec 10%
 
 XF86AudioPlay
-  cmus-remote -u
+  mpc toggle
 
 XF86AudioStop
-  cmus-remote -s
+  mpc stop
 
 XF86AudioNext
-  cmus-remote -n
+  mpc next
 
 XF86AudioPrev
-  cmus-remote -r
+  mpc prev
 
 Print
   screenie
@@ -67,3 +67,10 @@ super + ctrl + k
 
 {_,shift + }button10
 	screenie {_,-s}
+
+super + p
+	pmenu
+
+# Toggle redshift
+super + ctrl + r
+	pkill -USR1 '^redshift$'

@@ -37,7 +37,7 @@ alt + shift + Tab
 super + {_,shift +}{1-8}
 	waitron {group_toggle,group_add_window} {1-8}
 
-super + ctrl + r
+super + r
 	waitron group_remove_window
 
 super + {Insert,Prior,Delete,Next,End}

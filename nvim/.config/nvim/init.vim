@@ -147,8 +147,8 @@ map <Leader>l <C-w>l
 map <Leader>= <C-w>=
 map <Leader><Space> <C-w><C-w>
 nmap <Leader>r :WinResizerStartResize<CR>
-
 nmap <Leader>s :StripWhitespace<CR>
+nmap <Leader>w :w<CR>
 
 " }}}
 

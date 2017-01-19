@@ -1,7 +1,9 @@
 #!/bin/sh
 
+. $HOME/bin/wmrc
+
 command="dmenu"
 
 test "$1" = "run" && command="dmenu_run"
 
-$command -nb `xrq '*.background'` -nf `xrq '*.foreground'` -sb `xrq '*.foreground'` -sf `xrq '*.background'`
+$command $DMENU_ARGS

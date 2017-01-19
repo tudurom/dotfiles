@@ -35,15 +35,15 @@ sed -i --follow-symlinks 's/\.xres\/colors\/.*/\.xres\/colors\/'"$colorscheme"'"
 sed -i --follow-symlinks 's/colo .*/colo '"$colorscheme"'/' $HOME/.vimperatorrc
 
 # Reload firefox and change theme
+firefox_profile="$(grep Path $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2 | head -n 1)"
+rainbou "$colorscheme" "$HOME/.wm/templates/firefox_${COLOR_STYLE}" > "$HOME/.mozilla/firefox/$firefox_profile/chrome/userChrome.css"
+wd=`pwd`
+cd $HOME/dotfiles/startpage/scss
+rainbou "$colorscheme" scss > colors.scss
+cd ..
+./gencss
+cd "$wd"
 if pgrep firefox; then
-	firefox_profile="$(grep Path $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2 | head -n 1)"
-	rainbou "$colorscheme" "$HOME/.wm/templates/firefox_${COLOR_STYLE}" > "$HOME/.mozilla/firefox/$firefox_profile/chrome/userChrome.css"
-	wd=`pwd`
-	cd $HOME/dotfiles/startpage/scss
-	rainbou "$colorscheme" scss > colors.scss
-	cd ..
-	./gencss
-	cd "$wd"
 	for wid in $(lsw); do
 		if xprop -id $wid WM_CLASS | grep Firefox > /dev/null; then
 			killwa "$wid"

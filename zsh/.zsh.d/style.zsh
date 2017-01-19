@@ -23,8 +23,7 @@ if [ -f "$HOME/bin/wmrc" ] && [ -n "$DISPLAY" ]; then
 		pwdcolor='$fg_bold[white]'
 	fi
 fi
-PROMPT="$pwdcolor"'$(pwd | sed "s/\/home\/$USER/~/")
-%{$fg[red]%(? $fg[cyan] )%}─── %f'
+PROMPT="%{$pwdcolor%}"'[%(4~|.../%3~|%~)] %{$fg[red]%(? $fg[cyan] )%}> %f'
 
 setopt extendedglob
 setopt nocaseglob

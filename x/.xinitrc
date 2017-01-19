@@ -29,8 +29,6 @@ screenlayout
 # Github: airblader/unclutter-xfixes
 unclutter -b
 
-# Music!
-cmuslauncher
 # Set cursor from X to pointer
 xsetroot -cursor_name left_ptr &
 # Wallpaper
@@ -39,8 +37,9 @@ wall-e &
 # Java fix
 wmname LG3D
 
-mpDris2 &
+redshift &
 
+setxkbmap ro comma
 wm() {
 	# Listen to popup requests
 	notifyd &
@@ -53,5 +52,9 @@ wm() {
 	(sleep 1 && swtheme stairs) &
 	exec $wm
 }
+gnome() {
+	mpDris2 &
+	exec gnome-session
+}
 wm
-#exec gnome-session
+#gnome

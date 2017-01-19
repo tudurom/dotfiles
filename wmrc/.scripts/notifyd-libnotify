@@ -1,0 +1,15 @@
+#!/bin/sh -x
+
+. $HOME/bin/wmrc
+
+trap 'pkill sind' EXIT
+
+# Init time
+sleep 2
+format='$$BEGINCOLOR$$%s$$ENDCOLOR$$ %b'
+sind -d -u 100 -t 1 -l 2 -f "$format" | while read -r line; do
+	test -n "$line" && echo "$(printf "%s" "$line" |\
+		sed -e 's/\$\$BEGINCOLOR\$\$/%{F'"$PANEL_ACCENT_COLOR"'}/' \
+		-e 's/\$\$ENDCOLOR\$\$/%{F-}/' | tr -d '\n')" > "$NOTIFY_FIFO_PATH"
+	sleep 0.3
+done

@@ -1,15 +1,13 @@
 #!/bin/sh
 
 . $HOME/bin/wmrc
-. $HOME/bin/panelsrc
 
 last=""
-test -f "$PANEL_MUSIC_NOTIFY_LAST_STATE" && last=`cat $PANEL_MUSIC_NOTIFY_LAST_STATE`
-while :; do
+test -f "$PANEL_MUSIC_NOTIFY_LAST_STATE" && last=`cat $PANEL_MUSIC_NOTIFY_LAST_STATE` || :> "$PANEL_MUSIC_NOTIFY_LAST_STATE"
+mpc idleloop | while read -r line; do
+	test "$line" = "player" || continue
 	out="$(musicstat)"
 	test "$(musicstat col)" != "$last" && echo "$out" > "$NOTIFY_FIFO_PATH"
 	last="$(musicstat col)"
 	printf "%s" "$last" > "$PANEL_MUSIC_NOTIFY_LAST_STATE"
-
-	sleep 0.2
 done

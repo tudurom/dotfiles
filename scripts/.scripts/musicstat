@@ -1,10 +1,12 @@
 #!/bin/sh
 
+. $HOME/bin/wmrc
+
 no="$1"
 
-curr="$(cmus-remote -C status)"
+curr="$(mpc status)"
 
-status="$(echo "$curr" | grep status | cut -d' ' -f2)"
+status="$(echo "$curr" | sed -n 2p | tr -d '[]' | cut -d' ' -f1)"
 ico=""
 if [ "$status" = "playing" ]; then
 	ico=""
@@ -13,9 +15,7 @@ elif [ "$status" = "paused" ]; then
 else
 	ico=""
 fi
-artist="$(echo "$curr" | grep '^tag artist ' | sed 's/^tag artist //')"
-title="$(echo "$curr" | grep '^tag title ' | sed 's/^tag title //')"
-song="${artist} - ${title}"
+song="$(mpc status | sed -n 1p)"
 
 out="%{F$PANEL_ACCENT_COLOR}${ico}%{F-} ${song}"
 if [ "$no" = "col" ]; then

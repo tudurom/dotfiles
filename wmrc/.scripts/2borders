@@ -7,7 +7,7 @@
 # (c) 2016 Tudor Roman - wtfpl
 #
 
-inner="4"
+inner="3"
 outer="2"
 
 focusedTint=80
