@@ -20,8 +20,10 @@ export POPUP_DURATION=5
 export GNUMBER=6
 
 export PANEL_FONT
+# Override
+export PANEL_FONT=-*-terra-medium-*-*-*-12-*-*-*-*-*-*-*
 export PANEL_ICON_FONT
-export PANEL_FONT_NAME
+export PANEL_FONT_NAME=terra
 export PANEL_ICON_FONT_NAME
 
 export BORDER_COLOR_FOC

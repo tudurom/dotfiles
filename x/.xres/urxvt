@@ -6,7 +6,7 @@ URxvt.boldFont:
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: true
 URxvt.internalBorder: 20
-URxvt.geometry: 80x20
+URxvt.geometry: 80x25
 
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
