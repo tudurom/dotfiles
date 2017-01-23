@@ -43,16 +43,16 @@ rainbou "$colorscheme" scss > colors.scss
 cd ..
 ./gencss
 cd "$wd"
-if pgrep firefox; then
-	for wid in $(lsw); do
-		if xprop -id $wid WM_CLASS | grep Firefox > /dev/null; then
-			killwa "$wid"
-		fi
-	done
-	# Firefox wants some sleep
-	sleep 0.5
-	firefox &
-fi
+#if pgrep firefox; then
+#	for wid in $(lsw); do
+#		if xprop -id $wid WM_CLASS | grep Firefox > /dev/null; then
+#			killwa "$wid"
+#		fi
+#	done
+#	# Firefox wants some sleep
+#	sleep 0.5
+#	firefox &
+#fi
 
 wall-e "$WALLPAPER_PATH" "$WALLPAPER_STYLE"
 

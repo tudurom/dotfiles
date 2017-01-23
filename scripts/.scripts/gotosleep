@@ -1,4 +1,4 @@
 #!/bin/sh
 
-slock &
-systemctl suspend
+i3lock -t -p win -i $HOME/wallpapers/bluescreen_600.png
+#systemctl suspend

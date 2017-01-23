@@ -19,7 +19,7 @@ xset +fp ~/.fonts
 xset fp rehash
 
 # Start nice programs
-
+setxkbmap ro comma
 xmodmap $HOME/.xmodmaprc
 # URxvt clipboard magic
 autocutsel -selection clipboard -fork
@@ -38,8 +38,7 @@ wall-e &
 wmname LG3D
 
 redshift &
-
-setxkbmap ro comma
+mpd &
 wm() {
 	# Listen to popup requests
 	notifyd &

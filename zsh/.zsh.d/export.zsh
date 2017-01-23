@@ -1,7 +1,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
-export BROWSER=firefox
+export BROWSER=chromium
 export LS_COLORS=''
 export CC=clang
 MAKEFLAGS=-j5
