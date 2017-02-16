@@ -1,8 +1,9 @@
 # Environment variables for the whole desktop environment
+# It's basically a wrapper around the currently used theme.
+#
 # (c) tudurom 2016 - wtfpl
 #
 
-# Gap to use for most of the things
 
 test -z "$DISPLAY" && exit
 
@@ -14,16 +15,12 @@ export CURRENT_THEME_PATH="/tmp/current_theme"
 
 export GENERAL_GAP=8
 export BW=$BORDER_WIDTH
-# override
-export BW=3
 export POPUP_DURATION=5
 export GNUMBER=6
 
 export PANEL_FONT
-# Override
-export PANEL_FONT=-*-terra-medium-*-*-*-12-*-*-*-*-*-*-*
 export PANEL_ICON_FONT
-export PANEL_FONT_NAME=terra
+export PANEL_FONT_NAME
 export PANEL_ICON_FONT_NAME
 
 export BORDER_COLOR_FOC
@@ -34,11 +31,10 @@ export PANEL_BG_COLOR
 export PANEL_BORDER_COLOR=$BORDER_COLOR_UNFOC
 export PANEL_ACCENT_COLOR
 export PANEL_BORDER_WIDTH
-# override
-export PANEL_BORDER_WIDTH=$BW
-
 export PANEL_INNER_GAP="20"
 export PANEL_OUTER_GAP="20"
+
+export COLOR_STYLE
 
 export PANEL_MUSIC_NOTIFY_LAST_STATE="/tmp/notifyd-musicd-state"
 
@@ -51,5 +47,7 @@ export ICON_CLOCK="\ue015"
 export ICON_PLAY="\ue058"
 export ICON_PAUSE="\ue059"
 export ICON_STOP="\ue057"
+
+. $HOME/.wm/overrides
 
 # vim: set ft=sh :

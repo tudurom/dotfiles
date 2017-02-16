@@ -1,6 +1,4 @@
 alias :q=exit
-alias irb=pry
-alias ccat=pygmentize
 alias tls="tmux ls"
 alias ls="ls -F"
 alias ll="ls -alF"
@@ -11,7 +9,6 @@ alias clip="xclip -selection clipboard"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
 alias rnb="toilet -f future"
-alias cmus="launchcmus"
 test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"
 
 testnet() {
@@ -41,11 +38,13 @@ push() {
     done
 }
 
-radio() {
+tehno() {
     mpv http://radio.2f30.org:8000/live.mp3
 }
 
 trinitas() {
+	# mostly used as a joke.
+	# trinitas is the radio of the romanian orthodoc church
     mpv http://live.radiotrinitas.ro:8003
 }
 
@@ -65,7 +64,14 @@ mtp() {
     sudo simple-mtpfs /mnt -o allow_other
 }
 
-launchcmus() {
-	tmux a -t cmus
-	test "$?" -ne 0 && cmuslauncher && launchcmus
+up() {
+	test $# -eq 0 && cd .. && return
+	local i=0
+	local p=""
+	while [ $i -lt $1 ]; do
+		p="../$p"
+		i=$((i + 1))
+	done
+
+	cd $p
 }

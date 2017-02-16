@@ -45,3 +45,4 @@ for term in /dev/pts/[0-9]*; do
 done
 
 xrdb -merge "$1"
+killall -USR1 st

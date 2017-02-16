@@ -1,0 +1,3 @@
+# assign all browsers to workspace 2
+role="browser"
+	wtf "$RULER_WID" && waitron group_add_window 2

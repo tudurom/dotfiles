@@ -62,7 +62,7 @@ super + shift + t
 	tilew
 
 ~button1
-	hov=`hovered` && if [ $hov != `pfw` ]; then wtf $hov && chwso -r $hov; fi
+	test "$(pfw)" != "$(xqp)" && waitron window_focus $(xqp)
 
 super + shift + r
 	$HOME/.config/windowchef/windowchefrc

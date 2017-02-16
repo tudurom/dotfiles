@@ -3,7 +3,7 @@ super + Escape
   pkill -USR1 -x sxhkd
 
 super + Return
-  urxvt
+  st
 
 super + space
   dmenu_wrapper run
@@ -64,9 +64,6 @@ Print + shift
 
 super + ctrl + k
   killw `pfw`
-
-{_,shift + }button10
-	screenie {_,-s}
 
 super + p
 	pmenu

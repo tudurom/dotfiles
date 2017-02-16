@@ -1,0 +1,6 @@
+URxvt.font: -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
+st.font: -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
+
+#include "../.xres/colors/cloudy"
+
+! vim: set ft=xdefaults :

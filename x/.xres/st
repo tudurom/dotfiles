@@ -1,4 +1,3 @@
-st.font: Source Code Pro:pixelsize=14:antialias=true:autohint=true;
 st.borderpx: 20
 st.cursorshape: 3
 st.bold_font: 0

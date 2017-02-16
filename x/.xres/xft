@@ -1,5 +1,5 @@
 Xft.antialias: true
-Xft.autohint: 0
+Xft.autohint: true
 Xft.dpi: 96
 Xft.hinting: true
 Xft.hintstyle: hintslight

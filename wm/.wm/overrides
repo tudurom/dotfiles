@@ -1,0 +1,8 @@
+export BW=3
+
+export PANEL_FONT=-*-terra-medium-*-*-*-12-*-*-*-*-*-*-*
+export PANEL_FONT_NAME=terra
+
+export PANEL_BORDER_WIDTH=5
+
+# vim: set ft=sh :

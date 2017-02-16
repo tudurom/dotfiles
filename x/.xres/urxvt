@@ -1,4 +1,4 @@
-*.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+URxvt.depth: 0
 URxvt.letterSpace: 0
 ! No bold font
 URxvt.boldFont:

@@ -5,7 +5,8 @@
 ! managed like they are supposed to be
 
 #include ".xres/xft"
-#include ".xres/colors/stairs"
 #include ".xres/urxvt"
 #include ".xres/st"
 #include ".xres/misc"
+
+#include ".xres/vars"

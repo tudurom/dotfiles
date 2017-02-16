@@ -3,7 +3,7 @@
 px=`wmp | cut -d' ' -f1`
 py=`wmp | cut -d' ' -f2`
 
-for wid in $(lsw | tac); do
+for wid in $(lsw); do
 	wx=`wattr x $wid`
 	wy=`wattr y $wid`
 

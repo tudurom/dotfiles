@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 #
 # swtheme - switch theme
 # (c) tudurom 2017 - wtfpl
@@ -10,7 +10,17 @@ usage() {
 	exit 1
 }
 
+mst() {
+	mustache < "$HOME/.wm/templates/$1" > "$HOME/$2"
+}
+
+pg() {
+	pgrep "$1" > /dev/null
+}
+
 test -z "$1" && usage
+
+. $HOME/bin/mustache.sh
 
 colorscheme="$1"
 
@@ -19,51 +29,67 @@ test -f "$HOME/.xres/colors/$colorscheme" || \
 
 # change terminal colors
 changecolors "$HOME/.xres/colors/$colorscheme"
+#killall -USR1 st
 
 test -f "$HOME/.wm/themes/$colorscheme" || exit 0
 
 echo "$colorscheme" > "$CURRENT_THEME_PATH"
 . $HOME/bin/wmrc
+
+# Set font
 for term in /dev/pts/[0-9]*; do
 	printf '\33]50;%s\007' "$TERM_FONT" > "$term"
 done
 
-# I don't feel the need for templating
-sed -i --follow-symlinks 's/set background=.*/set background='"$COLOR_STYLE"'/' $HOME/.config/nvim/init.vim
-sed -i --follow-symlinks 's/\*\.font: .*/\*\.font: '"$TERM_FONT"'/' $HOME/.xres/urxvt
-sed -i --follow-symlinks 's/\.xres\/colors\/.*/\.xres\/colors\/'"$colorscheme"'"/' $HOME/.Xresources
-sed -i --follow-symlinks 's/colo .*/colo '"$colorscheme"'/' $HOME/.vimperatorrc
+# Execute templates
 
-# Reload firefox and change theme
+# X resources
+_xres_font="$TERM_FONT"
+_xres_colorscheme="$colorscheme"
+mst xres_vars .xres/vars
+unset _xres_font
+unset _xres_colorscheme
+xrdb "$HOME/.Xresources"
+
+# Vimperator
+_vimperator_colorscheme="$colorscheme"
+mst vimperatorrc .vimperatorrc
+unset _vimperator_colorscheme
+
+set -x
+
+# TODO : find way to set this on the fly
+sed -i 's/set background=.*/set background='"$COLOR_STYLE"'/' "$(readlink -f "$HOME/.config/nvim/init.vim")"
+
+# Change firefox theme
 firefox_profile="$(grep Path $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2 | head -n 1)"
-rainbou "$colorscheme" "$HOME/.wm/templates/firefox_${COLOR_STYLE}" > "$HOME/.mozilla/firefox/$firefox_profile/chrome/userChrome.css"
+rainbou "$colorscheme" "$HOME/.wm/rainbou/templates/firefox_${COLOR_STYLE}" > "$HOME/.mozilla/firefox/$firefox_profile/chrome/userChrome.css"
+
+# Regenerate startpage
 wd=`pwd`
 cd $HOME/dotfiles/startpage/scss
 rainbou "$colorscheme" scss > colors.scss
 cd ..
 ./gencss
 cd "$wd"
-#if pgrep firefox; then
-#	for wid in $(lsw); do
-#		if xprop -id $wid WM_CLASS | grep Firefox > /dev/null; then
-#			killwa "$wid"
-#		fi
-#	done
-#	# Firefox wants some sleep
-#	sleep 0.5
-#	firefox &
-#fi
 
 wall-e "$WALLPAPER_PATH" "$WALLPAPER_STYLE"
 
 # reload wm
-pgrep windowchef > /dev/null && $HOME/.config/windowchef/windowchefrc
-pgrep bspwm > /dev/null && $HOME/.config/bspwm/bspwmrc
-pgrep herbstluftwm > /dev/null && herbstclient reload
+pg windowchef && $HOME/.config/windowchef/windowchefrc
+pg bspwm && $HOME/.config/bspwm/bspwmrc
+pg herbstluftwm && herbstclient reload
+
 
 # reload panel
-pgrep minbar && pkill minbar && minbar > /dev/null &
-pgrep notifyd && pkill notifyd && notifyd > /dev/null &
+pg minbar && killall minbar && minbar > /dev/null &
+# Put the most raised window that is not ignored on the
+# top of the stack, to stay above the panel.
+# When other windows are focused, they are raised automatically
+# by the wm, so no need to raise those.
+sleep 0.3 && chwso -r "$(lsw | tail -n 1)"
+pg notifyd && killall notifyd && notifyd > /dev/null &
+
 
 # I don't know why but notifyd wants a break
 sleep 0.3

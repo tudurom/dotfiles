@@ -1,3 +1,4 @@
+zmodload zsh/zprof
 mkdir -p "$HOME/tmp/downloads"
 
 for f in $HOME/.zsh.d/*.zsh; do
@@ -5,5 +6,3 @@ for f in $HOME/.zsh.d/*.zsh; do
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-clear

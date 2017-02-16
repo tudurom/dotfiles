@@ -15,8 +15,7 @@ xrdb $HOME/.Xresources
 . $HOME/.profile
 
 # Load fonts
-xset +fp ~/.fonts
-xset fp rehash
+refreshfonts
 
 # Start nice programs
 setxkbmap ro comma
@@ -48,6 +47,7 @@ wm() {
 	touchpadopts
 	wm=windowchef
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
+	ruler $HOME/.config/ruler/rulerrc_${wm} &
 	(sleep 1 && swtheme stairs) &
 	exec $wm
 }
