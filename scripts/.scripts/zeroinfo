@@ -31,8 +31,8 @@ battery="/sys/class/power_supply/BAT0"
 distro="arch linux"
 kernel=`uname -r`
 pkgs=`pacman -Qqs | wc -l`
-colors="$(grep colors $HOME/.Xresources | tr -d '"' | cut -d'/' -f3)"
-font="$(cat $HOME/.xres/urxvt | grep font | head -n 1 | cut -d'-' -f3)"
+colors="$(grep colors $HOME/.xres/vars | tr -d '"' | cut -d'/' -f3)"
+font="$(xrdb -query | grep URxvt.font | cut -d'-' -f3)"
 wm=`wmname`
 
 #█▓▒░ progress bar

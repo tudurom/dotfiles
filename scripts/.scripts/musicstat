@@ -15,7 +15,7 @@ elif [ "$status" = "paused" ]; then
 else
 	ico=""
 fi
-song="$(mpc status | sed -n 1p)"
+song="$(mpc current)"
 
 out="%{F$PANEL_ACCENT_COLOR}${ico}%{F-} ${song}"
 if [ "$no" = "col" ]; then

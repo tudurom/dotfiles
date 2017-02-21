@@ -29,7 +29,6 @@ test -f "$HOME/.xres/colors/$colorscheme" || \
 
 # change terminal colors
 changecolors "$HOME/.xres/colors/$colorscheme"
-#killall -USR1 st
 
 test -f "$HOME/.wm/themes/$colorscheme" || exit 0
 
@@ -55,6 +54,10 @@ xrdb "$HOME/.Xresources"
 _vimperator_colorscheme="$colorscheme"
 mst vimperatorrc .vimperatorrc
 unset _vimperator_colorscheme
+
+_interrobang_font="fixed"
+mst interrobang .interrobangrc
+unset _interrobang_font
 
 set -x
 
@@ -82,13 +85,27 @@ pg herbstluftwm && herbstclient reload
 
 
 # reload panel
-pg minbar && killall minbar && minbar > /dev/null &
+pg minbar && killall minbar
+minbar > /dev/null &
 # Put the most raised window that is not ignored on the
 # top of the stack, to stay above the panel.
 # When other windows are focused, they are raised automatically
 # by the wm, so no need to raise those.
-sleep 0.3 && chwso -r "$(lsw | tail -n 1)"
-pg notifyd && killall notifyd && notifyd > /dev/null &
+
+# find minbar's wid
+sleep 0.3
+minbar_wid="$(
+lsw -a | while read -r wid; do
+	if [ "$(wname "$wid")" = "minbar" ]; then
+		echo "$wid"
+		break
+	fi
+done
+)"
+echo "$minbar_wid"
+test -n "$minbar_wid" && chwso -l "$minbar_wid"
+pg notifyd && killall notifyd
+notifyd > /dev/null &
 
 
 # I don't know why but notifyd wants a break

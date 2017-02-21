@@ -1,6 +1,8 @@
 URxvt.font: {{_xres_font}}
 st.font: {{_xres_font}}
 
+dzen2.font: {{_xres_font}}
+
 #include "../.xres/colors/{{_xres_colorscheme}}"
 
 ! vim: set ft=xdefaults :

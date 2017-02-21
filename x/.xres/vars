@@ -1,6 +1,8 @@
-URxvt.font: -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-st.font: -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
+URxvt.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+st.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
 
-#include "../.xres/colors/cloudy"
+dzen2.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+
+#include "../.xres/colors/stairs"
 
 ! vim: set ft=xdefaults :

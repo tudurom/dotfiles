@@ -13,7 +13,7 @@ export CURRENT_THEME_PATH="/tmp/current_theme"
 
 . $HOME/.wm/themes/$(cat $CURRENT_THEME_PATH)
 
-export GENERAL_GAP=8
+export GENERAL_GAP=5
 export BW=$BORDER_WIDTH
 export POPUP_DURATION=5
 export GNUMBER=6
@@ -37,6 +37,7 @@ export PANEL_OUTER_GAP="20"
 export COLOR_STYLE
 
 export PANEL_MUSIC_NOTIFY_LAST_STATE="/tmp/notifyd-musicd-state"
+export PANEL_FIFO="/tmp/minbar.fifo"
 
 export DMENU_ARGS="-nb `xrq '*.background'` -nf `xrq '*.foreground'` -sb `xrq '*.foreground'` -sf `xrq '*.background'`"
 

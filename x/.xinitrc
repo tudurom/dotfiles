@@ -43,13 +43,13 @@ wm() {
 	notifyd &
 	# Window compositor
 	compton -b
-	minbar &
 	touchpadopts
 	wm=windowchef
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
+	test -f "$HOME/.config/ruler/rulerrc_${wm}" && \
 	ruler $HOME/.config/ruler/rulerrc_${wm} &
 	(sleep 1 && swtheme stairs) &
-	exec $wm
+	$wm
 }
 gnome() {
 	mpDris2 &

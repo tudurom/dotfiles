@@ -1,6 +1,0 @@
-# Window tricks
-super + t
-    tilew
-
-super + {Prior,Delete,Next,End}
-  cornerw {tr, bl, br, md} $(pfw)

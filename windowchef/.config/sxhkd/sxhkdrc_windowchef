@@ -44,19 +44,10 @@ super + {Insert,Prior,Delete,Next,End}
 	waitron window_snap {topleft,topright,bottomleft,bottomright,middle}
 
 super + {_,alt +} t
-	chwso -r `pfw` && {xmmv,xmrs}
+	chwso -r `pfw` && pgrep {xmmv,xmrs} > /dev/null || {xmmv,xmrs}
 
-alt + h
-	closestw h | xargs wtf
-
-alt + j
-	closestw j | xargs wtf
-
-alt + k
-	closestw k | xargs wtf
-
-alt + l
-	closestw l | xargs wtf
+alt + {h,j,k,l}
+	waitron window_cardinal_focus {left,down,up,right}
 
 super + shift + t
 	tilew
