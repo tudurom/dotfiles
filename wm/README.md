@@ -27,6 +27,7 @@ Supported window managers:
 * [rainbou](https://github.com/tudurom/rainbou/)
 * [ruler](https://github.com/tudurom/ruler/)
 * [disputils](https://github.com/tudurom/disputils/)
+* [nvr](https://github.com/mhinz/neovim-remote/)
 
 There may be more.
 

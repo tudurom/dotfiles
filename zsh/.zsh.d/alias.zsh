@@ -11,6 +11,12 @@ alias reboot="sudo reboot"
 alias rnb="toilet -f future"
 test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"
 
+nvim() {
+	# Set the name of neovim's socket
+	local fn="$(mktemp -u "/tmp/nvimsocket-XXXXXXX")"
+	NVIM_LISTEN_ADDRESS=$fn /usr/bin/nvim $@
+}
+
 testnet() {
     ping duckduckgo.com
 }

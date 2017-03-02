@@ -70,7 +70,11 @@ unset _interrobang_colors
 unset _interrobang_selection
 unset _interrobang_sign
 
-set -x
+# Reload neovim
+# requires https://github.com/mhinz/neovim-remote
+for nvim_inst in /tmp/nvimsocket-*; do
+	nvr --servername "$nvim_inst" --remote-send '<Esc>:so $HOME/.config/nvim/init.vim<CR>' &
+done
 
 # TODO : find way to set this on the fly
 sed -i 's/set background=.*/set background='"$COLOR_STYLE"'/' "$(readlink -f "$HOME/.config/nvim/init.vim")"
