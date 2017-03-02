@@ -1,5 +1,9 @@
+! I'm using the rxvt-unicode-fontspacing-noinc-vteclear-secondarywheel
+! package from AUR for urxvt. It is the only patched urxvt with auto
+! font spacing that doesn't move around the screen when I dinamically set
+! the font.
+
 URxvt.depth: 0
-URxvt.letterSpace: 0
 ! No bold font
 URxvt.boldFont:
 *.scrollBar: false

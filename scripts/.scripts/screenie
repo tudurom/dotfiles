@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 select="false"
 test "$1" = "-s" && select="true"

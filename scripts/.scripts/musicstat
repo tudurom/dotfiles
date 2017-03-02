@@ -17,11 +17,11 @@ else
 fi
 song="$(mpc current)"
 
-out="%{F$PANEL_ACCENT_COLOR}${ico}%{F-} ${song}"
-if [ "$no" = "col" ]; then
-	out="${ico} ${song}"
-elif [ "$no" = "ico" ]; then
+out="${ico} ${song}"
+if [ "$no" = "ico" ]; then
 	out="${song}"
+elif [ "$no" = "text" ]; then
+	out="${ico}"
 fi
 
 echo "$out"

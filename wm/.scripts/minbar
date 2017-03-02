@@ -100,7 +100,7 @@ i() {
 
 segment() {
 	local ico="$2"
-	echo "%{F$C15}%{B$HIGH2} $ico %{F-}%{B$HIGH} $1 %{B-}"
+	echo "%{F$PANEL_ACCENT_COLOR}%{B$HIGH2} $ico %{F-}%{B$HIGH} $1 %{B-}"
 }
 
 # raw print
@@ -227,7 +227,7 @@ while IFS='' read -r line; do
 	esac
 
 	rp "%{l}$(segment "$fn_time" $CLOCK_ICON)${SEP_SMALL}"
-	rp "$(segment "$fn_date" $DATE_ICON)"
+	rp "$(segment "$fn_date" $DATE_ICON)${SEP_SMALL}"
 	rp "%{r}%{A:mpc toggle:}$(segment "$fn_music" "$fn_music_icon")%{A}"
 	rp "${SEP_SMALL}$(segment "$fn_battery" "$fn_battery_icon")"
 	rp "\n"

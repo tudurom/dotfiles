@@ -3,6 +3,7 @@ set geometry = {{`printf "%s" "$(( $(dattr w $(ppd)) - 2 * BW))"`}}x30+0+0
 set border = {{BW}}px {{`xrq '*.color6'`}}
 set bangchar = !
 set autocomp = 1
+set colors = {{_interrobang_colors}}
 set list = true
 set last = true
 set margin = -80

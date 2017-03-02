@@ -12,7 +12,8 @@ BORDER_COLOR_UNFOC=`xrq '*.color15'`
 
 PANEL_STATUS_HEIGHT="30"
 PANEL_BG_COLOR="`xrq '*.background'`"
-PANEL_BORDER_COLOR=`xrq '*.color15'`
-PANEL_ACCENT_COLOR=`xrq '*.color9'`
+PANEL_BORDER_COLOR=`xrq '*.color1'`
+PANEL_ACCENT_COLOR=`xrq '*.color15'`
 PANEL_BORDER_WIDTH=$BW
-TERM_FONT=-*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+#TERM_FONT=-*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+TERM_FONT=-*-tewi-medium-*-*-*-11-*-*-*-*-*-*-*

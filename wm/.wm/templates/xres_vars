@@ -1,4 +1,4 @@
-URxvt.font: {{_xres_font}}
+URxvt.font: {{_xres_font_urxvt}}
 st.font: {{_xres_font}}
 
 dzen2.font: {{_xres_font}}

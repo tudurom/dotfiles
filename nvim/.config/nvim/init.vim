@@ -113,10 +113,26 @@ set undofile
 set undolevels=500
 set undoreload=500
 
-" Wildmenu
+" Wildmenu. Show all suggestions
 set wildmode=longest,list,full
 set wildmenu
 set wildignorecase
+
+" Search for files recursively
+set path+=**
+
+" netrw
+
+" open in split window
+let g:netrw_browse_split=4
+" on the right
+let g:netrw_altv=1
+" tree view
+let g:netrw_liststyle=3
+" ignore git ignored files
+let g:netrw_list_hide=netrw_gitignore#Hide()
+" ignore files that start with a dot
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " }}}
 
