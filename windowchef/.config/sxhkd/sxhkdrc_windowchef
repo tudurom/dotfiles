@@ -53,7 +53,7 @@ super + shift + t
 	tilew
 
 ~button1
-	test "$(pfw)" != "$(xqp)" && waitron window_focus $(xqp)
+	test "$(pfw)" != "$(xqp)" && ! wattr o "$(xqp)" && waitron window_focus $(xqp)
 
 super + shift + r
 	$HOME/.config/windowchef/windowchefrc

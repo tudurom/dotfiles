@@ -10,6 +10,7 @@ CLEAR=""
 if [ -t 1 ]
 then
     # We'll choose our palette based on the number of available colors.
+    TERM=xterm
     case $(tput colors) in
         256)
             EYES="$(tput setaf 240)" # A nice gray

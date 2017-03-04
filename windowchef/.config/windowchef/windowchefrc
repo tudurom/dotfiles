@@ -17,4 +17,4 @@ waitron wm_config enable_sloppy_focus false
 waitron wm_config sticky_windows false
 waitron wm_config enable_borders true
 
-pgrep last_focus_watcher > /dev/null 2>&1 || /usr/local/share/doc/windowchef/contrib/last_focus_watcher.sh &
+pgrep last_focus_watcher > /dev/null 2>&1 || last_focus_watcher.sh &
