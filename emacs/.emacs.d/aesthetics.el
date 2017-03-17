@@ -33,3 +33,7 @@
 
 ;; customize new frames
 (add-hook 'after-make-frame-functions 'tudurom/customize-frame)
+
+;; beveled modelines are ugly
+(custom-set-faces
+ '(mode-line ((t (:box nil)))))
