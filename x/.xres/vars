@@ -1,7 +1,8 @@
-URxvt.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
-st.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+URxvt.font: xft:Source Code Pro:pixelsize=14
+st.font: Source Code Pro:pixelsize=14
+Emacs.font: Source Code Pro:pixelsize=14
 
-dzen2.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+dzen2.font: Source Code Pro:pixelsize=14
 
 #include "../.xres/colors/stairs"
 

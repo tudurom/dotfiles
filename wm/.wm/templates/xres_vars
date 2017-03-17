@@ -1,5 +1,6 @@
 URxvt.font: {{_xres_font_urxvt}}
 st.font: {{_xres_font}}
+Emacs.font: {{_xres_font}}
 
 dzen2.font: {{_xres_font}}
 

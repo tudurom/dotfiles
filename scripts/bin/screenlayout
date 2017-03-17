@@ -4,7 +4,7 @@ screens="$(xrandr | grep " connected" | cut -d' ' -f1)"
 
 laptop_screen="$(echo "$screens" | grep "LVDS-*[0-9]")"
 
-single_ext="off"
+single_ext="on"
 ext_monitor=$(echo "$screens" | grep -v "$laptop_screen" | tail -n 1)
 if [ -z "$ext_monitor" ]; then
   xrandr --output "$laptop_screen" --primary
