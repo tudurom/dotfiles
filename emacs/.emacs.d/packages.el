@@ -41,7 +41,8 @@
       "<SPC>" (lambda ()
                 (interactive)
                 (other-window 1))
-      "s" 'delete-trailing-whitespace))
+      "s" 'delete-trailing-whitespace
+      "m" 'magit-status))
   (evil-mode 1))
 
 ;; show line numbers
@@ -122,3 +123,6 @@
    '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.8))))
    '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.4))))
    '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.2))))))
+
+(use-package magit
+  :ensure t)
