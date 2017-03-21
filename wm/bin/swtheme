@@ -98,6 +98,8 @@ pg windowchef && $HOME/.config/windowchef/windowchefrc
 pg bspwm && $HOME/.config/bspwm/bspwmrc
 pg herbstluftwm && herbstclient reload
 
+# reload emacs theme
+pg emacs && emacsclient -e "(load-theme 'xresources)"
 
 # reload panel
 pg minbar && killall minbar

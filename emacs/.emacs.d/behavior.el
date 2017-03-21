@@ -1,10 +1,13 @@
 ;;; behavior.el - settings regarding behavior not tied to packages
 
 ;; don't clutter the project dir with backups
-(defvar backup-dir "~/.emacs.d/backups")
-(setq backup-directory-alist (list (cons "." backup-dir)))
+(defconst tudurom/backup-dir "~/.emacs.d/backups")
+(setq backup-directory-alist
+      `((".*" . ,tudurom/backup-dir)))
+(setq auto-save-file-name-transforms
+      `((".*" ,tudurom/backup-dir t)))
 
-(setq-default show-trailing-whitespace t)
+(setq-default show-trailing-whitespace nil)
 
 ;; automatically insert parantheses/quotes etc. (like in most IDEs)
 (electric-pair-mode 1)
@@ -19,6 +22,9 @@
 
 ;; tabs instead of spaces.
 (setq-default indent-tabs-mode t)
+
+;; no line wrap
+(setq-default truncate-lines t)
 
 (setq c-default-style
       '((java-mode . "java")

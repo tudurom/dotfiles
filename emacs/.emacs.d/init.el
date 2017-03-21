@@ -10,6 +10,8 @@
 (load "~/.emacs.d/aesthetics")
 (load "~/.emacs.d/irc.el")
 
+(server-start)
+
 (defun eat-crunchy ()
   "Eat a freedom crunchy!"
   (interactive)

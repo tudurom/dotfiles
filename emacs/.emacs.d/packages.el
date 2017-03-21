@@ -42,7 +42,10 @@
                 (interactive)
                 (other-window 1))
       "s" 'delete-trailing-whitespace
-      "m" 'magit-status))
+      "g" 'magit-status
+      "m" 'compiler
+      "d" 'dired
+      "b" 'ibuffer))
   (evil-mode 1))
 
 ;; show line numbers
@@ -101,6 +104,8 @@
 (use-package flycheck
   :ensure t
   :config
+  (with-eval-after-load 'flycheck
+    (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
   (global-flycheck-mode))
 
 (use-package smooth-scrolling
@@ -116,7 +121,7 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init
-  (setq markdown-command "blackfriday-tool" )
+  (setq markdown-command "blackfriday-tool")
   ;; variable font height for markdown-mode
   (custom-set-faces
    '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "variable-pitch"))))
@@ -126,3 +131,26 @@
 
 (use-package magit
   :ensure t)
+
+(use-package paredit
+  :ensure t)
+
+(use-package parinfer
+  :ensure t
+  :init
+  (progn
+    (setq parinfer-extensions
+          '(defaults
+             pretty-parens
+             evil
+             paredit
+             smart-tab
+             smart-yank))
+    (add-hook 'clojure-mode-hook #'parinfer-mode)
+    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
+    (add-hook 'common-lisp-mode-hook #'parinfer-mode)
+    (add-hook 'scheme-mode-hook #'parinfer-mode)
+    (add-hook 'lisp-mode-hook #'parinfer-mode)
+    :config
+    (evil-leader/set-key
+      "," 'parinfer-toggle-mode)))

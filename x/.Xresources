@@ -8,5 +8,6 @@
 #include ".xres/urxvt"
 #include ".xres/st"
 #include ".xres/misc"
+#include ".xres/emacs"
 
 #include ".xres/vars"

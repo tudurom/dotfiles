@@ -14,8 +14,9 @@
   (scroll-bar-mode -1))
 
 ;; highlight matching paren
+(require 'paren)
 (setq show-paren-delay 0)
-(show-paren-mode 1)
+(show-paren-mode t)
 
 ;; follow symlinks when using version control
 (setq vc-follow-symlinks t)
@@ -23,15 +24,16 @@
 ;; custom themes are safe
 (setq custom-safe-themes t)
 
+;; disable bold fonts
+
 (defun tudurom/customize-frame (frame)
   "Apply customization on FRAME."
-  (load-theme 'xresources)
-  (set-frame-parameter frame 'internal-border-width 20))
+  (load-theme 'xresources))
 
 ;; border padding
 (tudurom/customize-frame (selected-frame))
 
-;; customize new frames
+;; customize frames
 (add-hook 'after-make-frame-functions 'tudurom/customize-frame)
 
 ;; beveled modelines are ugly

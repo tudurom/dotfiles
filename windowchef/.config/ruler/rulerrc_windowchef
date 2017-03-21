@@ -4,3 +4,6 @@ role="browser"
 
 class="TelegramDesktop"
 	wtf "$RULER_WID" && waitron group_add_window 4
+
+class="Emacs"
+	wtf "$RULER_WID" && waitron group_add_window 1

@@ -52,8 +52,10 @@ alt + {h,j,k,l}
 super + shift + t
 	tilew
 
-~button1
-	test "$(pfw)" != "$(xqp)" && ! wattr o "$(xqp)" && waitron window_focus $(xqp)
+# extreme hack for click-to-focus
+# my logitech mouse has 10 buttons
+~button10
+	focus_underneath
 
 super + shift + r
 	$HOME/.config/windowchef/windowchefrc
