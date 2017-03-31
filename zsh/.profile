@@ -1,15 +1,9 @@
-set -x
-export PATH="$PATH:/usr/local/bin:/sbin:$HOME/bin"
-export BSPWM_STATE="/tmp/bspwm-state.json"
-export PANEL_FIFO="/tmp/panel-fifo"
-export LANG="en_US.UTF-8"
-export LC_TIME="ro_RO.UTF-8"
-test -f $HOME/.iotoken && export IOUP_TOKEN="$(cat ~/.iotoken)"
+PATH="$PATH:/usr/local/bin:/sbin:$HOME/bin"
+LANG="en_US.UTF-8"
+LC_TIME="ro_RO.UTF-8"
 
-export GOROOT="/usr/lib/go"
+test -f $HOME/.iotoken && IOUP_TOKEN="$(cat ~/.iotoken)"
 
-#test -f "$HOME/bin/wmrc" && . $HOME/bin/wmrc
-#test -f "$HOME/bin/panelsrc" && . $HOME/bin/panelsrc
-#test -f "$HOME/bin/iconsrc" && . $HOME/bin/iconsrc
+export PATH LANG LC_TIME IOUP_TOKEN
 
 . $HOME/.zsh.d/export.zsh

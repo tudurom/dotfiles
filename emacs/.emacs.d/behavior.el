@@ -10,6 +10,7 @@
 (setq-default show-trailing-whitespace nil)
 
 ;; automatically insert parantheses/quotes etc. (like in most IDEs)
+(add-hook 'emacs-lisp-mode-hook (lambda () (electric-pair-mode -1)))
 (electric-pair-mode 1)
 
 ;; shut up

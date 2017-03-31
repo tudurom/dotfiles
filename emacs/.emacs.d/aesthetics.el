@@ -24,11 +24,23 @@
 ;; custom themes are safe
 (setq custom-safe-themes t)
 
-;; disable bold fonts
-
 (defun tudurom/customize-frame (frame)
   "Apply customization on FRAME."
-  (load-theme 'xresources))
+  (load-theme 'xresources)
+
+  ;; disable bold
+  ;; courtesy of
+  ;; http://stackoverflow.com/questions/2064904/how-to-disable-bold-font-weight-globally-in-emacs
+  (mapc
+   (lambda (face)
+     (set-face-attribute face nil :weight 'normal))
+   (face-list)))
+
+(defun tudurom/reload-theme ()
+  "Reload theme and reapply customizations for all frames."
+  (interactive)
+  (load-theme 'xresources)
+  (mapc 'tudurom/customize-frame (frame-list)))
 
 ;; border padding
 (tudurom/customize-frame (selected-frame))

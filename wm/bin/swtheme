@@ -57,13 +57,11 @@ _vimperator_colorscheme="$colorscheme"
 mst vimperatorrc .vimperatorrc
 unset _vimperator_colorscheme
 
-html2hex '*.background'
 _interrobang_font="fixed"
 _interrobang_sign=""
 test "$COLOR_STYLE" = "light" && _interrobang_sign="-"
 _interrobang_selection="$(colort -l ${_interrobang_sign}12 $PANEL_BG_COLOR)"
 _interrobang_colors="$(xrq '*.foreground') $PANEL_BG_COLOR $(xrq '*.foreground') $_interrobang_selection $PANEL_BG_COLOR $(xrq '*.foreground')"
-echo "$_interrobang_colors"
 mst interrobang .interrobangrc
 unset _interrobang_font
 unset _interrobang_colors
@@ -72,9 +70,11 @@ unset _interrobang_sign
 
 # Reload neovim
 # requires https://github.com/mhinz/neovim-remote
-for nvim_inst in /tmp/nvimsocket-*; do
-	nvr --servername "$nvim_inst" --remote-send '<Esc>:so $HOME/.config/nvim/init.vim<CR>' &
-done
+if pg nvim; then
+	for nvim_inst in /tmp/nvimsocket-*; do
+		nvr --servername "$nvim_inst" --remote-send '<Esc>:so $HOME/.config/nvim/init.vim<CR>' &
+	done
+fi
 
 # TODO : find way to set this on the fly
 sed -i 's/set background=.*/set background='"$COLOR_STYLE"'/' "$(readlink -f "$HOME/.config/nvim/init.vim")"
@@ -99,7 +99,7 @@ pg bspwm && $HOME/.config/bspwm/bspwmrc
 pg herbstluftwm && herbstclient reload
 
 # reload emacs theme
-pg emacs && emacsclient -e "(load-theme 'xresources)"
+pg emacs && emacsclient -e '(tudurom/reload-theme)' > /dev/null 2>&1
 
 # reload panel
 pg minbar && killall minbar
@@ -119,7 +119,6 @@ lsw -a | while read -r wid; do
 	fi
 done
 )"
-echo "$minbar_wid"
 test -n "$minbar_wid" && chwso -l "$minbar_wid"
 pg notifyd && killall notifyd
 notifyd > /dev/null &

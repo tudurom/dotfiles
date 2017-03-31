@@ -43,9 +43,10 @@
                 (other-window 1))
       "s" 'delete-trailing-whitespace
       "g" 'magit-status
-      "m" 'compiler
+      "m" 'compile
       "d" 'dired
-      "b" 'ibuffer))
+      "b" 'ibuffer
+      "i" 'circe))
   (evil-mode 1))
 
 ;; show line numbers
@@ -70,7 +71,6 @@
 ;; tab completion
 (use-package company
   :ensure t
-  :defer
   :init
   (global-company-mode)
   :config
@@ -135,6 +135,7 @@
 (use-package paredit
   :ensure t)
 
+
 (use-package parinfer
   :ensure t
   :init
@@ -154,3 +155,20 @@
     :config
     (evil-leader/set-key
       "," 'parinfer-toggle-mode)))
+
+(use-package circe
+  :ensure t
+  :config
+  (setq circe-network-options tudurom/irc-servers))
+
+(use-package smartparens
+  :ensure t
+  :config
+  (defun disable-smartparens ()
+    (smartparens-mode -1))
+  (smartparens-global-mode)
+  (add-hook 'emacs-lisp-mode-hook #'disable-smartparens))
+
+(use-package ido
+  :config
+  (ido-mode t))

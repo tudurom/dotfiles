@@ -33,9 +33,6 @@ xsetroot -cursor_name left_ptr &
 # Wallpaper
 wall-e &
 
-# Java fix
-wmname LG3D
-
 redshift &
 mpd &
 wm() {
@@ -48,7 +45,7 @@ wm() {
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	test -f "$HOME/.config/ruler/rulerrc_${wm}" && \
 	ruler $HOME/.config/ruler/rulerrc_${wm} &
-	(sleep 1 && swtheme stairs) &
+	(sleep 1 && swtheme navyandivory) &
 	$wm
 }
 gnome() {

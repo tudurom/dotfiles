@@ -1,9 +1,9 @@
-URxvt.font: xft:Source Code Pro:pixelsize=14
-st.font: Source Code Pro:pixelsize=14
-Emacs.font: Source Code Pro:pixelsize=14
+URxvt.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+st.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+Emacs.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
 
-dzen2.font: Source Code Pro:pixelsize=14
+dzen2.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
 
-#include "../.xres/colors/stairs"
+#include "../.xres/colors/navyandivory"
 
 ! vim: set ft=xdefaults :

@@ -36,8 +36,6 @@ reload_settings() {
 
 	HIGH="$(colort -l ${sign}12 $CB)"
 	HIGH2="$(colort -l ${sign}20 $CB)"
-
-	CB="#00000000"
 }
 
 reload_settings
@@ -56,10 +54,10 @@ PD_WIDTH="$(dattr w $PPD)"
 PD_HEIGHT="$(dattr h $PPD)"
 
 # Full width bar
-BAR_WIDTH=$(( $PD_WIDTH - 2 * GENERAL_GAP ))
+BAR_WIDTH=$(( $PD_WIDTH - 2 * PANEL_BORDER_WIDTH ))
 BAR_HEIGHT="$PANEL_STATUS_HEIGHT"
-BAR_X="$GENERAL_GAP"
-BAR_Y="$GENERAL_GAP"
+BAR_X="0"
+BAR_Y="0"
 
 SEP_SMALL=" "
 
@@ -68,7 +66,7 @@ BAR_OPTS=""
 # Make it wmutils compatible
 BAR_OPTS="${BAR_OPTS} -d"
 # Add borders
-#BAR_OPTS="${BAR_OPTS} -R $CB -r $PANEL_BORDER_WIDTH"
+BAR_OPTS="${BAR_OPTS} -R $CB -r $PANEL_BORDER_WIDTH"
 # Position it
 BAR_OPTS="${BAR_OPTS} -g ${BAR_WIDTH}x${BAR_HEIGHT}+${BAR_X}+${BAR_Y}"
 # Colors
