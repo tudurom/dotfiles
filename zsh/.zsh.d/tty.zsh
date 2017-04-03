@@ -1,4 +1,4 @@
-# throw this in your ~/.(whatever)rc
+# Cloudy color scheme for the linux console
 
 if [ "$TERM" = "linux" ]; then
 echo -en "\e]P01d2a30"

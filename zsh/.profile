@@ -1,9 +1,21 @@
-PATH="$PATH:/usr/local/bin:/sbin:$HOME/bin"
+## Self-explanatory
 LANG="en_US.UTF-8"
 LC_TIME="ro_RO.UTF-8"
 
-test -f $HOME/.iotoken && IOUP_TOKEN="$(cat ~/.iotoken)"
+## Programs to use
+EDITOR=nvim
+VISUAL=nvim
+PAGER=less
+BROWSER=chromium
+CC=clang
 
-export PATH LANG LC_TIME IOUP_TOKEN
+## Settings
+LS_COLORS=''
+MAKEFLAGS=-j5
+LESS='-F -g -i -M -R -S -w -X -z-4'
+GOPATH="$HOME/gopath"
+SUDO_PROMPT="[sudo] auth $(tput bold)$(tput setaf 1)%U$(tput sgr0) "
 
-. $HOME/.zsh.d/export.zsh
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/.local/bin:$HOME/build/Telegram:$GOPATH/bin"
+
+export LANG LC_TIME EDITOR VISUAL PAGER BROWSER CC LS_COLORS MAKEFLAGS LESS GOPATH PATH SUDO_PROMPT

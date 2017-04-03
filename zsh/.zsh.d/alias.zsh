@@ -1,14 +1,10 @@
 alias :q=exit
-alias tls="tmux ls"
 alias ls="ls -F"
 alias ll="ls -alF"
-alias tswitch="tmux switch -t"
-alias tkill="tmux kill-session -t"
 alias rm="rm -I"
 alias clip="xclip -selection clipboard"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
-alias rnb="toilet -f future"
 test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"
 
 nvim() {
@@ -34,7 +30,7 @@ transfer() {
 }
 
 pi() {
-    ssh tudoo $1
+    ssh tudoo $@
 }
 
 push() {
@@ -44,13 +40,14 @@ push() {
     done
 }
 
+# Just for fun
 tehno() {
     mpv http://radio.2f30.org:8000/live.mp3
 }
 
 trinitas() {
 	# mostly used as a joke.
-	# trinitas is the radio of the romanian orthodoc church
+	# trinitas is the radio of the romanian orthodox church
     mpv http://live.radiotrinitas.ro:8003
 }
 
@@ -66,10 +63,6 @@ x0st() {
     curl -F"file=@${1}" https://0x0.st
 }
 
-mtp() {
-    sudo simple-mtpfs /mnt -o allow_other
-}
-
 up() {
 	test $# -eq 0 && cd .. && return
 	local i=0
@@ -80,4 +73,19 @@ up() {
 	done
 
 	cd $p
+}
+
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+		PAGER="${commands[less]:-$PAGER}" \
+		_NROFF_U=1 \
+		PATH="$HOME/bin:$PATH" \
+			man "$@"
 }
