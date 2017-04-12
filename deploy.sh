@@ -3,13 +3,15 @@
 # Deploy dotfiles
 #
 
+OPTS="-i README.md"
+
 # Check for conflicts
 echo "Checking for conflicts"
 for dir in */; do
 	dir="$(echo "$dir" | tr -d '/')"
 	(test "$dir" = "firefox" || test "$dir" = "startpage") && continue
 
-	conflicts="$(xstow -i README.md -c "${dir}" 2>&1 )"
+	conflicts="$(xstow $OPTS -c "${dir}" 2>&1 )"
 	printf "%s" "- ${dir}:"
 	if [ -z "$conflicts" ]; then
 		printf " NONE"
@@ -25,7 +27,7 @@ for dir in */; do
 	(test "$dir" = "firefox/" || test "$dir" = "startpage/") && continue
 
 	echo "- ${dir}"
-	xstow -i README.md "$dir"
+	xstow $OPTS "$dir"
 done
 
 ./pre_magic.sh

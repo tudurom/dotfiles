@@ -1,11 +1,11 @@
 #!/bin/sh
-
 #  ╻ ╻╻┏┓╻╻╺┳╸┏━┓┏━╸
 #  ┏╋┛┃┃┗┫┃ ┃ ┣┳┛┃
 # ╹╹ ╹╹╹ ╹╹ ╹ ╹┗╸┗━╸
 # by tudurom
 # no login manager since forever
 
+. $HOME/.profile
 . $HOME/bin/wmrc
 
 # Load X resources
@@ -41,6 +41,7 @@ wm() {
 	# Window compositor
 	compton -b
 	touchpadopts
+	Thunar --daemon &
 	wm=windowchef
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	test -f "$HOME/.config/ruler/rulerrc_${wm}" && \

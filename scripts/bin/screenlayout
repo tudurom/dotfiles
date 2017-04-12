@@ -1,6 +1,6 @@
 #! /bin/sh
 
-screens="$(xrandr | grep " connected" | cut -d' ' -f1)"
+screens="$(lsd -a)"
 
 laptop_screen="$(echo "$screens" | grep "LVDS-*[0-9]")"
 
