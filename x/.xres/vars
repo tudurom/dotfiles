@@ -1,8 +1,8 @@
-URxvt.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
-st.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
-Emacs.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
+st.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
+Emacs.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
 
-dzen2.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+dzen2.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
 
 #include "../.xres/colors/navyandivory"
 

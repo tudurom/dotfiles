@@ -32,6 +32,9 @@
         (awk-mode . "awk")
         (other . "bsd")))
 
+;; line numbers
+(add-hook 'prog-mode-hook #'linum-mode)
+
 ;; cancel actions with escape
 (define-key isearch-mode-map [escape] 'isearch-abort)
 (global-set-key [escape] 'keyboard-escape-quit)

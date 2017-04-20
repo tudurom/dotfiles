@@ -49,18 +49,13 @@
       "i" 'circe))
   (evil-mode 1))
 
-;; show line numbers
-(use-package nlinum
-  :ensure t
-  :config
-  (setq nlinum-redisplay-delay 0)
-  (global-nlinum-mode))
-
 (use-package git-gutter
   :ensure t
-  :defer t
   :config
-  (global-git-gutter-mode +1))
+  (global-git-gutter-mode +1)
+  (git-gutter:linum-setup)
+  (custom-set-variables
+   '(git-gutter:modified-sign "~")))
 
 ;; not sure how to use it...
 (use-package smart-tabs-mode
@@ -172,3 +167,6 @@
 (use-package ido
   :config
   (ido-mode t))
+
+(use-package go-mode
+  :ensure t)

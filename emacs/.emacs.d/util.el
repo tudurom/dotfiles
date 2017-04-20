@@ -27,7 +27,10 @@
   "Scaffold solution project for CS problem."
   (interactive "sProblem name: ")
   (shell-command (concat "~/bin/scaffoldsolution " proj))
+  (select-frame (make-frame))
   (switch-to-buffer (find-file-noselect
                      (concat "~/usr/work/problems/" proj "/" proj ".c")))
-  (multi-term-dedicated-open))
+  (tudurom/split-vert-and-focus)
+  (multi-term)
+  (other-window 1))
 
