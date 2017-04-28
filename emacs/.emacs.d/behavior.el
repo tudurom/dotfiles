@@ -8,9 +8,18 @@
       `((".*" ,tudurom/backup-dir t)))
 
 (setq-default show-trailing-whitespace nil)
+(add-hook 'prog-mode-hook (lambda ()
+                            (setq show-trailing-whitespace t)))
+(add-hook 'markdown-mode-hook (lambda ()
+                                (setq show-trailing-whitespace t)))
 
 ;; automatically insert parantheses/quotes etc. (like in most IDEs)
 (add-hook 'emacs-lisp-mode-hook (lambda () (electric-pair-mode -1)))
+(add-hook 'clojure-mode-hook (lambda () (electric-pair-mode -1)))
+(add-hook 'emacs-lisp-mode-hook (lambda () (electric-pair-mode -1)))
+(add-hook 'common-lisp-mode-hook (lambda () (electric-pair-mode -1)))
+(add-hook 'scheme-mode-hook (lambda () (electric-pair-mode -1)))
+(add-hook 'lisp-mode-hook (lambda () (electric-pair-mode -1)))
 (electric-pair-mode 1)
 
 ;; shut up
@@ -30,7 +39,7 @@
 (setq c-default-style
       '((java-mode . "java")
         (awk-mode . "awk")
-        (other . "bsd")))
+        (other . "k&r")))
 
 ;; line numbers
 (add-hook 'prog-mode-hook #'linum-mode)

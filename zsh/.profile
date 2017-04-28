@@ -18,4 +18,7 @@ SUDO_PROMPT="[sudo] auth $(tput bold)$(tput setaf 1)%U$(tput sgr0) "
 
 PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/.local/bin:$HOME/build/Telegram:$GOPATH/bin"
 
+# download folder is on ramdisk
+test -d "$HOME/tmp/downloads" || mkdir "$HOME/tmp/downloads"
+
 export LANG LC_TIME EDITOR VISUAL PAGER BROWSER CC LS_COLORS MAKEFLAGS LESS GOPATH PATH SUDO_PROMPT

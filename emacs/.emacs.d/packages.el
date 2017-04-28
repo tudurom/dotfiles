@@ -75,6 +75,11 @@
     :config
     (eval-after-load 'company
       '(add-to-list 'company-backends 'company-irony)))
+  (use-package company-go
+    :ensure t
+    :config
+    (eval-after-load 'company
+      '(add-to-list 'company-backends 'company-go)))
   (setq company-idle-delay 0.5)
   ;; that means that if cycles to the first option after the last one
   (setq company-selection-wrap-around t)
@@ -169,4 +174,11 @@
   (ido-mode t))
 
 (use-package go-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq gofmt-command "goimports")
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'gofmt-before-save)
+              (setq-local compile-command
+                          "go build -v && go test -v && go vet"))))
