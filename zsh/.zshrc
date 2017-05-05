@@ -1,4 +1,3 @@
-zmodload zsh/zprof
 mkdir -p "$HOME/tmp/downloads"
 
 ## STYLE

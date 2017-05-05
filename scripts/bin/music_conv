@@ -1,0 +1,98 @@
+#!/bin/sh
+#
+# Simple script for adding music files to a list and converting them in parallel
+# Works on my machine (tm)
+# Dependencies: ffmpeg, GNU Parallel
+# Copyright (C) 2017 Tudor Ioan Roman - WTFPL
+#
+
+MUSIC_CONV_DIR="$HOME/usr/music_conv"
+MUSIC_LIST="$MUSIC_CONV_DIR/list.txt"
+TEMP_FILE="$(mktemp /tmp/music_convXXXX.tmp)"
+MUSIC_FOLDER="/storage/music"
+TEMP_SRC_FILE="$(mktemp /tmp/music_conv_c1XXXX.tmp)"
+TEMP_DEST_FILE="$(mktemp /tmp/music_conv_c2XXXX.tmp)"
+MAX_PROC="4"
+
+test -f "$MUSIC_LIST" || :> "$MUSIC_LIST"
+
+add_song() {
+	# File list is '\n' delimited
+	local f="$1"
+	local mime_subtype="$(file -b --mime-type "$f" | cut -d'/' -f1)"
+
+	[ "$mime_subtype" != "audio" ] && return
+	local rp="$(realpath "$f")"
+
+	echo "Adding '$rp'"
+	echo "$rp" >> "$MUSIC_LIST"
+	sort "$MUSIC_LIST" | uniq > "$TEMP_FILE"
+	cat "$TEMP_FILE" > "$MUSIC_LIST"
+}
+
+convert_music() {
+	echo "Destination: '$MUSIC_CONV_DIR'"
+	:> "$TEMP_DEST_FILE"
+	:> "$TEMP_SRC_FILE"
+	while IFS='' read -r song; do
+		local new_path="${MUSIC_CONV_DIR}/$(echo "$song" | sed 's:'"$MUSIC_FOLDER"'/::')"
+		mkdir -p "$(dirname "$new_path")"
+
+		local ext="${song##*.}"
+		new_path="${new_path%.$ext}.mp3"
+		if [ "$ext" = "mp3" ] && [ ! -e "$new_path" ]; then
+			echo "Song '$song' already an mp3, copying"
+			cp "$song" "$new_path"
+		elif [ "$ext" != "mp3" ] && [ ! -e "${new_path%.$ext}" ]; then
+			echo "$song" >> "$TEMP_SRC_FILE"
+			echo "$new_path" >> "$TEMP_DEST_FILE"
+		else
+			echo "Skipping '$song'"
+		fi
+
+	done < "$MUSIC_LIST"
+
+	echo "Converting NOW"
+	parallel --link -j$MAX_PROC --progress 'ffmpeg -loglevel panic -i {1} -ab 320k {2}' :::: "$TEMP_SRC_FILE" :::: "$TEMP_DEST_FILE"
+}
+
+usage() {
+	local code="$1"
+	echo "Usage: $0 <subcommand> [files]"
+	echo "Available subcommands: add list clear convert"
+
+	exit "$code"
+}
+
+[ "$#" -eq 0 ] && usage 1
+subcommand="$1"
+shift
+
+case "$subcommand" in
+	"add")
+		[ "$#" -eq 0 ] && usage 1
+		for folder in "$@"; do
+			find "$folder" | while IFS='' read -r file; do
+				add_song "$file"
+			done
+
+		done
+		;;
+	"list")
+		${PAGER:-more} "$MUSIC_LIST"
+		;;
+	"clear")
+		printf "" > "$MUSIC_LIST"
+		;;
+	"convert")
+		convert_music
+		;;
+	*)
+		echo "$(basename "$0"): invalid subcommand"
+		usage 1
+esac
+
+rm "$TEMP_FILE"
+rm -f "$POOL_FILE"
+rm -f "$TEMP_SRC_FILE"
+rm -f "$TEMP_DIST_FILE"
