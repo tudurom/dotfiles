@@ -52,10 +52,14 @@ alt + {h,j,k,l}
 super + shift + t
 	tilew
 
-# extreme hack for click-to-focus
-# my logitech mouse has 10 buttons
-~button10
-	focus_underneath
-
 super + shift + r
 	$HOME/.config/windowchef/windowchefrc
+
+# For dragger
+super + ~button1
+	waitron window_focus $(xqp); \
+	echo drag > /tmp/dragger.fifo
+
+~button1
+	echo close > /tmp/dragger.fifo; \
+	waitron window_focus $(xqp)

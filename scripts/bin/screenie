@@ -9,7 +9,7 @@ number="$(ls -1 $HOME/tmp/screenies | cut -d'.' -f1 | sort -n | tail -n 1)"
 number="$(( number + 1 ))"
 
 opts=""
-test "$select" = "true" && opts="-s"
+test "$select" = "true" && opts="-s --noopengl"
 
 maim $opts "$HOME/tmp/screenies/${number}.png"
 

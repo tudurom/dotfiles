@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (package-initialize)
 
 (byte-recompile-directory user-emacs-directory 0)

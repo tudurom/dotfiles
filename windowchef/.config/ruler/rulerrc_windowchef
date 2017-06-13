@@ -1,9 +1,0 @@
-# assign all browsers to workspace 2
-role="browser"
-	wtf "$RULER_WID" && waitron group_add_window 2
-
-class="TelegramDesktop"
-	wtf "$RULER_WID" && waitron group_add_window 4
-
-class="Emacs"
-	wtf "$RULER_WID" && waitron group_add_window 1

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (require 'package)
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -37,8 +39,9 @@
       "j" 'windmove-down
       "k" 'windmove-up
       "l" 'windmove-right
-                                        ; focus next window
-      "<SPC>" (lambda ()
+      "=" 'balance-windows
+
+      "<SPC>" (lambda () ; focus next window
                 (interactive)
                 (other-window 1))
       "s" 'delete-trailing-whitespace
@@ -46,16 +49,18 @@
       "m" 'compile
       "d" 'dired
       "b" 'ibuffer
-      "i" 'circe))
+      "i" 'circe
+      "n" 'neotree-toggle))
+  (use-package evil-anzu
+    :ensure t)
   (evil-mode 1))
 
-(use-package git-gutter
+(use-package git-gutter-fringe
   :ensure t
   :config
   (global-git-gutter-mode +1)
-  (git-gutter:linum-setup)
   (custom-set-variables
-   '(git-gutter:modified-sign "~")))
+   '(git-gutter-fr:modified-sign "~")))
 
 ;; not sure how to use it...
 (use-package smart-tabs-mode
@@ -117,17 +122,11 @@
   :ensure t
   :commands (markdown-mode gfm-mode)
   :config
+  (setq markdown-command "blackfriday-tool")
+  (setq markdown-asymmetric-header t)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init
-  (setq markdown-command "blackfriday-tool")
-  ;; variable font height for markdown-mode
-  (custom-set-faces
-   '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "variable-pitch"))))
-   '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.8))))
-   '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.4))))
-   '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.2))))))
+         ("\\.markdown\\'" . markdown-mode)))
 
 (use-package magit
   :ensure t)
@@ -138,7 +137,7 @@
 
 (use-package parinfer
   :ensure t
-  :init
+  :config
   (progn
     (setq parinfer-extensions
           '(defaults
@@ -159,7 +158,18 @@
 (use-package circe
   :ensure t
   :config
-  (setq circe-network-options tudurom/irc-servers))
+  (eval-when-compile
+    (defvar tudurom/irc-servers))
+  (setq circe-network-options tudurom/irc-servers)
+
+  ;; Initialize circe related functions.
+  (defun tudurom/rainbow (text)
+    "Type rainbow text in circe."
+    (interactive "sText to type: ")
+    (circe-command-SAY
+     (shell-command-to-string
+      (concat "toilet -f term --irc --gay -- " text)))
+    (tudurom/load-circe)))
 
 (use-package smartparens
   :ensure t
@@ -171,7 +181,26 @@
 
 (use-package ido
   :config
-  (ido-mode t))
+  (ido-mode t)
+  (ido-everywhere t)
+  (use-package ido-ubiquitous
+    :ensure t
+    :config
+    (ido-ubiquitous-mode t))
+  (use-package flx-ido
+    :ensure t
+    :config
+    (flx-ido-mode t)
+    (setq ido-enable-flex-matching t)
+    (setq ido-use-faces nil))
+  (use-package smex
+    :ensure t
+    :config
+    (smex-initialize)
+    (global-set-key (kbd "M-x") 'smex)))
+
+(use-package ag
+  :ensure t)
 
 (use-package go-mode
   :ensure t
@@ -182,3 +211,22 @@
               (add-hook 'before-save-hook 'gofmt-before-save)
               (setq-local compile-command
                           "go build -v && go test -v && go vet"))))
+
+(use-package neotree
+  :ensure t
+  :config
+  (use-package all-the-icons
+    :ensure t)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+  (advice-add #'neo-global--select-window
+              :after
+              (lambda ()
+                (eval-when-compile
+                  (defvar neo-global--window))
+                (set-window-fringes neo-global--window 1 0))))
+
+(use-package solaire-mode
+  :ensure t
+  :config
+  (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode))

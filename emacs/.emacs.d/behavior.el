@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;;; behavior.el - settings regarding behavior not tied to packages
 
 ;; don't clutter the project dir with backups
@@ -36,12 +38,16 @@
 ;; no line wrap
 (setq-default truncate-lines t)
 
+;; follow symlinks when using version control
+(setq vc-follow-symlinks t)
+
 (setq c-default-style
       '((java-mode . "java")
         (awk-mode . "awk")
         (other . "k&r")))
 
 ;; line numbers
+(defvar linum-format "%4d ")
 (add-hook 'prog-mode-hook #'linum-mode)
 
 ;; cancel actions with escape
@@ -53,3 +59,7 @@
             ;; Use spaces, not tabs.
             (setq indent-tabs-mode nil)
             (setq tab-stop-list (number-sequence 4 120 4))))
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (c-set-offset 'inextern-lang 0)))

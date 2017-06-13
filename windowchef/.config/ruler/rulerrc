@@ -1,0 +1,12 @@
+role="browser"
+	movetows "$RULER_WID" 2
+
+class="TelegramDesktop"
+	movetows "$RULER_WID" 4
+
+# for some reason emacs is not in tiled mode on bspwm. fix that
+class="Emacs"
+	movetows "$RULER_WID" 1 && test "$(wmname)" = "bspwm" && bspc node -t tiled
+
+class="discord"
+	movetows "$RULER_WID" 6

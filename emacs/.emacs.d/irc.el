@@ -1,3 +1,9 @@
+;;; -*- lexical-binding: t -*-
+
+(eval-when-compile
+  (defvar tudurom/znc-port)
+  (defvar tudurom/znc-unixchat-password)
+  (defvar tudurom/znc-rizon-password))
 (defconst tudurom/irc-servers
   `(("Unixchat"
      :host "tudorr.xyz"
@@ -6,12 +12,5 @@
     ("Rizon"
      :host "tudorr.xyz"
      :port ,tudurom/znc-port
-     :pass ,tudurom/znc-rizon-password))
-  "Configuration for different irc servers.")
-
-(defun tudurom/rainbow (text)
-  "Type rainbow text in circe."
-  (interactive "sText to type: ")
-  (circe-command-SAY
-   (shell-command-to-string
-    (concat "toilet -f term --irc --gay -- " text))))
+     :pass ,tudurom/znc-rizon-password)))
+"Configuration for different irc servers."

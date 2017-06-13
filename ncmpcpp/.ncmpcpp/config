@@ -13,13 +13,14 @@ now_playing_suffix = "$/b"
 
 header_visibility = "no"
 autocenter_mode = "yes"
-main_window_highlight_color = "white"
+#main_window_highlight_color = "white"
+current_item_prefix = "$(white)$r"
+current_item_suffix = "$/r$(end)"
 discard_colors_if_item_is_selected = "no"
 
 # Progressbar look
 progressbar_look = "━━━"
 progressbar_elapsed_color = "cyan"
-progressbar_boldness = "no"
 
 # Visualizer
 visualizer_in_stereo = "yes"

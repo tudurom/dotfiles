@@ -184,7 +184,7 @@ get_music() {
 			echo "MUSIC $song"
 		fi
 
-		sleep 1
+		mpc idle > /dev/null
 	done
 }
 get_music > "$PANEL_FIFO" &
@@ -192,10 +192,46 @@ get_music > "$PANEL_FIFO" &
 get_music_icon() {
 	while :; do
 		printf "MUSIC_ICON %s\n" "$(musicstat | cut -d' ' -f1)"
-		sleep 1
+		mpc idle > /dev/null
 	done
 }
 get_music_icon > "$PANEL_FIFO" &
+
+get_ws() {
+	local wm="$(wmname)"
+	while :; do
+		local out=""
+		case "$wm" in
+			windowchef)
+				local groups="$(xprop -root | grep "WINDOWCHEF_ACTIVE_GROUPS" |\
+				  grep -Eo '[0-9]+,*' | sed 's/,//g')"
+				local pfw="$(pfw 2> /dev/null)"
+				local fw_group="0"
+
+				if [ "$pfw" != "$(lsw -r)" ] && [ -n "$pfw" ]; then
+					fw_group="$(xprop -notype -id "$pfw" _NET_WM_DESKTOP | cut -d' ' -f3)"
+					fw_group="$(( fw_group + 1 ))"
+				fi
+
+				while IFS='' read -r g; do
+					test "$g" = "0" && continue
+					if [ "$g" = "$fw_group" ]; then
+						out="${out}%{B$HIGH2} "
+					else
+						out="${out}%{B$HIGH} "
+					fi
+					out="${out}${g} %{B-}"
+				done <<EOF
+$groups
+EOF
+				;;
+		esac
+		echo "WS $out"
+		sleep 1
+	done
+}
+
+get_ws > "$PANEL_FIFO" &
 
 # }}}
 
@@ -215,6 +251,9 @@ while IFS='' read -r line; do
 		BATTERY*)
 			fn_battery="${line#BATTERY }"
 			;;
+		WS*)
+			fn_ws="${line#WS }"
+			;;
 		MUSIC_ICON*)
 			fn_music_icon="${line#MUSIC_ICON }"
 			;;
@@ -226,6 +265,7 @@ while IFS='' read -r line; do
 
 	rp "%{l}$(segment "$fn_time" $CLOCK_ICON)${SEP_SMALL}"
 	rp "$(segment "$fn_date" $DATE_ICON)${SEP_SMALL}"
+	rp "${fn_ws}${SEP_SMALL}"
 	rp "%{r}%{A:mpc toggle:}$(segment "$fn_music" "$fn_music_icon")%{A}"
 	rp "${SEP_SMALL}$(segment "$fn_battery" "$fn_battery_icon")"
 	rp "\n"

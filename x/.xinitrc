@@ -21,7 +21,7 @@ refreshfonts
 setxkbmap ro comma
 xmodmap $HOME/.xmodmaprc
 # URxvt clipboard magic
-autocutsel -selection clipboard -fork
+autocutsel -fork
 
 # Multi monitor
 screenlayout
@@ -43,9 +43,10 @@ wm() {
 	touchpadopts
 	Thunar --daemon &
 	wm=windowchef
+	test -e "$HOME/tmp/sxhkd.fifo" && rm "$HOME/tmp/sxhkd.fifo"
+	mkfifo "$HOME/tmp/sxhkd.fifo"
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
-	test -f "$HOME/.config/ruler/rulerrc_${wm}" && \
-	ruler $HOME/.config/ruler/rulerrc_${wm} &
+	ruler &
 	(sleep 1 && swtheme navyandivory) &
 	$wm
 }

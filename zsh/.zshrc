@@ -1,3 +1,5 @@
+. $HOME/.profile
+
 mkdir -p "$HOME/tmp/downloads"
 
 ## STYLE
@@ -48,6 +50,16 @@ if which ruby > /dev/null 2>&1; then
     export PATH="$HOME/.gem/ruby/$ruby_ver/bin:$PATH"
 	unset ruby_ver
 fi
+
+## HISTORY
+
+HISTFILE="$HOME/.zhistory"
+setopt append_history
+HISTSIZE=1200
+SAVEHIST=1000
+setopt hist_expire_dups_first
+setopt extended_history
+setopt share_history
 
 ## KEYBINDS
 
@@ -158,3 +170,6 @@ man() {
 ## FZF
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+_fzf_compgen_path() {
+	ag -g "" "$1"
+}

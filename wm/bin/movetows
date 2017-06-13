@@ -1,0 +1,21 @@
+#!/bin/sh -x
+
+name="$(wmname)"
+
+test "$#" -ne 2 && echo "'" "$@"
+
+win="$1"
+ws="$2"
+
+case "$name" in
+	windowchef)
+		wtf "$win"
+		waitron group_add_window "$ws"
+		;;
+	bspwm)
+		wtf "$win"
+		bspc node -d '^'"$ws"
+		;;
+esac
+
+exit 0
