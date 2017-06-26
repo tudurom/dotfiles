@@ -63,3 +63,6 @@ super + ~button1
 ~button1
 	echo close > /tmp/dragger.fifo; \
 	waitron window_focus $(xqp)
+
+~button3
+	if [ "$(xqp)" = "0x00000000" ]; then californium toggle; fi

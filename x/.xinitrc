@@ -47,6 +47,7 @@ wm() {
 	mkfifo "$HOME/tmp/sxhkd.fifo"
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	ruler &
+	californium &
 	(sleep 1 && swtheme navyandivory) &
 	$wm
 }
