@@ -230,3 +230,6 @@
   :ensure t
   :config
   (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode))
+
+(use-package protobuf-mode
+  :ensure t)

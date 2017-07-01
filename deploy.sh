@@ -24,7 +24,10 @@ done
 # Symlink
 echo "Deploying"
 for dir in */; do
-	(test "$dir" = "firefox/" || test "$dir" = "startpage/") && continue
+	if [ "$dir" = "firefox/" ] || [ "$dir" = "startpage/" ] \
+		   || [ "$dir" = "meta/" ]; then
+		continue
+	fi
 
 	echo "- ${dir}"
 	xstow $OPTS "$dir"

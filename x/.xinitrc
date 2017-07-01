@@ -41,7 +41,6 @@ wm() {
 	# Window compositor
 	compton -b
 	touchpadopts
-	Thunar --daemon &
 	wm=windowchef
 	test -e "$HOME/tmp/sxhkd.fifo" && rm "$HOME/tmp/sxhkd.fifo"
 	mkfifo "$HOME/tmp/sxhkd.fifo"

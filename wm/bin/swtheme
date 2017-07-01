@@ -79,18 +79,6 @@ fi
 # TODO : find way to set this on the fly
 sed -i 's/set background=.*/set background='"$COLOR_STYLE"'/' "$(readlink -f "$HOME/.config/nvim/init.vim")"
 
-# Change firefox theme
-firefox_profile="$(grep Path $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2 | head -n 1)"
-rainbou "$colorscheme" "$HOME/.wm/rainbou/templates/firefox_${COLOR_STYLE}" > "$HOME/.mozilla/firefox/$firefox_profile/chrome/userChrome.css"
-
-# Regenerate startpage
-wd=`pwd`
-cd $HOME/dotfiles/startpage/scss
-rainbou "$colorscheme" scss > colors.scss
-cd ..
-./gencss
-cd "$wd"
-
 wall-e "$WALLPAPER_PATH" "$WALLPAPER_STYLE"
 
 # reload wm
@@ -122,6 +110,7 @@ done
 test -n "$minbar_wid" && chwso -l "$minbar_wid"
 pg notifyd && killall notifyd
 notifyd > /dev/null &
+gtkrc-reload &
 
 
 # I don't know why but notifyd wants a break
