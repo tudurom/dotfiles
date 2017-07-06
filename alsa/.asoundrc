@@ -1,4 +1,11 @@
 defaults.pcm.rate_converter "speexrate_best"
 
-defaults.pcm.card 0
-defaults.ctl.card 0
+defaults.pcm.card 1
+defaults.ctl.card 1
+
+#pcm.softvol {
+#	type softvol
+#	slave {
+#		pcm ""
+#	}
+#}

@@ -7,9 +7,7 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
-(load "~/.emacs.d/private")
 (load "~/.emacs.d/util")
-(load "~/.emacs.d/irc")
 (load "~/.emacs.d/packages")
 (load "~/.emacs.d/behavior")
 (load "~/.emacs.d/aesthetics")

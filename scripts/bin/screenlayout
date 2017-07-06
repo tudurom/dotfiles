@@ -1,16 +1,3 @@
 #! /bin/sh
 
-screens="$(lsd -a)"
-
-laptop_screen="$(echo "$screens" | grep "LVDS-*[0-9]")"
-
-single_ext="off"
-ext_monitor=$(echo "$screens" | grep -v "$laptop_screen" | tail -n 1)
-if [ -z "$ext_monitor" ]; then
-  xrandr --output "$laptop_screen" --primary
-else
-  xrandr --output "$ext_monitor" --auto --left-of "$laptop_screen" --primary --rotate normal
-  if [ $single_ext = "on" ]; then
-    xrandr --output "$laptop_screen" --off
-  fi
-fi
+xrandr --output "$(lsd | head -n 1)" --primary

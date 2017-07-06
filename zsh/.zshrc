@@ -1,7 +1,5 @@
 . $HOME/.profile
 
-mkdir -p "$HOME/tmp/downloads"
-
 ## STYLE
 
 setopt prompt_subst
@@ -15,6 +13,7 @@ setopt interactive_comments
 
 autoload -U colors && colors
 autoload -U zmv
+autoload compdef
 
 # A simple arrow
 # Cyan on exit success, red otherwise

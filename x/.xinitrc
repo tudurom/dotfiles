@@ -40,14 +40,13 @@ wm() {
 	notifyd &
 	# Window compositor
 	compton -b
-	touchpadopts
 	wm=windowchef
 	test -e "$HOME/tmp/sxhkd.fifo" && rm "$HOME/tmp/sxhkd.fifo"
 	mkfifo "$HOME/tmp/sxhkd.fifo"
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	ruler &
 	californium &
-	(sleep 1 && swtheme navyandivory) &
+	(sleep 1 && swtheme cyber) &
 	$wm
 }
 gnome() {

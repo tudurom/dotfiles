@@ -76,6 +76,9 @@ if pg nvim; then
 	done
 fi
 
+rainbou "$colorscheme" vimperator > "$HOME/.vimperator/colors/${colorscheme}.vimp"
+sed -i --follow-symlinks 's/colo [a-zA-Z]+/colo '"$colorscheme"'/' "$HOME/.vimperatorrc"
+
 # TODO : find way to set this on the fly
 sed -i 's/set background=.*/set background='"$COLOR_STYLE"'/' "$(readlink -f "$HOME/.config/nvim/init.vim")"
 

@@ -6,12 +6,12 @@ LC_TIME="ro_RO.UTF-8"
 EDITOR=nvim
 VISUAL=nvim
 PAGER=less
-BROWSER=chromium
+BROWSER=firefox
 CC=clang
 
 ## Settings
 LS_COLORS=''
-MAKEFLAGS=-j5
+MAKEFLAGS=-j18
 MANWIDTH=80
 LESS='-F -g -i -M -R -S -w -X -z-4'
 GOPATH="$HOME/gopath"

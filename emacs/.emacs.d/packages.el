@@ -158,9 +158,6 @@
 (use-package circe
   :ensure t
   :config
-  (eval-when-compile
-    (defvar tudurom/irc-servers))
-  (setq circe-network-options tudurom/irc-servers)
 
   ;; Initialize circe related functions.
   (defun tudurom/rainbow (text)
@@ -232,4 +229,7 @@
   (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode))
 
 (use-package protobuf-mode
+  :ensure t)
+
+(use-package multi-term
   :ensure t)

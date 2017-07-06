@@ -28,7 +28,8 @@ reload_settings() {
 	CBG="$(xrq '*.background')"
 
 	# actual colors for the foreground and background of the bar
-	CB="$PANEL_BG_COLOR"
+	#CB="$PANEL_BG_COLOR"
+	CB="#00000000"
 	CF="$CFG"
 
 	local sign=""
@@ -137,6 +138,7 @@ get_battery() {
 		sleep 10
 	done
 }
+[ ! -f /sys/class/power_supply/BAT0 ] || \
 get_battery > "$PANEL_FIFO" &
 
 get_battery_icon() {
@@ -166,6 +168,7 @@ get_battery_icon() {
 		sleep 10
 	done
 }
+[ ! -f /sys/class/power_supply/BAT0 ] || \
 get_battery_icon > "$PANEL_FIFO" &
 
 get_music() {
@@ -267,6 +270,7 @@ while IFS='' read -r line; do
 	rp "$(segment "$fn_date" $DATE_ICON)${SEP_SMALL}"
 	rp "${fn_ws}${SEP_SMALL}"
 	rp "%{r}%{A:mpc toggle:}$(segment "$fn_music" "$fn_music_icon")%{A}"
+	[ ! -f /sys/class/power_supply/BAT0 ] || \
 	rp "${SEP_SMALL}$(segment "$fn_battery" "$fn_battery_icon")"
 	rp "\n"
 done < "$PANEL_FIFO" | lemonbar $BAR_OPTS | sh > /dev/null
