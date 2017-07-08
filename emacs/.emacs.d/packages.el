@@ -180,7 +180,7 @@
   :config
   (ido-mode t)
   (ido-everywhere t)
-  (use-package ido-ubiquitous
+  (use-package ido-completing-read+
     :ensure t
     :config
     (ido-ubiquitous-mode t))
