@@ -28,8 +28,8 @@ reload_settings() {
 	CBG="$(xrq '*.background')"
 
 	# actual colors for the foreground and background of the bar
-	#CB="$PANEL_BG_COLOR"
-	CB="#00000000"
+	CB="$PANEL_BG_COLOR"
+	test "$(< $CURRENT_THEME_PATH)" = "cyber" && CB='#00000000'
 	CF="$CFG"
 
 	local sign=""
