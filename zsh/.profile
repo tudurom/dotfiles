@@ -8,6 +8,7 @@ VISUAL=nvim
 PAGER=less
 BROWSER=firefox
 CC=clang
+CXX=clang++
 
 ## Settings
 LS_COLORS=''

@@ -3,7 +3,6 @@
 ! font spacing that doesn't move around the screen when I dinamically set
 ! the font.
 
-URxvt.depth: 0
 ! No bold font
 URxvt.boldFont:
 *.scrollBar: false

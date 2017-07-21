@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 #  ╻ ╻╻┏┓╻╻╺┳╸┏━┓┏━╸
 #  ┏╋┛┃┃┗┫┃ ┃ ┣┳┛┃
 # ╹╹ ╹╹╹ ╹╹ ╹ ╹┗╸┗━╸
@@ -35,6 +35,9 @@ wall-e &
 
 redshift &
 mpd &
+
+startpage &
+
 wm() {
 	# Listen to popup requests
 	notifyd &

@@ -1,25 +1,9 @@
 [neovim](https://neovim.io)
 ===========================
 
-I use vim plug to manage the plugins I use. 
+I use vim plug to manage the plugins I use.
 
-My `init.vim` utilizes vim folds and is split into many sections:
-
-* Plugins
-* Essential settings
-* Keybindings
-* Colors
-* Statusline
-* Clipboard settings (writes to global X clipboard)
-* Word wrapping
-* Filetypes
-* Completion
-* Golang
-* Syntax checking
-* Romanian digraphs
-* Functions
-* tmux integration
-* [Lightline](https://github.com/itchyny/lightline.vim)
+My `init.vim` utilizes vim folds and is split into many sections.
 
 I use a cocktail of plugins:
 
@@ -37,5 +21,3 @@ I use a cocktail of plugins:
 * [christoomey/vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - tmux navigation
 * [simeji/winresizer](https://github.com/simeji/winresizer) - window resizing
 	mode. Easy window resizing.
-* [whatyouhide/vim-gotham](https://github.com/whatyouhide/vim-gotham) - gotham
-	colorscheme

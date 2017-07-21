@@ -31,6 +31,7 @@ alias rm="rm -I"
 alias clip="xclip -selection clipboard"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
+alias go="CC=gcc CXX=g++ go"
 test "$(uname)" = "FreeBSD" && alias tput="/usr/local/bin/tput"
 
 ## COMPLETION

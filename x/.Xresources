@@ -6,6 +6,7 @@
 
 #include ".xres/xft"
 #include ".xres/urxvt"
+#include ".xres/xterm"
 #include ".xres/st"
 #include ".xres/misc"
 #include ".xres/emacs"

@@ -12,7 +12,7 @@ TEMP_FILE="$(mktemp /tmp/music_convXXXX.tmp)"
 MUSIC_FOLDER="/storage/music"
 TEMP_SRC_FILE="$(mktemp /tmp/music_conv_c1XXXX.tmp)"
 TEMP_DEST_FILE="$(mktemp /tmp/music_conv_c2XXXX.tmp)"
-MAX_PROC="4"
+MAX_PROC="14"
 
 test -f "$MUSIC_LIST" || :> "$MUSIC_LIST"
 

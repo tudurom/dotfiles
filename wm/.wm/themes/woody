@@ -15,5 +15,4 @@ PANEL_BG_COLOR="`xrq '*.background'`"
 PANEL_BORDER_COLOR=`xrq '*.color1'`
 PANEL_ACCENT_COLOR=`xrq '*.color15'`
 PANEL_BORDER_WIDTH=$BW
-#TERM_FONT=-*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
-TERM_FONT=-*-tewi-medium-*-*-*-11-*-*-*-*-*-*-*
+TERM_FONT=-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*

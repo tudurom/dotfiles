@@ -3,6 +3,6 @@ ncmpcpp
 
 MPD frontend of choice. The config files includes a cheat sheet.
 
-## [Screenshot](http://pub.iotek.org/p/LwHoQ2r.png)
+## [Screenshot](https://ptpb.pw/Lkv7.png)
 
-## [Visualizer](http://pub.iotek.org/p/yqn7zX8.png)
+## [Visualizer](https://ptpb.pw/tmFK.png)

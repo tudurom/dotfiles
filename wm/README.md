@@ -47,7 +47,7 @@ mustache templates for its magic.
 
 ### Information
 
-* `minbar` - minimal status bar. [Screenshot](https://p.iotek.org/gce). Shows
+* `minbar` - minimal status bar. [Screenshot](https://ptpb.pw/Q0ON.png). Shows
 the current date, time, song and battery level.
 * `notifyd` - Simple FIFO-based notification daemon.
 	* `notifyd-musicd` - `notifyd` module. Prints the currently playing song on

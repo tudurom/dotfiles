@@ -3,7 +3,7 @@
 # Deploy dotfiles
 #
 
-OPTS="-i README.md"
+OPTS="-ire README\..*"
 
 # Check for conflicts
 echo "Checking for conflicts"

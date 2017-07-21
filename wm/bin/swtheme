@@ -92,6 +92,8 @@ pg herbstluftwm && herbstclient reload
 # reload emacs theme
 pg emacs && emacsclient -e '(tudurom/reload-theme)' > /dev/null 2>&1
 
+mpd --kill
+
 # reload panel
 pg minbar && killall minbar
 minbar > /dev/null &
@@ -113,7 +115,10 @@ done
 test -n "$minbar_wid" && chwso -l "$minbar_wid"
 pg notifyd && killall notifyd
 notifyd > /dev/null &
-gtkrc-reload &
+
+mpd
+
+gengtk &
 
 
 # I don't know why but notifyd wants a break

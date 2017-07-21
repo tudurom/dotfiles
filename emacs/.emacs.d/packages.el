@@ -111,6 +111,8 @@
   :config
   (with-eval-after-load 'flycheck
     (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+  (use-package go-flycheck
+    :ensure t)
   (global-flycheck-mode))
 
 (use-package smooth-scrolling
@@ -171,10 +173,14 @@
 (use-package smartparens
   :ensure t
   :config
+  (defun my-web-mode-smartparens-hook ()
+    (sp-pair "<" ">" :wrap "C->"))
+
   (defun disable-smartparens ()
     (smartparens-mode -1))
   (smartparens-global-mode)
-  (add-hook 'emacs-lisp-mode-hook #'disable-smartparens))
+  (add-hook 'emacs-lisp-mode-hook #'disable-smartparens)
+  (add-hook 'web-mode-hook #'my-web-mode-smartparens-hook))
 
 (use-package ido
   :config
@@ -233,3 +239,9 @@
 
 (use-package multi-term
   :ensure t)
+
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-enable-auto-pairing nil))
