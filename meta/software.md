@@ -13,7 +13,7 @@ List of programs
 * xsetroot
 * feh
 * redshift
-* mpd
+* playerctl
 * disputils
 * compton
 * wmutils
@@ -23,6 +23,8 @@ List of programs
 * nvr
 * bspwm
 * colort
+* xautomation
+* xbindkeys
 
 Links
 -----

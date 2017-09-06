@@ -35,6 +35,7 @@ CF="${CFG:1}"
 oomoxconf="$(mktemp)"
 cat << EOF > "$oomoxconf"
 NAME="auto"
+THEME_STYLE=flatplat
 BG=$CB
 FG=$CF
 TXT_BG=$CB

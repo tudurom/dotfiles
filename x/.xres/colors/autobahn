@@ -1,0 +1,40 @@
+! autobahn by tudurom
+
+! special
+*.foreground:   #C7FEFE
+*.background:   #0B2830
+*.cursorColor:  #C7FEFE
+
+! black
+*.color0:       #003549
+*.color8:       #036495
+
+! red
+*.color1:       #DA4B8E
+*.color9:       #F973B4
+
+! green
+*.color2:       #12677F
+*.color10:      #009BC2
+
+! yellow
+*.color3:       #C4BDBE
+*.color11:      #F6E8EF
+
+! blue
+*.color4:       #004F77
+*.color12:      #005490
+
+! magenta (or orange)
+*.color5:       #CD4383
+*.color13:      #EA7DB2
+
+! cyan
+*.color6:       #00CDFE
+*.color14:      #37EDF7
+
+! white
+*.color7:       #C7FEFE
+*.color15:      #fefefe
+
+! vim: set ft=xdefaults :

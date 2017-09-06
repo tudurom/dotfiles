@@ -12,14 +12,27 @@ reload_settings() {
 
 	# actual colors for the foreground and background of the bar
 	CB="$PANEL_BG_COLOR"
-	test "$(< $CURRENT_THEME_PATH)" = "cyber" && CB='#00000000'
+	if [ -z "$PANEL_TRANSPARENT" ] || \
+		([ -n "$PANEL_TRANSPARENT" ] && [ -n "$PANEL_KEEP_HIGH" ]); then
+		HIGH="$(colort -l ${sign}12 $CB)"
+		HIGH2="$(colort -l ${sign}20 $CB)"
+	fi
+
+	if [ -n "$PANEL_TRANSPARENT" ]; then
+		CB='#00000000'
+	fi
 	CF="$CFG"
 
 	local sign=""
 	test "$COLOR_STYLE" = "light" && sign="-"
 
-	HIGH="$(colort -l ${sign}12 $CB)"
-	HIGH2="$(colort -l ${sign}20 $CB)"
+	CA=""
+	if [ "$COLOR_STYLE" = "dark" ]; then
+		CA="$C8"
+	else
+		CA="$C15"
+	fi
+
 }
 
 reload_settings
@@ -155,33 +168,26 @@ get_battery_icon() {
 get_battery_icon > "$PANEL_FIFO" &
 
 get_music() {
-	while :; do
-		local song="$(musicstat ico)"
-		local prev_song="$song"
-		if [ "$(musicstat ico | wc -m)" -gt "$SKROLL_CHARS" ]; then
+	musicstat bar | while read -r line; do
+		local icon="$(echo "$line" | cut -d',' -f1)"
+		local text="$(echo "$line" | cut -d',' -f2-)"
+		printf "MUSIC_ICON %s\n" "$icon"
+		if [ "$(echo "$text" | wc -m)" -gt "$SKROLL_CHARS" ]; then
+			local oldifs="$IFS"
 			IFS=''
-			echo "$song" | skroll -rn "$SKROLL_CHARS" -d 0.1 |\
-			while read -r line; do
-				song="$(musicstat ico)"
-				test "$song" != "$prev_song" && break
-				printf "MUSIC %*s\n" "$SKROLL_CHARS" "$line"
+			echo "$text" | skroll -lrn "$SKROLL_CHARS" -d 0.1 |\
+			while read -r skrtext; do
+				local newtext="$(musicstat text)"
+				test "$text" != "$newtext" && break
+				printf "MUSIC %*s\n" "$SKROLL_CHARS" "$skrtext"
 			done
+			IFS="$oldifs"
 		else
-			echo "MUSIC $song"
+			echo "MUSIC $text"
 		fi
-
-		mpc idle > /dev/null
 	done
 }
 get_music > "$PANEL_FIFO" &
-
-get_music_icon() {
-	while :; do
-		printf "MUSIC_ICON %s\n" "$(musicstat | cut -d' ' -f1)"
-		mpc idle > /dev/null
-	done
-}
-get_music_icon > "$PANEL_FIFO" &
 
 get_ws() {
 	local wm="$(wmname)"
@@ -189,8 +195,9 @@ get_ws() {
 		local out=""
 		case "$wm" in
 			windowchef)
-				local groups="$(xprop -root | grep "WINDOWCHEF_ACTIVE_GROUPS" |\
-				  grep -Eo '[0-9]+,*' | sed 's/,//g')"
+				# list of active groups. one number per line
+				local groups="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS |\
+				  grep -Eo '[0-9]+,*' | tr -d ',')"
 				local pfw="$(pfw 2> /dev/null)"
 				local fw_group="0"
 
@@ -199,17 +206,22 @@ get_ws() {
 					fw_group="$(( fw_group + 1 ))"
 				fi
 
-				while IFS='' read -r g; do
-					test "$g" = "0" && continue
+				for g in $(seq "$GNUMBER"); do
 					if [ "$g" = "$fw_group" ]; then
-						out="${out}%{B$HIGH2} "
+						out="${out}%{B$HIGH2}%{+u}%{U$C9} "
 					else
-						out="${out}%{B$HIGH} "
+						out="${out}%{B$HIGH}"
+
+						# check if group is active
+						if echo "$groups" | grep -q "$g"; then
+							out="${out}%{+u}%{U$C1}"
+						else
+							out="${out}%{F$CA}"
+						fi
+						out="${out} "
 					fi
-					out="${out}${g} %{B-}"
-				done <<EOF
-$groups
-EOF
+					out="${out}${g} %{-u}%{B-}%{U-}%{F-}"
+				done
 				;;
 		esac
 		echo "WS $out"

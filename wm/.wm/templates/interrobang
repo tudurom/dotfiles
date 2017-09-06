@@ -10,11 +10,12 @@ set margin = -80
 set shell = /bin/sh
 set run_hook = %s; test $? = 127 && echo "error: command not found" > "$NOTIFY_FIFO_PATH"
 
-bang www = chromium %s
+bang www = $BROWSER %s
 bang pdf = zathura %s
 bang man = urxvt -e man %s
-bang math = notify-send "$(qalc "%s")"
-bang ddg = chromium "https://duckduckgo.com/?q=%s"
+bang math = echo "$(qalc "%s")" > "$NOTIFY_FIFO_PATH"
+bang ddg = $BROWSER "https://duckduckgo.com/?q=%s"
+bang emoji = emoji "%s" | tr -d '\n' | xdotool type --file -
 bang ? = echo "interrobang ignored '%s'" > "$NOTIFY_FIFO_PATH"
 
 tab default = percontation "%s" %s | sort -u

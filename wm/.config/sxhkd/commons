@@ -46,7 +46,7 @@ XF86MonBrightnessDown
   light -U 10
 
 XF86AudioPlay
-  mpc toggle
+  mpc toggle; pgrep ashuffle || ashuffle &
 
 XF86AudioStop
   mpc stop

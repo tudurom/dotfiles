@@ -1,8 +1,8 @@
-URxvt.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
-st.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
-Emacs.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+URxvt.font: xft:Iosevka:pixelsize=20
+st.font: Iosevka:pixelsize=20
+Emacs.font: Iosevka:pixelsize=20
 
-dzen2.font: -*-dina-medium-r-normal-*-12-*-*-*-*-*-*-*
+dzen2.font: Iosevka:pixelsize=20
 
 #include "../.xres/colors/cyber"
 

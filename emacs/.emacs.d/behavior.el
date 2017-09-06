@@ -2,23 +2,32 @@
 
 ;;; behavior.el - settings regarding behavior not tied to packages
 
-;; don't clutter the project dir with backups
+;; don't clutter the project dir with backups or lockfiles
 (defconst tudurom/backup-dir "~/.emacs.d/backups")
 (setq backup-directory-alist
       `((".*" . ,tudurom/backup-dir)))
 (setq auto-save-file-name-transforms
       `((".*" ,tudurom/backup-dir t)))
+(setq create-lockfiles nil)
+
+;; save undo history
+(eval-when-compile
+  (defvar undo-tree-auto-save-history)
+  (defvar undo-tree-history-directory-alist))
+(setq undo-tree-auto-save-history t)
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 (setq-default show-trailing-whitespace nil)
 (add-hook 'prog-mode-hook (lambda ()
-                            (setq show-trailing-whitespace t)))
+                            (setq show-trailing-whitespace t)
+                            ;; treats CamelCase words as real words (example: "Camel" and "Case")
+                            (subword-mode)))
 (add-hook 'markdown-mode-hook (lambda ()
                                 (setq show-trailing-whitespace t)))
 
 ;; automatically insert parantheses/quotes etc. (like in most IDEs)
 (add-hook 'emacs-lisp-mode-hook (lambda () (electric-pair-mode -1)))
 (add-hook 'clojure-mode-hook (lambda () (electric-pair-mode -1)))
-(add-hook 'emacs-lisp-mode-hook (lambda () (electric-pair-mode -1)))
 (add-hook 'common-lisp-mode-hook (lambda () (electric-pair-mode -1)))
 (add-hook 'scheme-mode-hook (lambda () (electric-pair-mode -1)))
 (add-hook 'lisp-mode-hook (lambda () (electric-pair-mode -1)))
@@ -41,6 +50,10 @@
 ;; follow symlinks when using version control
 (setq vc-follow-symlinks t)
 
+(setq sentence-end-double-space nil)
+
+(eval-when-compile
+  (defvar c-default-style))
 (setq c-default-style
       '((java-mode . "java")
         (awk-mode . "awk")

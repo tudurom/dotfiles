@@ -16,3 +16,4 @@ PANEL_BORDER_COLOR=`xrq '*.color8'`
 PANEL_ACCENT_COLOR=`xrq '*.color1'`
 PANEL_BORDER_WIDTH=$BW
 TERM_FONT="xft:Source Code Pro:pixelsize=14"
+PANEL_TRANSPARENT=""

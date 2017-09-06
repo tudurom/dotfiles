@@ -34,7 +34,6 @@ xsetroot -cursor_name left_ptr &
 wall-e &
 
 redshift &
-mpd &
 
 startpage &
 
@@ -43,7 +42,7 @@ wm() {
 	notifyd &
 	# Window compositor
 	compton -b
-	wm=windowchef
+	wm=$1
 	test -e "$HOME/tmp/sxhkd.fifo" && rm "$HOME/tmp/sxhkd.fifo"
 	mkfifo "$HOME/tmp/sxhkd.fifo"
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
@@ -53,8 +52,7 @@ wm() {
 	$wm
 }
 gnome() {
-	mpDris2 &
 	exec gnome-session
 }
-wm
+wm windowchef
 #gnome

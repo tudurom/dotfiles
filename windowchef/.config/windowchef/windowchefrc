@@ -18,5 +18,7 @@ waitron wm_config enable_sloppy_focus false
 waitron wm_config sticky_windows false
 waitron wm_config enable_borders true
 waitron wm_config enable_last_window_focusing true
-
-pgrep dragger > /dev/null 2>&1 || ~/src/dragger/dragger &
+waitron wm_config apply_settings true
+waitron wm_config pointer_actions move resize_side resize_corner
+waitron wm_config pointer_modifier super
+waitron wm_config click_to_focus any

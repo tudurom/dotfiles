@@ -2,12 +2,9 @@
 
 . $HOME/bin/wmrc
 
-last=""
-test -f "$PANEL_MUSIC_NOTIFY_LAST_STATE" && last=`cat $PANEL_MUSIC_NOTIFY_LAST_STATE` || :> "$PANEL_MUSIC_NOTIFY_LAST_STATE"
-mpc idleloop | while read -r line; do
-	test "$line" = "player" || continue
-	out="%{F$PANEL_ACCENT_COLOR}$(musicstat text)%{F-} $(musicstat ico)"
-	test "$(musicstat)" != "$last" && echo "$out" > "$NOTIFY_FIFO_PATH"
-	last="$(musicstat)"
-	printf "%s" "$last" > "$PANEL_MUSIC_NOTIFY_LAST_STATE"
+musicstat notifyd | while read -r line; do
+	icon="$(echo "$line" | cut -d',' -f1)"
+	text="$(echo "$line" | cut -d',' -f2-)"
+	out="%{F$PANEL_ACCENT_COLOR}$icon%{F-} $text"
+	echo "$out" > "$NOTIFY_FIFO_PATH"
 done

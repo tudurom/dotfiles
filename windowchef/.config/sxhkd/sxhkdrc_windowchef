@@ -43,8 +43,8 @@ super + r
 super + {Insert,Prior,Delete,Next,End}
 	waitron window_snap {topleft,topright,bottomleft,bottomright,middle}
 
-super + {_,alt +} t
-	chwso -r `pfw` && pgrep {xmmv,xmrs} > /dev/null || {xmmv,xmrs}
+super + t
+	GAP=0 tilew
 
 alt + {h,j,k,l}
 	waitron window_cardinal_focus {left,down,up,right}
@@ -54,15 +54,6 @@ super + shift + t
 
 super + shift + r
 	$HOME/.config/windowchef/windowchefrc
-
-# For dragger
-super + ~button1
-	waitron window_focus $(xqp); \
-	echo drag > /tmp/dragger.fifo
-
-~button1
-	echo close > /tmp/dragger.fifo; \
-	waitron window_focus $(xqp)
 
 ~button3
 	if [ "$(xqp)" = "0x00000000" ]; then californium toggle; fi

@@ -167,6 +167,12 @@ man() {
 			man "$@"
 }
 
+## EMACS
+if [[ -n "$INSIDE_EMACS" ]]; then
+	print -P "\033AnSiTu %n"
+	print -P "\033AnSiTc %d"
+fi
+
 ## FZF
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

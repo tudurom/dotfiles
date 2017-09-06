@@ -2,10 +2,16 @@
 
 require 'gemoji'
 
-em = Emoji.find_by_alias(ARGV[0])
+text = ARGV.join(" ")
 
-if em != nil
-	puts em.raw
-else
-	abort "No such emoji"
+if text != nil
+	replaced = text.gsub(/:([\w+-]+):/) do |match|
+		if emoji = Emoji.find_by_alias($1)
+			emoji.raw
+		else
+			match
+		end
+	end
+
+	puts replaced
 end
