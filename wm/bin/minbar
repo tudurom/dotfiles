@@ -16,6 +16,9 @@ reload_settings() {
 		([ -n "$PANEL_TRANSPARENT" ] && [ -n "$PANEL_KEEP_HIGH" ]); then
 		HIGH="$(colort -l ${sign}12 $CB)"
 		HIGH2="$(colort -l ${sign}20 $CB)"
+	else
+		HIGH="#00000000"
+		HIGH2="#00000000"
 	fi
 
 	if [ -n "$PANEL_TRANSPARENT" ]; then
@@ -208,7 +211,7 @@ get_ws() {
 
 				for g in $(seq "$GNUMBER"); do
 					if [ "$g" = "$fw_group" ]; then
-						out="${out}%{B$HIGH2}%{+u}%{U$C9} "
+						out="${out}%{B$HIGH2}%{+u}%{U$C9}"
 					else
 						out="${out}%{B$HIGH}"
 
@@ -218,9 +221,8 @@ get_ws() {
 						else
 							out="${out}%{F$CA}"
 						fi
-						out="${out} "
 					fi
-					out="${out}${g} %{-u}%{B-}%{U-}%{F-}"
+					out="${out}%{A:waitron group_toggle $g:} ${g} %{A}%{-u}%{B-}%{U-}%{F-}"
 				done
 				;;
 		esac
