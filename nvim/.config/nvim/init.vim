@@ -16,49 +16,25 @@ set rtp+=/usr/share/vim/vimfiles
 
 call plug#begin('~/.config/nvim/bundle')
 
-" For obvious reasons
 Plug 'ntpeters/vim-better-whitespace'
-
-" Simple tab completion
 Plug 'ajh17/vimcompletesme'
-if executable('go')
-	Plug 'fatih/vim-go'
-endif
-if executable('clang')
-	Plug 'rip-rip/clang_complete'
-endif
-
-" Syntax checking
-Plug 'scrooloose/syntastic'
-
-" Show changes
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'rip-rip/clang_complete'
+Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
-
-" Make tables
 Plug 'godlygeek/tabular'
-
-" Markdown
-"Plug 'gabrielelana/vim-markdown'
-
-Plug 'othree/html5.vim'
-
-" Search through files
-Plug 'mileszs/ack.vim'
-
-" Tmux integration
-Plug 'christoomey/vim-tmux-navigator'
-
-" Resize mode
+Plug 'rking/ag.vim'
 Plug 'simeji/winresizer'
-
-" Colors
 Plug 'whatyouhide/vim-gotham'
 Plug 'tudurom/bleh.vim'
+Plug 'lilydjwg/colorizer'
+Plug 'isa/vim-matchit'
 
 call plug#end()
 filetype plugin indent on
-
-let g:vim_markdown_frontmatter = 1
 " }}}
 
 " Essential settings {{{
@@ -69,29 +45,38 @@ set number    " Looks better
 set backspace=indent,eol,start
 set tabstop=4
 set noexpandtab
-set copyindent
-set preserveindent
-set softtabstop=0
+set softtabstop=-1
 set shiftwidth=4
 set smartindent
-set cindent
+
 " Make things snappy
 set updatetime=250
+
 " Fold markers
 set fdm=marker
+
 " Respect case in searches only if search query contains upper-case chars
 set ignorecase
 set smartcase
 set infercase
+
 " Other search tricks
 set hlsearch
 set incsearch
+set inccommand=split
+
 " Make it natural
 set splitright
 set splitbelow
 
+" Make buffers more emacs-y
+set hidden
+set autochdir
+
 " Kill lag
 set lazyredraw
+
+set clipboard^=unnamedplus
 
 " Nope
 set noswapfile
@@ -183,12 +168,6 @@ set ruler
 
 " }}}
 
-" Clipboard settings {{{
-
-set clipboard^=unnamed,unnamedplus
-
-" }}}
-
 " Word wrapping {{{
 
 set wrap
@@ -219,54 +198,62 @@ filetype plugin on
 let b:vcm_tab_complete = 'omni'
 set omnifunc=syntaxcomplete#Complete
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-autocmd CompleteDone * pclose
-
+augroup completionhide
+	au!
+	autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+augroup end
 let g:clang_library_path='/usr/lib'
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_ignore_case = 1
+if !exists('g:deoplete#omni#input_patterns')
+	let g:deoplete#omni#input_patterns = {}
+endif
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " }}}
 
-" Plugin settings {{{
-	" vim-go {{{
-	let g:go_fmt_command = "goimports"
-	let g:go_term_mode = "split"
-	let g:go_term_enabled = 1
-	let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-	let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-	let g:go_list_type = "quickfix"
-	au FileType go nmap <leader>rt <Plug>(go-run-tab)
-	au FileType go nmap <Leader>rs <Plug>(go-run-split)
-	au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
+" Usability {{{
 
-	au FileType go nmap <leader>r <Plug>(go-run)
-	au FileType go nmap <leader>b <Plug>(go-build)
-	au FileType go nmap <leader>t <Plug>(go-test)
-	au FileType go nmap <leader>c <Plug>(go-coverage)
-	" }}}
+" close if final buffer is netrw or the quickfix
+augroup finalcountdown
+	au!
+	autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
+augroup END
 
-	" syntastic {{{
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 1
-	let g:syntastic_check_on_wq = 0
-	" }}}
+" }}}
 
-	" vim-tmux-navigator {{{
-	let g:tmux_navigator_no_mappings = 1
+" vim-go {{{
 
-	nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
-	nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-	nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-	nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-	nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
-	" }}}
+let g:go_fmt_command = "goimports"
+let g:go_term_mode = "split"
+let g:go_term_enabled = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
+au FileType go nmap <leader>rt <Plug>(go-run-tab)
+au FileType go nmap <Leader>rs <Plug>(go-run-split)
+au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
 
-	" ack.vim {{{
-	" Use ag instead of ack
-	if executable('ag')
-  		let g:ackprg = 'ag --vimgrep'
-	endif
-	" }}}
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
 
+" }}}
+
+" ag {{{
+let g:ag_prg="ag -i --vimgrep"
+let g:ag_highlight=1
+nnoremap \ :Ag<SPACE>
+" }}}
+
+" ale {{{
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '× '
+let g:ale_sign_warning = '> '
 " }}}
 
 " Romanian Digraphs {{{

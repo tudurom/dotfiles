@@ -1,1 +1,3 @@
 defaults.pcm.rate_converter "speexrate_best"
+defaults.ctl.card 1;
+defaults.pcm.card 1;

@@ -43,8 +43,6 @@ wm() {
 	# Window compositor
 	compton -b
 	wm=$1
-	test -e "$HOME/tmp/sxhkd.fifo" && rm "$HOME/tmp/sxhkd.fifo"
-	mkfifo "$HOME/tmp/sxhkd.fifo"
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	ruler &
 	californium &

@@ -13,7 +13,7 @@ reload_settings() {
 	# actual colors for the foreground and background of the bar
 	CB="$PANEL_BG_COLOR"
 	if [ -z "$PANEL_TRANSPARENT" ] || \
-		([ -n "$PANEL_TRANSPARENT" ] && [ -n "$PANEL_KEEP_HIGH" ]); then
+		   ([ -n "$PANEL_TRANSPARENT" ] && [ -n "$PANEL_KEEP_HIGH" ]); then
 		HIGH="$(colort -l ${sign}12 $CB)"
 		HIGH2="$(colort -l ${sign}20 $CB)"
 	else
@@ -131,36 +131,36 @@ get_date > "$PANEL_FIFO" &
 get_battery() {
 	while :; do
 		for bat in /sys/class/power_supply/BAT*; do
-		    printf "BATTERY %s\n" "$(cat - "${bat}/capacity")"
-		    break
+			printf "BATTERY %s\n" "$(cat - "${bat}/capacity")"
+			break
 		done
 		sleep 10
 	done
 }
 [ ! -f /sys/class/power_supply/BAT0 ] || \
-get_battery > "$PANEL_FIFO" &
+	get_battery > "$PANEL_FIFO" &
 
 get_battery_icon() {
 	while :; do
 		local status=""
 		local perc=""
 		for bat in /sys/class/power_supply/BAT*; do
-		    status="$(cat "$bat/status")"
-		    perc="$(cat "$bat/capacity")"
-		    break
+			status="$(cat "$bat/status")"
+			perc="$(cat "$bat/capacity")"
+			break
 		done
 
 		local ico=""
 		if [ "$status" = "Charging" ]; then
-		    ico=""
+			ico=""
 		elif [ "$status" = "Full" ] || [ "$status" = "Unknown" ]; then
-		    ico=""
+			ico=""
 		elif [ "$perc" -gt 60 ]; then
-		    ico=""
+			ico=""
 		elif [ "$perc" -gt 30 ]; then
-		    ico=""
+			ico=""
 		else
-		    ico=""
+			ico=""
 		fi
 
 		echo "BATTERY_ICON $ico"
@@ -168,7 +168,7 @@ get_battery_icon() {
 	done
 }
 [ ! -f /sys/class/power_supply/BAT0 ] || \
-get_battery_icon > "$PANEL_FIFO" &
+	get_battery_icon > "$PANEL_FIFO" &
 
 get_music() {
 	musicstat bar | while read -r line; do
@@ -179,11 +179,11 @@ get_music() {
 			local oldifs="$IFS"
 			IFS=''
 			echo "$text" | skroll -lrn "$SKROLL_CHARS" -d 0.1 |\
-			while read -r skrtext; do
-				local newtext="$(musicstat text)"
-				test "$text" != "$newtext" && break
-				printf "MUSIC %*s\n" "$SKROLL_CHARS" "$skrtext"
-			done
+				while read -r skrtext; do
+					local newtext="$(musicstat text)"
+					test "$text" != "$newtext" && break
+					printf "MUSIC %*s\n" "$SKROLL_CHARS" "$skrtext"
+				done
 			IFS="$oldifs"
 		else
 			echo "MUSIC $text"
@@ -196,36 +196,37 @@ get_ws() {
 	local wm="$(wmname)"
 	while :; do
 		local out=""
+		local groups=""
 		case "$wm" in
 			windowchef)
 				# list of active groups. one number per line
-				local groups="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS |\
+				groups="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS |\
 				  grep -Eo '[0-9]+,*' | tr -d ',')"
-				local pfw="$(pfw 2> /dev/null)"
-				local fw_group="0"
-
-				if [ "$pfw" != "$(lsw -r)" ] && [ -n "$pfw" ]; then
-					fw_group="$(xprop -notype -id "$pfw" _NET_WM_DESKTOP | cut -d' ' -f3)"
-					fw_group="$(( fw_group + 1 ))"
-				fi
-
-				for g in $(seq "$GNUMBER"); do
-					if [ "$g" = "$fw_group" ]; then
-						out="${out}%{B$HIGH2}%{+u}%{U$C9}"
-					else
-						out="${out}%{B$HIGH}"
-
-						# check if group is active
-						if echo "$groups" | grep -q "$g"; then
-							out="${out}%{+u}%{U$C1}"
-						else
-							out="${out}%{F$CA}"
-						fi
-					fi
-					out="${out}%{A:waitron group_toggle $g:} ${g} %{A}%{-u}%{B-}%{U-}%{F-}"
-				done
 				;;
 		esac
+		local pfw="$(pfw 2> /dev/null)"
+		local fw_group="0"
+
+		if [ "$pfw" != "$(lsw -r)" ] && [ -n "$pfw" ]; then
+			fw_group="$(xprop -notype -id "$pfw" _NET_WM_DESKTOP | cut -d' ' -f3)"
+			fw_group="$(( fw_group + 1 ))"
+		fi
+
+		for g in $(seq "$GNUMBER"); do
+			if [ "$g" = "$fw_group" ]; then
+				out="${out}%{B$HIGH2}%{+u}%{U$C9}"
+			else
+				out="${out}%{B$HIGH}"
+
+				# check if group is active
+				if echo "$groups" | grep -q "$g"; then
+					out="${out}%{+u}%{U$C1}"
+				else
+					out="${out}%{F$CA}"
+				fi
+			fi
+			out="${out}%{A:waitron group_toggle $g:} ${g} %{A}%{-u}%{B-}%{U-}%{F-}"
+		done
 		echo "WS $out"
 		sleep 1
 	done
@@ -268,7 +269,7 @@ while IFS='' read -r line; do
 	rp "${fn_ws}${SEP_SMALL}"
 	rp "%{r}%{A:mpc toggle:}$(segment "$fn_music" "$fn_music_icon")%{A}"
 	[ ! -f /sys/class/power_supply/BAT0 ] || \
-	rp "${SEP_SMALL}$(segment "$fn_battery" "$fn_battery_icon")"
+		rp "${SEP_SMALL}$(segment "$fn_battery" "$fn_battery_icon")"
 	rp "\n"
 done < "$PANEL_FIFO" | lemonbar $BAR_OPTS | sh > /dev/null
 # }}}

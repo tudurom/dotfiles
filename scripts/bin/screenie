@@ -5,13 +5,15 @@ test "$1" = "-s" && select="true"
 
 mkdir -p "$HOME/tmp/screenies"
 
-number="$(ls -1 $HOME/tmp/screenies | cut -d'.' -f1 | sort -n | tail -n 1)"
+number="$(ls -1 $HOME/tmp/screenies | cut -d'.' -f1 | sort -n | tail -n 1 | sed 's/^0*//g')"
 number="$(( number + 1 ))"
 
 opts=""
 test "$select" = "true" && opts="-s --noopengl"
 
-maim $opts "$HOME/tmp/screenies/${number}.png"
+fn="$HOME/tmp/screenies/$(printf "%02d" $number).png"
+maim $opts "$fn"
+xclip -selection clipboard -t image/png "$fn"
 
 . $HOME/bin/wmrc
 pgrep "notifyd" > /dev/null && echo "%{F$PANEL_ACCENT_COLOR}%{F-} Screenshot taken" > "$NOTIFY_FIFO_PATH" || notify-send "Screenie" "Screenshot taken"

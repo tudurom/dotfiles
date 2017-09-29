@@ -82,15 +82,15 @@ sed -i --follow-symlinks 's/colo [a-zA-Z]+/colo '"$colorscheme"'/' "$HOME/.vimpe
 # TODO : find way to set this on the fly
 sed -i 's/set background=.*/set background='"$COLOR_STYLE"'/' "$(readlink -f "$HOME/.config/nvim/init.vim")"
 
-wall-e "$WALLPAPER_PATH" "$WALLPAPER_STYLE"
+wall-e "$WALLPAPER_PATH" "$WALLPAPER_STYLE" &
 
 # reload wm
-pg windowchef && $HOME/.config/windowchef/windowchefrc
-pg bspwm && $HOME/.config/bspwm/bspwmrc
-pg herbstluftwm && herbstclient reload
+pg windowchef && $HOME/.config/windowchef/windowchefrc &
+pg bspwm && $HOME/.config/bspwm/bspwmrc &
+pg herbstluftwm && herbstclient reload &
 
 # reload emacs theme
-pg emacs && emacsclient -e '(tudurom/reload-theme)' > /dev/null 2>&1
+pg emacs && emacsclient -e '(tudurom/reload-theme)' > /dev/null 2>&1 &
 
 # reload panel
 pg minbar && killall minbar

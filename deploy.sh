@@ -5,11 +5,23 @@
 
 OPTS="-ire README\..*"
 
+IGNORE="firefox startpage meta"
+
+isignored() {
+	local ign="$1"
+
+	for i in $IGNORE; do
+		test "$i" = "$ign" && return 0
+	done
+
+	return 1
+}
+
 # Check for conflicts
 echo "Checking for conflicts"
 for dir in */; do
 	dir="$(echo "$dir" | tr -d '/')"
-	(test "$dir" = "firefox" || test "$dir" = "startpage") && continue
+	isignored "$dir" && continue
 
 	conflicts="$(xstow $OPTS -c "${dir}" 2>&1 )"
 	printf "%s" "- ${dir}:"
@@ -24,10 +36,7 @@ done
 # Symlink
 echo "Deploying"
 for dir in */; do
-	if [ "$dir" = "firefox/" ] || [ "$dir" = "startpage/" ] \
-		   || [ "$dir" = "meta/" ]; then
-		continue
-	fi
+	isignored "$(echo "$dir" | tr -d '/')" && continue
 
 	echo "- ${dir}"
 	xstow $OPTS "$dir"
