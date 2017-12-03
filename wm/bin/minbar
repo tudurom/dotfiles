@@ -137,8 +137,8 @@ get_battery() {
 		sleep 10
 	done
 }
-[ ! -f /sys/class/power_supply/BAT0 ] || \
-	get_battery > "$PANEL_FIFO" &
+[ -d /sys/class/power_supply/BAT0 ] && \
+get_battery > "$PANEL_FIFO" &
 
 get_battery_icon() {
 	while :; do
@@ -167,8 +167,8 @@ get_battery_icon() {
 		sleep 10
 	done
 }
-[ ! -f /sys/class/power_supply/BAT0 ] || \
-	get_battery_icon > "$PANEL_FIFO" &
+[ -d /sys/class/power_supply/BAT0 ] && \
+get_battery_icon > "$PANEL_FIFO" &
 
 get_music() {
 	musicstat bar | while read -r line; do
@@ -268,8 +268,8 @@ while IFS='' read -r line; do
 	rp "$(segment "$fn_date" $DATE_ICON)${SEP_SMALL}"
 	rp "${fn_ws}${SEP_SMALL}"
 	rp "%{r}%{A:playerctl play-pause:}$(segment "$fn_music" "$fn_music_icon")%{A}"
-	[ ! -f /sys/class/power_supply/BAT0 ] || \
-		rp "${SEP_SMALL}$(segment "$fn_battery" "$fn_battery_icon")"
+	[ -d /sys/class/power_supply/BAT0 ] && \
+	rp "${SEP_SMALL}$(segment "$fn_battery" "$fn_battery_icon")"
 	rp "\n"
 done < "$PANEL_FIFO" | lemonbar $BAR_OPTS | sh > /dev/null
 # }}}

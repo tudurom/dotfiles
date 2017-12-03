@@ -13,7 +13,7 @@ export CURRENT_THEME_PATH="/tmp/current_theme"
 
 . $HOME/.wm/themes/$(cat $CURRENT_THEME_PATH)
 
-export GENERAL_GAP=5
+export GENERAL_GAP=3
 export BW=$BORDER_WIDTH
 export POPUP_DURATION=5
 export GNUMBER=6

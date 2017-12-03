@@ -1,9 +1,9 @@
-URxvt.font: xft:Iosevka:pixelsize=20
-st.font: Iosevka:pixelsize=20
-Emacs.font: Iosevka:pixelsize=20
+URxvt.font: -*-nixedsys-*
+st.font: -*-nixedsys-*
+Emacs.font: -*-nixedsys-*
 
-dzen2.font: Iosevka:pixelsize=20
+dzen2.font: -*-nixedsys-*
 
-#include "../.xres/colors/designr"
+#include "../.xres/colors/yuno"
 
 ! vim: set ft=xdefaults :

@@ -35,11 +35,17 @@ done
 
 # Symlink
 echo "Deploying"
-for dir in */; do
-	isignored "$(echo "$dir" | tr -d '/')" && continue
+case "$1" in
+	-o)
+		xstow $OPTS "$2"
+		;;
+	*)
+		for dir in */; do
+			isignored "$(echo "$dir" | tr -d '/')" && continue
 
-	echo "- ${dir}"
-	xstow $OPTS "$dir"
-done
+			echo "- ${dir}"
+			xstow $OPTS "$dir"
+		done
+esac
 
 ./pre_magic.sh

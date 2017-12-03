@@ -37,6 +37,13 @@ redshift &
 
 startpage &
 
+if [ "$2" = "xfce" ]; then
+	echo autobahn > /tmp/current_theme
+	compton -b
+	startxfce4
+	exit
+fi
+
 wm() {
 	# Listen to popup requests
 	notifyd &
@@ -45,7 +52,8 @@ wm() {
 	wm=$1
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	ruler &
-	(sleep 1 && swtheme designr) &
+	californium &
+	(sleep 1 && swtheme yuno) &
 	$wm
 }
 gnome() {
