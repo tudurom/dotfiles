@@ -18,12 +18,29 @@ mic_state() {
 	amixer get Capture | sed -n 's/^.*\[\(o[nf]\+\)]$/\1/p' | uniq
 }
 
+port() {
+	pacmd list-sinks | awk -F'[<>]' '/active port/{print $2}' | sed 's/analog-output-//'
+}
+
+toggle_port() {
+	local p="$(port)"
+	case "$p" in
+		lineout)
+			pacmd set-sink-port 0 analog-output-headphones
+			;;
+		headphones)
+			pacmd set-sink-port 0 analog-output-lineout
+			;;
+	esac
+}
+
 usage() {
 	echo "usage `basename $0` [+|-|m|state|level]" && exit 1
 }
 
 i() {
-	echo "%{F$PANEL_ACCENT_COLOR}%{F-}"
+	local ico=""
+	echo "%{F$PANEL_ACCENT_COLOR}$ico%{F-}"
 }
 
 mic_icon() {
@@ -46,6 +63,10 @@ case $1 in
 	u)
 		amixer sset Capture toggle > /dev/null
 		mic_state
+		;;
+	p)
+		toggle_port
+		port
 		;;
 	state|mic_state|level|i|mic_icon)
 		$1

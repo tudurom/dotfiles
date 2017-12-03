@@ -32,6 +32,9 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'tudurom/bleh.vim'
 Plug 'lilydjwg/colorizer'
 Plug 'isa/vim-matchit'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
+Plug 'chaoren/vim-wordmotion'
 
 call plug#end()
 filetype plugin indent on
@@ -256,18 +259,44 @@ let g:ale_sign_error = '× '
 let g:ale_sign_warning = '> '
 " }}}
 
+" Goyo {{{
+
+let g:limelight_conceal_ctermfg = 8
+function! s:goyo_enter()
+	Limelight
+	set noshowmode
+	set noshowcmd
+	set wrap
+	set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+	Limelight!
+	set showmode
+	set showcmd
+	set nowrap
+	set scrolloff=0
+endfunction
+
+augroup goyoactions
+	au!
+	autocmd! User GoyoEnter nested call <SID>goyo_enter()
+	autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup end
+
+" }}}
+
 " Romanian Digraphs {{{
 " Vim comes default with turkish ş and ţ
 
-dig S, 536
-dig s, 537
+dig S, 536 " Ș
+dig s, 537 " ș
 
-dig T, 538
-dig t, 539
+dig T, 538 " Ț
+dig t, 539 " ț
 
 " }}}
 
 " Functions {{{
 :command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 " }}}
-

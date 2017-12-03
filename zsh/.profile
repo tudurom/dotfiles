@@ -6,7 +6,7 @@ LC_TIME="ro_RO.UTF-8"
 EDITOR=nvim
 VISUAL=nvim
 PAGER=less
-BROWSER=firefox
+BROWSER=firefox-developer
 CC=clang
 CXX=clang++
 

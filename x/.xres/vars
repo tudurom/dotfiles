@@ -4,6 +4,6 @@ Emacs.font: Iosevka:pixelsize=20
 
 dzen2.font: Iosevka:pixelsize=20
 
-#include "../.xres/colors/autobahn"
+#include "../.xres/colors/designr"
 
 ! vim: set ft=xdefaults :

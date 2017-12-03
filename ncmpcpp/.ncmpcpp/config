@@ -11,6 +11,8 @@ song_status_format = "{$2%t $b$1- %a}|{%f}"
 now_playing_prefix = "$b"
 now_playing_suffix = "$/b"
 
+lyrics_fetchers = genius, lyricwiki, azlyrics, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
+
 header_visibility = "no"
 autocenter_mode = "yes"
 #main_window_highlight_color = "white"

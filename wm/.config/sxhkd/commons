@@ -36,6 +36,9 @@ XF86AudioLowerVolume
 XF86AudioMute
   echo `vol i` `vol m` > "$NOTIFY_FIFO_PATH"
 
+shift + XF86AudioMute
+  echo `vol i` `vol p` > "$NOTIFY_FIFO_PATH"
+
 XF86AudioMicMute
   echo `vol mic_icon` `vol u` > "$NOTIFY_FIFO_PATH"
 
@@ -46,16 +49,16 @@ XF86MonBrightnessDown
   light -U 10
 
 XF86AudioPlay
-  mpc toggle; pgrep ashuffle || ashuffle &
+  playerctl play-pause
 
 XF86AudioStop
-  mpc stop
+  playerctl stop
 
 XF86AudioNext
-  mpc next
+  playerctl next
 
 XF86AudioPrev
-  mpc prev
+  playerctl previous
 
 Print
   screenie

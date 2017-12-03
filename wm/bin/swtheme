@@ -70,16 +70,17 @@ unset _interrobang_sign
 
 # Reload neovim
 # requires https://github.com/mhinz/neovim-remote
+nvim_conceal=8
+test "$COLOR_STYLE" = "light" && nvim_conceal="15"
 if pg nvim; then
 	for nvim_inst in /tmp/nvimsocket-*; do
-		nvr --servername "$nvim_inst" --remote-send '<Esc>:so $HOME/.config/nvim/init.vim<CR>' &
+		nvr --servername "$nvim_inst" --remote-send '<Esc>:so $HOME/.config/nvim/init.vim<CR>:let g:limelight_conceal_ctermfg='"$nvim_conceal"'<CR>' &
 	done
 fi
 
 rainbou "$colorscheme" vimperator > "$HOME/.vimperator/colors/${colorscheme}.vimp"
 sed -i --follow-symlinks 's/colo [a-zA-Z]+/colo '"$colorscheme"'/' "$HOME/.vimperatorrc"
 
-# TODO : find way to set this on the fly
 sed -i 's/set background=.*/set background='"$COLOR_STYLE"'/' "$(readlink -f "$HOME/.config/nvim/init.vim")"
 
 wall-e "$WALLPAPER_PATH" "$WALLPAPER_STYLE" &

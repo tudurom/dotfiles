@@ -45,8 +45,7 @@ wm() {
 	wm=$1
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	ruler &
-	californium &
-	(sleep 1 && swtheme autobahn) &
+	(sleep 1 && swtheme designr) &
 	$wm
 }
 gnome() {
