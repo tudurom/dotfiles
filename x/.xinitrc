@@ -59,5 +59,5 @@ wm() {
 gnome() {
 	exec gnome-session
 }
-wm bspwm
+wm windowchef
 #gnome
