@@ -4,6 +4,6 @@ Emacs.font: Iosevka:size=16
 
 dzen2.font: Iosevka:size=16
 
-#include "../.xres/colors/yuno"
+#include "../.xres/colors/navyandivory"
 
 ! vim: set ft=xdefaults :

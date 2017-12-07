@@ -53,7 +53,7 @@ wm() {
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	ruler &
 	californium &
-	(sleep 1 && swtheme yuno) &
+	(sleep 1 && swtheme navyandivory) &
 	$wm
 }
 gnome() {
