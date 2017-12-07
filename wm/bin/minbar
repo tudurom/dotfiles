@@ -222,6 +222,9 @@ get_ws() {
 				if echo "$groups" | grep -q "$g"; then
 					out="${out}%{+u}%{U$C1}"
 				else
+					if [ "$wm" = "bspwm" ] && [ "$(bspc query -D -d focused --names)" = "$g" ]; then
+						out="${out}%{B$HIGH2}"
+					fi
 					out="${out}%{F$CA}"
 				fi
 			fi

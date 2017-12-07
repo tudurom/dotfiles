@@ -1,8 +1,8 @@
-URxvt.font: -*-nixedsys-*
-st.font: -*-nixedsys-*
-Emacs.font: -*-nixedsys-*
+URxvt.font: xft:Iosevka:size=16
+st.font: Iosevka:size=16
+Emacs.font: Iosevka:size=16
 
-dzen2.font: -*-nixedsys-*
+dzen2.font: Iosevka:size=16
 
 #include "../.xres/colors/yuno"
 
