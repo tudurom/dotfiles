@@ -1,0 +1,7 @@
+! "Enabled modi" Set from: Default
+rofi.modi: window,run,drun,ssh
+! "Font to use" Set from: Default
+! rofi.font:                           mono 12
+! "Border width" Set from: Default
+! rofi.bw:                             1
+! vim: set ft=xdefaults :

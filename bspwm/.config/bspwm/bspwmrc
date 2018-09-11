@@ -25,6 +25,5 @@ bspc rule -a chromium  desktop=^2
 bspc rule -a Firefox   desktop=^2
 bspc rule -a qutebrowser desktop=^2
 bspc rule -a mpv       state=floating
-bspc rule -a emacs state=tiling
 
 wmname bspwm

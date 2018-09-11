@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 #  ╻ ╻╻┏┓╻╻╺┳╸┏━┓┏━╸
 #  ┏╋┛┃┃┗┫┃ ┃ ┣┳┛┃
 # ╹╹ ╹╹╹ ╹╹ ╹ ╹┗╸┗━╸
@@ -52,9 +52,10 @@ wm() {
 	wm=$1
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	ruler &
-	californium &
-	(sleep 1 && swtheme navyandivory) &
-	$wm
+	trap "pkill -f musicwrap" EXIT
+	pgrep -f lastplayerwrapper || lastplayerwrapper &
+	(sleep 1 && swtheme street) &
+	exec $wm
 }
 gnome() {
 	exec gnome-session

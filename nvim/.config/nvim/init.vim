@@ -16,25 +16,23 @@ set rtp+=/usr/share/vim/vimfiles
 
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'ajh17/vimcompletesme'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'rip-rip/clang_complete'
 Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'rking/ag.vim'
 Plug 'simeji/winresizer'
-Plug 'whatyouhide/vim-gotham'
 Plug 'tudurom/bleh.vim'
 Plug 'lilydjwg/colorizer'
 Plug 'isa/vim-matchit'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
 Plug 'chaoren/vim-wordmotion'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-abolish'
+Plug 'matze/vim-move'
 
 call plug#end()
 filetype plugin indent on
@@ -43,8 +41,8 @@ filetype plugin indent on
 " Essential settings {{{
 
 " Syntax and tabs
-syntax enable " Enable syntax highlighting, duh
-set number    " Looks better
+syntax enable
+set number
 set backspace=indent,eol,start
 set tabstop=4
 set noexpandtab
@@ -79,6 +77,7 @@ set autochdir
 " Kill lag
 set lazyredraw
 
+" Use system's clipboard (X's CLIPBOARD)
 set clipboard^=unnamedplus
 
 " Nope
@@ -126,7 +125,7 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " Keybindings {{{
 
-" C-d to hide find results
+" Leader-d to hide find results
 nnoremap <silent> <Leader>d :noh<CR>
 " Esc in terminal
 if has('nvim')
@@ -151,8 +150,16 @@ map <Leader>l <C-w>l
 map <Leader>= <C-w>=
 map <Leader><Space> <C-w><C-w>
 nmap <Leader>r :WinResizerStartResize<CR>
-nmap <Leader>s :StripWhitespace<CR>
 nmap <Leader>w :w<CR>
+
+" }}}
+
+" Whitespace stripping {{{
+
+highlight ExtraWhitespace ctermbg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWritePre * %s/\s\+$//e
 
 " }}}
 
@@ -230,19 +237,8 @@ augroup END
 " vim-go {{{
 
 let g:go_fmt_command = "goimports"
-let g:go_term_mode = "split"
-let g:go_term_enabled = 1
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_list_type = "quickfix"
-au FileType go nmap <leader>rt <Plug>(go-run-tab)
-au FileType go nmap <Leader>rs <Plug>(go-run-split)
-au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
-
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
 
 " }}}
 
@@ -257,6 +253,8 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '× '
 let g:ale_sign_warning = '> '
+let g:ale_cpp_clangtidy_options = '-Wall -std=c++11 -x c++'
+let g:ale_cpp_clangcheck_options = '-- -Wall -std=c++11 -x c++'
 " }}}
 
 " Goyo {{{

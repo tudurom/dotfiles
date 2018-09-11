@@ -1,0 +1,8 @@
+! vim: ft=xdefaults
+! yuno by x
+
+rofi.color-normal: #080b0f, #c1cada, #080b0f, #c1cada, #080b0f
+rofi.color-urgent: #080b0f, #b34f63, #080b0f, #b34f63, #080b0f
+rofi.color-active: #080b0f, #567ca4, #080b0f, #567ca4, #080b0f
+
+rofi.color-window: #080b0f, #c1cada

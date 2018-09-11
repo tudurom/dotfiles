@@ -36,7 +36,7 @@ sn() {
 sn "0"
 
 for s in $HOME/bin/notifyd-*; do
-	pkill "$(basename $s)"
+	pkill -f "$(basename $s)"
 	sleep 0.3
     $s 2> /tmp/$(basename $s).log &
 done

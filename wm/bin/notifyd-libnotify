@@ -2,14 +2,18 @@
 
 . $HOME/bin/wmrc
 
-trap 'pkill sind' EXIT
-
 # Init time
 sleep 2
-format='$$BEGINCOLOR$$%s$$ENDCOLOR$$ %b'
-sind -d -u 100 -t 1 -l 2 -f "$format" | while read -r line; do
-	test -n "$line" && echo "$(printf "%s" "$line" |\
-		sed -e 's/\$\$BEGINCOLOR\$\$/%{F'"$PANEL_ACCENT_COLOR"'}/' \
-		-e 's/\$\$ENDCOLOR\$\$/%{F-}/' | tr -d '\n')" > "$NOTIFY_FIFO_PATH"
-	sleep 0.3
+format="%%{F$PANEL_ACCENT_COLOR}[%s] %s%%{F-} %s\n"
+pynotifyd | while read -r line; do
+	action="$(echo "$line" | jq -r .action)"
+	echo $line
+	case "$action" in
+		notify)
+			app_name="$(echo "$line" | jq -r .notification.app_name)"
+			summary="$(echo "$line" | jq -r .notification.summary)"
+			body="$(echo "$line" | jq -r .notification.body)"
+			printf "$format" "$app_name" "$summary" "$body" > "$NOTIFY_FIFO_PATH"
+			;;
+	esac
 done

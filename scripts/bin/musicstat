@@ -15,7 +15,8 @@ ICONS = {
 
 last_shown = ''
 
-player = Playerctl.Player()
+with open('/tmp/lastplayer', 'r') as f:
+    player = Playerctl.Player(player_name=f.read().strip().split('\n')[0])
 
 def get_icon():
     status = player.get_property('status')

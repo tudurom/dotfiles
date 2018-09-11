@@ -29,10 +29,10 @@ super + v
 	waitron window_ver_maximize
 
 alt + Tab
-	waitron window_cycle
+	waitron window_focus_last
 
 alt + shift + Tab
-	waitron window_rev_cycle
+	rofi -show window
 
 super + {_,shift +}{1-8}
 	waitron {group_toggle,group_add_window} {1-8}

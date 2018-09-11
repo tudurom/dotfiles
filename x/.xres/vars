@@ -1,9 +1,10 @@
-URxvt.font: xft:Iosevka:size=16
-st.font: Iosevka:size=16
-Emacs.font: Iosevka:size=16
+URxvt.font: xft:M+ 2m:size=20
+st.font: M+ 2m:size=20
+Emacs.font: M+ 2m:size=20
 
-dzen2.font: Iosevka:size=16
+dzen2.font: M+ 2m:size=20
 
-#include "../.xres/colors/navyandivory"
+#include "../.xres/colors/rofi/street"
+#include "../.xres/colors/street"
 
 ! vim: set ft=xdefaults :

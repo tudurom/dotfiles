@@ -1,0 +1,8 @@
+! vim: ft=xdefaults
+! stairs by tudurom
+
+rofi.color-normal: #051d23, #b5b5bc, #051d23, #b5b5bc, #051d23
+rofi.color-urgent: #051d23, #725c4c, #051d23, #725c4c, #051d23
+rofi.color-active: #051d23, #073b49, #051d23, #073b49, #051d23
+
+rofi.color-window: #051d23, #b5b5bc

@@ -7,7 +7,7 @@ super + Return
   urxvt
 
 super + space
-  interrobang
+  ~/bin/rofi -show drun
 
 super + q
   showtodo
@@ -20,12 +20,6 @@ super + shift + x
 
 super + shift + p
   theme_menu
-
-super + F1
-  echo "over" > /tmp/minbar.cmd
-
-super + F2
-  echo "music" > /tmp/minbar.cmd
 
 XF86AudioRaiseVolume
   echo `vol i` `vol +` > "$NOTIFY_FIFO_PATH"
@@ -49,16 +43,16 @@ XF86MonBrightnessDown
   light -U 10
 
 XF86AudioPlay
-  playerctl play-pause
+  playerctl $(currentplayer) play-pause
 
 XF86AudioStop
-  playerctl stop
+  playerctl $(currentplayer) stop
 
 XF86AudioNext
-  playerctl next
+  playerctl $(currentplayer) next
 
 XF86AudioPrev
-  playerctl previous
+  playerctl $(currentplayer) previous
 
 Print
   screenie

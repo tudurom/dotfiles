@@ -4,6 +4,7 @@ Emacs.font: {{_xres_font}}
 
 dzen2.font: {{_xres_font}}
 
+#include "../.xres/colors/rofi/{{_xres_colorscheme}}"
 #include "../.xres/colors/{{_xres_colorscheme}}"
 
 ! vim: set ft=xdefaults :

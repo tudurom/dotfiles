@@ -2,7 +2,7 @@
 
 . $HOME/bin/wmrc
 
-musicstat notifyd | while read -r line; do
+musicwrap notifyd | while read -r line; do
 	icon="$(echo "$line" | cut -d',' -f1)"
 	text="$(echo "$line" | cut -d',' -f2-)"
 	out="%{F$PANEL_ACCENT_COLOR}$icon%{F-} $text"

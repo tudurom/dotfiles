@@ -1,0 +1,14 @@
+#!/bin/sh
+
+trap "trap - TERM; kill 0" INT TERM QUIT EXIT
+
+case "$1" in
+	bar|notifyd)
+		while :; do
+			musicstat $@
+		done
+		;;
+	*)
+		musicstat $@
+		;;
+esac

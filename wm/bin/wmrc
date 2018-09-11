@@ -15,6 +15,7 @@ export CURRENT_THEME_PATH="/tmp/current_theme"
 
 export GENERAL_GAP=3
 export BW=$BORDER_WIDTH
+export BW=10
 export POPUP_DURATION=5
 export GNUMBER=6
 

@@ -1,0 +1,41 @@
+! street by tudurom
+
+! special
+*.foreground:   #e0f2ec
+*.background:   #19313a
+!*.background: #0e2630
+*.cursorColor:  #e0f2ec
+
+! black
+*.color0:       #0e2630
+*.color8:       #2f6b81
+
+! red
+*.color1:       #a85659
+*.color9:       #eb8995
+
+! green
+*.color2:       #668e8c
+*.color10:      #82aea9
+
+! yellow
+*.color3:       #c3b6a4
+*.color11:      #e1d9ce
+
+! blue
+*.color4:       #326d78
+*.color12:      #a7d2cd
+
+! magenta (or orange)
+*.color5:       #525051
+*.color13:      #6c5f5c
+
+! cyan
+*.color6:       #308c96
+*.color14:      #71bfbf
+
+! white
+*.color7:       #e0f2ec
+*.color15:      #f0f8f3
+
+! vim: set ft=xdefaults :

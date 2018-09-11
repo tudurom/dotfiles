@@ -1,0 +1,8 @@
+! vim: ft=xdefaults
+! street by tudurom
+
+rofi.color-normal: #19313a, #e0f2ec, #19313a, #e0f2ec, #19313a
+rofi.color-urgent: #19313a, #a85659, #19313a, #a85659, #19313a
+rofi.color-active: #19313a, #326d78, #19313a, #326d78, #19313a
+
+rofi.color-window: #19313a, #e0f2ec

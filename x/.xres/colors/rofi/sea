@@ -1,0 +1,8 @@
+! vim: ft=xdefaults
+! sea by tudurom
+
+rofi.color-normal: #00222b, #67828d, #00222b, #67828d, #00222b
+rofi.color-urgent: #00222b, #85a5b3, #00222b, #85a5b3, #00222b
+rofi.color-active: #00222b, #5c8298, #00222b, #5c8298, #00222b
+
+rofi.color-window: #00222b, #67828d

@@ -5,7 +5,10 @@
 foc="$(echo "$BORDER_COLOR_FOC" | sed 's/\#/0x/')"
 unfoc="$(echo "$BORDER_COLOR_UNFOC" | sed 's/\#/0x/')"
 
+BW=9
+
 waitron wm_config border_width $BW
+waitron wm_config internal_border_width 0
 waitron wm_config color_focused $foc
 waitron wm_config color_unfocused $unfoc
 waitron wm_config gap_width all $GENERAL_GAP
@@ -22,3 +25,6 @@ waitron wm_config apply_settings true
 waitron wm_config pointer_actions move resize_side resize_corner
 waitron wm_config pointer_modifier super
 waitron wm_config click_to_focus any
+
+pkill -f fadeborder
+fadeborder $BW $BORDER_COLOR_FOC $BORDER_COLOR_UNFOC 3 &

@@ -1,0 +1,8 @@
+! vim: ft=xdefaults
+! thunder by tudurom
+
+rofi.color-normal: #1d2a30, #c0c5ce, #1d2a30, #c0c5ce, #1d2a30
+rofi.color-urgent: #1d2a30, #a66363, #1d2a30, #a66363, #1d2a30
+rofi.color-active: #1d2a30, #6385a6, #1d2a30, #6385a6, #1d2a30
+
+rofi.color-window: #1d2a30, #c0c5ce

@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/sh -x
+
+. $HOME/bin/wmrc
 
 x=`dattr w $(ppd)`
 y=`dattr h $(ppd)`

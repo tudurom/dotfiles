@@ -1,0 +1,6 @@
+#!/bin/sh
+
+. $HOME/bin/wmrc
+. $HOME/bin/sourcecolors
+
+/usr/bin/rofi -bw $BW -color-window "$CBG,$BORDER_COLOR_FOC,$C8" $@

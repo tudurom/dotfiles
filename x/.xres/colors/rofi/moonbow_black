@@ -1,0 +1,8 @@
+! vim: ft=xdefaults
+! moonbow_black by tudurom
+
+rofi.color-normal: #1b2227, #7b8695, #1b2227, #7b8695, #1b2227
+rofi.color-urgent: #1b2227, #785561, #1b2227, #785561, #1b2227
+rofi.color-active: #1b2227, #424a64, #1b2227, #424a64, #1b2227
+
+rofi.color-window: #1b2227, #7b8695

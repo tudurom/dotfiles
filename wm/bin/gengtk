@@ -26,8 +26,10 @@ if [ -d "$HOME/.themes/oomox-$current_theme" ] &&
 	exit 0
 fi
 
+source "$HOME/bin/wmrc"
 source "$HOME/bin/sourcecolors"
 
+echo "%{F$C1}%{F-} Building GTK theme..." > "$NOTIFY_FIFO_PATH"
 
 CB="${CBG:1}"
 CF="${CFG:1}"
@@ -48,10 +50,10 @@ BTN_BG=$CB
 BTN_FG=$CF
 EOF
 
-
 oomox-cli -m '-j1' -o "oomox-$current_theme" "$oomoxconf"
 oomox-archdroid-icons-cli -o "oomox-$current_theme-flat" "$oomoxconf"
 
 _reload_gtk
+echo "%{F$C1}%{F-} GTK Theme builded and loaded" > "$NOTIFY_FIFO_PATH"
 
 rm "$oomoxconf"

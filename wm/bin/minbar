@@ -171,7 +171,7 @@ get_battery_icon() {
 get_battery_icon > "$PANEL_FIFO" &
 
 get_music() {
-	musicstat bar | while read -r line; do
+	musicwrap bar | while read -r line; do
 		local icon="$(echo "$line" | cut -d',' -f1)"
 		local text="$(echo "$line" | cut -d',' -f2-)"
 		printf "MUSIC_ICON %s\n" "$icon"
@@ -270,7 +270,7 @@ while IFS='' read -r line; do
 	rp "%{l}$(segment "$fn_time" $CLOCK_ICON)${SEP_SMALL}"
 	rp "$(segment "$fn_date" $DATE_ICON)${SEP_SMALL}"
 	rp "${fn_ws}${SEP_SMALL}"
-	rp "%{r}%{A:playerctl play-pause:}$(segment "$fn_music" "$fn_music_icon")%{A}"
+	rp "%{r}%{A:playerctl $(currentplayer) play-pause:}$(segment "$fn_music" "$fn_music_icon")%{A}"
 	[ -d /sys/class/power_supply/BAT0 ] && \
 	rp "${SEP_SMALL}$(segment "$fn_battery" "$fn_battery_icon")"
 	rp "\n"

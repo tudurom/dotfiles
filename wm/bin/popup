@@ -23,5 +23,5 @@ bar_opts="-g ${BAR_W}x${BAR_H}+${BAR_X}+${BAR_Y} -B${BAR_BG} -F${BAR_FG} -f ${BA
 
 (
 echo "%{c}$MESSAGE"
-sleep 1.5
+sleep 5
 ) | lemonbar ${bar_opts}
