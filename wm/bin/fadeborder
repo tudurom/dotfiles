@@ -4,6 +4,10 @@ require 'open3'
 require 'json'
 require 'ostruct'
 
+%w[INT TERM QUIT].each do |sig|
+  Signal.trap sig, 'EXIT'
+end
+
 BORDER_WIDTH = Integer(ARGV[0])
 FOCUS_COLOR = ARGV[1].gsub(/^#/, '0x')
 DEFOCUS_COLOR = ARGV[2].gsub(/^#/, '0x')
@@ -17,6 +21,8 @@ def ex(command)
   puts command if DEBUG
   `#{command}`
 end
+
+at_exit { ex 'waitron wm_config enable_borders true' }
 
 def overridden?(wid)
   system("wattr o #{wid}")
@@ -95,28 +101,24 @@ $widths[-1] = BORDER_WIDTH / SUBBORDERS + BORDER_WIDTH % SUBBORDERS
 $chwb_args = { focused: prepare_args(FOCUS_COLOR), defocused: prepare_args(DEFOCUS_COLOR) }
 
 ex 'waitron wm_config enable_borders false'
-begin
-  ex('lsw').lines.each do |wid|
-    wid.strip!
-    puts "#{wid} already here"
-    snoop wid unless overridden? wid
-  end
-  Open3.popen3('wew -m 2097152') do |_, stdout, _, _|
-    stdout.each do |line|
-      /(?<ev>\d+):(?<wid>\w+)/ =~ line
-      next if overridden? wid
-      ev = Integer(ev)
-      case ev
-      when 16
-        puts "#{wid} created"
-        snoop wid unless overridden? wid
-      when 9, 19
-        focus wid
-      when 10
-        defocus wid
-      end
+ex('lsw').lines.each do |wid|
+  wid.strip!
+  puts "#{wid} already here"
+  snoop wid unless overridden? wid
+end
+Open3.popen3('wew -m 2097152') do |_, stdout, _, _|
+  stdout.each do |line|
+    /(?<ev>\d+):(?<wid>\w+)/ =~ line
+    next if overridden? wid
+    ev = Integer(ev)
+    case ev
+    when 16
+      puts "#{wid} created"
+      snoop wid unless overridden? wid
+    when 9, 19
+      focus wid
+    when 10
+      defocus wid
     end
   end
-rescue Interrupt
-  ex 'waitron wm_config enable_borders true'
 end
