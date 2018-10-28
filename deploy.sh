@@ -5,7 +5,7 @@
 
 OPTS="-ire README\..*"
 
-IGNORE="firefox startpage meta"
+IGNORE="firefox startpage meta kde"
 
 isignored() {
 	local ign="$1"
