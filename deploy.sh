@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 #
 # Deploy dotfiles
 #
@@ -17,21 +17,23 @@ isignored() {
 	return 1
 }
 
-# Check for conflicts
-echo "Checking for conflicts"
-for dir in */; do
-	dir="$(echo "$dir" | tr -d '/')"
-	isignored "$dir" && continue
+check_conflicts() {
+	# Check for conflicts
+	echo "Checking for conflicts"
+	for dir in */; do
+		dir="$(echo "$dir" | tr -d '/')"
+		isignored "$dir" && continue
 
-	conflicts="$(xstow $OPTS -c "${dir}" 2>&1 )"
-	printf "%s" "- ${dir}:"
-	if [ -z "$conflicts" ]; then
-		printf " NONE"
-	else
-		echo " $conflicts" && exit 1
-	fi
-	echo
-done
+		conflicts="$(xstow $OPTS -c "${dir}" 2>&1 )"
+		printf "%s" "- ${dir}:"
+		if [ -z "$conflicts" ]; then
+			printf " NONE"
+		else
+			echo " $conflicts" && exit 1
+		fi
+		echo
+	done
+}
 
 # Symlink
 echo "Deploying"
@@ -40,6 +42,7 @@ case "$1" in
 		xstow $OPTS "$2"
 		;;
 	*)
+		check_conflicts
 		for dir in */; do
 			isignored "$(echo "$dir" | tr -d '/')" && continue
 
