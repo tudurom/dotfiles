@@ -6,7 +6,7 @@ LC_TIME="ro_RO.UTF-8"
 EDITOR=nvim
 VISUAL=nvim
 PAGER=less
-BROWSER=firefox-developer-edition
+BROWSER=qutebrowser
 CC=clang
 CXX=clang++
 TERMINAL=urxvt
@@ -28,6 +28,9 @@ if which ruby >/dev/null 2>&1; then
 fi
 
 export LANG LC_TIME EDITOR VISUAL PAGER BROWSER CC CXX TERMINAL LS_COLORS MAKEFLAGS MANWIDTH LESS GOPATH SUDO_PROMPT _JAVA_AWT_WM_NONREPARENTING PATH
+
+export GTK_MODULES=appmenu-gtk-module
+export SAL_USE_VCLPLUGIN=gtk
 
 # cyber by tudurom
 

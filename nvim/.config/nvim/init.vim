@@ -25,6 +25,7 @@ Plug 'godlygeek/tabular'
 Plug 'rking/ag.vim'
 Plug 'simeji/winresizer'
 Plug 'tudurom/bleh.vim'
+Plug 'whatyouhide/vim-gotham'
 Plug 'lilydjwg/colorizer'
 Plug 'isa/vim-matchit'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -166,7 +167,7 @@ autocmd BufWritePre * %s/\s\+$//e
 " Colors {{{
 
 set background=dark
-colo bleh
+colo gotham
 
 " }}}
 
