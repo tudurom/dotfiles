@@ -1,6 +1,8 @@
 tudurom's dotfiles
 ==================
 
+###### Warning: there is a lot of junk here that is not used anymore. I'm currently using KDE Plasma and I have not found a way to efficiently backup kde configs
+
 > you are your dotfiles
 
 A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time UNIX users and ricers can understand what's going on, with explications for each directory.

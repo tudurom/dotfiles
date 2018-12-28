@@ -299,3 +299,8 @@ dig t, 539 " ț
 " Functions {{{
 :command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 " }}}
+
+aug AutoCompileMD
+	au!
+	au BufWritePost *.md silent !pandoc -o %:p:r.pdf % &
+aug END

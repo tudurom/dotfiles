@@ -4,7 +4,7 @@ Emacs.font: M+ 2m:size=20
 
 dzen2.font: M+ 2m:size=20
 
-#include "../.xres/colors/rofi/street"
-#include "../.xres/colors/street"
+#include "../.xres/colors/rofi/cyber"
+#include "../.xres/colors/cyber"
 
 ! vim: set ft=xdefaults :

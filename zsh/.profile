@@ -20,7 +20,7 @@ GOPATH="$HOME/gopath"
 SUDO_PROMPT="[sudo] auth $(tput bold)$(tput setaf 1)%U$(tput sgr0) "
 _JAVA_AWT_WM_NONREPARENTING=1
 
-PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin/core_perl:$HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.node/bin:$HOME/build/bin"
+PATH="$HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.node/bin:$HOME/build/bin:$PATH"
 
 if which ruby >/dev/null 2>&1; then
 	ver="$(ruby -v | grep -Eo '[0-9]+\.[0-9]+')"
@@ -31,6 +31,10 @@ export LANG LC_TIME EDITOR VISUAL PAGER BROWSER CC CXX TERMINAL LS_COLORS MAKEFL
 
 export GTK_MODULES=appmenu-gtk-module
 export SAL_USE_VCLPLUGIN=gtk
+
+# hi-dpi (1440p) fuckery
+# export GDK_SCALE=1
+# export GDK_DPI_SCALE=1.25
 
 # cyber by tudurom
 
