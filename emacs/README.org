@@ -1,9 +1,0 @@
-* Emacs
-** The ((Lisp)) virtual machine
-
-Emacs, being a full-fledged fully-customizable Lisp virtual machine allows for
-and infinite number of workflows and aesthetics.
-Some people use emacs as a mail client, music player, irc client and so on.
-I prefer to use it just as a programming environment.
-
-The theme I use is [[https://github.com/tudurom/xresources-theme][custom]].

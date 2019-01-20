@@ -1,4 +1,4 @@
 zsh
 ===
 
-My shell of choice. Complete with syntax highlighting and completions.
+My shell of choice. Nothing much to say about it.

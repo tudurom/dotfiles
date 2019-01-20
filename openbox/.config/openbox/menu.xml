@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+	<menu execute="xdg_menu --format openbox3-pipe --root-menu /etc/xdg/menus/arch-applications.menu" id="root-menu" title="Applications" label="Applications"/>
+</openbox_menu>

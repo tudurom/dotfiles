@@ -16,5 +16,5 @@ done
 
 message=${2:-"RING RING!"}
 
-echo "$message" > "$NOTIFY_FIFO_PATH"
+notify-send "Timer" "$message"
 } &

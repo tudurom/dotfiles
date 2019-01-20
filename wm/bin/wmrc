@@ -4,53 +4,9 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-
 test -z "$DISPLAY" && exit
 
-export NOTIFY_FIFO_PATH=/tmp/notifyd.fifo
-export NOTIFY_COUNTER_PATH=/tmp/notifyd.cnt
-export CURRENT_THEME_PATH="/tmp/current_theme"
-
-. $HOME/.wm/themes/$(cat $CURRENT_THEME_PATH)
-
-export GENERAL_GAP=3
-export BW=$BORDER_WIDTH
-export BW=10
-export POPUP_DURATION=5
-export GNUMBER=6
-
-export PANEL_FONT
-export PANEL_ICON_FONT
-export PANEL_FONT_NAME
-export PANEL_ICON_FONT_NAME
-
-export BORDER_COLOR_FOC
-export BORDER_COLOR_UNFOC
-
-export PANEL_STATUS_HEIGHT
-export PANEL_BG_COLOR
-export PANEL_BORDER_COLOR=$BORDER_COLOR_UNFOC
-export PANEL_ACCENT_COLOR
-export PANEL_BORDER_WIDTH
-export PANEL_TRANSPARENT
-export PANEL_KEEP_HIGH
-export PANEL_INNER_GAP="20"
-export PANEL_OUTER_GAP="20"
-
-export COLOR_STYLE
-
-export PANEL_FIFO="/tmp/minbar.fifo"
-
-export DMENU_ARGS="-nb `xrq '*.background'` -nf `xrq '*.foreground'` -sb `xrq '*.foreground'` -sf `xrq '*.background'`"
-
-# Clock bar
-export ICON_CLOCK="\ue015"
-
-# Music bar
-export ICON_PLAY="\ue058"
-export ICON_PAUSE="\ue059"
-export ICON_STOP="\ue057"
-
-. $HOME/.wm/overrides
+. $HOME/bin/sourcecolors
+DMENU_ARGS="-nb `xrq '*.background'` -nf `xrq '*.foreground'` -sb `xrq '*.foreground'` -sf `xrq '*.background'`"
 
 # vim: set ft=sh :

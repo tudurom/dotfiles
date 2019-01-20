@@ -4,8 +4,6 @@
 # (c) tudurom 2016 - wtfpl
 #
 
-. $HOME/bin/wmrc
-
 level() {
 	amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p' | uniq
 }
@@ -38,15 +36,6 @@ usage() {
 	echo "usage `basename $0` [+|-|m|state|level]" && exit 1
 }
 
-i() {
-	local ico=""
-	echo "%{F$PANEL_ACCENT_COLOR}$ico%{F-}"
-}
-
-mic_icon() {
-	echo "%{F$PANEL_ACCENT_COLOR}%{F-}"
-}
-
 case $1 in
 	+)
 		amixer sset Master 5%+ unmute > /dev/null
@@ -68,7 +57,7 @@ case $1 in
 		toggle_port
 		port
 		;;
-	state|mic_state|level|i|mic_icon)
+	state|mic_state|level)
 		$1
 		;;
 	*)

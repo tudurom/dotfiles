@@ -1,0 +1,12 @@
+#!/bin/sh
+
+xfce4-volumed-pulse &
+compton -b
+feh --bg-fill ~/wallpapers/bridge.jpg
+/usr/lib/kdeconnectd &
+jgmenu --hide-on-startup 0 &
+polybar clock &
+docky &
+lastplayer -h &
+plasma-browser-integration-host &
+$HOME/.xinitrc -o &

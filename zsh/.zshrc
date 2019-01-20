@@ -194,3 +194,6 @@ fi
 _fzf_compgen_path() {
 	ag -g "" "$1"
 }
+
+# Added by Krypton
+export GPG_TTY=$(tty)

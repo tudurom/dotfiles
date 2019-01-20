@@ -167,7 +167,7 @@ autocmd BufWritePre * %s/\s\+$//e
 " Colors {{{
 
 set background=dark
-colo gotham
+colo bleh
 
 " }}}
 
@@ -302,5 +302,5 @@ dig t, 539 " ț
 
 aug AutoCompileMD
 	au!
-	au BufWritePost *.md silent !pandoc -o %:p:r.pdf % &
+	au BufWritePost ~/usr/work/*.md silent !pandoc -o %:p:r.pdf % &
 aug END

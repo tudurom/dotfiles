@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 select="false"
 test "$1" = "-s" && select="true"
@@ -16,6 +16,5 @@ maim $opts "$fn"
 xclip -selection clipboard -t image/png "$fn"
 
 if [ "$?" = "0" ]; then
-	. $HOME/bin/wmrc
-	pgrep "notifyd" > /dev/null && echo "%{F$PANEL_ACCENT_COLOR}%{F-} Screenshot taken" > "$NOTIFY_FIFO_PATH" || notify-send "Screenie" "Screenshot taken"
+	notify-send "Screenie" "Screenshot taken"
 fi
