@@ -31,6 +31,9 @@ List of programs
 * exo
 * dina-font
 * siji-git
+* archlinux-xdg-menu
+* alsa-utils
+* xrq-git
 
 Links
 -----
