@@ -2,11 +2,12 @@
 
 xfce4-volumed-pulse &
 compton -b
-feh --bg-fill ~/wallpapers/bridge.jpg
+feh --bg-fill ~/wallpapers/street.png
+pkill -f dunst && start-dunst &
 /usr/lib/kdeconnectd &
 jgmenu --hide-on-startup 0 &
 polybar clock &
-docky &
+plank &
 lastplayer -h &
 plasma-browser-integration-host &
 $HOME/.xinitrc -o &

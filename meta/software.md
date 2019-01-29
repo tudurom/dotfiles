@@ -1,30 +1,31 @@
 List of programs
 ================
 
-* windowchef
-* sxhkd
-* ruler
-* lemonbar
-* rainbou
-* setxkbmap
-* xmodmap
 * autocutsel
-* unclutter-xfixes
-* xsetroot
+* compton-tryone-git
+* dunst
 * feh
-* redshift
-* playerctl
-* disputils
-* compton
-* wmutils
-* interrobang
-* emacs
+* jgmenu
+* kdeconnect
 * neovim
-* nvr
-* bspwm
-* colort
-* xautomation
+* obconf
+* obkey-git
+* obmenu
+* openbox
+* plank-git
+* plasma-browser-integration
+* playerctl
+* polybar-git
+* redshift
+* unclutter-xfixes-git
 * xbindkeys
+* xfce4-volumed-pulse
+* xorg-setxkbmap
+* xorg-xmodmap
+* xorg-xmodmap
+* xorg-xrdb
+* xorg-xset
+* xorg-xsetroot
 
 Links
 -----

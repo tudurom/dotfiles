@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>10</strength>
@@ -157,12 +156,12 @@
     <right>0</right>
   </margins>
   <dock>
-    <position>TopRight</position>
+    <position>TopLeft</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>0</floatingX>
     <floatingY>0</floatingY>
     <noStrut>yes</noStrut>
-    <stacking>Below</stacking>
+    <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
     <direction>Horizontal</direction>
     <!-- 'Vertical' or 'Horizontal' -->
@@ -179,6 +178,21 @@
     <keybind key="W-2">
       <action name="GoToDesktop">
         <to>1</to>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioRaiseVolume">
+      <action name="Execute">
+        <command>vol +</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioLowerVolume">
+      <action name="Execute">
+        <command>vol -</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioMute">
+      <action name="Execute">
+        <command>vol m</command>
       </action>
     </keybind>
     <keybind key="Print">
@@ -430,6 +444,7 @@
           <then>
             <action name="Unshade"/>
             <action name="Raise"/>
+			<action name="Focus"/>
           </then>
         </action>
       </mousebind>
