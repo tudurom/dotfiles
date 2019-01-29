@@ -1,3 +1,3 @@
 #!/bin/sh
 
-yay -Syu $(grep '*' software.md | cut -d' ' -f2)
+yay -Syu --needed $(grep '*' software.md | cut -d' ' -f2)

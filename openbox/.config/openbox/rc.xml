@@ -180,6 +180,11 @@
         <to>1</to>
       </action>
     </keybind>
+    <keybind key="A-W-Escape">
+      <action name="SessionLogout">
+        <prompt>no</prompt>
+      </action>
+    </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
         <command>vol +</command>

@@ -26,6 +26,11 @@ List of programs
 * xorg-xrdb
 * xorg-xset
 * xorg-xsetroot
+* la-capitaine-icon-theme
+* capitaine-cursors
+* exo
+* dina-font
+* siji-git
 
 Links
 -----
