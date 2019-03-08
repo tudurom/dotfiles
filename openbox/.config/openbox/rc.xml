@@ -292,21 +292,6 @@
     <keybind key="A-l">
       <action name="DirectionalFocusEast"/>
     </keybind>
-    <keybind key="W-h">
-      <action name="MoveRelative">
-        <x>-50</x>
-      </action>
-    </keybind>
-    <keybind key="W-j">
-      <action name="MoveRelative">
-        <y>50</y>
-      </action>
-    </keybind>
-    <keybind key="W-k">
-      <action name="MoveRelative">
-        <y>-50</y>
-      </action>
-    </keybind>
     <keybind key="W-p">
       <action name="Execute">
         <command>pmenu</command>
@@ -317,13 +302,29 @@
         <command>gotosleep</command>
       </action>
     </keybind>
-    <keybind key="W-l">
-      <action name="MoveRelative">
-        <x>50</x>
-      </action>
-    </keybind>
     <keybind key="W-Escape">
       <action name="Reconfigure"/>
+    </keybind>
+    <keybind key="W-h">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="W-l">
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <x>50%</x>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="W-j">
+      <action name="Iconify"/>
     </keybind>
     <keybind key="S-W-Escape">
       <action name="Restart"/>

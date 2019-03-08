@@ -9,5 +9,5 @@ jgmenu --hide-on-startup 0 &
 polybar clock &
 plank &
 lastplayer -h &
-plasma-browser-integration-host &
+(sleep 10 && plasma-browser-integration-host) &
 $HOME/.xinitrc -o &

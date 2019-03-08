@@ -18,7 +18,9 @@ call plug#begin('~/.config/nvim/bundle')
 
 Plug 'ajh17/vimcompletesme'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tweekmonster/deoplete-clang2'
 Plug 'sheerun/vim-polyglot'
+Plug 'racer-rust/vim-racer'
 Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
@@ -242,6 +244,12 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 
 " }}}
+
+"{{{ Rust
+
+let g:racer_experimental_completer = 1
+
+"}}}
 
 " ag {{{
 let g:ag_prg="ag -i --vimgrep"
