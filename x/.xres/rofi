@@ -1,5 +1,6 @@
 ! "Enabled modi" Set from: Default
-rofi.modi: window,run,drun,ssh
+rofi.modi: combi,window,drun,run,
+rofi.combi-modi: window,drun,run
 ! "Font to use" Set from: Default
 ! rofi.font:                           mono 12
 ! "Border width" Set from: Default

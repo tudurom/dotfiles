@@ -16,11 +16,10 @@ set rtp+=/usr/share/vim/vimfiles
 
 call plug#begin('~/.config/nvim/bundle')
 
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'ajh17/vimcompletesme'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tweekmonster/deoplete-clang2'
+Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'racer-rust/vim-racer'
 Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
@@ -36,6 +35,7 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-abolish'
 Plug 'matze/vim-move'
+Plug 'srcery-colors/srcery-vim'
 
 call plug#end()
 filetype plugin indent on
@@ -155,6 +155,8 @@ map <Leader><Space> <C-w><C-w>
 nmap <Leader>r :WinResizerStartResize<CR>
 nmap <Leader>w :w<CR>
 
+nnoremap <silent> B :Buffers<CR>
+
 " }}}
 
 " Whitespace stripping {{{
@@ -169,7 +171,8 @@ autocmd BufWritePre * %s/\s\+$//e
 " Colors {{{
 
 set background=dark
-colo bleh
+" colo bleh
+colo srcery
 
 " }}}
 
@@ -217,12 +220,6 @@ augroup completionhide
 augroup end
 let g:clang_library_path='/usr/lib'
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
-if !exists('g:deoplete#omni#input_patterns')
-	let g:deoplete#omni#input_patterns = {}
-endif
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " }}}
@@ -236,20 +233,6 @@ augroup finalcountdown
 augroup END
 
 " }}}
-
-" vim-go {{{
-
-let g:go_fmt_command = "goimports"
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-
-" }}}
-
-"{{{ Rust
-
-let g:racer_experimental_completer = 1
-
-"}}}
 
 " ag {{{
 let g:ag_prg="ag -i --vimgrep"
@@ -301,6 +284,28 @@ dig s, 537 " ș
 
 dig T, 538 " Ț
 dig t, 539 " ț
+
+" }}}
+
+" coc.nvim {{{
+
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
 
 " }}}
 

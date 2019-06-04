@@ -5,7 +5,6 @@ compton -b
 feh --bg-fill ~/wallpapers/street.png
 pkill -f dunst && start-dunst &
 /usr/lib/kdeconnectd &
-jgmenu --hide-on-startup 0 &
 polybar clock &
 plank &
 lastplayer -h &

@@ -175,7 +175,7 @@
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <keybind key="W-2">
+    <keybind key="W-1">
       <action name="GoToDesktop">
         <to>1</to>
       </action>
@@ -212,7 +212,7 @@
     </keybind>
     <keybind key="W-space">
       <action name="Execute">
-        <command>jgmenu_run</command>
+        <command>rofi -show combi</command>
       </action>
     </keybind>
     <keybind key="S-W-f">
