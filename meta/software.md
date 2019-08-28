@@ -5,14 +5,12 @@ List of programs
 * compton-tryone-git
 * dunst
 * feh
-* jgmenu
 * kdeconnect
-* neovim
+* neovim-git
 * obconf
 * obkey-git
 * obmenu
 * openbox
-* plank-git
 * plasma-browser-integration
 * playerctl
 * polybar-git
@@ -21,7 +19,6 @@ List of programs
 * xbindkeys
 * xfce4-volumed-pulse
 * xorg-setxkbmap
-* xorg-xmodmap
 * xorg-xmodmap
 * xorg-xrdb
 * xorg-xset
@@ -34,6 +31,7 @@ List of programs
 * archlinux-xdg-menu
 * alsa-utils
 * xrq-git
+* pass-git-helper
 
 Links
 -----

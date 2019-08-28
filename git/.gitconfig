@@ -1,14 +1,22 @@
 [user]
-    email = tudurom@gmail.com
-    name = Tudor Roman
-    signingkey = @tudurom
+	# email = tudurom@gmail.com
+	email = tudor@tudorr.ro
+	name = Tudor Roman
+	signingkey = @tudurom
 [mergetool]
-    path = nvim
+	path = nvim
 [commit]
 	gpgSign = true
 [alias]
-    graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
+	graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
 [gpg]
 	program = /usr/bin/krgpg
 [tag]
 	forceSignAnnotated = true
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpuser = tudurom@gmail.com
+	smtpencryption = tls
+	smtpserverport = 587
+[credential]
+	helper = !pass-git-helper $@

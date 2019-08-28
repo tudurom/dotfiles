@@ -36,6 +36,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-abolish'
 Plug 'matze/vim-move'
 Plug 'srcery-colors/srcery-vim'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 filetype plugin indent on
@@ -170,9 +171,10 @@ autocmd BufWritePre * %s/\s\+$//e
 
 " Colors {{{
 
-set background=dark
+set termguicolors
+set background=light
 " colo bleh
-colo srcery
+colo gruvbox
 
 " }}}
 

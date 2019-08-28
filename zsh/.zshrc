@@ -197,3 +197,5 @@ _fzf_compgen_path() {
 
 # Added by Krypton
 export GPG_TTY=$(tty)
+
+export RUST_BACKTRACE=1

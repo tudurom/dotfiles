@@ -4,39 +4,39 @@
     <screen_edge_strength>20</screen_edge_strength>
   </resistance>
   <focus>
-    <focusNew>yes</focusNew>
     <!-- always try to focus new windows when they appear. other rules do
 		apply -->
-    <followMouse>no</followMouse>
+    <focusNew>yes</focusNew>
     <!-- move focus to a window when you move the mouse into it -->
-    <focusLast>yes</focusLast>
+    <followMouse>no</followMouse>
     <!-- focus the last used window when changing desktops, instead of the one
 		under the mouse pointer. when followMouse is enabled -->
-    <underMouse>no</underMouse>
+    <focusLast>yes</focusLast>
     <!-- move focus under the mouse, even when the mouse is not moving -->
-    <focusDelay>200</focusDelay>
+    <underMouse>no</underMouse>
     <!-- when followMouse is enabled, the mouse must be inside the window for
 		this many milliseconds (1000 = 1 sec) before moving focus to it -->
-    <raiseOnFocus>no</raiseOnFocus>
+    <focusDelay>200</focusDelay>
     <!-- when followMouse is enabled, and a window is given focus by moving the
 		mouse into it, also raise the window -->
+    <raiseOnFocus>no</raiseOnFocus>
   </focus>
   <placement>
-    <policy>Smart</policy>
     <!-- 'Smart' or 'UnderMouse' -->
-    <center>yes</center>
+    <policy>Smart</policy>
     <!-- whether to place windows in the center of the free area found or
 		the top left corner -->
-    <monitor>Primary</monitor>
+    <center>yes</center>
     <!-- with Smart placement on a multi-monitor system, try to place new windows
 		on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
 		the active window is, 'Primary' - only on the primary monitor -->
-    <primaryMonitor>1</primaryMonitor>
+    <monitor>Primary</monitor>
     <!-- The monitor where Openbox should place popup dialogs such as the
 		focus cycling popup, or the desktop switch popup.  It can be an index
 		from 1, specifying a particular monitor.  Or it can be one of the
 		following: 'Mouse' - where the mouse is, or
 		'Active' - where the active window is -->
+    <primaryMonitor>1</primaryMonitor>
   </placement>
   <theme>
     <name>Bonzo</name>
@@ -180,9 +180,29 @@
         <to>1</to>
       </action>
     </keybind>
-    <keybind key="A-W-Escape">
-      <action name="SessionLogout">
-        <prompt>no</prompt>
+    <keybind key="S-W-exclam">
+      <action name="SendToDesktop">
+        <desktop>1</desktop>
+      </action>
+    </keybind>
+    <keybind key="S-W-exclam">
+      <action name="SendToDesktop">
+        <desktop>1</desktop>
+      </action>
+    </keybind>
+    <keybind key="S-W-at">
+      <action name="SendToDesktop">
+        <desktop>2</desktop>
+      </action>
+    </keybind>
+    <keybind key="S-W-numbersign">
+      <action name="SendToDesktop">
+        <desktop>3</desktop>
+      </action>
+    </keybind>
+    <keybind key="S-W-dollar">
+      <action name="SendToDesktop">
+        <desktop>4</desktop>
       </action>
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
@@ -723,6 +743,13 @@
     <application class="Polybar">
       <layer>below</layer>
     </application>
+	<application class="Spotify">
+		<desktop>3</desktop>
+	</application>
+	<application class="TelegramDesktop">
+		<desktop>4</desktop>
+	</application>
+
     <!--
 		# this is an example with comments through out. use these to make your
 		# own rules, but without the comments of course.
