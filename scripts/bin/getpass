@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cat <<EOF | pinentry | grep -Eo 'D (.*)' | cut -d' ' -f2-
+setprompt Enter password:
+getpin
+EOF
