@@ -749,6 +749,9 @@
 	<application class="TelegramDesktop">
 		<desktop>4</desktop>
 	</application>
+	<application role="browser">
+		<desktop>2</desktop>
+	</application>
 
     <!--
 		# this is an example with comments through out. use these to make your

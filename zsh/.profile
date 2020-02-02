@@ -1,6 +1,8 @@
 ## Self-explanatory
-LANG="en_US.UTF-8"
+#LANG="en_US.UTF-8"
 LC_TIME="ro_RO.UTF-8"
+LANG="ro_RO.UTF-8"
+LC_ALL="ro_RO.UTF-8"
 
 ## Programs to use
 EDITOR=nvim
@@ -19,6 +21,8 @@ LESS='-F -g -i -M -R -S -w -X -z-4'
 GOPATH="$HOME/gopath"
 SUDO_PROMPT="[sudo] auth $(tput bold)$(tput setaf 1)%U$(tput sgr0) "
 _JAVA_AWT_WM_NONREPARENTING=1
+AWT_TOOLKIT=MToolkit
+SAFE_ASKPASS=getpass
 
 PATH="$HOME/.cargo/bin:$HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.node/bin:$HOME/build/bin:$PATH"
 
@@ -27,7 +31,7 @@ if which ruby >/dev/null 2>&1; then
 	PATH="$PATH:$HOME/.gem/ruby/$ver.0/bin"
 fi
 
-export LANG LC_TIME EDITOR VISUAL PAGER BROWSER CC CXX TERMINAL LS_COLORS MAKEFLAGS MANWIDTH LESS GOPATH SUDO_PROMPT _JAVA_AWT_WM_NONREPARENTING PATH
+export LANG LC_TIME EDITOR VISUAL PAGER BROWSER CC CXX TERMINAL LS_COLORS MAKEFLAGS MANWIDTH LESS GOPATH SUDO_PROMPT _JAVA_AWT_WM_NONREPARENTING AWT_TOOLKIT PATH
 
 export GTK_MODULES=appmenu-gtk-module
 export SAL_USE_VCLPLUGIN=gtk

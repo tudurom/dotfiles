@@ -37,6 +37,7 @@ Plug 'tpope/vim-abolish'
 Plug 'matze/vim-move'
 Plug 'srcery-colors/srcery-vim'
 Plug 'morhetz/gruvbox'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 filetype plugin indent on
@@ -47,7 +48,6 @@ filetype plugin indent on
 " Syntax and tabs
 syntax enable
 set number
-set backspace=indent,eol,start
 set tabstop=4
 set noexpandtab
 set softtabstop=-1
@@ -135,9 +135,6 @@ nnoremap <silent> <Leader>d :noh<CR>
 if has('nvim')
 	tnoremap <Esc> <C-\><C-n>
 endif
-" Navigate long lines easily
-map j gj
-map k gk
 " Just in case
 cabbr W w
 cabbr Q q

@@ -32,6 +32,7 @@ List of programs
 * alsa-utils
 * xrq-git
 * pass-git-helper
+* pamixer
 
 Links
 -----

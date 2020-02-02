@@ -1,3 +1,29 @@
+# WM Independent
+
+super + Return
+	exo-open --launch TerminalEmulator
+
+super + space
+	rofi -show combi
+
+super + p
+	pmenu
+
+XF86Audio{Raise,Lower}Volume
+	pamixer {-i,-d} 5
+
+XF86AudioMute
+	pamixer -t
+
+XF86Audio{Play,Stop,Next,Prev}
+	playerctl {play-pause,stop,next,previous}
+
+{,shift +}Print
+	screenie {,-s}
+
+super + semicolon ; {f,x,l}
+	{exo-open --launch WebBrowser,waitron wm_quit 0,gotosleep}
+
 super + {h,j,k,l}
 	waitron window_move {-20 0, 0 20, 0 -20, 20 0}
 
@@ -12,9 +38,6 @@ super + shift + alt + {h,j,k,l}
 
 alt + {h,j,k,l}
 	waitron window_cardinal_focus {left,down,up,right}
-
-super + alt + Escape
-	waitron wm_quit 0
 
 super + f
 	waitron window_maximize

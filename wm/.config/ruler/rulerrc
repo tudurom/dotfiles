@@ -1,0 +1,4 @@
+role="browser"
+	wtf "$RULER_ID" && waitron group_add_window 2
+class="Spotify"
+	wtf "$RULER_ID" && waitron group_add_window 3
