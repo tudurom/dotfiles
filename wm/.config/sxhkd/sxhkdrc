@@ -22,7 +22,7 @@ XF86Audio{Play,Stop,Next,Prev}
 	screenie {,-s}
 
 super + semicolon ; {f,x,l}
-	{exo-open --launch WebBrowser,waitron wm_quit 0,gotosleep}
+	{exo-open --launch WebBrowser,waitron wm_quit 0,systemctl suspend}
 
 super + {h,j,k,l}
 	waitron window_move {-20 0, 0 20, 0 -20, 20 0}

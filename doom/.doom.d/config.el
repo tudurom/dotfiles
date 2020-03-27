@@ -3,6 +3,7 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; refresh' after modifying this file!
 
+(load-file "~/.doom.d/private.el")
 
 ;; These are used for a number of things, particularly for GPG configuration,
 ;; some email clients, file templates and snippets.
@@ -57,5 +58,9 @@
                             (height . 54)))
 
 (setq meson-indent-basic 4)
-(add-hook 'c-mode-hool (lambda () ((setq c-basic-offset 4
-                                         c-default-style "k&r"))))
+(after! cc
+  (add-hook 'c-mode-hook (lambda () ((setq-default c-basic-offset 4)
+                                     (setq-default tab-width 4)
+                                     (setq-default c-default-style "k&r")))))
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)

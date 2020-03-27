@@ -1,7 +1,7 @@
 #!/bin/sh
 
 xfce4-volumed-pulse &
-compton -b
+picom -b
 feh --bg-fill ~/wallpapers/street.png
 pkill -f dunst && start-dunst &
 /usr/lib/kdeconnectd &
