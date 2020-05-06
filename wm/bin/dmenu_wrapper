@@ -1,9 +1,0 @@
-#!/bin/sh
-
-. $HOME/bin/wmrc
-
-command="dmenu"
-
-test "$1" = "run" && command="dmenu_run"
-
-$command $DMENU_ARGS

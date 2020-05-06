@@ -28,16 +28,15 @@ if [ $1 = '-o' ]; then
 fi
 
 wm() {
+	wm=$1
+
 	# Listen to popup requests
 	notifyd &
 	# Window compositor
 	compton -b
-	wm=$1
 	sxhkd -c $HOME/.config/sxhkd/sxhkdrc_${wm} $HOME/.config/sxhkd/commons &
 	ruler &
-	trap "pkill -f musicwrap" EXIT
-	pgrep -f lastplayerwrapper || lastplayerwrapper &
-	(sleep 1 && swtheme street) &
+	lastplayer &
 	wall-e &
 	exec $wm
 }

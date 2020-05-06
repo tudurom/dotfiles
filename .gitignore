@@ -13,6 +13,4 @@ st/st.o
 
 vimperator/.vimperator/info
 
-wmrc/.scripts/xwait
-
 gtk/.config/gtk-2.0/gtkfilechooser.ini

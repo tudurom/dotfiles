@@ -1,7 +1,0 @@
-#!/bin/sh
-
-trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
-
-lastplayer | while read -r line; do
-	pkill -x 'musicstat'
-done

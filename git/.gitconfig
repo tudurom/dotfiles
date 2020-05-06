@@ -13,8 +13,10 @@
 	smtpencryption = tls
 	smtpserverport = 587
 [credential]
-	helper = !pass-git-helper $@
+	helper = !bw-git-helper $@
 [commit]
 	gpgsign = true
 [tag]
-	forceSignAnnotated = t
+	forceSignAnnotated = true
+[diff]
+	algorithm = patience

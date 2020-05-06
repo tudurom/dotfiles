@@ -1,7 +1,0 @@
-#!/bin/sh
-
-devid="$(xinput list | grep Synaptics | grep -Eo "id=[0-9]+" | sed 's/id=//')"
-propid="$(xinput list-props $devid | grep "Tapping Enabled (" |\
-	grep -Eo "\([0-9]+\)" | sed 's/[()]//g')"
-
-xinput set-prop $devid $propid 1

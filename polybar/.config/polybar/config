@@ -61,15 +61,6 @@ tray-padding =
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/player-mpris-tail]
-type = custom/script
-exec = musicstat bar
-tail = true
-label = %output%
-click-left = playerctlwrap play-pause
-click-right = playerctlwrap next
-click-middle = playerctlwrap stop
-
 [module/date]
 type = internal/date
 interval = 5

@@ -16,7 +16,6 @@ set rtp+=/usr/share/vim/vimfiles
 
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'ajh17/vimcompletesme'
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
@@ -141,14 +140,14 @@ cabbr Q q
 cabbr Wq wq
 
 map <Space> <Leader>
-nmap <Leader>- :split<CR>
-nmap <Leader>\| :vsplit<CR>
+nmap <Leader>ws :split<CR>
+nmap <Leader>wv :vsplit<CR>
 
-map <Leader>h <C-w>h
-map <Leader>j <C-w>j
-map <Leader>k <C-w>k
-map <Leader>l <C-w>l
-map <Leader>= <C-w>=
+map <Leader>wh <C-w>h
+map <Leader>wj <C-w>j
+map <Leader>wk <C-w>k
+map <Leader>wl <C-w>l
+map <Leader>w= <C-w>=
 map <Leader><Space> <C-w><C-w>
 nmap <Leader>r :WinResizerStartResize<CR>
 nmap <Leader>w :w<CR>
@@ -283,28 +282,6 @@ dig s, 537 " ș
 
 dig T, 538 " Ț
 dig t, 539 " ț
-
-" }}}
-
-" coc.nvim {{{
-
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
-endfunction
 
 " }}}
 

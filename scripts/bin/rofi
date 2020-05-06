@@ -1,5 +1,0 @@
-#!/bin/sh
-
-. $HOME/bin/sourcecolors
-
-/usr/bin/rofi -bw $BW -color-window "$CBG,$C0,$C8" $@

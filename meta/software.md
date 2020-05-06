@@ -19,7 +19,6 @@ List of programs
 * xbindkeys
 * xfce4-volumed-pulse
 * xorg-setxkbmap
-* xorg-xmodmap
 * xorg-xrdb
 * xorg-xset
 * xorg-xsetroot
@@ -33,6 +32,7 @@ List of programs
 * xrq-git
 * pass-git-helper
 * pamixer
+* dex
 
 Links
 -----

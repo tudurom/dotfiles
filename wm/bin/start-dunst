@@ -1,5 +1,0 @@
-#!/bin/sh
-
-. $HOME/bin/sourcecolors
-
-dunst -frame_color $C8 -lb $CBG -nb $CBG -cb $C1 -lf $CFG -nf $CFG -cf $CFG
