@@ -26,7 +26,9 @@ set -xg PATH "$HOME/.cargo/bin:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.nod
 set -xg GTK_MODULES appmenu-gtk-module
 set -xg SAL_USE_VCLPLUGIN gtk
 
-set -xg RUST_SRC_PATH (rustc --print sysroot)"/lib/rustlib/src/rust/src"
+if type -q rustc
+    set -xg RUST_SRC_PATH (rustc --print sysroot)"/lib/rustlib/src/rust/src"
+end
 set -xg RUST_BACKTRACE 1
 
 alias ls 'ls --color=auto -F'
