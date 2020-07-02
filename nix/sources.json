@@ -1,4 +1,16 @@
 {
+    "bw-git-helper": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "tudurom",
+        "repo": "bw-git-helper",
+        "rev": "d68a8db52a38061a0c9a60b3f29d81413d2e4425",
+        "sha256": "1p7q3k1gfszm9k9sm4gp87464lh8l703w9jk0jrlrqhprj4wn1np",
+        "type": "tarball",
+        "url": "https://github.com/tudurom/bw-git-helper/archive/d68a8db52a38061a0c9a60b3f29d81413d2e4425.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "emacs-overlay": {
         "branch": "master",
         "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",

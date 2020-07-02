@@ -21,6 +21,7 @@
   # changes in each release.
   home.stateVersion = "20.09";
 
+  nixpkgs.overlays = import ./packages;
   nixpkgs.config.allowUnfree = true;
 
   home.activation.linkStuff = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
