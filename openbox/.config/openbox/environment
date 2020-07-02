@@ -1,5 +1,0 @@
-. $HOME/.profile
-
-QT_FONT_DPI=117
-GDK_SCALE=1
-GDK_DPI_SCALE=1.25

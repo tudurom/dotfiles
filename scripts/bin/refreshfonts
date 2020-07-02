@@ -1,4 +1,0 @@
-#!/bin/sh
-
-xset +fp $HOME/.local/share/fonts
-xset fp rehash

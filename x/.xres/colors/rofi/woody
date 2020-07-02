@@ -1,8 +1,0 @@
-! vim: ft=xdefaults
-! woody by tudurom
-
-rofi.color-normal: #d2bbad, #3f3a3c, #d2bbad, #3f3a3c, #d2bbad
-rofi.color-urgent: #d2bbad, #784848, #d2bbad, #784848, #d2bbad
-rofi.color-active: #d2bbad, #486078, #d2bbad, #486078, #d2bbad
-
-rofi.color-window: #d2bbad, #3f3a3c

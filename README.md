@@ -1,31 +1,21 @@
-tudurom's dotfiles
-==================
+# Tudor's dotfiles
 
-> you are your dotfiles
+My dotfiles are managed using [home-manager](https://github.com/rycee/home-manager) and [Nix](https://nixos.org/).
+My OS is NOT NixOS. As such, my configs have some slight hacks to allow them to work on every Linux system (graphical apps too).
 
-A mix of style and usability, these are my dotfiles. This repo is structured in a way first-time UNIX users and ricers can understand what's going on, with explications for each directory.
+## Installation
 
-**Note: I made my dotfiles public for educational purposes. Instead of
-copying entire files or directories from here, please study them first and
-copy the bits you need.**
+For non-NixOS:
 
-Managing
---------
+1. Install Nix
+2. Install home-manager
+3. Clone this repo somewhere (let's say `~/dotfiles`)
+4. `cd ~/.config/nixpkgs && ln -s ../../dotfiles/home.nix home.nix`
+5. `home-manager switch`
 
-I manage my dotfiles using [XStow][xstow] and the [`./deploy.sh`][deploy] script.
+This setup also sets up some symlinks "manually": wallpapers, Doom Emacs config and misc shell scripts.
+Make sure that `~/wallpapers`, `~/bin` and `~/.doom.d` don't exist before applying the config.
 
-`./deploy.sh` makes sure that there are no conflicts and ignores `README.md`
-files and some directories like `firefox` and `startpage`.
+## Caveats
 
-Xstow is very similar and modeled after GNU Stow. [Here's a neat article about managing your dotfiles with stow to get a better understanding on what it does][xero-stow].
-
-[xstow]: http://xstow.sourceforge.net/
-[deploy]: https://github.com/tudurom/dotfiles/blob/master/deploy.sh
-[xero-stow]: http://blog.xero.nu/managing_dotfiles_with_gnu_stow
-
-Directory structure
--------------------
-
-Each directory contains a file structure that is going to be symlinked in
-`$HOME`, and a `README.md` file with a short description about the
-component.
+1. Firefox has shit font rendering if using it from Nix. Install it from your distro or using Flatpak.

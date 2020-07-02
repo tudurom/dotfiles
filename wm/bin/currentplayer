@@ -1,5 +1,0 @@
-#!/bin/sh
-
-p="$(cat /tmp/lastplayer)"
-
-test -n "$p" && echo "-p $(echo "$p" | head -n 1)"

@@ -1,8 +1,0 @@
-! vim: ft=xdefaults
-! designr by dkeg
-
-rofi.color-normal: #20292d, #c4c4b5, #20292d, #c4c4b5, #20292d
-rofi.color-urgent: #20292d, #a66959, #20292d, #a66959, #20292d
-rofi.color-active: #20292d, #607a86, #20292d, #607a86, #20292d
-
-rofi.color-window: #20292d, #c4c4b5

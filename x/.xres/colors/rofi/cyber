@@ -1,8 +1,0 @@
-! vim: ft=xdefaults
-! cyber by tudurom
-
-rofi.color-normal: #11292e, #e0f2ec, #11292e, #e0f2ec, #11292e
-rofi.color-urgent: #11292e, #a85659, #11292e, #a85659, #11292e
-rofi.color-active: #11292e, #326d78, #11292e, #326d78, #11292e
-
-rofi.color-window: #11292e, #e0f2ec

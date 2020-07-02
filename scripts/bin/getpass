@@ -1,6 +1,0 @@
-#!/bin/sh
-
-cat <<EOF | pinentry | grep -Eo 'D (.*)' | cut -d' ' -f2-
-setprompt $1
-getpin
-EOF

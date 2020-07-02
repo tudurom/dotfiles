@@ -1,8 +1,0 @@
-! vim: ft=xdefaults
-! Navy and Ivory by hal
-
-rofi.color-normal: #021b21, #e8dfd6, #021b21, #e8dfd6, #021b21
-rofi.color-urgent: #021b21, #c2454e, #021b21, #c2454e, #021b21
-rofi.color-active: #021b21, #2e3340, #021b21, #2e3340, #021b21
-
-rofi.color-window: #021b21, #e8dfd6

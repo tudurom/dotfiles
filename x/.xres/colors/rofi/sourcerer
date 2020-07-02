@@ -1,8 +1,0 @@
-! vim: ft=xdefaults
-! sourcerer by xero
-
-rofi.color-normal: #222222, #c2c2b0, #222222, #c2c2b0, #222222
-rofi.color-urgent: #222222, #aa4450, #222222, #aa4450, #222222
-rofi.color-active: #222222, #6688aa, #222222, #6688aa, #222222
-
-rofi.color-window: #222222, #c2c2b0

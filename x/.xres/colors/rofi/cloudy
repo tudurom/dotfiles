@@ -1,8 +1,0 @@
-! vim: ft=xdefaults
-! cloudy by tudurom
-
-rofi.color-normal: #273941, #c0c5ce, #273941, #c0c5ce, #273941
-rofi.color-urgent: #273941, #a66363, #273941, #a66363, #273941
-rofi.color-active: #273941, #6385a6, #273941, #6385a6, #273941
-
-rofi.color-window: #273941, #c0c5ce
