@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.tudor.desktop.zathura;
+  cfg = config.tudor.desktop.rofi;
 in
 with lib; {
   options = {
-    tudor.desktop.zathura = {
+    tudor.desktop.rofi = {
       enable = mkOption {
         default = false;
         type = types.bool;
@@ -13,9 +13,11 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    programs.zathura = {
+    programs.rofi = {
       enable = true;
-      options.smoothScroll = true;
+
+      terminal = "${pkgs.alacritty}/bin/alacritty";
+      theme = "gruvbox-light-hard";
     };
   };
 }

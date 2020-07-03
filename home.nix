@@ -1,6 +1,6 @@
 { sources ? import ./nix/sources.nix, pkgs ? import sources.nixpkgs { }, config
 , lib, options, ... }: {
-  imports = [ ./home/desktop ./home/hax ./home/langs ./home/shell ./home/tools ];
+  imports = [ ./machines/current.nix ./home/desktop ./home/hax ./home/langs ./home/shell ./home/tools ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

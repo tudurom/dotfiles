@@ -10,6 +10,7 @@ For non-NixOS:
 1. Install Nix
 2. Install home-manager
 3. Clone this repo somewhere (let's say `~/dotfiles`)
+4. In the `machines` folder, link the corresponding machine file to `current.nix`.
 4. `cd ~/.config/nixpkgs && ln -s ../../dotfiles/home.nix home.nix`
 5. `home-manager switch`
 
