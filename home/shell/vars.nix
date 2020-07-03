@@ -6,5 +6,6 @@
     MANWIDTH = 80;
     SUDO_PROMPT = "[sudo] auth $(tput bold)$(tput setaf 1)%U$(tput sgr0) ";
     LOCALE_ARCHIVE = "/usr/lib/locale/locale-archive";
+    ASPELL_CONF = "dict-dir $HOME/.nix-profile/lib/aspell";
   };
 }

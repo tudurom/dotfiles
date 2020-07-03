@@ -64,3 +64,7 @@
                                                   c-default-style "k&r"))))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(setq ispell-dictionary "ro")
+(setq langtool-default-language "ro")
+(setq langtool-mother-tongue "ro")
