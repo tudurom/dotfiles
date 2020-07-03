@@ -52,6 +52,6 @@ with lib; {
       extraPackages = epkgs: [ epkgs.vterm ];
       package = emacsKind;
     };
-    my.hax.wrappers = [ "${emacsKind}/bin/emacs" ];
+    tudor.hax.wrappers = [ "${emacsKind}/bin/emacs" ];
   };
 }

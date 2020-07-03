@@ -1,7 +1,7 @@
 { config, pkgs, lib, options, ... }:
 with lib;
 let
-  cfg = config.my.hax;
+  cfg = config.tudor.hax;
   sources = import ../../nix/sources.nix { };
   nixGL = import sources.nixGL { };
   makeWrapper = (noFontconfig: prog:
@@ -16,10 +16,14 @@ let
         --set LOCALE_ARCHIVE /usr/lib/locale/locale-archive --set TERMINFO /usr/share/terminfo
     ''));
 in {
-  options.my.hax = {
-    wrappers = with types; lib.mkOption { type = (listOf str); };
-    glWrappers = with types; lib.mkOption { type = (listOf str); };
+  options = {
+    tudor.hax = {
+      wrappers = with types; lib.mkOption { type = (listOf str); };
+      glWrappers = with types; lib.mkOption { type = (listOf str); };
+    };
   };
 
-  config.home.packages = (map (makeWrapper false) cfg.wrappers) ++ (map (makeWrapper true) cfg.glWrappers);
+  config = mkIf cfg.enable {
+    home.packages = (map (makeWrapper false) cfg.wrappers) ++ (map (makeWrapper true) cfg.glWrappers);
+  };
 }

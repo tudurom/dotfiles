@@ -186,7 +186,7 @@ with lib; {
       "SAL_USE_VCLPLUGIN" = "gtk";
       "QT_WAYLAND_FORCE_DPI" = "physical";
     };
-    my.hax.glWrappers = [ "${pkgs.sway}/bin/sway" ];
+    tudor.hax.glWrappers = [ "${pkgs.sway}/bin/sway" ];
   };
 
 }

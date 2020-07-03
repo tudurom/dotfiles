@@ -62,6 +62,6 @@ with lib; {
         };
       };
     };
-    my.hax.wrappers = [ "${pkgs.alacritty}/bin/alacritty" ];
+    tudor.hax.wrappers = [ "${pkgs.alacritty}/bin/alacritty" ];
   };
 }
