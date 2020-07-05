@@ -1,6 +1,6 @@
 { sources ? import ./nix/sources.nix, pkgs ? import sources.nixpkgs { }, config
 , lib, options, ... }: {
-  imports = [ ./machines/current.nix ./home/desktop ./home/hax ./home/langs ./home/shell ./home/tools ];
+  imports = [ ../machines/current.nix ./desktop ./hax ./langs ./shell ./tools ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -21,14 +21,14 @@
   # changes in each release.
   home.stateVersion = "20.09";
 
-  nixpkgs.overlays = import ./packages;
+  nixpkgs.overlays = import ../packages;
   nixpkgs.config.allowUnfree = true;
 
   home.activation.linkStuff = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ln -sf "${builtins.toPath ./config/doom}" "$HOME/.doom.d"
+    test -L $HOME/.doom.d || ln -sf "${builtins.toPath ../config/doom}" "$HOME/.doom.d"
 
-    ln -sf "${builtins.toPath ./misc/wallpapers}" "$HOME/wallpapers"
+    test -L $HOME/wallpapers || ln -sf "${builtins.toPath ../misc/wallpapers}" "$HOME/wallpapers"
 
-    ln -sf "${builtins.toPath ./bin}" "$HOME/bin"
+    test -L $HOME/bin || ln -sf "${builtins.toPath ../bin}" "$HOME/bin"
   '';
 }

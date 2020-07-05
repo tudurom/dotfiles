@@ -11,7 +11,7 @@ For non-NixOS:
 2. Install home-manager
 3. Clone this repo somewhere (let's say `~/dotfiles`)
 4. In the `machines` folder, link the corresponding machine file to `current.nix`.
-4. `cd ~/.config/nixpkgs && ln -s ../../dotfiles/home.nix home.nix`
+4. `cd ~/.config/nixpkgs && ln -s ../../dotfiles/home/default.nix home.nix`
 5. `home-manager switch`
 
 This setup also sets up some symlinks "manually": wallpapers, Doom Emacs config and misc shell scripts.

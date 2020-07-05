@@ -17,7 +17,6 @@ with lib; {
       go
       goimports
       gomodifytags
-      gopls
       gotests
       gotools
     ];

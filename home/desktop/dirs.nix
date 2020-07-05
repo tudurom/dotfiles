@@ -2,10 +2,6 @@
 {
   xdg.enable = true;
 
-  xdg.configFile."user-dirs.conf".text = lib.mkForce ''
-    enabled=False
-  '';
-
   xdg.userDirs = {
     enable = true;
 

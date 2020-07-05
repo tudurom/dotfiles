@@ -11,7 +11,7 @@
     aliases = {
       graph = ''
         log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
-              '';
+      '';
     };
 
     extraConfig = {

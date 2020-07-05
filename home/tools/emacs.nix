@@ -33,12 +33,6 @@ with lib; {
       imagemagick
       zstd
 
-      # :checkers spell
-      aspell
-      aspellDicts.en
-      aspellDicts.en-computers
-      aspellDicts.en-science
-      aspellDicts.ro
       # :checkers grammar
       languagetool
       # :tools editorconfig
@@ -53,5 +47,6 @@ with lib; {
       package = emacsKind;
     };
     tudor.hax.wrappers = [ "${emacsKind}/bin/emacs" ];
+    tudor.tools.aspell.enable = true;
   };
 }

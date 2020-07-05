@@ -9,5 +9,7 @@ in
     };
 
     rofi = tudor.rofi-wayland;
+
+    unstable = import <nixpkgs-unstable> { inherit config; };
   })
 ]
