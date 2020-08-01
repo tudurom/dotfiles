@@ -17,5 +17,6 @@ with lib; {
       enable = true;
       options.smoothScroll = true;
     };
+    tudor.hax.wrappers = [ "${pkgs.zathura}/bin/zathura" ];
   };
 }

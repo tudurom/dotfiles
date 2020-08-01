@@ -1,10 +1,13 @@
 { config, pkgs, ... }:
 let
-  pinentry = if config.tudor.graphicalSession.enable then pkgs.pinentry-gnome else pkgs.pinentry;
+  graphicalSessionCfg = config.tudor.graphicalSession;
+  pinentry = if graphicalSessionCfg then pkgs.pinentry-gnome else pkgs.pinentry;
 in
 {
-  services.gpg-agent.enable = true;
-  services.gpg-agent.pinentryFlavor = "gnome3";
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = if graphicalSessionCfg.enable then "gnome3" else "curses";
+  };
 
   tudor.hax.wrappers = [
     "${pinentry}/bin/pinentry"

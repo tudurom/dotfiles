@@ -16,7 +16,7 @@ with lib; {
     home.packages = with pkgs; [
       bear
       ccls
-      (pkgs.hiPrio clang)
+      (pkgs.hiPrio clang_10)
       clang-tools
       cmake
       gcc
