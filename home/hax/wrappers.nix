@@ -24,6 +24,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = (map (makeWrapper false) cfg.wrappers) ++ (map (makeWrapper true) cfg.glWrappers);
+    home.packages = [ nixGL.nixGLDefault ] ++ (map (makeWrapper false) cfg.wrappers) ++ (map (makeWrapper true) cfg.glWrappers);
   };
 }

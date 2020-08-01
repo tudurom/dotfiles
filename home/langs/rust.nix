@@ -18,7 +18,7 @@ with lib; {
     ];
 
     home.sessionVariables = {
-      RUST_SRC_PATH = "$(rustc --print sysroot)/lib/rustlib/src/rust/src";
+      RUST_SRC_PATH = "$(${pkgs.rustup}/bin/rustc --print sysroot)/lib/rustlib/src/rust/src";
     };
   };
 }

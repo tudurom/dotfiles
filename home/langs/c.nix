@@ -16,14 +16,14 @@ with lib; {
     home.packages = with pkgs; [
       bear
       ccls
-      clang
+      (pkgs.hiPrio clang)
       clang-tools
       cmake
-      cmake
+      gcc
       gdb
+      gnumake
       meson
       ninja
-      gnumake
     ];
 
     home.sessionVariables = {

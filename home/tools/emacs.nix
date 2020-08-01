@@ -39,11 +39,13 @@ with lib; {
       editorconfig-core-c
       # fancy icons
       emacs-all-the-icons-fonts
+
+      libvterm
     ];
 
     programs.emacs = {
       enable = true;
-      extraPackages = epkgs: [ epkgs.vterm ];
+      extraPackages = epkgs: [ epkgs.emacs-libvterm ];
       package = emacsKind;
     };
     tudor.hax.wrappers = [ "${emacsKind}/bin/emacs" ];
