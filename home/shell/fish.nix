@@ -27,16 +27,16 @@
     '';
   };
 
-  home.activation.fishCheck = let
-    homeDir = config.home.homeDirectory;
-    username = config.home.username;
-  in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    alias tput=${pkgs.ncurses}/bin/tput
-    test "$("${pkgs.getent}/bin/getent" passwd ${username} | cut -d: -f7)" != "${homeDir}/.nix-profile/bin/fish" \
-      && {
-        tput bold; tput setaf 1
-        echo "Don't forget to chsh to ~/.nix-profile/bin/fish!"
-        tput sgr0
-      } || echo "fish ok!"
-  '';
+  #home.activation.fishCheck = let
+  #  homeDir = config.home.homeDirectory;
+  #  username = config.home.username;
+  #in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  #  alias tput=${pkgs.ncurses}/bin/tput
+  #  test "$("${pkgs.getent}/bin/getent" passwd ${username} | cut -d: -f7)" != "${homeDir}/.nix-profile/bin/fish" \
+  #    && {
+  #      tput bold; tput setaf 1
+  #      echo "Don't forget to chsh to ~/.nix-profile/bin/fish!"
+  #      tput sgr0
+  #    } || echo "fish ok!"
+  #'';
 }
