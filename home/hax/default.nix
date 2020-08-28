@@ -17,5 +17,6 @@ with lib; {
   config = mkIf cfg.enable {
     targets.genericLinux.enable = true;
     programs.man.enable = true;
+    home.packages = [ pkgs.glibcLocales ];
   };
 }

@@ -43,7 +43,6 @@ with lib; {
 
     home.packages = with pkgs; [
       xfce.xfce4-volumed-pulse
-      pulseeffects
       redshift-wlr
       dex
 
