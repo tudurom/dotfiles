@@ -1,0 +1,4 @@
+# server
+{ config, lib, pkgs, ... }:
+{
+}
