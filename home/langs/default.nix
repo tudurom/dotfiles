@@ -3,7 +3,7 @@ let
   cfg = config.tudor.langs.langSupport;
 in
 with lib; {
-  imports = [ ./c.nix ./go.nix ./python.nix ./rust.nix ./tex.nix ];
+  imports = [ ./c.nix ./elixir.nix ./go.nix ./python.nix ./rust.nix ./tex.nix ];
 
   options = {
     tudor.langs.langSupport = {
@@ -20,6 +20,7 @@ with lib; {
   config = mkIf cfg.enable {
     tudor.langs = {
       c.enable = true;
+      elixir.enable = true;
       go.enable = true;
       python.enable = true;
       rust.enable = true;

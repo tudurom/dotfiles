@@ -10,8 +10,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "lbonn";
     repo = "rofi";
-    rev = "1806903a29b06acefee9d333c2a4ae44b9d702a2";
-    sha256 = "1f1p3d4y37phlyfa4f5wv0mgq35g57ahqc6xqynq2433gisxwir8";
+    rev = "cef94af6e1397be6bb66d123599520378cc9366f";
+    sha256 = "0dj7k4lvsj62l9vg01rmklhjfgvnms00vich9dgzmfwr64wxn1l9";
     fetchSubmodules = true;
   };
 
