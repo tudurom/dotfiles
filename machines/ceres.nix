@@ -1,4 +1,0 @@
-# server
-{ config, lib, pkgs, ... }:
-{
-}
