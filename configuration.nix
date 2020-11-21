@@ -7,12 +7,11 @@ let
 in
 with lib; {
   imports = [
-    #"${sources.home-manager}/nixos"
-    <home-manager/nixos>
+    "${sources.home-manager}/nixos"
+    #<home-manager/nixos>
 
     ./modules
     ./machines/current
-    ./test.nix
   ];
 
   options = {

@@ -39,4 +39,9 @@
   services.avahi.nssmdns = true;
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
+
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "tudor" ];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  tudor.home.home.packages = [ pkgs.packer ];
 }
