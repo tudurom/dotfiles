@@ -34,13 +34,10 @@ with lib; {
 
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    i18n.defaultLocale = "ro_RO.UTF-8";
     console = {
       font = "Lat2-Terminus16";
       keyMap = "us";
     };
-
-    time.timeZone = "Europe/Bucharest";
 
     nixpkgs.overlays = import ./packages;
     nixpkgs.config.allowUnfree = true;
@@ -52,6 +49,9 @@ with lib; {
       gnumake
       gnupg
       neovim
+      ripgrep
+      sd
+      fd
       tree
       unzip
       wget
@@ -68,9 +68,9 @@ with lib; {
       extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
       uid = 1000;
       passwordFile = if cfgEraseRoot.enable then
-        "/persist/passwds/.tudor.passwd"
+        "/persist/passwds/.${cfg.username}.passwd"
       else
-        "/root/passwds/.tudor.passwd"; # root partition is needed for boot then
+        "/root/passwds/.${cfg.username}.passwd"; # root partition is needed for boot then
       home = "/home/${cfg.username}";
     };
 
@@ -80,8 +80,6 @@ with lib; {
     home-manager.useUserPackages = true;
     home-manager.useGlobalPkgs = true;
     home-manager.users.${cfg.username} = lib.mkAliasDefinitions options.tudor.home;
-
-    boot.plymouth.enable = true;
 
     system.stateVersion = "20.03";
   };

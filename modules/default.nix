@@ -1,7 +1,8 @@
 { config, lib, options, pkgs, ... }:
 let
+  sources = import ../nix/sources.nix;
   # there must be an elegant way of doing this but I don't know
-  hmLib = (import <home-manager/modules/lib/stdlib-extended.nix> pkgs.lib).hm;
+  hmLib = (import "${sources.home-manager}/modules/lib/stdlib-extended.nix" pkgs.lib).hm;
 in
 {
   imports = [
@@ -10,6 +11,7 @@ in
     ./shell
     ./system
     ./tools
+    ./services
   ];
 
   options = {

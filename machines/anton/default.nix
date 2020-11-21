@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 {
   imports = [ ./hardware.nix ];
+
+  i18n.defaultLocale = "ro_RO.UTF-8";
+  time.timeZone = "Europe/Bucharest";
+
   boot.supportedFilesystems = [ "btrfs" ];
 
   # Use the systemd-boot EFI boot loader.
@@ -39,6 +43,8 @@
   services.avahi.nssmdns = true;
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
+
+  boot.plymouth.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "tudor" ];
