@@ -1,4 +1,16 @@
 {
+    "blog": {
+        "branch": "master",
+        "description": "My blog!",
+        "homepage": null,
+        "owner": "tudurom",
+        "repo": "blog",
+        "rev": "cdc14d4137491627cba9370e5d7a891bd19c17d6",
+        "sha256": "0gw8lawz8g3l4fkhrkcygrr0kiq4xcli1r0dkpwbjmhjs07wxcnl",
+        "type": "tarball",
+        "url": "https://github.com/tudurom/blog/archive/cdc14d4137491627cba9370e5d7a891bd19c17d6.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "bw-git-helper": {
         "branch": "master",
         "description": null,
@@ -118,6 +130,18 @@
         "sha256": "1k5wa16wyb1byk5xfjlq4m518gsw6g1kypx4xb09k3inni13p0r4",
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/a371c1071161104d329f6a85d922fd92b7cbab63.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "site": {
+        "branch": "master",
+        "description": "My website",
+        "homepage": "https://tudorr.ro/",
+        "owner": "tudurom",
+        "repo": "site",
+        "rev": "30d110796a442af8146431c0f3d3904fae99487a",
+        "sha256": "11gmx5xfzdr5rany1k60qp53vxlrcf5z22znzlcqsfk2nl7zgj1a",
+        "type": "tarball",
+        "url": "https://github.com/tudurom/site/archive/30d110796a442af8146431c0f3d3904fae99487a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
