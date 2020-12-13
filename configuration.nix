@@ -52,6 +52,7 @@ with lib; {
       ripgrep
       sd
       fd
+      tmux
       tree
       unzip
       wget

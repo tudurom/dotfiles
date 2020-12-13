@@ -15,6 +15,7 @@ with lib; {
   config = mkIf cfg.enable {
     tudor.home.home.packages = with pkgs; [
       elixir
+      inotify-tools
     ];
   };
 }
