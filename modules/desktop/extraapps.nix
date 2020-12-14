@@ -13,13 +13,12 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
+    # install telegram and ms teams from flatpak
     tudor.home.home.packages = with pkgs; [
       anki
       gimp
       pavucontrol
       spotify
-      tdesktop
-      teams
       thunderbird-bin
       treesheets
     ];
