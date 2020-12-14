@@ -17,7 +17,7 @@ with import sources.nixpkgs-unstable {
 };
 let
   cfg = config.tudor.tools.emacs;
-  emacsKind = emacsUnstable;
+  emacsKind = emacsPgtkGcc;
 in
 with lib; {
   options = {
@@ -50,6 +50,8 @@ with lib; {
         emacs-all-the-icons-fonts
 
         libvterm
+
+        unstable.libgccjit
       ];
 
       programs.emacs = {
