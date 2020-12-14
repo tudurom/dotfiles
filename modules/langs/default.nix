@@ -31,6 +31,7 @@ with lib; {
     # for nix itself
     tudor.home.home.packages = [
       pkgs.nixfmt
+      pkgs.shellcheck
     ];
   };
 }
