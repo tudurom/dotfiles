@@ -13,6 +13,6 @@ in
 
     rofi = tudor.rofi-wayland;
 
-    unstable = import sources.nixos-unstable { inherit config; };
+    unstable = import sources.nixpkgs-unstable { inherit config; };
   })
 ]
