@@ -28,21 +28,15 @@
   };
 
   tudor.graphicalSession.enable = true;
+  tudor.graphicalSession.sway.enable = true;
+  tudor.graphicalSession.gnome.enable = true;
   tudor.tools.emacs.enable = true;
   #tudor.tools.neuron.enable = true;
   tudor.langs.langSupport.enable = true;
 
   systemd.services.systemd-udev-settle.enable = false;
 
-  services.printing.enable = true;
-  services.printing.drivers = with pkgs; [
-    brgenml1lpr
-    brgenml1cupswrapper
-  ];
-  services.avahi.enable = true;
-  services.avahi.nssmdns = true;
-  services.avahi.publish.enable = true;
-  services.avahi.publish.userServices = true;
+  tudor.printing.enable = true;
 
   boot.plymouth.enable = true;
 
