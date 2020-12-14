@@ -2,6 +2,7 @@
 {
   imports = [
     ./erase-root.nix
+    ./printing.nix
   ];
 
   services.udev.extraRules = ''
