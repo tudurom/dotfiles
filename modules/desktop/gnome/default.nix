@@ -68,6 +68,11 @@ with lib; {
         "org/gnome/shell/extensions/dash-to-dock" = {
           dock-position = "BOTTOM";
         };
+
+        "org/gnome/desktop/peripherals/touchpad" = {
+          tap-to-click = true;
+          two-finger-scrolling-enabled = true;
+        };
       };
 
       home.packages = with pkgs.gnomeExtensions; [
