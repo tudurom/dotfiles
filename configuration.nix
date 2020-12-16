@@ -66,7 +66,7 @@ with lib; {
     users.users.root.hashedPassword = "";
     users.users.${cfg.username} = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "scanner" "lp" ];
       uid = 1000;
       passwordFile = if cfgEraseRoot.enable then
         "/persist/passwds/.${cfg.username}.passwd"

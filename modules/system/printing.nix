@@ -15,5 +15,8 @@ with lib; {
     services.avahi.nssmdns = true;
     services.avahi.publish.enable = true;
     services.avahi.publish.userServices = true;
+
+    hardware.sane.enable = true;
+    hardware.sane.extraBackends = with pkgs; [ sane-airscan ];
   };
 }
