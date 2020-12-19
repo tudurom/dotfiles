@@ -14,7 +14,7 @@ with lib; {
 
   config = mkIf cfg.enable {
     tudor.home = {
-      home.packages = with pkgs; [ texlive.combined.scheme-medium ];
+      home.packages = with pkgs; [ texlive.combined.scheme-full ];
 
       home.file.".latexmkrc".text = ''
         $pdf_mode = 1;

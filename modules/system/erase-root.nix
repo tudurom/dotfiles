@@ -3,6 +3,7 @@ let
   cfg = config.tudor.system.eraseRoot;
   networkManagerCfg = config.networking.networkmanager;
   accountsDaemonCfg = config.services.accounts-daemon;
+  flatpakCfg = config.services.flatpak;
   username = config.tudor.username;
 in
 with lib; {
@@ -34,14 +35,16 @@ with lib; {
       NIXOS.source = "/persist/etc/NIXOS";
     };
 
-    systemd.tmpfiles.rules = mkIf networkManagerCfg.enable ([
+    systemd.tmpfiles.rules = (if networkManagerCfg.enable then [
       "L /var/lib/NetworkManager/secret_key - - - - /persist/var/lib/NetworkManager/secret_key"
       "L /var/lib/NetworkManager/seen-bssids - - - - /persist/var/lib/NetworkManager/seen-bssids"
       "L /var/lib/NetworkManager/timestamps - - - - /persist/var/lib/NetworkManager/timestamps"
       ''F /tmp/test-file - - - - test\na\nb\n''
-    ] ++ (if accountsDaemonCfg.enable then [
+    ] else []) ++ (if accountsDaemonCfg.enable then [
       ''F /var/lib/AccountsService/users/${username} 0644 root root - [User]\nLanguage=\nSession=\nXSession=sway\nIcon=/home/${username}/.iface\nSystemAccount=false\n''
-    ] else []));
+    ] else []) ++ (if flatpakCfg.enable then [
+      "L /var/lib/flatpak - - - - /persist/var/lib/flatpak"
+    ] else []);
 
     security.sudo.extraConfig = ''
       Defaults lecture = never
