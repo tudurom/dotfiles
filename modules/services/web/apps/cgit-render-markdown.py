@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i python -p python38 python38Packages.pygments
+#! nix-shell -i python -p python38 python38Packages.pygments python38Packages.markdown
 
 # This script uses Pygments and Python3. You must have both installed
 # for this to work.
