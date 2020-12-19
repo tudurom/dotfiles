@@ -7,6 +7,11 @@ let
     logo=/cgit.png
     favicon=/favicon.ico
 
+    virtual-root=/
+    root-title=Gitul lui Tudor
+    root-desc=Aici se află niște repouri
+    enable-commit-graph=true
+
     source-filter=${markdownScript}/cgit-render-markdown.py
     scan-path=/home/${config.tudor.username}/git/
   '';
