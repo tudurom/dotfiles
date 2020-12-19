@@ -1,7 +1,6 @@
 { config, lib, pkgs, ...}:
 let
   cfg = config.tudor.services.web.apps.cgit;
-  markdownScript = pkgs.writeScriptBin "cgit-render-markdown" (builtins.readFile ./cgit-render-markdown.py);
   configFile = pkgs.writeText "cgitrc" ''
     css=/cgit.css
     logo=/cgit.png
@@ -10,9 +9,17 @@ let
     virtual-root=/
     root-title=Gitul lui Tudor
     root-desc=Aici se află niște repouri
-    enable-commit-graph=true
+    noplainemail=1
 
-    source-filter=${markdownScript}/bin/cgit-render-markdown.py
+    mimetype.gif=image/gif
+    mimetype.png=image/png
+    mimetype.svg=image/svg+xml
+    mimetype.jpeg=image/jpeg
+    mimetype.jpg=image/jpg
+    mimetype.html=text/html
+    mimetype.pdf=application/pdf
+
+    source-filter=${pkgs.cgit}/lib/cgit/filters/html-converters/md2html
     scan-path=/home/${config.tudor.username}/git/
   '';
 in
