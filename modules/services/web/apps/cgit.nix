@@ -20,6 +20,7 @@ let
     mimetype.pdf=application/pdf
 
     source-filter=${pkgs.cgit}/lib/cgit/filters/html-converters/md2html
+    source-filter=${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py
     scan-path=/home/${config.tudor.username}/git/
   '';
 in
