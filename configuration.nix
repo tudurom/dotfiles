@@ -57,6 +57,8 @@ with lib; {
       unzip
       wget
       zip
+
+      manpages
     ];
 
     documentation.man.generateCaches = true;
