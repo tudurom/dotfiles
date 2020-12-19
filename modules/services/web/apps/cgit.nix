@@ -1,6 +1,13 @@
 { config, lib, pkgs, ...}:
 let
   cfg = config.tudor.services.web.apps.cgit;
+  configFile = pkgs.writeText "cgitrc" ''
+    css=/cgit.css
+    logo=/cgit.png
+    favicon=/favicon.ico
+
+    scan-path=/home/${config.tudor.username}/git/
+  '';
 in
 with lib; {
   options.tudor.services.web.apps.cgit.enable = mkEnableOption "cgit";
@@ -26,6 +33,7 @@ with lib; {
             fastcgi_param PATH_INFO $uri;
             fastcgi_param QUERY_STRING $args;
             fastcgi_param HTTP_HOST $server_name;
+            fastcgi_param CGIT_CONFIG "${configFile}";
             fastcgi_pass unix:${config.services.fcgiwrap.socketAddress};
           '';
         };
