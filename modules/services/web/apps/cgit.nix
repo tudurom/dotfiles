@@ -12,7 +12,7 @@ let
     root-desc=Aici se află niște repouri
     enable-commit-graph=true
 
-    source-filter=${markdownScript}/cgit-render-markdown.py
+    source-filter=${markdownScript}/bin/cgit-render-markdown.py
     scan-path=/home/${config.tudor.username}/git/
   '';
 in
