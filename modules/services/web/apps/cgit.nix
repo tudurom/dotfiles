@@ -1,11 +1,13 @@
 { config, lib, pkgs, ...}:
 let
   cfg = config.tudor.services.web.apps.cgit;
+  markdownScript = pkgs.writeScriptBin "cgit-render-markdown" (builtins.readFile ./cgit-render-markdown.py);
   configFile = pkgs.writeText "cgitrc" ''
     css=/cgit.css
     logo=/cgit.png
     favicon=/favicon.ico
 
+    source-filter=${markdownScript}/cgit-render-markdown.py
     scan-path=/home/${config.tudor.username}/git/
   '';
 in
