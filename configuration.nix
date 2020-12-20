@@ -43,15 +43,17 @@ with lib; {
     nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages = with pkgs; [
+      bind
       binutils
       coreutils
+      fd
       file
       gnumake
       gnupg
+      inetutils
       neovim
       ripgrep
       sd
-      fd
       tmux
       tree
       unzip
