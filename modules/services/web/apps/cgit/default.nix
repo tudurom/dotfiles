@@ -1,10 +1,11 @@
 { config, lib, pkgs, ...}:
 let
   cfg = config.tudor.services.web.apps.cgit;
-  readmeFile = pkgs.writeText "cgit-root-readme.md" (builtins.readFile ./cgit-root-readme.md);
+  readmeFile = ./cgit-root-readme.md;
+  logoFile = ./logo.png;
   configFile = pkgs.writeText "cgitrc" ''
     css=/cgit.css
-    logo=/cgit.png
+    logo=/logo.png
     favicon=/favicon.ico
 
     virtual-root=/
@@ -48,6 +49,10 @@ with lib; {
       '';
 
       locations = {
+        "=/logo.png" = {
+          alias = "${logoFile}";
+        };
+
         "@cgit" = {
           extraConfig = ''
             include ${pkgs.nginx}/conf/fastcgi_params;
