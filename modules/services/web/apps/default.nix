@@ -2,7 +2,7 @@
 {
   imports = [
     ./bitwarden_rs.nix
-    ./cgit.nix
+    ./cgit
     ./site.nix
   ];
 }

@@ -1,6 +1,7 @@
 { config, lib, pkgs, ...}:
 let
   cfg = config.tudor.services.web.apps.cgit;
+  readmeFile = pkgs.writeText "cgit-root-readme.md" (builtins.readFile ./cgit-root-readme.md);
   configFile = pkgs.writeText "cgitrc" ''
     css=/cgit.css
     logo=/cgit.png
@@ -19,9 +20,13 @@ let
     mimetype.html=text/html
     mimetype.pdf=application/pdf
 
-    about-filter=${pkgs.cgit}/lib/cgit/filters/html-converters/md2html
+    about-filter=${pkgs.cgit}/lib/cgit/filters/about-formatting.sh
     source-filter=${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py
-    root-readme=README.md
+    readme=:README.md
+    readme=:README
+    root-readme=${readmeFile}
+
+    snapshots=tar.gz zip
 
     scan-path=/home/${config.tudor.username}/git/
   '';
