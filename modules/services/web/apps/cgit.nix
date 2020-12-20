@@ -19,8 +19,10 @@ let
     mimetype.html=text/html
     mimetype.pdf=application/pdf
 
-    source-filter=${pkgs.cgit}/lib/cgit/filters/html-converters/md2html
+    about-filter=${pkgs.cgit}/lib/cgit/filters/html-converters/md2html
     source-filter=${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py
+    root-readme=README.md
+
     scan-path=/home/${config.tudor.username}/git/
   '';
 in
