@@ -10,7 +10,7 @@ let
 
     virtual-root=/
     root-title=Gitul lui Tudor
-    root-desc=Aici se află niște repouri
+    root-desc=Scrípturi sau scriptúri?
     noplainemail=1
 
     mimetype.gif=image/gif
@@ -29,6 +29,7 @@ let
 
     snapshots=tar.gz zip
 
+    section-from-path=1
     scan-path=/home/${config.tudor.username}/git/
   '';
 in
