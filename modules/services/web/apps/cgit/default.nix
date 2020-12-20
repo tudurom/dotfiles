@@ -26,6 +26,7 @@ let
     readme=:README.md
     readme=:README
     root-readme=${readmeFile}
+    enable-index-owner=0
 
     snapshots=tar.gz zip
 
