@@ -33,7 +33,6 @@ with lib; {
     tudor.home = {
       home.packages = with pkgs; [
         # doom dependencies
-        git
         (ripgrep.override { withPCRE2 = true; })
         gnutls
 

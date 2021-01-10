@@ -2,6 +2,7 @@
   tudor.home = {
     programs.git = {
       enable = true;
+      package = pkgs.gitAndTools.gitFull;
 
       userName = "Tudor Roman";
       userEmail = "tudor@tudorr.ro";
@@ -33,6 +34,7 @@
 
     home.packages = with pkgs; [
       tudor.bw-git-helper
+      git-lfs
     ];
   };
 }

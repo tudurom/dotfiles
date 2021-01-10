@@ -17,6 +17,7 @@ in {
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ "idle=nomwait" ]; # ffs Ryzen 1600
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/7a636e47-33b4-4181-a08a-4a66c6e7f98e";
@@ -53,6 +54,12 @@ in {
       fsType = "btrfs";
       options = [ "subvol=log" "compress=zstd" "noatime" ];
       neededForBoot = true;
+    };
+
+  fileSystems."/storage" =
+    { device = "/dev/disk/by-uuid/CC40EA7E40EA6EA0";
+      fsType = "ntfs";
+      options = [ "rw" "uid=1000" "big_writes" "windows_names" ];
     };
 
   swapDevices = [ ];

@@ -63,9 +63,10 @@ with lib; {
 
     tudor.home = {
       home.packages = with pkgs; [
+        cmus
+        grim
         pamixer
         playerctl
-        grim
         slurp
         wl-clipboard
       ];

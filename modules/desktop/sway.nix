@@ -36,7 +36,6 @@ with lib; {
             { command = "${pkgs.xfce.xfce4-volumed-pulse}/bin/xfce4-volumed-pulse"; }
             #{ command = "${pkgs.redshift-wlr}/bin/redshift"; }
             { command = "${pkgs.dex}/bin/dex -a -e NOTHING"; }
-            { command = "${pkgs.pulseeffects}/bin/pulseeffects --gapplication-service"; }
           ];
 
           fonts = [ "JetBrains Mono 14" ];
