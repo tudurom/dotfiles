@@ -38,7 +38,7 @@
       }
       # s8
       {
-        publicKey = "OeVODMIt752xhTC70H9I3y3D/TcOwPC/aYBTAIfYRCQ=";
+        publicKey = "9c5mdRKAmbe1x7Y1bf7Jk7EmnorMvGZTew2VSczgsnI=";
         allowedIPs = [ "10.66.66.3/32" ];
       }
       # poarta
