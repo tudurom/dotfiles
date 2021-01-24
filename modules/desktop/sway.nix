@@ -2,12 +2,6 @@
 let
   cfg = config.tudor.desktop.sway;
 
-  modifier = "Mod4";
-  terminal = "${pkgs.alacritty}/bin/alacritty";
-  menu = "rofi -show drun";
-
-  workspaces = [ 1 2 3 4 5 6 7 8 9 ];
-  wallpaper = "~/wallpapers/street.png";
 in
 with lib; {
   options = {
@@ -25,17 +19,52 @@ with lib; {
   config = mkIf cfg.enable {
     programs.sway.enable = true;
 
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
+      gtkUsePortal=true;
+    };
+
     tudor.home = {
-      wayland.windowManager.sway = {
+      wayland.windowManager.sway = let
+        modifier = "Mod4";
+        terminal = "alacritty";
+        menu = "rofi -show drun";
+
+        workspaces = [ 1 2 3 4 5 6 7 8 9 ];
+        wallpaper = "~/wallpapers/street.png";
+        lockWallpaper = wallpaper;
+
+        locker = ''swaylock -f --clock -i "${lockWallpaper}" \
+                    --effect-blur 5x5 --timestr "%I:%M"'';
+
+        systemMode = "system: (l) lock (s) suspend (r) reboot (p) poweroff";
+        launchMode = "launch: (f) firefox (e) emacs (n) nautilus";
+
+        # gruvbox light
+        colors = {
+          bg = "#3c3836"; # fg 15 (it is named bg because it's used as a bg color for the different elements here)
+          bgd = "#282828"; # fg0
+          fg = "#fbf1c7"; # bg 0
+          hl = "#689d6a"; # aqua 6
+          urg = "#9d0006"; # red 9
+        };
+      in {
         enable = true;
         wrapperFeatures.gtk = true;
 
         config = {
           startup = [
-            { command = "${pkgs.mako}/bin/mako"; }
-            { command = "${pkgs.xfce.xfce4-volumed-pulse}/bin/xfce4-volumed-pulse"; }
-            #{ command = "${pkgs.redshift-wlr}/bin/redshift"; }
-            { command = "${pkgs.dex}/bin/dex -a -e NOTHING"; }
+            { command = "mako"; }
+            { command = "xfce4-volumed-pulse"; }
+            { command = "dex -a -e NOTHING"; }
+            { command = ''
+              swayidle -w \
+                timeout 300 '${locker}' \
+                timeout 600 'swaymsg "output * dpms off"' \
+                resume 'swaymsg "output * dpms on"' \
+                before-sleep '${locker}'
+            ''; }
           ];
 
           fonts = [ "JetBrains Mono 14" ];
@@ -128,6 +157,9 @@ with lib; {
             "${modifier}+minus" = "scratchpad show";
 
             "${modifier}+r" = ''mode "resize"'';
+            "${modifier}+semicolon" = ''mode "${launchMode}"'';
+            "${modifier}+Shift+semicolon" = ''mode "${systemMode}"'';
+
           } // (builtins.foldl' (x: y: x // y) {} (map genWSBind workspaces));
 
           modes = {
@@ -145,6 +177,25 @@ with lib; {
               "Return" = ''mode "default"'';
               "Escape" = ''mode "default"'';
             };
+
+            "${launchMode}" = {
+              "f" = ''exec firefox'';
+              "e" = ''exec emacs'';
+              "n" = ''exec nautilus'';
+
+              "Return" = ''mode "default"'';
+              "Escape" = ''mode "default"'';
+            };
+
+            "${systemMode}" = {
+              "l" = ''exec ${locker}; mode "default";'';
+              "s" = "exec systemctl suspend";
+              "r" = "exec systemctl reboot";
+              "p" = "exec systemctl poweroff";
+
+              "Return" = ''mode "default"'';
+              "Escape" = ''mode "default"'';
+            };
           };
 
           bars = [{
@@ -152,25 +203,74 @@ with lib; {
             statusCommand = "while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done";
             fonts = [ "JetBrains Mono 14" ];
 
-            colors = {
-              statusline = "#ebdbb2";
-              background = "#282828";
-              inactiveWorkspace = {
-                background = "#32323200";
-                border = "#32323200";
-                text = "#ebdbb2";
+            colors = rec {
+              separator = colors.fg;
+              statusline = colors.fg;
+              background = colors.bgd;
+              focusedWorkspace = {
+                background = colors.hl;
+                text = colors.fg;
+                border = colors.hl;
+              };
+
+              activeWorkspace = {
+                background = colors.bg;
+                text = colors.fg;
+                border = colors.bg;
+              };
+              inactiveWorkspace = activeWorkspace;
+              bindingMode = {
+                background = colors.bgd;
+                text = colors.fg;
+                border = colors.bgd;
+              };
+              urgentWorkspace = {
+                background = colors.urg;
+                text = colors.fg;
+                border = colors.urg;
               };
             };
           }];
+
+          colors = rec {
+            focusedInactive = {
+              background = colors.bg;
+              text = colors.fg;
+              indicator = colors.bg;
+              border = colors.bg;
+              childBorder = colors.bg;
+            };
+            focused = {
+              background = colors.hl;
+              text = colors.fg;
+              indicator = colors.hl;
+              border = colors.hl;
+              childBorder = colors.hl;
+            };
+            unfocused = focusedInactive;
+            urgent = {
+              background = colors.urg;
+              text = colors.bgd;
+              indicator = colors.urg;
+              border = colors.urg;
+              childBorder = colors.urg;
+            };
+            background = colors.hl;
+          };
         };
       };
 
       home.packages = with pkgs; [
-        swaylock
+        unstable.swaylock-effects
         swayidle
         xwayland
 
+        dex
+        mako
+        pamixer
+        playerctl
         rofi
+        xfce.xfce4-volumed-pulse
       ];
 
       systemd.user.sessionVariables = {
