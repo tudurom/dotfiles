@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "tudurom",
         "repo": "blog",
-        "rev": "832f2423fc9eb93630251e8294898724cbd88743",
-        "sha256": "1kg9iibd5n4wx43hx1y07q7zb1k18w4v3ckfd8h2ls8jj0w3ydlm",
+        "rev": "f21df26d8924e221b0c0477b3e29bdfd6e144db7",
+        "sha256": "16k3zd6xg22abwl140n0dkiyd4zamxyaw02dk89343m5iwx06ans",
         "type": "tarball",
-        "url": "https://github.com/tudurom/blog/archive/832f2423fc9eb93630251e8294898724cbd88743.tar.gz",
+        "url": "https://github.com/tudurom/blog/archive/f21df26d8924e221b0c0477b3e29bdfd6e144db7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "bw-git-helper": {
