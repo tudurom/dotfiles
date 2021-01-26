@@ -18,11 +18,12 @@ with lib; {
   config = mkIf cfg.enable {
     tudor.home = {
       home.packages = with pkgs; [
-        aspell
-        aspellDicts.en
-        aspellDicts.en-computers
-        aspellDicts.en-science
-        aspellDicts.ro
+        (aspellWithDicts (dicts: with dicts; [
+          en
+          en-computers
+          en-science
+          ro
+        ]))
       ];
     };
   };
