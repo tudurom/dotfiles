@@ -12,6 +12,8 @@ with lib; {
 
     ./modules
     ./machines/current
+
+    ./cachix.nix
   ];
 
   options = {
