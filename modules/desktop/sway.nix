@@ -19,12 +19,6 @@ with lib; {
   config = mkIf cfg.enable {
     programs.sway.enable = true;
 
-    xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
-      gtkUsePortal=true;
-    };
-
     tudor.home = {
       wayland.windowManager.sway = let
         modifier = "Mod4";
