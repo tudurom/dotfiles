@@ -18,9 +18,7 @@ with lib; {
       anki
       gimp
       pavucontrol
-      spotify
       thunderbird-bin
-      treesheets
     ];
   };
 }
