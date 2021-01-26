@@ -21,8 +21,10 @@ with lib; {
         jetbrains-mono
         liberation_ttf_v2
         noto-fonts
+        noto-fonts-emoji
         roboto
         roboto-slab
+        source-sans-pro
       ];
 
       fontconfig = {

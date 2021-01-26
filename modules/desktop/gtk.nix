@@ -16,10 +16,10 @@ with lib; {
     tudor.home = {
       gtk = {
         enable = true;
-        #font = {
-        #  package = pkgs.roboto;
-        #  name = "Roboto Condensed 12";
-        #};
+        font = {
+          package = null;
+          name = "Roboto Condensed:size=12";
+        };
         iconTheme = {
           package = pkgs.papirus-icon-theme;
           name = "Papirus";
