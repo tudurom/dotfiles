@@ -113,10 +113,10 @@
         "homepage": "https://tudorr.ro/",
         "owner": "tudurom",
         "repo": "site",
-        "rev": "585befdd22b2a2f7945bb140c2633c7a3f002b34",
-        "sha256": "10qpc6nv78z6kj4d01b6176lclm9sccah6liqdqs4fclh4z3rnv0",
+        "rev": "211ff021354cc9597542d9361cd898f437873877",
+        "sha256": "1rmp82nvzx50yrwrrbvdqc64yv8pg4g6wraj0a494956805mb1kl",
         "type": "tarball",
-        "url": "https://github.com/tudurom/site/archive/585befdd22b2a2f7945bb140c2633c7a3f002b34.tar.gz",
+        "url": "https://github.com/tudurom/site/archive/211ff021354cc9597542d9361cd898f437873877.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
