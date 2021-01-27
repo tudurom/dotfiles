@@ -42,4 +42,6 @@
     control = "sufficient";
     cue = true;
   };
+
+  tudor.performance.enable = false;
 }

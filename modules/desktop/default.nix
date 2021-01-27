@@ -35,6 +35,11 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
+    };
+
     tudor.desktop = {
       fonts.enable = true;
       gtk.enable = true;

@@ -20,6 +20,10 @@
 
   networking.firewall.enable = true;
 
+  services.zfs.autoSnapshot = {
+    enable = true;
+  };
+
   tudor.services.ssh.enable = true;
   tudor.services.web.nginx.enable = true;
   tudor.services.web.apps = {

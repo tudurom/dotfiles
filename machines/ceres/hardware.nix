@@ -17,6 +17,12 @@ in {
       fsType = "zfs";
     };
 
+  fileSystems."/nix" =
+    { device = "rpool/nix";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+
   fileSystems."/home" =
     { device = "rpool/home";
       fsType = "zfs";
