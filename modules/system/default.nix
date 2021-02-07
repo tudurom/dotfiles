@@ -3,6 +3,7 @@
   imports = [
     ./erase-root.nix
     ./printing.nix
+    ./virtualisation.nix
   ];
 
   services.udev.extraRules = ''

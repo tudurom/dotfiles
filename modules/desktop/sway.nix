@@ -54,11 +54,12 @@ with lib; {
             { command = "dex -a -e NOTHING"; }
             { command = ''
               swayidle -w \
-                timeout 300 '${locker}' \
-                timeout 600 'swaymsg "output * dpms off"' \
+                timeout 300 'swaymsg "output * dpms off"' \
                 resume 'swaymsg "output * dpms on"' \
+                timeout 600 '${locker}' \
                 before-sleep '${locker}'
             ''; }
+            { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
           ];
 
           fonts = [ "JetBrains Mono 14" ];

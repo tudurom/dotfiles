@@ -26,6 +26,7 @@
     enable = true;
     rootUuid = "7a636e47-33b4-4181-a08a-4a66c6e7f98e ";
   };
+  tudor.system.virtualisation.enable = true;
 
   tudor.graphicalSession.enable = true;
   tudor.graphicalSession.sway.enable = true;
