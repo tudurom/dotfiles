@@ -33,13 +33,13 @@ with lib; {
         "/persist/etc/NetworkManager/system-connections";
       adjtime.source = "/persist/etc/adjtime";
       NIXOS.source = "/persist/etc/NIXOS";
+      machine-id.source = "/persist/etc/machine-id";
     };
 
     systemd.tmpfiles.rules = (if networkManagerCfg.enable then [
       "L /var/lib/NetworkManager/secret_key - - - - /persist/var/lib/NetworkManager/secret_key"
       "L /var/lib/NetworkManager/seen-bssids - - - - /persist/var/lib/NetworkManager/seen-bssids"
       "L /var/lib/NetworkManager/timestamps - - - - /persist/var/lib/NetworkManager/timestamps"
-      ''F /tmp/test-file - - - - test\na\nb\n''
     ] else []) ++ (if accountsDaemonCfg.enable then [
       ''F /var/lib/AccountsService/users/${username} 0644 root root - [User]\nLanguage=\nSession=\nXSession=sway\nIcon=/home/${username}/.iface\nSystemAccount=false\n''
     ] else []) ++ (if flatpakCfg.enable then [

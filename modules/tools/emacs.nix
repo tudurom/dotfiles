@@ -51,6 +51,9 @@ with lib; {
         libvterm
 
         unstable.libgccjit
+
+        # for org-roam
+        sqlite
       ];
 
       programs.emacs = {

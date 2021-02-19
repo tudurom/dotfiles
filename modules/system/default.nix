@@ -4,6 +4,7 @@
     ./erase-root.nix
     ./performance.nix
     ./printing.nix
+    ./virtualisation.nix
   ];
 
   services.udev.extraRules = ''

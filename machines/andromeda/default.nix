@@ -43,5 +43,5 @@
     cue = true;
   };
 
-  tudor.performance.enable = false;
+  tudor.performance.enable = true;
 }

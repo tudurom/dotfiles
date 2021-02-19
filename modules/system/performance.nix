@@ -9,17 +9,18 @@ with lib; {
     services.acpid.enable = true;
     services.acpid.handlers.ac-power = {
       event = "ac_adapter/*";
-      action = ''
+      action = let
+        cpupower = config.boot.kernelPackages.cpupower;
+      in ''
         vals=($1)
         case ''${vals[3]} in
           00000000)
-            echo unplugged >> /tmp/acpi.log
+            ${cpupower}/bin/cpupower frequency-set -g schedutil
             ;;
           00000001)
-            echo plugged in >> /tmp/acpi.log
+            ${cpupower}/bin/cpupower frequency-set -g performance
             ;;
           *)
-            echo unknown >> /tmp/acpi.log
             ;;
         esac
       '';
