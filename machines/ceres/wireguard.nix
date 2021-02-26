@@ -9,6 +9,7 @@
   };
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.firewall.trustedInterfaces = [ "wg0" ];
 
   networking.wg-quick.interfaces.wg0 = {
     address = [ "10.66.66.1/24" ];
