@@ -44,4 +44,6 @@
   #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "tudor" ];
   tudor.home.home.packages = [ pkgs.packer ];
+
+  tudor.services.tailscale.enable = true;
 }

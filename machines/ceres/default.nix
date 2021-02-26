@@ -31,4 +31,6 @@
     cgit.enable = true;
     site.enable = true;
   };
+
+  tudor.services.tailscale.enable = true;
 }
