@@ -8,4 +8,8 @@
     ./gpg.nix
     ./podman.nix
   ];
+
+  tudor.home.home.packages = with pkgs; [
+    sqlite-interactive
+  ];
 }
