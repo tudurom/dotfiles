@@ -59,6 +59,18 @@
         "url": "https://github.com/nmattia/niv/archive/af958e8057f345ee1aca714c1247ef3ba1c15f5e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nix-ld": {
+        "branch": "main",
+        "description": "Run unpatched dynamic binaries on NixOS",
+        "homepage": "",
+        "owner": "Mic92",
+        "repo": "nix-ld",
+        "rev": "a1da7bc40e883617f0674d4dec5a9d1cbc043fb2",
+        "sha256": "1kwbnlm23q59264cljdlzlgdbil119afs016z2q1fslbwm2lkh8w",
+        "type": "tarball",
+        "url": "https://github.com/Mic92/nix-ld/archive/a1da7bc40e883617f0674d4dec5a9d1cbc043fb2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixGL": {
         "branch": "master",
         "description": "A wrapper tool for nix OpenGL application",
