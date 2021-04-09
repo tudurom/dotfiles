@@ -4,19 +4,15 @@ let
 in
 with lib; {
   imports = [
-    ./alacritty.nix
+    ./apps
     ./dirs.nix
-    ./extraapps.nix
-    ./firefox.nix
     ./fonts.nix
     ./gnome
     ./gtk.nix
-    ./libreoffice.nix
     ./mako.nix
     ./rofi.nix
     ./sway.nix
-    ./systemd.nix
-    ./zathura.nix
+    ./waybar.nix
   ];
 
   options = {

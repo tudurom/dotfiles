@@ -19,8 +19,10 @@
   networking.interfaces.enp37s0.useDHCP = false;
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 ];
-  services.openssh.enable = true;
+
+  tudor.services.ssh.enable = true;
+  tudor.services.syncthing.enable = true;
+  tudor.services.tailscale.enable = true;
 
   tudor.system.eraseRoot = {
     enable = true;
@@ -32,7 +34,6 @@
   tudor.graphicalSession.sway.enable = true;
   tudor.graphicalSession.gnome.enable = true;
   tudor.tools.emacs.enable = true;
-  #tudor.tools.neuron.enable = true;
   tudor.langs.langSupport.enable = true;
 
   systemd.services.systemd-udev-settle.enable = false;
@@ -40,8 +41,4 @@
   tudor.printing.enable = true;
 
   boot.plymouth.enable = true;
-
-  #virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "tudor" ];
-  tudor.home.home.packages = [ pkgs.packer ];
 }

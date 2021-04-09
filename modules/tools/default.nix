@@ -3,10 +3,13 @@
     ./aspell.nix
     ./git.nix
     ./neovim.nix
-    ./neuron.nix
     ./emacs.nix
     ./nix.nix
     ./gpg.nix
     ./podman.nix
+  ];
+
+  tudor.home.home.packages = with pkgs; [
+    sqlite-interactive
   ];
 }

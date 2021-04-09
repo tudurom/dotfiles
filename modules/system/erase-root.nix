@@ -4,6 +4,7 @@ let
   networkManagerCfg = config.networking.networkmanager;
   accountsDaemonCfg = config.services.accounts-daemon;
   flatpakCfg = config.services.flatpak;
+  tailscaleCfg = config.tudor.services.tailscale;
   username = config.tudor.username;
 in
 with lib; {
@@ -44,7 +45,14 @@ with lib; {
       ''F /var/lib/AccountsService/users/${username} 0644 root root - [User]\nLanguage=\nSession=\nXSession=sway\nIcon=/home/${username}/.iface\nSystemAccount=false\n''
     ] else []) ++ (if flatpakCfg.enable then [
       "L /var/lib/flatpak - - - - /persist/var/lib/flatpak"
+    ] else []) ++ (if tailscaleCfg.enable then [
+      "L /var/lib/tailscale - - - - /persist/var/lib/tailscale"
     ] else []);
+
+    systemd.services.tailscaled.serviceConfig = mkIf tailscaleCfg.enable {
+      StateDirectory = "";
+      StateDirectoryMode = "";
+    };
 
     security.sudo.extraConfig = ''
       Defaults lecture = never

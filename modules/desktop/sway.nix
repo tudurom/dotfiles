@@ -17,6 +17,7 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
+    tudor.desktop.waybar.enable = true;
     programs.sway.enable = true;
 
     tudor.home = {
@@ -49,6 +50,7 @@ with lib; {
 
         config = {
           startup = [
+            { command = "waybar"; }
             { command = "mako"; }
             { command = "xfce4-volumed-pulse"; }
             { command = "dex -a -e NOTHING"; }
@@ -193,39 +195,41 @@ with lib; {
             };
           };
 
-          bars = [{
-            position = "top";
-            statusCommand = "while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done";
-            fonts = [ "JetBrains Mono 14" ];
+          #bars = [{
+          #  position = "top";
+          #  statusCommand = "while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done";
+          #  fonts = [ "JetBrains Mono 14" ];
 
-            colors = rec {
-              separator = colors.fg;
-              statusline = colors.fg;
-              background = colors.bgd;
-              focusedWorkspace = {
-                background = colors.hl;
-                text = colors.fg;
-                border = colors.hl;
-              };
+          #  colors = rec {
+          #    separator = colors.fg;
+          #    statusline = colors.fg;
+          #    background = colors.bgd;
+          #    focusedWorkspace = {
+          #      background = colors.hl;
+          #      text = colors.fg;
+          #      border = colors.hl;
+          #    };
 
-              activeWorkspace = {
-                background = colors.bg;
-                text = colors.fg;
-                border = colors.bg;
-              };
-              inactiveWorkspace = activeWorkspace;
-              bindingMode = {
-                background = colors.bgd;
-                text = colors.fg;
-                border = colors.bgd;
-              };
-              urgentWorkspace = {
-                background = colors.urg;
-                text = colors.fg;
-                border = colors.urg;
-              };
-            };
-          }];
+          #    activeWorkspace = {
+          #      background = colors.bg;
+          #      text = colors.fg;
+          #      border = colors.bg;
+          #    };
+          #    inactiveWorkspace = activeWorkspace;
+          #    bindingMode = {
+          #      background = colors.bgd;
+          #      text = colors.fg;
+          #      border = colors.bgd;
+          #    };
+          #    urgentWorkspace = {
+          #      background = colors.urg;
+          #      text = colors.fg;
+          #      border = colors.urg;
+          #    };
+          #  };
+          #}];
+
+          bars = [];
 
           colors = rec {
             focusedInactive = {

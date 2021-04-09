@@ -5,6 +5,10 @@ in {
   tudor.home = {
     xdg.enable = true;
     xdg.userDirs.enable = true;
+    systemd.user.tmpfiles.rules = [
+      "D %h/tmp/downloads - - -"
+      "D %h/tmp - - -"
+    ];
 
     xdg.userDirs.desktop = "${homeDir}/usr/desktop";
     xdg.userDirs.documents = "${homeDir}/usr/docs";
