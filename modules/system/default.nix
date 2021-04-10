@@ -2,6 +2,7 @@
 {
   imports = [
     ./erase-root.nix
+    ./performance.nix
     ./printing.nix
     ./virtualisation.nix
     ./nix-ld.nix
