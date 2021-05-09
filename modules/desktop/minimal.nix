@@ -28,5 +28,7 @@ with lib; {
 
     services.flatpak.enable = true;
     programs.dconf.enable = true;
+
+    systemd.user.services.dbus.wantedBy = [ "default.target" ];
   };
 }

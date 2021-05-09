@@ -13,4 +13,12 @@ pkgs.substituteAll {
   inherit defaultUser;
   inherit (config.security) wrapperDir;
   fsPackagesPath = lib.makeBinPath config.system.fsPackages;
+  vars = lib.concatStringsSep " " [
+    "WSL_DISTRO_NAME"
+    "WSL_INTEROP"
+    "WSLENV"
+    "DISPLAY"
+    "WAYLAND_DISPLAY"
+    "PULSE_SERVER"
+  ];
 }
