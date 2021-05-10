@@ -13,6 +13,13 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
+if [ ! -e "/run/nixoswsl.env" ]; then
+    for var in @vars@; do
+        # I bet this can be done better in bash
+        printf "%s=%s\n" "$var" "$(eval 'echo "$'"$var"'"')" >> /run/nixoswsl.env
+    done
+fi
+
 if [ ! -e "/run/current-system" ]; then
     LANG="C.UTF-8" /nix/var/nix/profiles/system/activate
 fi
@@ -31,13 +38,6 @@ if [ ! -e "/run/systemd.pid" ]; then
         $sw/nsenter -t $(< /run/systemd.pid) -p -m -- \
                     $sw/systemctl is-system-running -q --wait 2>/dev/null \
             || status=$?
-    done
-fi
-
-if [ ! -e "/run/nixoswsl.env" ]; then
-    for var in @vars@; do
-        # I bet this can be done better in bash
-        printf "%s=%s\n" "$var" "$(eval 'echo "$'"$var"'"')" >> /run/nixoswsl.env
     done
 fi
 
