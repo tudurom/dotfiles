@@ -93,4 +93,8 @@ in
   # Which is good, this is WSL after all
   services.xserver.autorun = false;
   services.xserver.displayManager.startx.enable = true;
+
+  tudor.home.home.file.".wslgconfig".text = ''
+    WESTON_RDP_DISABLE_HI_DPI_SCALING=true
+  '';
 }
