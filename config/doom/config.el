@@ -68,5 +68,3 @@
 (setq ispell-dictionary "ro")
 (setq langtool-default-language "ro")
 (setq langtool-mother-tongue "ro")
-
-(setq org-roam-directory (expand-file-name "roam" org-directory))

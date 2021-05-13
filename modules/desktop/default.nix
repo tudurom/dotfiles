@@ -10,6 +10,7 @@ with lib; {
     ./gnome
     ./gtk.nix
     ./mako.nix
+    ./minimal.nix
     ./rofi.nix
     ./sway.nix
     ./waybar.nix
@@ -31,10 +32,7 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
-    };
+    tudor.graphicalSession.minimal.enable = true;
 
     tudor.desktop = {
       fonts.enable = true;
@@ -53,14 +51,7 @@ with lib; {
       rofi.enable = true;
     } else {});
 
-    # No desktop without  s o u n d
-    sound.enable = true;
-    hardware.pulseaudio.enable = true;
-    services.geoclue2.enable = true;
-    services.xserver.enable = true;
     services.xserver.displayManager.gdm.enable = true;
-    services.flatpak.enable = true;
-    programs.dconf.enable = true;
 
     tudor.home = {
       home.packages = with pkgs; [

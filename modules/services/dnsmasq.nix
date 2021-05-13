@@ -17,5 +17,16 @@ with lib;
         domain=localdomain
       '';
     };
+#      resolveLocalQueries = false;
+#      servers = [ "1.1.1.1" "1.0.0.1" ];
+#      extraConfig = ''
+#        cache-size=1000
+#        #local=/localdomain/
+#        #domain=localdomain
+#        no-resolv
+#      '';
+#    };
+#    networking.firewall.allowedTCPPorts = [ 53 ];
+#    networking.firewall.allowedUDPPorts = [ 53 ];
   };
 }

@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  graphicalSessionCfg = config.tudor.graphicalSession;
+  graphicalSessionCfg = config.tudor.graphicalSession.minimal;
   pinentry = if graphicalSessionCfg.enable then pkgs.pinentry-gnome else pkgs.pinentry;
 in
 {
@@ -12,4 +12,5 @@ in
 
     home.packages = [ pinentry ];
   };
+  services.dbus.packages = if graphicalSessionCfg.enable then [ pkgs.gcr ] else [ ];
 }

@@ -27,7 +27,8 @@ with lib; {
         menu = "rofi -show drun";
 
         workspaces = [ 1 2 3 4 5 6 7 8 9 ];
-        wallpaper = "~/wallpapers/street.png";
+        wallpaper = "~/wallpapers/Bliss.jpg";
+        wallpaperMode = "stretch";
         lockWallpaper = wallpaper;
 
         locker = ''swaylock -f --clock -i "${lockWallpaper}" \
@@ -73,7 +74,7 @@ with lib; {
 
           output = {
             "*" = {
-              bg = "${wallpaper} fill";
+              bg = "${wallpaper} ${wallpaperMode}";
             };
           };
 

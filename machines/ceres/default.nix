@@ -34,4 +34,28 @@
   };
 
   tudor.services.tailscale.enable = true;
+
+  networking.nameservers = [
+    "100.100.100.100" # tailscale
+    "127.0.0.1" # dnsmasq
+  ];
+  networking.search = [
+    "tudurom.gmail.com.beta.tailscale.net"
+    "localdomain"
+  ];
+  networking.resolvconf.useLocalResolver = lib.mkForce false;
+
+  # hack sourced from here
+  # https://cs.tvl.fyi/depot@e7c78570ed66cd753add2664b7545d234c947b84/-/blob/users/tazjin/nixos/frog/default.nix#L95-102
+  environment.etc."resolv.conf" = with lib; with pkgs; {
+    source = writeText "resolv.conf" ''
+      ${concatStringsSep "\n" (map (ns: "nameserver ${ns}") config.networking.nameservers)}
+      ${concatStringsSep "\n" (map (domain: "search ${domain}") config.networking.search)}
+      options edns0
+    '';
+  };
+  networking.extraHosts = ''
+    192.168.12.115 ceres.localdomain
+    192.168.12.200 truenas.localdomain
+  '';
 }
