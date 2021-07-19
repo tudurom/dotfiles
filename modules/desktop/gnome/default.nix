@@ -9,8 +9,8 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    services.xserver.desktopManager.gnome3.enable = true;
-    services.gnome3.chrome-gnome-shell.enable = true;
+    services.xserver.desktopManager.gnome.enable = true;
+    services.gnome.chrome-gnome-shell.enable = true;
 
     # Open ports for KDE Connect
     networking.firewall.allowedTCPPorts = [
