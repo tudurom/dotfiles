@@ -36,7 +36,7 @@ with lib; {
     tudor.home = {
       dconf.settings = {
         "org/gnome/desktop/background" = {
-          picture-uri = "file:///home/${username}/wallpapers/street.png";
+          picture-uri = "file:///home/${username}/wallpapers/Bliss.jpg";
         };
 
         "org/gnome/desktop/wm/keybindings" = let
@@ -48,6 +48,15 @@ with lib; {
         in {
           close = ["<Super>w"];
         } // genWsBindings [ 1 2 3 4 5 6 ];
+
+        "org/gnome/settings-daemon/plugins/media-keys" = {
+          area-screenshot = ["<Primary><Shift>Print"];
+          area-screenshot-clip = ["<Shift>Print"];
+          screenshot = ["<Primary>Print"];
+          screenshot-clip = ["Print"];
+          window-screenshot = ["<Primary><Alt>Print"];
+          window-screenshot-clip = ["<Alt>Print"];
+        };
 
         "org/gnome/shell" = {
           enabled-extensions = [
