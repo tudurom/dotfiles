@@ -65,6 +65,6 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(setq ispell-dictionary "ro")
-(setq langtool-default-language "ro")
+(setq ispell-dictionary "en")
+(setq langtool-default-language "en")
 (setq langtool-mother-tongue "ro")
