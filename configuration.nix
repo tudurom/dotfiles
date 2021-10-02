@@ -79,6 +79,7 @@ with lib; {
       else
         "/root/passwds/.${cfg.username}.passwd"; # root partition is needed for boot then
       home = "/home/${cfg.username}";
+      shell = pkgs.fish;
     };
 
     # quick boot
