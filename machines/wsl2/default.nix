@@ -97,4 +97,7 @@ in
   tudor.home.home.file.".wslgconfig".text = ''
     WESTON_RDP_DISABLE_HI_DPI_SCALING=true
   '';
+
+  # For the ltex vscode extension
+  tudor.home.home.packages = with pkgs; [ adoptopenjdk-jre-hotspot-bin-11 ];
 }
