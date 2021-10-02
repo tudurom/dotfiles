@@ -1,6 +1,6 @@
 # Shamelessly stolen from https://git.knightsofthelambdacalcul.us/hazel/etc/src/branch/canon/packages/bw-git-helper.nix
 { sources ? import ../nix/sources.nix
-, pkgs, stdenv, buildGoModule, fetchFromGitHub }:
+, pkgs, lib, buildGoModule, fetchFromGitHub }:
 let
   spdx = lic: lic // {
     url = "https://spdx.org/licenses/${lic.spdxId}.html";
@@ -17,7 +17,7 @@ buildGoModule rec {
 
   buildInputs = with pkgs; [ bitwarden-cli ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A git credential helper using BitWarden as a backend";
     homepage = "https://github.com/tudurom/bw-git-helper";
     license = spdx { spdxId = "EUPL-1.2"; };
