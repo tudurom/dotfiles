@@ -46,7 +46,7 @@ let
 in
 {
   i18n.defaultLocale = "ro_RO.UTF-8";
-  time.timeZone = "Europe/Bucharest";
+  time.timeZone = "Europe/Amsterdam";
 
   # WSL is closer to a container than anything else
   boot.isContainer = true;
