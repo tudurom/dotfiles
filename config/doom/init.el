@@ -141,13 +141,13 @@
        ;;nim               ; python + lisp at the speed of c
        nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       ;;(org              ; organize your plain life in plain text
-       ;; +dragndrop       ; drag & drop files/images into org buffers
+       (org              ; organize your plain life in plain text
+        +dragndrop       ; drag & drop files/images into org buffers
        ;; ;;+hugo            ; use Emacs for hugo blogging
        ;; ;;+jupyter        ; ipython/jupyter support for babel
-       ;; ;;+pandoc          ; export-with-pandoc support
+        +pandoc          ; export-with-pandoc support
        ;; ;;+pomodoro        ; be fruitful with the tomato technique
-       ;; +pretty
+        +pretty)
        ;; +roam
        ;; +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend
@@ -163,7 +163,8 @@
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
-       sh                ; she sells {ba,z,fi}sh shells on the C xor
+       (sh                ; she sells {ba,z,fi}sh shells on the C xor
+        +fish)
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.

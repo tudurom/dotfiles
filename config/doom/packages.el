@@ -52,4 +52,4 @@
 ;(package! builtin-package :recipe (:branch "develop"))
 (package! gruvbox-theme)
 (package! meson-mode)
-(package! fish-mode)
+(package! pdf-tools :built-in 'prefer)

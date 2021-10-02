@@ -55,7 +55,7 @@ with lib; {
 
       programs.emacs = {
         enable = true;
-        extraPackages = epkgs: [ epkgs.vterm ];
+        extraPackages = epkgs: with epkgs; [ vterm pdf-tools ];
         package = emacsKind;
       };
     };
