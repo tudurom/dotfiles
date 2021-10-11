@@ -55,7 +55,7 @@
 
 (setq mode-require-final-newline 't)
 (setq initial-frame-alist '((width . 102)
-                            (height . 54)))
+                            (height . 40)))
 
 (setq meson-indent-basic 4)
 (after! cc
