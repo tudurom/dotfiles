@@ -25,6 +25,7 @@ with lib; {
 
   config = {
     nix = {
+      package = pkgs.nixUnstable;
       autoOptimiseStore = true;
       gc = {
         automatic = true;
@@ -32,6 +33,9 @@ with lib; {
         options = "--delete-older-than 10d";
       };
       trustedUsers = [ "tudor" ];
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
     };
 
     boot.kernelPackages = pkgs.linuxPackages_latest;
