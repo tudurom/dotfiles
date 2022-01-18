@@ -17,7 +17,8 @@
       };
 
       extraConfig = {
-        credential.helper = "!bw-git-helper $@";
+        # FIXME: bit bitwarden credential helper
+        #credential.helper = "!bw-git-helper $@";
         diff.algorithm = "patience";
         tag.forceSignAnnotated = true;
       };
@@ -33,7 +34,7 @@
     '';
 
     home.packages = with pkgs; [
-      tudor.bw-git-helper
+      #tudor.bw-git-helper
       git-lfs
     ];
   };

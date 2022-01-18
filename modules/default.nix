@@ -1,8 +1,7 @@
 { config, lib, options, pkgs, ... }:
 let
-  sources = import ../nix/sources.nix;
   # there must be an elegant way of doing this but I don't know
-  hmLib = (import "${sources.home-manager}/modules/lib/stdlib-extended.nix" pkgs.lib).hm;
+  # hmLib = (import "${pkgs.tudor.hm}/stdlib-extended.nix" pkgs.lib).hm;
 in
 {
   imports = [
@@ -36,13 +35,14 @@ in
       # changes in each release.
       home.stateVersion = "20.03";
 
-      home.activation.linkStuff = hmLib.dag.entryAfter [ "writeBoundary" ] ''
-        test -L $HOME/.doom.d || ln -sf "${builtins.toPath ../config/doom}" "$HOME/.doom.d"
+      # FIXME: link folders in home
+      #home.activation.linkStuff = hmLib.dag.entryAfter [ "writeBoundary" ] ''
+      #  test -L $HOME/.doom.d || ln -sf "${builtins.toPath ../config/doom}" "$HOME/.doom.d"
 
-        test -L $HOME/wallpapers || ln -sf "${builtins.toPath ../misc/wallpapers}" "$HOME/wallpapers"
+      #  test -L $HOME/wallpapers || ln -sf "${builtins.toPath ../misc/wallpapers}" "$HOME/wallpapers"
 
-        test -L $HOME/bin || ln -sf "${builtins.toPath ../bin}" "$HOME/bin"
-      '';
+      #  test -L $HOME/bin || ln -sf "${builtins.toPath ../bin}" "$HOME/bin"
+      #'';
     };
   };
 }
