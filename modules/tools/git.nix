@@ -8,7 +8,6 @@
       userEmail = "tudor@tudorr.ro";
 
       signing.key = "58359B0A5EEF806EBCBCDFCE5AFEDD03CA5A1EA4";
-      signing.signByDefault = true;
 
       aliases = {
         graph = ''
@@ -19,7 +18,6 @@
       extraConfig = {
         credential.helper = "!bw-git-helper $@";
         diff.algorithm = "patience";
-        tag.forceSignAnnotated = true;
       };
     };
 
