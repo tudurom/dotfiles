@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.tudor.services.web.apps.bitwarden_rs;
+  cfg = config.tudor.services.web.apps.vaultwarden;
 in
 with lib; {
-  options.tudor.services.web.apps.bitwarden_rs.enable = mkEnableOption "bitwarden_rs";
+  options.tudor.services.web.apps.vaultwarden.enable = mkEnableOption "vaultwarden";
 
   config = mkIf cfg.enable {
-    services.bitwarden_rs = {
+    services.vaultwarden = {
       enable = true;
       config = {
         domain = "https://bw.tudorr.ro";

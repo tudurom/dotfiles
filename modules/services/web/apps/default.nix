@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   imports = [
-    ./bitwarden_rs.nix
+    ./vaultwarden.nix
     ./cgit
     ./site.nix
   ];

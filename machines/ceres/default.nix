@@ -28,7 +28,7 @@
   tudor.services.ssh.enable = true;
   tudor.services.web.nginx.enable = true;
   tudor.services.web.apps = {
-    bitwarden_rs.enable = true;
+    vaultwarden.enable = true;
     cgit.enable = true;
     site.enable = true;
   };
