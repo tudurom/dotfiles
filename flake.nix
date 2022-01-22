@@ -54,6 +54,10 @@
           ./machines/wsl2
 
           nix-ld.nixosModules.nix-ld
+
+          ({ pkgs, ... }: {
+            environment.systemPackages = [ pkgs.fup-repl ];
+          })
         ];
       };
     };
