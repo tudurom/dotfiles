@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "tudurom",
         "repo": "blog",
-        "rev": "f21df26d8924e221b0c0477b3e29bdfd6e144db7",
-        "sha256": "16k3zd6xg22abwl140n0dkiyd4zamxyaw02dk89343m5iwx06ans",
+        "rev": "001f74fab21e60c87752b9018a6205e545d212d6",
+        "sha256": "0fg4gm2h26niy7fv908km94z4a0nwnz9f62rns8m0hy40vz1m4vx",
         "type": "tarball",
-        "url": "https://github.com/tudurom/blog/archive/f21df26d8924e221b0c0477b3e29bdfd6e144db7.tar.gz",
+        "url": "https://github.com/tudurom/blog/archive/001f74fab21e60c87752b9018a6205e545d212d6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "bw-git-helper": {
@@ -113,10 +113,10 @@
         "homepage": "https://tudorr.ro/",
         "owner": "tudurom",
         "repo": "site",
-        "rev": "63d6489d0b6f6281955a63e4b2db07a7dc0393ce",
-        "sha256": "00hnl9856i5bclcn078xh8grwircp0wh7w77793b4gmi5ihnib7l",
+        "rev": "78fa65f1175a8ce67279b8034b44bfed99ad3b4f",
+        "sha256": "1jl9chiiz81lybr9vzfs6lz5k5ag4p2xy99gqas4bbpgr3za9lnv",
         "type": "tarball",
-        "url": "https://github.com/tudurom/site/archive/63d6489d0b6f6281955a63e4b2db07a7dc0393ce.tar.gz",
+        "url": "https://github.com/tudurom/site/archive/78fa65f1175a8ce67279b8034b44bfed99ad3b4f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
