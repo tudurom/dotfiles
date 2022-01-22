@@ -18,6 +18,9 @@
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
     bw-git-helper.url = github:tudurom/bw-git-helper;
+
+    site.url = github:tudurom/site;
+    blog.url = github:tudurom/blog;
   };
 
   nixConfig = {
@@ -26,11 +29,8 @@
   };
 
   outputs = inputs@{ self, utils, nixpkgs, nixpkgs-unstable, home-manager,
-                     nix-ld, bw-git-helper, ... }:
-    let
-      commonModules = [
-      ];
-    in utils.lib.mkFlake {
+                     nix-ld, bw-git-helper, site, blog, ... }:
+    utils.lib.mkFlake {
       inherit self inputs;
 
       supportedSystems = [ "x86_64-linux" ];
@@ -41,7 +41,9 @@
         overlaysBuilder = channels: [
           (final: prev: {
             tudor = {
-              bw-git-helper = prev.callPackage (import inputs.bw-git-helper) {};
+              bw-git-helper = bw-git-helper.defaultPackage.${prev.system};
+              site = site.defaultPackage.${prev.system};
+              blog = blog.defaultPackage.${prev.system};
             };
           })
         ];
@@ -53,7 +55,7 @@
       ];
 
       hosts = {
-        wsl2.modules = commonModules ++ [
+        wsl2.modules = [
           ./machines/wsl2
 
           nix-ld.nixosModules.nix-ld
@@ -61,6 +63,12 @@
           ({ pkgs, ... }: {
             environment.systemPackages = [ pkgs.fup-repl ];
           })
+        ];
+
+        ceres.modules = [
+          ./machines/ceres
+
+          nixpkgs.nixosModules.notDetected
         ];
       };
     };

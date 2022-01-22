@@ -6,7 +6,7 @@ with lib; {
   options.tudor.services.web.apps.bitwarden_rs.enable = mkEnableOption "bitwarden_rs";
 
   config = mkIf cfg.enable {
-    services.bitwarden_rs = {
+    services.vaultwarden = {
       enable = true;
       config = {
         domain = "https://bw.tudorr.ro";
