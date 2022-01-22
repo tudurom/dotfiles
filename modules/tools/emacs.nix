@@ -1,23 +1,7 @@
-{ config, lib, pkgs, ... }:
-let
-  sources = import ../../nix/sources.nix;
-in
-with import sources.nixpkgs-unstable {
-  overlays = [
-    (let
-      sources = import ../../nix/sources.nix;
-      fetchGitHubArchive = { owner, repo, rev, sha256 }: builtins.fetchTarball {
-        url = "https://github.com/${owner}/${repo}/archive/${rev}.tar.gz";
-        inherit sha256;
-      };
-    in import (fetchGitHubArchive {
-      inherit (sources.emacs-overlay) owner repo rev sha256;
-    }))
-  ];
-};
+{ inputs, config, lib, pkgs, ... }:
 let
   cfg = config.tudor.tools.emacs;
-  emacsKind = emacsPgtkGcc;
+  emacsKind = pkgs.emacsPgtkGcc;
 in
 with lib; {
   options = {
@@ -30,6 +14,7 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
     tudor.home = {
       home.packages = with pkgs; [
         # doom dependencies
@@ -50,7 +35,7 @@ with lib; {
 
         libvterm
 
-        unstable.libgccjit
+        libgccjit
       ];
 
       programs.emacs = {

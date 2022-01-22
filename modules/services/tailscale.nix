@@ -8,7 +8,6 @@ with lib;
 
   config = mkIf cfg.enable {
     services.tailscale.enable = true;
-    services.tailscale.package = pkgs.unstable.tailscale;
     networking.firewall = {
       trustedInterfaces = [ "tailscale0" ];
       allowedUDPPorts = [ config.services.tailscale.port ];

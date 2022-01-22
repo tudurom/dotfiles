@@ -1,8 +1,8 @@
-{ config, lib, options, pkgs, ... }:
+{ inputs, config, lib, options, pkgs, ... }:
 let
-  sources = import ../nix/sources.nix;
   # there must be an elegant way of doing this but I don't know
-  hmLib = (import "${sources.home-manager}/modules/lib/stdlib-extended.nix" pkgs.lib).hm;
+  # hmLib = (import "${pkgs.tudor.hm}/stdlib-extended.nix" pkgs.lib).hm;
+  hmLib = inputs.home-manager.lib.hm;
 in
 {
   imports = [

@@ -5,6 +5,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Bucharest";
 
+  boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_5_10;
   boot.supportedFilesystems = [ "zfs" ];
 
   # Use the GRUB 2 boot loader

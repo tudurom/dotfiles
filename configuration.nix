@@ -1,18 +1,11 @@
 { options, config, lib, pkgs, ... }:
 let
-  sources = import ./nix/sources.nix;
-
   cfg = config.tudor;
   cfgEraseRoot = config.tudor.system.eraseRoot;
 in
 with lib; {
   imports = [
-    "${sources.home-manager}/nixos"
-    #<home-manager/nixos>
-
     ./modules
-    ./machines/current
-
     ./cachix.nix
   ];
 
@@ -45,8 +38,8 @@ with lib; {
       keyMap = "us";
     };
 
-    nixpkgs.overlays = import ./packages;
-    nixpkgs.config.allowUnfree = true;
+    #nixpkgs.overlays = import ./packages;
+    #nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages = with pkgs; [
       bind
