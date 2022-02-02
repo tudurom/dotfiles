@@ -45,6 +45,8 @@ let
   '';
 in
 {
+  imports = [ ./wireguard.nix ];
+
   i18n.defaultLocale = "ro_RO.UTF-8";
   time.timeZone = "Europe/Amsterdam";
 
@@ -100,4 +102,5 @@ in
 
   # For the ltex vscode extension
   tudor.home.home.packages = with pkgs; [ adoptopenjdk-jre-hotspot-bin-11 ];
+  environment.systemPackages = [ pkgs.wireguard ];
 }
