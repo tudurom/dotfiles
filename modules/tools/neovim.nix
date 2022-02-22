@@ -42,6 +42,7 @@
 
       " Syntax and tabs
       syntax enable
+      set background=light
 
       set number
 
