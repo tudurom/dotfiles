@@ -11,7 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    emacs-overlay.url = github:nix-community/emacs-overlay;
+    # So i don't have to recompile it every time i update flakes
+    emacs-overlay.url = github:nix-community/emacs-overlay/5a501bb198eb96a327cdd3275608305d767e489d;
     nixos-hardware.url = github:nixos/nixos-hardware;
 
     nix-ld.url = github:Mic92/nix-ld;
