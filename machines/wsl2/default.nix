@@ -58,6 +58,8 @@ in
   environment.etc."systemd/system-environment-generators/80-env-vars.sh".source = envVarsGenerator;
   environment.etc."systemd/user-environment-generators/80-env-vars.sh".source = envVarsGenerator;
 
+  environment.sessionVariables.PATH = [ "/mnt/c/Windows/System32" ];
+
   systemd.services."user-runtime-dir@".serviceConfig = {
     ExecStartPost = "${mapUserRuntimeDir} %i";
     ExecStop = "${unmapUserRuntimeDir} %i";
@@ -102,5 +104,6 @@ in
 
   # For the ltex vscode extension
   tudor.home.home.packages = with pkgs; [ adoptopenjdk-jre-hotspot-bin-11 ];
+
   environment.systemPackages = [ pkgs.wireguard ];
 }

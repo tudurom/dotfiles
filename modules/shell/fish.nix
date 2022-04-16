@@ -32,6 +32,7 @@
       };
 
       interactiveShellInit = ''
+        test -f /run/nixoswsl.env && set -x -a PATH (grep PATH /run/nixoswsl.env | cut -d'=' -f2-)
         eval (${pkgs.direnv}/bin/direnv hook fish)
       '';
     };

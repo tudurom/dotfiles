@@ -20,5 +20,6 @@ pkgs.substituteAll {
     "DISPLAY"
     "WAYLAND_DISPLAY"
     "PULSE_SERVER"
+    "PATH"
   ];
 }
