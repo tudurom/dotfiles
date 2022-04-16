@@ -6,6 +6,7 @@
     ./ssh.nix
     ./syncthing.nix
     ./tailscale.nix
+    ./pong.nix
     ./web
   ];
 }

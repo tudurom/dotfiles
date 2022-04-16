@@ -36,6 +36,7 @@
 
   tudor.services.ipforward.enable = true;
   tudor.services.tailscale.enable = true;
+  tudor.services.pong.enable = true;
 
   networking.extraHosts = ''
     192.168.12.115 ceres.localdomain
