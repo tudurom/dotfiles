@@ -67,6 +67,11 @@
 
       hostDefaults.modules = [
         ./configuration.nix home-manager.nixosModules.home-manager nixpkgs.nixosModules.notDetected
+
+        ({ ... }: {
+          # have it as a shortcut so i can write stuff like `nix run pkgs#cmatrix`
+          nix.registry."pkgs".flake = nixpkgs;
+        })
       ];
 
       hosts = {
