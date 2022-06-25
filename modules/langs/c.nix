@@ -12,15 +12,18 @@ with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = let
+    gcc = pkgs.gcc;
+    clang = pkgs.llvmPackages_latest.clang;
+  in mkIf cfg.enable {
     tudor.home = {
+      programs.fish.shellAliases = {
+        gcc = "${gcc}/bin/gcc";
+        clang = "${clang}/bin/clang";
+      };
       home.packages = with pkgs; [
-        bear
-        ccls
-        (pkgs.hiPrio clang_10)
         clang-tools
         cmake
-        gcc
         gdb
         gnumake
         meson
@@ -28,8 +31,8 @@ with lib; {
       ];
 
       home.sessionVariables = {
-        "CC" = "clang";
-        "CXX" = "clang++";
+        "CC" = "${clang}/bin/clang";
+        "CXX" = "${clang}/bin/clang++";
       };
     };
   };

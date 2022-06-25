@@ -1,7 +1,8 @@
 { inputs, config, lib, pkgs, ... }:
 let
   cfg = config.tudor.tools.emacs;
-  emacsKind = pkgs.emacsPgtkGcc;
+  langCfg = config.tudor.langs;
+  emacsKind = pkgs.unstable.emacsNativeComp;
 in
 with lib; {
   options = {
@@ -36,7 +37,10 @@ with lib; {
         libvterm
 
         libgccjit
-      ];
+      ] ++ (optionals (langCfg.c.enable) [
+        bear
+        ccls
+      ]);
 
       programs.emacs = {
         enable = true;
