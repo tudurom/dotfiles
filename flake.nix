@@ -2,18 +2,17 @@
   description = "My config";
 
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixos-21.11;
+    nixpkgs.url = github:nixos/nixpkgs/nixos-22.05;
     nixpkgs-unstable.url = github:nixos/nixpkgs/nixpkgs-unstable;
     utils.url = github:gytis-ivaskevicius/flake-utils-plus;
 
     home-manager = {
-      url = github:nix-community/home-manager/release-21.11;
+      url = github:nix-community/home-manager/release-22.05;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # So i don't have to recompile it every time i update flakes
     emacs-overlay.url = github:nix-community/emacs-overlay/5a501bb198eb96a327cdd3275608305d767e489d;
-    #emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = github:nixos/nixos-hardware;
     nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
@@ -23,18 +22,18 @@
 
     bw-git-helper.url = github:tudurom/bw-git-helper;
     bw-git-helper.inputs.nixpkgs.follows = "nixpkgs";
-    bw-git-helper.inputs.utils.follows = "utils";
 
     site.url = github:tudurom/site;
     site.inputs.nixpkgs.follows = "nixpkgs";
-    site.inputs.utils.follows = "utils";
 
     blog.url = github:tudurom/blog;
     blog.inputs.nixpkgs.follows = "nixpkgs";
-    blog.inputs.utils.follows = "utils";
 
     co.url = "git+ssh://git@github.com/tudurom/co-work.git";
-    co.inputs.utils.follows = "utils";
+    co.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-wsl.url = github:nix-community/NixOS-WSL;
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   nixConfig = {
@@ -43,7 +42,7 @@
   };
 
   outputs = inputs@{ self, utils, nixpkgs, nixpkgs-unstable, home-manager,
-                     nix-ld, bw-git-helper, site, blog, co, ... }:
+                     nix-ld, bw-git-helper, site, blog, co, nixos-wsl, ... }:
     utils.lib.mkFlake {
       inherit self inputs;
 
@@ -70,7 +69,7 @@
       channelsConfig = { allowUnfree = true; };
 
       hostDefaults.modules = [
-        ./configuration.nix home-manager.nixosModules.home-manager nixpkgs.nixosModules.notDetected
+        ./configuration.nix home-manager.nixosModules.home-manager nixpkgs.nixosModules.notDetected nixos-wsl.nixosModules.wsl
 
         ({ ... }: {
           # have it as a shortcut so i can write stuff like `nix run pkgs#cmatrix`

@@ -16,7 +16,7 @@ with lib; {
     tudor.home.home.packages = with pkgs; [
       go
       gopls
-      goimports
+      gotools
       gomodifytags
       gotests
       gotools

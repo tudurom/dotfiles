@@ -59,7 +59,7 @@ with lib; {
       wget
       zip
 
-      manpages
+      man-pages
     ];
 
     documentation.man.generateCaches = true;
