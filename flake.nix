@@ -1,98 +1,96 @@
 {
-  description = "My config";
-
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixos-22.05;
-    nixpkgs-unstable.url = github:nixos/nixpkgs/nixpkgs-unstable;
-    utils.url = github:gytis-ivaskevicius/flake-utils-plus;
-
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
     home-manager = {
-      url = github:nix-community/home-manager/release-22.05;
+      url = "github:rycee/home-manager/release-22.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    # nix-alien = {
+    #   url = "github:thiagokokada/nix-alien";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # So i don't have to recompile it every time i update flakes
-    emacs-overlay.url = github:nix-community/emacs-overlay/5a501bb198eb96a327cdd3275608305d767e489d;
-
-    nixos-hardware.url = github:nixos/nixos-hardware;
-    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
-
-    nix-ld.url = github:Mic92/nix-ld;
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
-
-    bw-git-helper.url = github:tudurom/bw-git-helper;
-    bw-git-helper.inputs.nixpkgs.follows = "nixpkgs";
-
+    co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
     site.url = github:tudurom/site;
-    site.inputs.nixpkgs.follows = "nixpkgs";
-
     blog.url = github:tudurom/blog;
-    blog.inputs.nixpkgs.follows = "nixpkgs";
-
-    co.url = "git+ssh://git@github.com/tudurom/co-work.git";
-    co.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixos-wsl.url = github:nix-community/NixOS-WSL;
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  nixConfig = {
-    substituters = [ "https://cache.nixos.org" "https://nix-community.cachix.org" ];
-    trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
-  };
-
-  outputs = inputs@{ self, utils, nixpkgs, nixpkgs-unstable, home-manager,
-                     nix-ld, bw-git-helper, site, blog, co, nixos-wsl, ... }:
-    utils.lib.mkFlake {
-      inherit self inputs;
-
-      supportedSystems = [ "x86_64-linux" ];
-
-      channels.unstable.input = nixpkgs-unstable;
-      channels.nixpkgs = {
-        input = nixpkgs;
-        overlaysBuilder = channels: [
-          (final: prev: {
-            tudor = {
-              bw-git-helper = bw-git-helper.defaultPackage.${prev.system};
-              site = site.defaultPackage.${prev.system};
-              blog = blog.defaultPackage.${prev.system};
-              co-pong = co.packages.${prev.system}.pong;
-            };
-            unstable = import nixpkgs-unstable {
-              system = prev.system;
-              config.allowUnfree = true;
-            };
+  outputs = { self, nixpkgs, co-work, ... } @ inputs:
+    let
+      vars = {
+        stateVersion = "22.05";
+        emacs = "emacsPgtkNativeComp";
+      };
+      mkPkgs = system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          inputs.emacs-overlay.overlay
+	  (final: prev: {
+            tudor.site = inputs.site.packages.${system}.site;
+            tudor.blog = inputs.blog.packages.${system}.blog;
           })
         ];
       };
-      channelsConfig = { allowUnfree = true; };
-
-      hostDefaults.modules = [
-        ./configuration.nix home-manager.nixosModules.home-manager nixpkgs.nixosModules.notDetected nixos-wsl.nixosModules.wsl
-
-        ({ ... }: {
-          # have it as a shortcut so i can write stuff like `nix run pkgs#cmatrix`
-          nix.registry."pkgs".flake = nixpkgs;
-        })
+      mkNixOSModules = name: system: [
+        {
+          nixpkgs.pkgs = mkPkgs system;
+          _module.args.nixpkgs = nixpkgs;
+          _module.args.self = self;
+          _module.args.inputs = inputs;
+          _module.args.configName = name;
+          _module.args.vars = vars;
+        }
+        inputs.home-manager.nixosModules.home-manager
+        inputs.nixos-wsl.nixosModules.wsl
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = false;
+            extraSpecialArgs = { inherit inputs vars; };
+          };
+        }
+        ./hosts/${name}
       ];
-
-      hosts = {
-        wsl2.modules = [
-          ./machines/wsl2
-
-          nix-ld.nixosModules.nix-ld
-
-          ({ pkgs, ... }: {
-            environment.systemPackages = [ pkgs.fup-repl ];
-          })
-        ];
-
-        ceres.modules = [
-          ./machines/ceres
-
-          nixpkgs.nixosModules.notDetected
+      mkNixOSSystem = name: system: nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = mkNixOSModules name system;
+      };
+      mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = mkPkgs system;
+        modules = [
+          {
+            _module.args.nixpkgs = nixpkgs;
+            _module.args.inputs = inputs;
+            _module.args.vars = vars;
+          }
+          {
+            home = {
+              homeDirectory = "/home/${user}";
+              username = user;
+            };
+          }
+          (./users + "/${name}" + /home.nix)
         ];
       };
+    in
+    {
+      nixosConfigurations."ceres" = mkNixOSSystem "ceres" "x86_64-linux";
+      nixosConfigurations."wsl2" = mkNixOSSystem "wsl2" "x86_64-linux";
+
+      homeConfigurations."tudor" = mkNonNixOSEnvironment "tudor" "tudor" "x86_64-linux";
+      packages.x86_64-linux."tudor" = self.homeConfigurations."tudor".activationPackage;
+
+      defaultPackage.x86_64-linux = (mkPkgs "x86_64-linux").nix;
     };
 }

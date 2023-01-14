@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if [ -n "$WAYLAND_DISPLAY" ]; then
-	swaylock -f -i $HOME/wallpapers/bluescreen.png
-else
-	i3lock -t -p win -i $HOME/wallpapers/bluescreen.png
-fi
-systemctl suspend
