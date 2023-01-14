@@ -7,7 +7,7 @@ with lib; {
 
   config = mkIf cfg.enable {
     security.acme = {
-      email = "tudor@tudorr.ro";
+      defaults.email = "tudor@tudorr.ro";
       acceptTerms = true;
     };
 

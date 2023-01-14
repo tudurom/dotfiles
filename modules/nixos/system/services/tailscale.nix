@@ -13,6 +13,7 @@ with lib;
     networking.firewall = {
       trustedInterfaces = [ "tailscale0" ];
       allowedUDPPorts = [ config.services.tailscale.port ];
+      checkReversePath = "loose";
     };
   };
 }

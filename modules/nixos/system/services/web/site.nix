@@ -15,12 +15,12 @@ with lib; {
 
       locations = {
         "/" = {
-          alias = "${inputs.site.packages.site}/";
+          alias = "${pkgs.tudor.site}/";
           index = "index.html";
         };
 
         "/blog/" = {
-          alias = "${inputs.blog.defaultPackage}/";
+          alias = "${pkgs.tudor.blog}/";
           index = "index.html";
         };
       };

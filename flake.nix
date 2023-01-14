@@ -39,6 +39,7 @@
 	  (final: prev: {
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;
+            tudor.pong = inputs.co-work.packages.${system}.pong;
           })
         ];
       };

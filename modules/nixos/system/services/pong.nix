@@ -17,7 +17,7 @@ with lib;
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Restart = "on-failure";
-        ExecStart = "${inputs.co-work.packages.pong}/bin/pong";
+        ExecStart = "${pkgs.tudor.pong}/bin/pong";
         DynamicUser = "yes";
       };
     };
