@@ -9,6 +9,7 @@
       nginx.enable = true;
       cgit.enable = true;
       site.enable = true;
+      vaultwarden.enable = true;
     };
     ipforward.enable = true;
     tailscale.enable = true;
