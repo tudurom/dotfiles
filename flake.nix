@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:rycee/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +41,7 @@
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;
             tudor.pong = inputs.co-work.packages.${system}.pong;
+            unstable = import inputs.unstable { inherit system; config.allowUnfree = true; };
           })
         ];
       };
