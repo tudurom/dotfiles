@@ -10,6 +10,7 @@
   };
 
   i18n.supportedLocales = [
+    "en_GB.UTF-8/UTF-8"
     "en_US.UTF-8/UTF-8"
     "ro_RO.UTF-8/UTF-8"
     "nl_NL.UTF-8/UTF-8"

@@ -17,7 +17,6 @@
       git.enable = true;
       neovim = {
         enable = true;
-#        defaultEditor = true;
       };
       hx = {
         enable = true;
