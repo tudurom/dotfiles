@@ -42,6 +42,7 @@
             tudor.blog = inputs.blog.packages.${system}.blog;
             tudor.pong = inputs.co-work.packages.${system}.pong;
             unstable = import inputs.unstable { inherit system; config.allowUnfree = true; };
+            home-manager = inputs.home-manager.packages.${system}.home-manager;
           })
         ];
       };
@@ -69,7 +70,7 @@
         inherit system;
         modules = mkNixOSModules name system;
       };
-      mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration {
+      mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration rec {
         pkgs = mkPkgs system;
         modules = [
           {
@@ -81,7 +82,17 @@
             home = {
               homeDirectory = "/home/${user}";
               username = user;
+              sessionVariables = {
+                GIT_SSH = "/usr/bin/ssh";
+              };
+              packages = [
+                pkgs.home-manager
+              ];
             };
+
+            programs.bash.profileExtra = ''
+              . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+            '';
           }
           (./users + "/${name}" + /home.nix)
         ];
