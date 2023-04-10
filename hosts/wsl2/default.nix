@@ -17,6 +17,8 @@
     wslConf.automount.root = "/mnt";
     defaultUser = "tudor";
     startMenuLaunchers = true;
+    docker-native.enable = true;
+    nativeSystemd = true;
   };
 
   home-manager.users.tudor = ../../users/tudor/home.nix;
