@@ -17,31 +17,31 @@ with lib; {
       dbBackend = "sqlite";
     };
 
-    services.nginx.virtualHosts."bw.tudorr.ro" = {
-      forceSSL = true;
-      enableACME = true;
+    #services.nginx.virtualHosts."bw.tudorr.ro" = {
+    #  forceSSL = true;
+    #  enableACME = true;
 
-      locations = {
-        "/" = {
-          proxyPass = "http://127.0.0.1:8080";
-        };
+    #  locations = {
+    #    "/" = {
+    #      proxyPass = "http://127.0.0.1:8080";
+    #    };
 
-        "/notifications/hub" = {
-          proxyPass = "http://127.0.0.1:3012";
-          extraConfig = ''
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "upgrade";
-          '';
-        };
+    #    "/notifications/hub" = {
+    #      proxyPass = "http://127.0.0.1:3012";
+    #      extraConfig = ''
+    #        proxy_set_header Upgrade $http_upgrade;
+    #        proxy_set_header Connection "upgrade";
+    #      '';
+    #    };
 
-        "/notifications/hub/negotiate" = {
-          proxyPass = "http://127.0.0.1:8080";
-        };
-      };
+    #    "/notifications/hub/negotiate" = {
+    #      proxyPass = "http://127.0.0.1:8080";
+    #    };
+    #  };
 
-      extraConfig = ''
-        client_max_body_size 128M;
-      '';
-    };
+    #  extraConfig = ''
+    #    client_max_body_size 128M;
+    #  '';
+    #};
   };
 }
