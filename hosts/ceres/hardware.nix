@@ -28,7 +28,6 @@
 
   swapDevices = [ ];
 
-  nix.settings.maxJobs = lib.mkDefault 2;
   # High-DPI console
   console.font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
 }
