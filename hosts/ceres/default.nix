@@ -41,5 +41,6 @@
   };
 
   services.zfs.autoSnapshot.enable = true;
+  services.zfs.autoScrub.enable = true;
   home-manager.users.tudor = ../../users/tudor/home.nix;
 }
