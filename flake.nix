@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:rycee/home-manager/release-22.11";
+      url = "github:rycee/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -46,22 +46,23 @@
           })
         ];
       };
+
       mkNixOSModules = name: system: [
         {
           nixpkgs.pkgs = mkPkgs system;
           _module.args.nixpkgs = nixpkgs;
           _module.args.self = self;
-          _module.args.inputs = inputs;
+          #_module.args.inputs = inputs;
           _module.args.configName = name;
-          _module.args.vars = vars;
+          #_module.args.vars = vars;
         }
         inputs.home-manager.nixosModules.home-manager
-        inputs.nixos-wsl.nixosModules.wsl
+        #inputs.nixos-wsl.nixosModules.wsl
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = false;
-            extraSpecialArgs = { inherit inputs vars; };
+            extraSpecialArgs = { inherit inputs vars; configName = name; };
           };
         }
         ./hosts/${name}
@@ -72,11 +73,12 @@
       };
       mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration rec {
         pkgs = mkPkgs system;
+        extraSpecialArgs = {inherit inputs vars; configName = "normal-linux"; };
         modules = [
           {
             _module.args.nixpkgs = nixpkgs;
             _module.args.inputs = inputs;
-            _module.args.vars = vars;
+            #_module.args.vars = vars;
           }
           {
             home = {
