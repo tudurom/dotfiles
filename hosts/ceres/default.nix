@@ -23,7 +23,6 @@
 
   boot.loader.grub = {
     enable = true;
-    version = 2;
     device = "/dev/disk/by-id/ata-Hitachi_HTS725025A9A364_100625PCK200VJHNKPPJ";
   };
 
