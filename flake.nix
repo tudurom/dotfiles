@@ -52,12 +52,12 @@
           nixpkgs.pkgs = mkPkgs system;
           _module.args.nixpkgs = nixpkgs;
           _module.args.self = self;
-          #_module.args.inputs = inputs;
+          _module.args.inputs = inputs;
           _module.args.configName = name;
-          #_module.args.vars = vars;
+          _module.args.vars = vars;
         }
         inputs.home-manager.nixosModules.home-manager
-        #inputs.nixos-wsl.nixosModules.wsl
+        inputs.nixos-wsl.nixosModules.wsl
         {
           home-manager = {
             useGlobalPkgs = true;
@@ -78,7 +78,7 @@
           {
             _module.args.nixpkgs = nixpkgs;
             _module.args.inputs = inputs;
-            #_module.args.vars = vars;
+            _module.args.vars = vars;
           }
           {
             home = {
