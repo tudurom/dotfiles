@@ -6,5 +6,6 @@
     ./git.nix
     ./hx.nix
     ./neovim.nix
+    ./op.nix
   ];
 }

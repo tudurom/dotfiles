@@ -23,6 +23,9 @@
         enable = true;
         defaultEditor = true;
       };
+      op = {
+        enable = true;
+      };
     };
   };
 }
