@@ -12,6 +12,7 @@ with lib; {
       forceSSL = true;
       enableACME = true;
       root = "/";
+      default = true;
 
       locations = {
         "/" = {
