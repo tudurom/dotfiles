@@ -29,6 +29,7 @@ with lib; {
 
     services.nginx.virtualHosts."www.tudorr.ro" = {
       enableACME = true;
+      forceSSL = true;
       globalRedirect = "tudorr.ro";
     };
   };
