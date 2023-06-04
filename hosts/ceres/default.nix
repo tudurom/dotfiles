@@ -7,7 +7,8 @@
     ssh.enable = true;
     web = {
       nginx.enable = true;
-      cgit.enable = true;
+      cgit.enable = false;
+      gitea.enable = true;
       site.enable = true;
       vaultwarden.enable = true;
     };
