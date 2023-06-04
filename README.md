@@ -19,7 +19,7 @@ Then:
 
 Desktop:
 1. Clone this repo somewhere on the machine.
-2. `nixos-rebuild boot --flake .#<hostname> --use-remote-sudo`
+2. `nix run .#nixos-rebuild -- boot --flake .#<hostname> --use-remote-sudo`
 
 Remote server:
 1. `nix run .#deploy-rs -- .#<hostname>`
@@ -29,7 +29,7 @@ Remote server:
 1. Provision a machine with a "normal" Linux distro (my personal choice is Fedora)
 2. Install Nix (my installer of choice is [nix-installer][nix-installer]).
 3. Clone this repo somewhere on the machine
-4. `nix run home-manager/release-<nixos_release> -- switch --flake .#tudor`
+4. `nix run .#home-manager -- switch --flake .#tudor`
 
 ## Considerations for encrypting secrets
 

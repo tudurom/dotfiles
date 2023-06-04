@@ -3,7 +3,6 @@
 with lib;
 let
   cfg = config.systemModules.basePackages;
-  home-manager-package = (import inputs.home-manager { inherit pkgs; }).home-manager;
 in
 {
   options.systemModules.basePackages = {

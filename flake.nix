@@ -41,6 +41,7 @@
         stateVersion = "22.05";
         username = "tudor";
       };
+
       mkDeployPkgs = system: let
         pkgs = import nixpkgs { inherit system; };
       in import nixpkgs {
@@ -52,6 +53,7 @@
           })
         ];
       };
+
       mkPkgs = system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -92,10 +94,12 @@
         }
         ./hosts/${name}
       ];
+
       mkNixOSSystem = name: system: nixpkgs.lib.nixosSystem {
         inherit system;
         modules = mkNixOSModules name system;
       };
+
       mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration rec {
         pkgs = mkPkgs system;
         extraSpecialArgs = {inherit inputs vars; configName = "normal-linux"; };
@@ -112,9 +116,6 @@
               sessionVariables = {
                 GIT_SSH = "/usr/bin/ssh";
               };
-              packages = [
-                pkgs.home-manager
-              ];
             };
 
             programs.bash.profileExtra = ''
@@ -124,6 +125,9 @@
           (./users + "/${name}" + /home.nix)
         ];
       };
+
+      x64Pkgs = mkPkgs "x86_64-linux";
+      x64DeployPkgs = mkDeployPkgs "x86_64-linux";
     in
     {
       nixosConfigurations."ceres" = mkNixOSSystem "ceres" "x86_64-linux";
@@ -132,14 +136,16 @@
       homeConfigurations."tudor" = mkNonNixOSEnvironment "tudor" "tudor" "x86_64-linux";
       packages.x86_64-linux."tudor" = self.homeConfigurations."tudor".activationPackage;
 
-      packages.x86_64-linux.default = (mkPkgs "x86_64-linux").nix;
+      packages.x86_64-linux.default = x64Pkgs.nix;
       apps.x86_64-linux.deploy-rs = deploy-rs.apps.x86_64-linux.deploy-rs;
+      packages.x86_64-linux.home-manager = x64Pkgs.home-manager;
+      packages.x86_64-linux.nixos-rebuild = x64Pkgs.nixos-rebuild;
 
-      deploy.nodes."ceres" = let deployPkgs = mkDeployPkgs "x86_64-linux"; in {
+      deploy.nodes."ceres" = {
         hostname = "ceres.lamb-monitor.ts.net";
         profiles.system = {
           sshUser = "root";
-          path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations."ceres";
+          path = x64DeployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations."ceres";
         };
       };
 
