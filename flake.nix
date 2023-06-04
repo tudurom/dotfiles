@@ -17,7 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
     # nix-alien = {
     #   url = "github:thiagokokada/nix-alien";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +39,6 @@
     let
       vars = {
         stateVersion = "22.05";
-        emacs = "emacsPgtkNativeComp";
         username = "tudor";
       };
       mkDeployPkgs = system: let
@@ -58,8 +56,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          inputs.emacs-overlay.overlay
-	  (final: prev: {
+          (final: prev: {
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;
             tudor.pong = inputs.co-work.packages.${system}.pong;
