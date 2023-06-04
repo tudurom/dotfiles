@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, vars, ...}:
 {
   imports = [ ../_all ./hardware.nix ];
 
@@ -39,6 +39,12 @@
       192.168.12.200 truenas.localdomain
     '';
   };
+
+  age.secrets.tudor-password = {
+    file = ../../secrets/ceres/tudor-password.age;
+  };
+
+  users.users.${vars.username}.passwordFile = config.age.secrets.tudor-password.path;
 
   services.zfs.autoSnapshot.enable = true;
   services.zfs.autoScrub.enable = true;
