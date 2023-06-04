@@ -15,6 +15,9 @@ with lib; {
         ROOT_URL = "https://git.tudorr.ro/";
         HTTP_PORT = 3001;
       };
+      settings.service = {
+        DISABLE_REGISTRATION = true;
+      };
     };
 
     services.nginx.virtualHosts."git.tudorr.ro" = {
