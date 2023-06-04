@@ -13,6 +13,6 @@ with lib; {
     home.packages = with pkgs; [
       _1password
     ];
-    home.shellAliases.op = if configName == "wsl2" then "op.exe" else "";
+    home.shellAliases = if configName == "wsl2" then { op = "op.exe"; } else {};
   };
 }
