@@ -31,9 +31,20 @@ Remote server:
 3. Clone this repo somewhere on the machine
 4. `nix run .#home-manager -- switch --flake .#tudor`
 
+## Considerations for WSL
+
+The WSL setup assumes that you have 1Password and npiperelay installed.
+
+You can install npiperelay with winget:
+
+```powershell
+winget install npiperelay
+```
+
 ## Considerations for encrypting secrets
 
 Secrets are encrypted and used through [agenix][agenix]. When provisioning a new machine, make sure to
 take its host public key and rekey secrets accordingly.
 
 [nix-installer]: https://github.com/DeterminateSystems/nix-installer
+[agenix]: https://github.com/ryantm/agenix/
