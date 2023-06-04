@@ -28,11 +28,11 @@
     man.generateCaches = true;
   };
 
-  users.users.tudor = {
+  users.users.${vars.username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "scanner" "lp" ];
     uid = 1000;
-    home = "/home/tudor";
+    home = "/home/${vars.username}";
   };
 
   system.stateVersion = vars.stateVersion;

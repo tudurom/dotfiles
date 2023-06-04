@@ -37,6 +37,7 @@
       vars = {
         stateVersion = "22.05";
         emacs = "emacsPgtkNativeComp";
+        username = "tudor";
       };
       mkPkgs = system: import nixpkgs {
         inherit system;

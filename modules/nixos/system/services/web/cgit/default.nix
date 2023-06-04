@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, vars, ...}:
 let
   cfg = config.systemModules.services.web.cgit;
   readmeFile = ./cgit-root-readme.md;
   logoFile = ./logo.png;
+  repoDir = "/home/${vars.username}/git/";
   configFile = pkgs.writeText "cgitrc" ''
     css=/cgit.css
     logo=/logo.png
@@ -31,7 +32,7 @@ let
     snapshots=tar.gz zip
 
     section-from-path=1
-    scan-path=/home/tudor/git/
+    scan-path=${repoDir}
   '';
 in
 with lib; {

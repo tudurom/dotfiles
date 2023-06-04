@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 {
   imports = [ ../_all ];
 
@@ -15,7 +15,7 @@
   wsl = {
     enable = true;
     wslConf.automount.root = "/mnt";
-    defaultUser = "tudor";
+    defaultUser = vars.username;
     startMenuLaunchers = true;
     nativeSystemd = true;
   };
