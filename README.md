@@ -13,16 +13,22 @@ Acknowledgements to https://github.com/mrkuz/nixos for heavily inspiring the lay
 
 ### NixOS
 
-1. Provision a machine with NixOS.
-2. (Assuming deployment with `nixos-rebuild`. TODO: Use something better) Clone this repo somewhere on the machine.
-3. `nixos-rebuild boot --flake .#<hostname> --use-remote-sudo`
-4. Reboot
+First, provision a machine with NixOS.
+
+Then:
+
+Desktop:
+1. Clone this repo somewhere on the machine.
+2. `nixos-rebuild boot --flake .#<hostname> --use-remote-sudo`
+
+Remote server:
+1. `nix run .#deploy-rs -- .#<hostname>`
 
 ### Any other Linux distro for sane people
 
 1. Provision a machine with a "normal" Linux distro (my personal choice is Fedora)
 2. Install Nix (my installer of choice is [nix-installer][nix-installer]).
-3. (Same assumption and TODO as above) Clone this repo somewhere on the machine
+3. Clone this repo somewhere on the machine
 4. `nix run home-manager/release-<nixos_release> -- switch --flake .#tudor`
 
 ## Considerations for encrypting secrets

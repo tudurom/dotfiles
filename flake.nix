@@ -2,6 +2,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,12 +36,23 @@
     blog.url = github:tudurom/blog;
   };
 
-  outputs = { self, nixpkgs, co-work, ... } @ inputs:
+  outputs = { self, nixpkgs, deploy-rs, ... } @ inputs:
     let
       vars = {
         stateVersion = "22.05";
         emacs = "emacsPgtkNativeComp";
         username = "tudor";
+      };
+      mkDeployPkgs = system: let
+        pkgs = import nixpkgs { inherit system; };
+      in import nixpkgs {
+        inherit system;
+        overlays = [
+          deploy-rs.overlay
+          (final: prev: {
+            deploy-rs = { inherit (pkgs) deploy-rs; lib = prev.deploy-rs.lib; };
+          })
+        ];
       };
       mkPkgs = system: import nixpkgs {
         inherit system;
@@ -121,5 +136,16 @@
       packages.x86_64-linux."tudor" = self.homeConfigurations."tudor".activationPackage;
 
       defaultPackage.x86_64-linux = (mkPkgs "x86_64-linux").nix;
+      apps.x86_64-linux.deploy-rs = deploy-rs.apps.x86_64-linux.deploy-rs;
+
+      deploy.nodes."ceres" = let deployPkgs = mkDeployPkgs "x86_64-linux"; in {
+        hostname = "ceres.lamb-monitor.ts.net";
+        profiles.system = {
+          sshUser = "root";
+          path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations."ceres";
+        };
+      };
+
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
