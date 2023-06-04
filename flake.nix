@@ -2,6 +2,12 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.darwin.follows = "";
+    };
     home-manager = {
       url = "github:rycee/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +61,12 @@
           _module.args.inputs = inputs;
           _module.args.configName = name;
           _module.args.vars = vars;
+        }
+        inputs.agenix.nixosModules.default
+        {
+          environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
+          # enable ssh host key generation
+          services.openssh.enable = true;
         }
         inputs.home-manager.nixosModules.home-manager
         inputs.nixos-wsl.nixosModules.wsl
