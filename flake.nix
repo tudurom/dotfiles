@@ -132,7 +132,7 @@
       homeConfigurations."tudor" = mkNonNixOSEnvironment "tudor" "tudor" "x86_64-linux";
       packages.x86_64-linux."tudor" = self.homeConfigurations."tudor".activationPackage;
 
-      defaultPackage.x86_64-linux = (mkPkgs "x86_64-linux").nix;
+      packages.x86_64-linux.default = (mkPkgs "x86_64-linux").nix;
       apps.x86_64-linux.deploy-rs = deploy-rs.apps.x86_64-linux.deploy-rs;
 
       deploy.nodes."ceres" = let deployPkgs = mkDeployPkgs "x86_64-linux"; in {
