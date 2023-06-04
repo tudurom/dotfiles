@@ -44,7 +44,12 @@
     file = ../../secrets/ceres/tudor-password.age;
   };
 
-  users.users.${vars.username}.passwordFile = config.age.secrets.tudor-password.path;
+  users.users.${vars.username} = {
+    passwordFile = config.age.secrets.tudor-password.path;
+    openssh.authorizedKeys.keys = [
+      (builtins.readFile ../../id_ed25519.pub)
+    ];
+  };
 
   services.zfs.autoSnapshot.enable = true;
   services.zfs.autoScrub.enable = true;
