@@ -51,7 +51,6 @@
       (builtins.readFile ../../id_ed25519.pub)
     ];
   };
-  security.sudo.wheelNeedsPassword = false;
 
   security.sudo.wheelNeedsPassword = false;
 
