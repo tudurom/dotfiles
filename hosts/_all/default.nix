@@ -28,6 +28,7 @@
     man.generateCaches = true;
   };
 
+  users.mutableUsers = false;
   users.users.${vars.username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "scanner" "lp" ];
