@@ -9,7 +9,11 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
+    };
     networking.firewall.allowedTCPPorts = [ 22 ];
   };
 }
