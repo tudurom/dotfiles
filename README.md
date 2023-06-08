@@ -33,12 +33,35 @@ Remote server:
 
 ## Considerations for WSL
 
-The WSL setup assumes that you have 1Password and npiperelay installed.
+### Dependencies
+
+The WSL setup assumes that you have 1Password and npiperelay [npiperelay] installed.
+
+[npiperelay]: https://github.com/jstarks/npiperelay
 
 You can install npiperelay with winget:
 
 ```powershell
 winget install npiperelay
+```
+
+### Installing the thing
+
+Assuming you have Nix set up on some other machine, clone this repo and run:
+
+```bash
+nix build .#nixosConfigurations.wsl2.config.system.build.installer
+```
+
+This will build the distro tarball in `./result/tarball/`. You can then import it in WSL:
+
+```powershell
+# Create the directory that will store the distro's disk image
+New-Item -ItemType Directory c:\WSL\NixOS
+# Import the tarball as a distro in WSL
+wsl --import NixOS c:\WSL\NixOS .\result\tarball\<whatever>.tar.gz
+# Boot it!
+wsl -d NixOS
 ```
 
 ## Considerations for encrypting secrets
