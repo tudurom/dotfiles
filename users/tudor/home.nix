@@ -12,6 +12,8 @@
     };
 
     tools = {
+      base.enable = true;
+
       aspell.enable = true;
       direnv.enable = true;
       git.enable = true;
