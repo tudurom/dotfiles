@@ -29,6 +29,14 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
     site.url = github:tudurom/site;
@@ -68,6 +76,10 @@
         ];
       };
 
+      mkHmDependencies = system: [
+        inputs.hyprland.homeManagerModules.default
+      ];
+
       mkNixOSModules = name: system: [
         {
           nixpkgs.pkgs = mkPkgs system;
@@ -90,6 +102,7 @@
             useGlobalPkgs = true;
             useUserPackages = false;
             extraSpecialArgs = { inherit inputs vars; configName = name; };
+            modules = mkHmDependencies system;
           };
         }
         ./hosts/${name}
@@ -103,7 +116,7 @@
       mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration rec {
         pkgs = mkPkgs system;
         extraSpecialArgs = {inherit inputs vars; configName = "normal-linux"; };
-        modules = [
+        modules = (mkHmDependencies system) ++ [
           {
             _module.args.nixpkgs = nixpkgs;
             _module.args.inputs = inputs;
