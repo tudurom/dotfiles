@@ -134,10 +134,14 @@
       nixosConfigurations."wsl2" = mkNixOSSystem "wsl2" "x86_64-linux";
 
       homeConfigurations."tudor" = mkNonNixOSEnvironment "tudor" "tudor" "x86_64-linux";
+      homeConfigurations."tudor@pepper-penguin" = mkNonNixOSEnvironment "tudor@pepper-penguin" "tudor" "x86_64-linux";
+
       packages.x86_64-linux."tudor" = self.homeConfigurations."tudor".activationPackage;
+      packages.x86_64-linux."tudor@pepper-penguin" = self.homeConfigurations."tudor@pepper-penguin".activationPackage;
+
+      apps.x86_64-linux.deploy-rs = deploy-rs.apps.x86_64-linux.deploy-rs;
 
       packages.x86_64-linux.default = x64Pkgs.nix;
-      apps.x86_64-linux.deploy-rs = deploy-rs.apps.x86_64-linux.deploy-rs;
       packages.x86_64-linux.home-manager = x64Pkgs.home-manager;
       packages.x86_64-linux.nixos-rebuild = x64Pkgs.nixos-rebuild;
 
