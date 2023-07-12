@@ -8,5 +8,6 @@
     ./hx.nix
     ./neovim.nix
     ./op.nix
+    ./tmux.nix
   ];
 }

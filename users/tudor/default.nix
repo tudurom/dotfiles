@@ -28,6 +28,7 @@
       op = {
         enable = true;
       };
+      tmux.enable = true;
     };
   };
 }

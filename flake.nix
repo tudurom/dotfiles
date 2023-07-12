@@ -66,6 +66,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
+          inputs.hyprland.overlays.default
           (final: prev: {
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;

@@ -6,6 +6,7 @@ with lib; {
   options = {
     homeModules.tools.git = {
       enable = mkEnableOption "Enable Git config";
+      opCommitSign = mkEnableOption "Enable commit signing with SSH keys from 1Password";
     };
   };
 
@@ -23,12 +24,12 @@ with lib; {
         '';
       };
 
-      extraConfig = {
+      extraConfig = {} // (if cfg.opCommitSign then {
         user.signingkey = removeSuffix "\n" (builtins.readFile ../../../id_ed25519.pub);
         gpg.format = "ssh";
-        gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+        gpg.ssh.program = "/opt/1Password/op-ssh-sign";
         commit.gpgsign = true;
-      };
+      } else {});
     };
 
     home.file.".ssh/allowed_signers".text = ''
