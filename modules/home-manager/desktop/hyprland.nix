@@ -42,7 +42,10 @@ with lib; {
         mkdir $out/bin
         ln -s ${origPkg}/bin/* $out/bin/
         rm $out/bin/Hyprland
-        echo "exec ${lib.getExe nixGL} ${origPkg}/bin/Hyprland \$@" > $out/bin/Hyprland
+        cat > $out/bin/Hyprland <<EOF
+          . "\$HOME/.profile"
+          exec ${lib.getExe nixGL} ${origPkg}/bin/Hyprland \$@
+        EOF
         chmod +x $out/bin/Hyprland
       '') else origPkg;
       extraConfig = let
