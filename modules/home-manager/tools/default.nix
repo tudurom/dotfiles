@@ -7,6 +7,7 @@
     ./git.nix
     ./hx.nix
     ./neovim.nix
+    ./nix.nix
     ./op.nix
     ./tmux.nix
   ];

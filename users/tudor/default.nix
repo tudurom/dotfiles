@@ -21,6 +21,7 @@
         enable = true;
         defaultEditor = false;
       };
+      nix.enable = true;
       hx = {
         enable = true;
         defaultEditor = true;
