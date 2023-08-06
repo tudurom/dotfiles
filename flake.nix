@@ -37,6 +37,10 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hypr-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
     site.url = github:tudurom/site;
@@ -67,6 +71,7 @@
         config.allowUnfree = true;
         overlays = [
           inputs.hyprland.overlays.default
+          inputs.hypr-contrib.overlays.default
           (final: prev: {
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;

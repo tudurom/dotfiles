@@ -18,7 +18,10 @@ with lib; {
   config = mkIf cfg.enable {
     services.mako.enable = true;
 
-    home.packages = [ pkgs.xdg-desktop-portal-hyprland ];
+    home.packages = [
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+
     wayland.windowManager.hyprland = {
       enable = true;
 
@@ -51,6 +54,7 @@ with lib; {
       extraConfig = let
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+        grimblast = "${pkgs.grimblast}/bin/grimblast";
         pamixer = "${pkgs.pamixer}/bin/pamixer";
         ksshaskpass = "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
         mako = "${pkgs.mako}/bin/mako";
@@ -121,6 +125,10 @@ with lib; {
 
       bind=,XF86MonBrightnessUp,exec,${brightnessctl} set +${brightStep}%
       bind=,XF86MonBrightnessDown,exec,${brightnessctl} set ${brightStep}%-
+
+      bind=,Print,exec,${grimblast} --notify copy screen
+      bind = SHIFT,Print,exec,${grimblast} --notify copy area
+      bind = ALT,Print,exec,${grimblast} --notify copy active
 
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
