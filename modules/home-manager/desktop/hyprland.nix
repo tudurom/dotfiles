@@ -52,14 +52,23 @@ with lib; {
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
         pamixer = "${pkgs.pamixer}/bin/pamixer";
+        ksshaskpass = "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+        mako = "${pkgs.mako}/bin/mako";
+        swaybg = "${pkgs.swaybg}/bin/swaybg";
+        wofi = "${pkgs.wofi}/bin/wofi";
         foot = "${pkgs.foot}/bin/foot";
         volStep = toString 5;
         brightStep = toString 5;
       in ''
-      env = SSH_ASKPASS,${pkgs.ksshaskpass.out}/bin/ksshaskpass
-      exec-once = mako
+      env = SSH_ASKPASS,${ksshaskpass}
+      exec-once = ${mako}
       exec-once = /usr/libexec/kf5/polkit-kde-authentication-agent-1
       exec-once = ${pkgs.swaybg}/bin/swaybg -i ${cfg.wallpaperPath}
+
+      general {
+        gaps_in = 2
+        gaps_out = 4
+      }
 
       input {
         kb_layout = ro
@@ -92,7 +101,7 @@ with lib; {
       $mainMod = SUPER
       bind = $mainMod, Return, exec, ${foot}
       bind = $mainMod, M, exit,
-      bind = $mainMod, space, exec, ${pkgs.wofi}/bin/wofi --show drun
+      bind = $mainMod, space, exec, ${wofi} --show drun
       bind = $mainMod, Q, killactive,
       bind = $mainMod SHIFT, F, togglefloating,
       # requires swaylock being installed.
