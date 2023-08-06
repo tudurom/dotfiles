@@ -52,6 +52,7 @@ with lib; {
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
         pamixer = "${pkgs.pamixer}/bin/pamixer";
+        foot = "${pkgs.foot}/bin/foot";
         volStep = toString 5;
         brightStep = toString 5;
       in ''
@@ -89,8 +90,7 @@ with lib; {
       monitor = ,preferred,auto,1
 
       $mainMod = SUPER
-      bind = $mainMod, Return, exec, nixGL alacritty
-      bind = $mainMod SHIFT, Return, exec, ${pkgs.xterm}/bin/xterm
+      bind = $mainMod, Return, exec, ${foot}
       bind = $mainMod, M, exit,
       bind = $mainMod, space, exec, ${pkgs.wofi}/bin/wofi --show drun
       bind = $mainMod, Q, killactive,
