@@ -35,11 +35,9 @@
     };
     hyprland = {
       url = "github:hyprwm/Hyprland/v0.28.0";
-      inputs.nixpkgs.follows = "unstable";
     };
     hypr-contrib = {
       url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "unstable";
     };
 
     co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
