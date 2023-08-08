@@ -8,7 +8,6 @@
     };
     
     desktop = {
-      alacritty.enable = true;
       foot.enable = true;
       fonts.enable = true;
       nixgl.enable = true;
