@@ -26,5 +26,5 @@
 
   users.users.${vars.username}.passwordFile = config.age.secrets.tudor-password.path;
 
-  home-manager.users.tudor = ../../users/tudor/home.nix;
+  home-manager.users.tudor = ../../users/tudor;
 }

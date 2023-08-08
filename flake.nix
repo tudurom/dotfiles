@@ -115,7 +115,7 @@
             useGlobalPkgs = true;
             useUserPackages = false;
             extraSpecialArgs = { inherit inputs vars; configName = name; };
-            modules = mkHmDependencies system;
+            sharedModules = mkHmDependencies system;
           };
         }
         ./hosts/${name}
