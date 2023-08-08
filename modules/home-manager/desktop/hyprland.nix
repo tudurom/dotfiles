@@ -84,7 +84,9 @@ with lib; {
       }
 
       decoration {
-        blur = false
+        blur {
+          enabled = false
+        }
         drop_shadow = false
       }
 
