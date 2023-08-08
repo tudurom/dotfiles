@@ -32,12 +32,12 @@ with lib; {
       
       package = let
         system = pkgs.stdenv.hostPlatform.system;
-        nixGL = inputs.nixgl.packages.${system}.default;
         origPkg = inputs.hyprland.packages.${system}.default.override {
           enableXWayland = config.wayland.windowManager.hyprland.xwayland.enable;
           hidpiXWayland = config.wayland.windowManager.hyprland.xwayland.hidpi;
           inherit (config.wayland.windowManager.hyprland) nvidiaPatches;
         };
+        nixGL = pkgs.nixgl.nixGLIntel;
       in if cfg.nixGLSupport then (pkgs.runCommand "hyprland-nixgl-wrapper" {} ''
         mkdir $out
         ln -s ${origPkg}/* $out

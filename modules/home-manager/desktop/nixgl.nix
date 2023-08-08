@@ -10,6 +10,6 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    home.packages = [ pkgs.nixgl.nixGLIntel ];
   };
 }
