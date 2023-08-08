@@ -13,8 +13,8 @@
       inputs.darwin.follows = "";
     };
     home-manager = {
-      url = "github:rycee/home-manager/master";
-      inputs.nixpkgs.follows = "unstable";
+      url = "github:rycee/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # nix-alien = {
@@ -71,12 +71,20 @@
           inputs.hyprland.overlays.default
           inputs.hypr-contrib.overlays.default
           inputs.nixgl.overlays.default
-          (final: prev: {
+          (final: prev: rec {
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;
             tudor.pong = inputs.co-work.packages.${system}.pong;
             unstable = import inputs.unstable { inherit system; config.allowUnfree = true; };
             home-manager = inputs.home-manager.packages.${system}.home-manager;
+            wlroots-hyprland = prev.wlroots-hyprland.override {
+              wlroots = prev.wlroots.override {
+                wayland-protocols = unstable.wayland-protocols;
+              };
+            };
+            hyprland = prev.hyprland.override {
+              wayland-protocols = unstable.wayland-protocols;
+            };
           })
         ];
       };
@@ -119,11 +127,11 @@
       };
 
       mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration rec {
-        pkgs = mkPkgs unstable system;
+        pkgs = mkPkgs nixpkgs system;
         extraSpecialArgs = {inherit inputs vars; configName = "normal-linux"; };
         modules = (mkHmDependencies system) ++ [
           {
-            _module.args.nixpkgs = unstable;
+            _module.args.nixpkgs = nixpkgs;
             _module.args.inputs = inputs;
             _module.args.vars = vars;
           }
