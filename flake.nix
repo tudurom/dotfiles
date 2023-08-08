@@ -13,8 +13,8 @@
       inputs.darwin.follows = "";
     };
     home-manager = {
-      url = "github:rycee/home-manager/release-23.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:rycee/home-manager/master";
+      inputs.nixpkgs.follows = "unstable";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # nix-alien = {
@@ -34,12 +34,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/Hyprland/v0.28.0";
+      inputs.nixpkgs.follows = "unstable";
     };
     hypr-contrib = {
       url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
     };
 
     co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
@@ -47,7 +47,7 @@
     blog.url = github:tudurom/blog;
   };
 
-  outputs = { self, nixpkgs, deploy-rs, ... } @ inputs:
+  outputs = { self, nixpkgs, deploy-rs, unstable, ... } @ inputs:
     let
       vars = {
         stateVersion = "22.05";
@@ -66,7 +66,7 @@
         ];
       };
 
-      mkPkgs = system: import nixpkgs {
+      mkPkgs = pkgs: system: import pkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [
@@ -89,7 +89,7 @@
 
       mkNixOSModules = name: system: [
         {
-          nixpkgs.pkgs = mkPkgs system;
+          nixpkgs.pkgs = mkPkgs nixpkgs system;
           _module.args.nixpkgs = nixpkgs;
           _module.args.self = self;
           _module.args.inputs = inputs;
@@ -121,11 +121,11 @@
       };
 
       mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration rec {
-        pkgs = mkPkgs system;
+        pkgs = mkPkgs unstable system;
         extraSpecialArgs = {inherit inputs vars; configName = "normal-linux"; };
         modules = (mkHmDependencies system) ++ [
           {
-            _module.args.nixpkgs = nixpkgs;
+            _module.args.nixpkgs = unstable;
             _module.args.inputs = inputs;
             _module.args.vars = vars;
           }
@@ -146,7 +146,7 @@
         ];
       };
 
-      x64Pkgs = mkPkgs "x86_64-linux";
+      x64Pkgs = mkPkgs nixpkgs "x86_64-linux";
       x64DeployPkgs = mkDeployPkgs "x86_64-linux";
     in
     {
