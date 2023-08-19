@@ -61,13 +61,16 @@ with lib; {
         swaybg = "${pkgs.swaybg}/bin/swaybg";
         wofi = "${pkgs.wofi}/bin/wofi";
         foot = "${pkgs.foot}/bin/foot";
+        dex = "${pkgs.dex}/bin/dex";
         volStep = toString 5;
         brightStep = toString 5;
       in ''
       env = SSH_ASKPASS,${ksshaskpass}
+      exec-once = ${pkgs.swaybg}/bin/swaybg -i ${cfg.wallpaperPath}
+      exec-once = /usr/libexec/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
       exec-once = ${mako}
       exec-once = /usr/libexec/kf5/polkit-kde-authentication-agent-1
-      exec-once = ${pkgs.swaybg}/bin/swaybg -i ${cfg.wallpaperPath}
+      exec-once = ${dex} -a -e Hyprland
 
       general {
         gaps_in = 2
