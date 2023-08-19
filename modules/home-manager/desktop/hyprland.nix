@@ -112,7 +112,7 @@ with lib; {
       $mainMod = SUPER
       bind = $mainMod, Return, exec, ${foot}
       bind = $mainMod, M, exit,
-      bind = $mainMod, space, exec, ${wofi} --show drun
+      bind = $mainMod, space, exec, ${wofi} --show drun -i
       bind = $mainMod, Q, killactive,
       bind = $mainMod SHIFT, F, togglefloating,
       # requires swaylock being installed.
