@@ -165,7 +165,10 @@
       packages.x86_64-linux."tudor" = self.homeConfigurations."tudor".activationPackage;
       packages.x86_64-linux."tudor@pepper-penguin" = self.homeConfigurations."tudor@pepper-penguin".activationPackage;
 
-      apps.x86_64-linux.deploy-rs = deploy-rs.apps.x86_64-linux.deploy-rs;
+      apps.x86_64-linux.deploy-rs = {
+        type = "app";
+        program = "${x64DeployPkgs.deploy-rs.deploy-rs}/bin/deploy";
+      };
 
       packages.x86_64-linux.default = x64Pkgs.nix;
       packages.x86_64-linux.home-manager = x64Pkgs.home-manager;
