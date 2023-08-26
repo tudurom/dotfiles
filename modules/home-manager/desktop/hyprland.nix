@@ -57,10 +57,10 @@ with lib; {
         grimblast = lib.getExe pkgs.grimblast;
         pamixer = lib.getExe pkgs.pamixer;
         ksshaskpass = lib.getExe pkgs.ksshaskpass.out;
-        mako = lib.getExe pkgs.mako;
+        mako = lib.getExe config.services.mako.package;
         swaybg = lib.getExe pkgs.swaybg;
         wofi = lib.getExe pkgs.wofi;
-        foot = lib.getExe pkgs.foot;
+        foot = lib.getExe config.programs.foot.package;
         dex = lib.getExe pkgs.dex;
         volStep = toString 5;
         brightStep = toString 5;

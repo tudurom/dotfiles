@@ -12,13 +12,13 @@ with lib; {
   config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
+      package = pkgs.unstable.foot;
       settings = {
         main = {
           pad = "20x20";
           # idk how foot does font sizes but it's not as
           # small as you might think
-          font = "Berkeley Mono:size=10";
-          dpi-aware = "yes";
+          font = "Berkeley Mono:size=12";
         };
         colors = {
           # https://codeberg.org/dnkl/foot/src/branch/master/themes/gruvbox-light
