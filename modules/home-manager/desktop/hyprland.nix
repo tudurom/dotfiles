@@ -52,16 +52,16 @@ with lib; {
         chmod +x $out/bin/Hyprland
       '') else origPkg;
       extraConfig = let
-        playerctl = "${pkgs.playerctl}/bin/playerctl";
-        brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-        grimblast = "${pkgs.grimblast}/bin/grimblast";
-        pamixer = "${pkgs.pamixer}/bin/pamixer";
-        ksshaskpass = "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
-        mako = "${pkgs.mako}/bin/mako";
-        swaybg = "${pkgs.swaybg}/bin/swaybg";
-        wofi = "${pkgs.wofi}/bin/wofi";
-        foot = "${pkgs.foot}/bin/foot";
-        dex = "${pkgs.dex}/bin/dex";
+        playerctl = lib.getExe pkgs.playerctl;
+        brightnessctl = lib.getExe pkgs.brightnessctl;
+        grimblast = lib.getExe pkgs.grimblast;
+        pamixer = lib.getExe pkgs.pamixer;
+        ksshaskpass = lib.getExe pkgs.ksshaskpass.out;
+        mako = lib.getExe pkgs.mako;
+        swaybg = lib.getExe pkgs.swaybg;
+        wofi = lib.getExe pkgs.wofi;
+        foot = lib.getExe pkgs.foot;
+        dex = lib.getExe pkgs.dex;
         volStep = toString 5;
         brightStep = toString 5;
       in ''
