@@ -26,11 +26,10 @@ in
           if [[ $(basename "$(ps --no-header --pid=$PPID --format=cmd)") != "fish" ]]; then
             [[ -z "$BASH_EXECUTION_STRING" ]] && exec ${pkgs.fish}/bin/fish
           fi
-        '' else "") +
-        (if direnvCfg.enable then ''
-          eval "$(${pkgs.direnv}/bin/direnv hook bash)"
         '' else "")
       ;
     };
+
+    programs.direnv.enableBashIntegration = true;
   };
 }

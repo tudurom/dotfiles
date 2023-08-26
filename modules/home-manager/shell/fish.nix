@@ -3,7 +3,6 @@
 with lib;
 let
   cfg = config.homeModules.shell.fish;
-  direnvCfg = config.homeModules.tools.direnv;
 in
 {
   options.homeModules.shell.fish = {
@@ -21,11 +20,10 @@ in
         ll = "ls --color=auto -alF";
         rm = "rm -I";
       };
-      interactiveShellInit = ''
-        #test -f /run/nixoswsl.env && set -x -a PATH (grep PATH /run/nixoswsl.env | cut -d'=' -f2-)
-      '' + (if direnvCfg.enable then ''
-        eval (${pkgs.direnv}/bin/direnv hook fish)
-      '' else "");
     };
+
+    # automatically true and readonly
+    # https://github.com/nix-community/home-manager/blob/6a20e40acaebf067da682661aa67da8b36812606/modules/programs/direnv.nix#L65-L78
+    # programs.direnv.enableFishIntegration = true;
   };
 }
