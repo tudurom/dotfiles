@@ -5,10 +5,14 @@
   ];
 
   homeModules = {
-    shell.fish.enable = true;
+    shell.nushell = {
+      enable = true;
+      lightTheme = true;
+    };
     shell.bash = {
       enable = true;
-      execFish = true;
+      execOtherShell = true;
+      shellToExecPackage = config.programs.nushell.package;
     };
 
     tools = {
