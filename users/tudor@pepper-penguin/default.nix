@@ -6,6 +6,7 @@
     tools = {
       git.opCommitSign = true;
     };
+    shell.starship.enable = true;
     
     desktop = {
       foot.enable = true;
