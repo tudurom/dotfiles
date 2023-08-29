@@ -13,8 +13,21 @@ with lib; {
     programs.tmux = {
       enable = true;
       sensibleOnTop = true;
+      baseIndex = 1;
+      mouse = true;
+      clock24 = true; # why does 12h exist
       extraConfig = ''
+      set -g default-terminal "tmux-256color"
+
+      set -sg escape-time 0
       set -as terminal-features ",*:RGB"
+
+      # sanity
+      setw -g mode-keys vi
+      set -g status-keys vi
+
+      bind h split-window -v
+      bind v split-window -h
       '';
     };
   };
