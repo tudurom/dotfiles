@@ -25,17 +25,22 @@ with lib; {
     wayland.windowManager.hyprland = {
       enable = true;
 
-      xwayland = {
-        enable = true;
-        hidpi = true;
-      };
-      
+      xwayland.enable = true;
+
       package = let
         system = pkgs.stdenv.hostPlatform.system;
+
+        # make sure Hyprland uses the same mesa as NixGL,
+        # which is the stable nixpkgs mesa.
+        mesa = pkgs.mesa;
         origPkg = inputs.hyprland.packages.${system}.default.override {
           enableXWayland = config.wayland.windowManager.hyprland.xwayland.enable;
-          hidpiXWayland = config.wayland.windowManager.hyprland.xwayland.hidpi;
-          inherit (config.wayland.windowManager.hyprland) nvidiaPatches;
+          mesa = mesa;
+          wlroots = inputs.hyprland.packages.${system}.wlroots-hyprland.override {
+            wlroots = pkgs.unstable.wlroots.override {
+              mesa = mesa;
+            };
+          };
         };
         nixGL = pkgs.nixgl.nixGLIntel;
       in if cfg.nixGLSupport then (pkgs.runCommand "hyprland-nixgl-wrapper" {} ''
@@ -102,6 +107,10 @@ with lib; {
       animations {
         # why don't I use sway at this point
         enabled = false
+      }
+
+      xwayland {
+        force_zero_scaling = true
       }
 
       monitor = desc:LG Electronics LG HDR 4K 0x0008D101,preferred,0x0,2

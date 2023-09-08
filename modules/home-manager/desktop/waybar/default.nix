@@ -21,7 +21,7 @@ with lib; {
       systemdTarget = if cfg.hyprland then "hyprland-session.target" else "";
     in {
       enable = true;
-      package = pkgs.waybar-hyprland;
+      package = pkgs.unstable.waybar;
       systemd.enable = enableSystemd;
       systemd.target = systemdTarget;
 
@@ -31,7 +31,7 @@ with lib; {
         layer = "top";
         position = "top";
         height = 45;
-        modules-left = [ "wlr/workspaces" ];
+        modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];
         modules-right = [ "tray" "battery" "pulseaudio" ];
 
@@ -48,8 +48,7 @@ with lib; {
           on-click = "pactl set-sink-mute 0 toggle";
         };
 
-        "wlr/workspaces" = {
-          on-click = "activate";
+        "hyprland/workspaces" = {
           all-outputs = true;
         };
 
