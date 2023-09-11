@@ -71,6 +71,7 @@
           inputs.hyprland.overlays.default
           inputs.hypr-contrib.overlays.default
           inputs.nixgl.overlays.default
+          inputs.agenix.overlays.default
           (final: prev: rec {
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;
@@ -91,6 +92,7 @@
 
       mkHmDependencies = system: [
         inputs.hyprland.homeManagerModules.default
+        inputs.agenix.homeManagerModules.default
       ];
 
       mkNixOSModules = name: system: [
@@ -173,6 +175,7 @@
       packages.x86_64-linux.default = x64Pkgs.nix;
       packages.x86_64-linux.home-manager = x64Pkgs.home-manager;
       packages.x86_64-linux.nixos-rebuild = x64Pkgs.nixos-rebuild;
+      packages.x86_64-linux.agenix = x64Pkgs.agenix;
 
       deploy.nodes."ceres" = {
         hostname = "ceres.lamb-monitor.ts.net";
