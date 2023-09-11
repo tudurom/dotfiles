@@ -10,13 +10,15 @@ with lib; {
       enable = true;
       adminCredentialsFile = config.age.secrets.miniflux-credentials.path;     
       config.LISTEN_ADDR = "localhost:8638";
+      config.BASE_URL = "https://rss.tudorr.ro/";
+      config.FETCH_YOUTUBE_WATCH_TIME = "1";
     };
 
     services.nginx.virtualHosts."rss.tudorr.ro" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = config.services.miniflux.config.LISTEN_ADDR;
+        proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}/";
       };
     };
   };

@@ -6,5 +6,6 @@
     ./nginx.nix
     ./site.nix
     ./vaultwarden.nix
+    ./miniflux.nix
   ];
 }

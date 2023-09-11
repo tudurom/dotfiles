@@ -11,6 +11,7 @@
       gitea.enable = true;
       site.enable = true;
       vaultwarden.enable = true;
+      miniflux.enable = true;
     };
     ipforward.enable = true;
     tailscale.enable = true;
@@ -41,8 +42,13 @@
     '';
   };
 
-  age.secrets.tudor-password = {
-    file = ../../secrets/ceres/tudor-password.age;
+  age.secrets = {
+    tudor-password = {
+      file = ../../secrets/ceres/tudor-password.age;
+    };
+    miniflux-credentials = {
+      file = ../../secrets/ceres/miniflux-credentials.age;
+    };
   };
 
   users.users.${vars.username} = {
