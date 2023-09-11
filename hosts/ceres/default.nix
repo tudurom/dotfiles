@@ -5,6 +5,7 @@
   systemModules.basePackages.enable = true;
   systemModules.services = {
     ssh.enable = true;
+    ssh.enableMosh = true;
     web = {
       nginx.enable = true;
       cgit.enable = false;
