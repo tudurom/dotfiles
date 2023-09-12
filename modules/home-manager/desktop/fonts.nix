@@ -17,24 +17,28 @@ with lib; {
     <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
     <fontconfig>
      <alias>
+      <family>emoji</family>
+      <prefer>
+        <family>Noto Color Emoji</family>
+      </prefer>
+     </alias>
+
+     <alias binding="weak">
       <family>serif</family>
       <prefer>
-       <family>Noto Sans</family>
-       <family>Noto Color Emoji</family>
+       <family>emoji</family>
       </prefer>
      </alias>
-     <alias>
+     <alias binding="weak">
       <family>sans-serif</family>
       <prefer>
-       <family>Noto Sans</family>
-       <family>Noto Color Emoji</family>
+       <family>emoji</family>
       </prefer>
      </alias>
-     <alias>
+     <alias binding="weak">
       <family>monospace</family>
       <prefer>
-       <family>Noto Sans</family>
-       <family>Noto Color Emoji</family>
+       <family>emoji</family>
       </prefer>
      </alias>
      <dir>~/.fonts</dir>
