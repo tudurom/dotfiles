@@ -182,6 +182,7 @@
         profiles.system = {
           sshUser = "root";
           path = x64DeployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations."ceres";
+          autoRollback = false;
         };
       };
 

@@ -6,4 +6,5 @@ in
 {
   "tudor-password.age".publicKeys = keys;
   "miniflux-credentials.age".publicKeys = keys;
+  "linkding-credentials.age".publicKeys = keys;
 }

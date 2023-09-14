@@ -7,12 +7,13 @@
     ssh.enable = true;
     ssh.enableMosh = true;
     web = {
-      nginx.enable = true;
       cgit.enable = false;
       gitea.enable = true;
+      linkding.enable = true;
+      miniflux.enable = true;
+      nginx.enable = true;
       site.enable = true;
       vaultwarden.enable = true;
-      miniflux.enable = true;
     };
     ipforward.enable = true;
     tailscale.enable = true;
@@ -44,12 +45,9 @@
   };
 
   age.secrets = {
-    tudor-password = {
-      file = ../../secrets/ceres/tudor-password.age;
-    };
-    miniflux-credentials = {
-      file = ../../secrets/ceres/miniflux-credentials.age;
-    };
+    tudor-password.file = ../../secrets/ceres/tudor-password.age;
+    miniflux-credentials.file = ../../secrets/ceres/miniflux-credentials.age;
+    linkding-credentials.file = ../../secrets/ceres/linkding-credentials.age;
   };
 
   users.users.${vars.username} = {
