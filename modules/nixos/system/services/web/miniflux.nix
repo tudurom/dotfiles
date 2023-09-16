@@ -14,12 +14,12 @@ with lib; {
       config.FETCH_YOUTUBE_WATCH_TIME = "1";
     };
 
-    services.nginx.virtualHosts."rss.tudorr.ro" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}/";
-      };
-    };
+    #services.nginx.virtualHosts."rss.tudorr.ro" = {
+    #  forceSSL = true;
+    #  enableACME = true;
+    #  locations."/" = {
+    #    proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}/";
+    #  };
+    #};
   };
 }

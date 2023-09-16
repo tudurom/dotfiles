@@ -13,6 +13,7 @@
       site.enable = true;
       vaultwarden.enable = true;
       miniflux.enable = true;
+      yarr.enable = true;
     };
     ipforward.enable = true;
     tailscale.enable = true;
@@ -49,6 +50,9 @@
     };
     miniflux-credentials = {
       file = ../../secrets/ceres/miniflux-credentials.age;
+    };
+    yarr-credentials = {
+      file = ../../secrets/ceres/yarr-credentials.age;
     };
   };
 

@@ -392,7 +392,8 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_4",
         "site": "site",
-        "unstable": "unstable"
+        "unstable": "unstable",
+        "yarr-nix": "yarr-nix"
       }
     },
     "site": {
@@ -518,6 +519,43 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "yarr-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "yarr-src": "yarr-src"
+      },
+      "locked": {
+        "lastModified": 1694722634,
+        "narHash": "sha256-np2vpAKoZuaOsZW7G9VaeleJZgRzeIRwfBLHxw44VyA=",
+        "ref": "refs/heads/master",
+        "rev": "942e43395e6136c2b5b2b6ed6f91cd22ddd02297",
+        "revCount": 6,
+        "type": "git",
+        "url": "https://git.tudorr.ro/tudor/yarr-nix.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.tudorr.ro/tudor/yarr-nix.git"
+      }
+    },
+    "yarr-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694695475,
+        "narHash": "sha256-xazRlLnsejYRl2dhTXOjCuOlcfU4sNdoLIIkg4OUU/8=",
+        "owner": "nkanaev",
+        "repo": "yarr",
+        "rev": "c76ff26bd6dff6137317da2fe912bc44950eb17a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nkanaev",
+        "repo": "yarr",
         "type": "github"
       }
     }

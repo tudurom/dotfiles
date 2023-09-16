@@ -36,6 +36,10 @@
     hypr-contrib = {
       url = "github:hyprwm/contrib";
     };
+    yarr-nix = {
+      url = "git+https://git.tudorr.ro/tudor/yarr-nix.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
     site.url = "github:tudurom/site";
@@ -68,6 +72,7 @@
           inputs.hypr-contrib.overlays.default
           inputs.nixgl.overlays.default
           inputs.agenix.overlays.default
+          inputs.yarr-nix.overlays.default
           (final: prev: {
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;
@@ -99,6 +104,7 @@
         }
         inputs.home-manager.nixosModules.home-manager
         inputs.nixos-wsl.nixosModules.wsl
+        inputs.yarr-nix.nixosModules.default
         {
           home-manager = {
             useGlobalPkgs = true;
