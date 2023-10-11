@@ -33,16 +33,13 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland/v0.29.1";
-    };
     hypr-contrib = {
       url = "github:hyprwm/contrib";
     };
 
     co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
-    site.url = github:tudurom/site;
-    blog.url = github:tudurom/blog;
+    site.url = "github:tudurom/site";
+    blog.url = "github:tudurom/blog";
   };
 
   outputs = { self, nixpkgs, deploy-rs, unstable, ... } @ inputs:
@@ -68,30 +65,20 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          inputs.hyprland.overlays.default
           inputs.hypr-contrib.overlays.default
           inputs.nixgl.overlays.default
           inputs.agenix.overlays.default
-          (final: prev: rec {
+          (final: prev: {
             tudor.site = inputs.site.packages.${system}.site;
             tudor.blog = inputs.blog.packages.${system}.blog;
             tudor.pong = inputs.co-work.packages.${system}.pong;
             unstable = import inputs.unstable { inherit system; config.allowUnfree = true; };
             home-manager = inputs.home-manager.packages.${system}.home-manager;
-            wlroots-hyprland = prev.wlroots-hyprland.override {
-              wlroots = prev.wlroots.override {
-                wayland-protocols = unstable.wayland-protocols;
-              };
-            };
-            hyprland = prev.hyprland.override {
-              wayland-protocols = unstable.wayland-protocols;
-            };
           })
         ];
       };
 
       mkHmDependencies = system: [
-        inputs.hyprland.homeManagerModules.default
         inputs.agenix.homeManagerModules.default
       ];
 
@@ -128,7 +115,7 @@
         modules = mkNixOSModules name system;
       };
 
-      mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration rec {
+      mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = mkPkgs nixpkgs system;
         extraSpecialArgs = {inherit inputs vars; configName = "normal-linux"; };
         modules = (mkHmDependencies system) ++ [
@@ -176,6 +163,18 @@
       packages.x86_64-linux.home-manager = x64Pkgs.home-manager;
       packages.x86_64-linux.nixos-rebuild = x64Pkgs.nixos-rebuild;
       packages.x86_64-linux.agenix = x64Pkgs.agenix;
+
+      devShells.x86_64-linux.default = x64Pkgs.mkShell {
+        buildInputs = with x64Pkgs; [
+          nix
+          home-manager
+          nixos-rebuild
+          agenix
+          x64DeployPkgs.deploy-rs.deploy-rs
+
+          nil
+        ];
+      };
 
       deploy.nodes."ceres" = {
         hostname = "ceres.lamb-monitor.ts.net";
