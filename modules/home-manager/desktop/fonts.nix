@@ -11,7 +11,9 @@ with lib; {
 
   config = mkIf cfg.enable {
     fonts.fontconfig.enable = true;
-    home.packages = [ pkgs.noto-fonts-emoji ];
+    home.packages = with pkgs; [
+      noto-fonts-emoji
+    ];
     xdg.configFile."fontconfig/conf.d/20-noto-emoji.conf".text = ''
     <?xml version='1.0' encoding='UTF-8'?>
     <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
