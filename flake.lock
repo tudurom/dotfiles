@@ -30,11 +30,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1693060718,
-        "narHash": "sha256-AVJ4dP2ENyCXopakMiuSeuMwIdd3TEC5gV935Wc3Ri0=",
+        "lastModified": 1697135533,
+        "narHash": "sha256-XbAb0nIp5QnVjVtQVVOWTcr5eC+qI+9zS7V4r6eMpVU=",
         "owner": "tudurom",
         "repo": "blog",
-        "rev": "d16604c2cb04072bb00f9823b8df4fecc02f6b64",
+        "rev": "84bc944711180bacd6e55c353fd8496e506df118",
         "type": "github"
       },
       "original": {
