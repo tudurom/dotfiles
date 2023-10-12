@@ -9,8 +9,9 @@ with lib; {
       nixGLSupport = mkEnableOption "Use NixGL when starting sway";
       wallpaperPath = mkOption {
         description = "Path to wallpaper to apply";
-        type = types.str;
-        default = "/usr/share/backgrounds/f38/default/f38-01-day.png";
+        type = types.path;
+        # https://unsplash.com/photos/ZlzWbHC86B8
+        default = ./wallpaper.jpg;
       };
       outputs = mkOption {
         type = types.attrsOf (types.attrsOf types.str);
@@ -51,7 +52,7 @@ with lib; {
       fonts = {
         names = [ "Berkeley Mono" ];
         style = "Regular";
-        size = 12.0;
+        size = 11.0;
       };
     in {
       enable = true;
@@ -132,8 +133,43 @@ with lib; {
           "alt+Print" = "exec ${grimblast} --notify copy active";
         };
         bars = [];
-        window.titlebar = true;
+        window = {
+          titlebar = true;
+          border = 2;
+        };
+        colors = let
+          main = "#000000";
+          mainBorder = "#404040";
+          primary = "#ffffff";
+          primaryBorder = "#bababa";
+          secondary = "#00ff00";
+        in {
+          focused = {
+            background = primary;
+            border = primaryBorder;
+            childBorder = primaryBorder;
+            text = main;
+            indicator = primary;
+          };
+          unfocused = {
+            background = main;
+            border = mainBorder;
+            childBorder = mainBorder;
+            text = primary;
+            indicator = primary;
+          };
+          focusedInactive = {
+            background = main;
+            border = mainBorder;
+            childBorder = mainBorder;
+            text = secondary;
+            indicator = primary;
+          };
+        };
       };
+      extraConfig = ''
+        title_align center
+      '';
     };
   };
 }
