@@ -39,6 +39,13 @@ with lib; {
       tray = true;
     };
 
+    programs.fuzzel = {
+      enable = true;
+      settings = {
+        main.prompt = "\"👀 \"";
+      };
+    };
+
     # Remove once next NixOS / home-manager is released
     # https://github.com/nix-community/home-manager/blob/6bba64781e4b7c1f91a733583defbd3e46b49408/modules/services/window-managers/i3-sway/sway.nix#L480-L491
     systemd.user.targets.sway-session = {
@@ -103,7 +110,6 @@ with lib; {
         keybindings = let
           mod = config.wayland.windowManager.sway.config.modifier;
 
-          wofi = lib.getExe pkgs.wofi;
           playerctl = lib.getExe pkgs.playerctl;
           pamixer = lib.getExe pkgs.pamixer;
           brightnessctl = lib.getExe pkgs.brightnessctl;
@@ -112,7 +118,8 @@ with lib; {
           volStep = toString 5;
           brightStep = toString 5;
         in lib.mkOptionDefault {
-          "${mod}+d" = "exec ${wofi} --show drun -i";
+          # fuzzel is enabled above, should be in path
+          "${mod}+d" = "exec fuzzel";
 
           "XF86AudioPlay" = "exec ${playerctl} play";
           "XF86AudioPause" = "exec ${playerctl} pause";
