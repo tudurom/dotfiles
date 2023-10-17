@@ -31,24 +31,26 @@
 
   services.kanshi = {
     enable = true;
-    profiles = {
+    profiles = let
+      laptopScreen = {
+        criteria = "eDP-1";
+        scale = 1.25;
+      };
+      monitor1 = {
+        criteria = "LG Electronics LG HDR 4K 0x0000D901";
+        scale = 2.0;
+      };
+      withPos = mon: pos: mon // { position = pos; };
+    in {
       undocked = {
-        outputs = [{
-          criteria = "eDP-1";
-          position = "0,0";
-        }];
+        outputs = [
+          (withPos laptopScreen "0,0")
+        ];
       };
       docked = {
         outputs = [
-          {
-            criteria = "eDP-1";
-            position = "1920,0";
-          }
-          {
-            criteria = "LG Electronics LG HDR 4K 0x0000D901";
-            position = "0,0";
-            scale = 2.0;
-          }
+          (withPos laptopScreen "1920,0")
+          (withPos monitor1 "0,0")
         ];
       };
     };
