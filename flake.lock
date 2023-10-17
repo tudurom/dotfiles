@@ -530,11 +530,11 @@
         "yarr-src": "yarr-src"
       },
       "locked": {
-        "lastModified": 1694722634,
-        "narHash": "sha256-np2vpAKoZuaOsZW7G9VaeleJZgRzeIRwfBLHxw44VyA=",
+        "lastModified": 1697539687,
+        "narHash": "sha256-iV0iCJ7mJgHxKrglAYH6H1x0dWTLD7MeRGhh9B41KZk=",
         "ref": "refs/heads/master",
-        "rev": "942e43395e6136c2b5b2b6ed6f91cd22ddd02297",
-        "revCount": 6,
+        "rev": "600b163c58d40d5867373c7f22736ba998eac1e2",
+        "revCount": 12,
         "type": "git",
         "url": "https://git.tudorr.ro/tudor/yarr-nix.git"
       },
@@ -546,11 +546,11 @@
     "yarr-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1694695475,
-        "narHash": "sha256-xazRlLnsejYRl2dhTXOjCuOlcfU4sNdoLIIkg4OUU/8=",
+        "lastModified": 1696112398,
+        "narHash": "sha256-HobAwDf39t4t8y+lSVC2c+vbb+UbPUstveM8M6f8H4Q=",
         "owner": "nkanaev",
         "repo": "yarr",
-        "rev": "c76ff26bd6dff6137317da2fe912bc44950eb17a",
+        "rev": "a895145586ad299bcd4072897f4fcd95fd0f69b9",
         "type": "github"
       },
       "original": {
