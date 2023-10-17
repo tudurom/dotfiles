@@ -19,6 +19,7 @@ with lib; {
           # idk how foot does font sizes but it's not as
           # small as you might think
           font = "Berkeley Mono:size=12";
+          dpi-aware = "no";
         };
         colors = {
           # https://codeberg.org/dnkl/foot/src/branch/master/themes/gruvbox-light
