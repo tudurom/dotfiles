@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.homeModules.desktop.sway;
+  themeFont = config.homeModules.desktop.fonts.themeFont;
 in
 with lib; {
   options = {
@@ -42,7 +43,10 @@ with lib; {
     programs.fuzzel = {
       enable = true;
       settings = {
-        main.prompt = "\"👀 \"";
+        main = {
+          prompt = "\"👀 \"";
+          font = "${themeFont.family}:size=${builtins.toString (builtins.floor themeFont.size)}";
+        };
       };
     };
 
@@ -55,13 +59,7 @@ with lib; {
       };
     };
 
-    wayland.windowManager.sway = let
-      fonts = {
-        names = [ "Berkeley Mono" ];
-        style = "Regular";
-        size = 11.0;
-      };
-    in {
+    wayland.windowManager.sway = {
       enable = true;
       package = let
         origPkg = pkgs.sway;
@@ -106,7 +104,11 @@ with lib; {
           { command = lib.getExe config.services.mako.package; }
           { command = "1password --silent"; }
         ];
-        fonts = fonts;
+        fonts = {
+          names = [ themeFont.family ];
+          style = themeFont.style;
+          size = themeFont.size;
+        };
         keybindings = let
           mod = config.wayland.windowManager.sway.config.modifier;
 

@@ -1,6 +1,7 @@
-{ config, pkgs, lib, options, inputs, ... }:
+{ config, pkgs, lib, ... }:
 let
   cfg = config.homeModules.desktop.waybar;
+  themeFont = config.homeModules.desktop.fonts.themeFont;
 in
 with lib; {
   options = {
@@ -18,7 +19,6 @@ with lib; {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       font-awesome_6
-      inter
     ];
 
     programs.waybar = {
@@ -28,7 +28,12 @@ with lib; {
       systemd.enable = cfg.systemdTarget != "";
       systemd.target = cfg.systemdTarget;
 
-      style = builtins.readFile ./style.css;
+      style = pkgs.substituteAll {
+        name = "style.css";
+        src = ./style.css;
+        fontFamily = themeFont.family;
+        fontSize = builtins.toString (builtins.floor (themeFont.size + 1.0));
+      };
 
       settings.mainBar = {
         layer = "top";

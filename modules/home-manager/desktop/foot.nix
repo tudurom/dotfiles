@@ -1,6 +1,7 @@
 { config, options, lib, inputs, pkgs, ... }:
 let
   cfg = config.homeModules.desktop.foot;
+  themeFont = config.homeModules.desktop.fonts.themeFont;
 in
 with lib; {
   options = {
@@ -18,7 +19,7 @@ with lib; {
           pad = "20x20";
           # idk how foot does font sizes but it's not as
           # small as you might think
-          font = "Berkeley Mono:size=12";
+          font = "${themeFont.family}:size=${builtins.toString (builtins.floor themeFont.size)}";
           dpi-aware = "no";
         };
         colors = {

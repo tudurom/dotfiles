@@ -1,8 +1,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "Berkeley Mono", "Font Awesome 6 Free";
-    font-size: 13px;
+    font-family: "@fontFamily@", "Font Awesome 6 Free";
+    font-size: @fontSize@px;
     min-height: 0;
 }
 
