@@ -136,6 +136,7 @@ with lib; {
           { command = "/usr/libexec/polkit-gnome-authentication-agent-1"; }
           { command = lib.getExe config.services.mako.package; }
           { command = "1password --silent"; }
+          { command = "systemctl --user restart waybar.service kanshi.service"; always = true; }
         ];
         fonts = {
           names = [ themeFont.family ];
