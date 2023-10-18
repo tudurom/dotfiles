@@ -14,11 +14,6 @@ with lib; {
         # https://unsplash.com/photos/ZlzWbHC86B8
         default = ./wallpaper.jpg;
       };
-      outputs = mkOption {
-        type = types.attrsOf (types.attrsOf types.str);
-        default = {};
-        description = "See home-manager and sway-output";
-      };
     };
   };
 
@@ -130,9 +125,10 @@ with lib; {
           tap = "enabled";
           natural_scroll = "enabled";
         };
-        output = cfg.outputs // {
+        output = {
           "*" = {
             bg = "${cfg.wallpaperPath} fill";
+            adaptive_sync = "on";
           };
         };
         workspaceAutoBackAndForth = true;

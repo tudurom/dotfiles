@@ -15,15 +15,6 @@
       sway = {
         enable = true;
         nixGLSupport = true;
-        outputs = {
-          "LG Electronics LG HDR 4K 0x0000D901" = {
-            pos = "0 0";
-            scale = "2";
-          };
-          "BOE 0x09DE Unknown" = {
-            pos = "1920 0";
-          };
-        };
       };
       waybar.enable = true;
     };
