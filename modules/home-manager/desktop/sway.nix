@@ -40,6 +40,43 @@ with lib; {
       tray = true;
     };
 
+    services.swayidle = let
+      swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
+      # if running nixos: make sure swaylock is enabled system-wide in the system config!
+      # if not: make sure you either have swaylock installed via the system package manager,
+      # or you have a valid PAM config for it.
+      # otherwise, it will not be able to unlock the screen!
+      swaylock = "/usr/bin/env swaylock";
+      swaylockCmd = "${swaylock} -c 000000 -fF";
+    in {
+      enable = true;
+      systemdTarget = "sway-session.target";
+      extraArgs = ["-d"];
+      events = [
+        { event = "before-sleep"; command = swaylockCmd; }
+        { event = "lock"; command = swaylockCmd; }
+        { event = "unlock"; command = "pkill -USR1 swaylock"; }
+      ];
+      timeouts = [
+        {
+          timeout = 600;
+          command = "${swaymsg} \"output * power off\"";
+          resumeCommand = "${swaymsg} \"output * power on\"";
+        }
+      ];
+    };
+
+    systemd.user.services.swayidle = {
+      Service = {
+        # hack to make calling swaylock with /usr/bin/env work
+        # for both NixOS and non-NixOS
+        # See: https://github.com/nix-community/home-manager/blob/05649393ac1f34980a5cf6a6e89de77626c9182b/modules/services/swayidle.nix#L124-L125
+        Environment = mkForce [
+          "PATH=${makeBinPath [ pkgs.bash ]}:/usr/bin"
+        ];
+      };
+    };
+
     programs.fuzzel = {
       enable = true;
       settings = {
@@ -122,6 +159,8 @@ with lib; {
         in lib.mkOptionDefault {
           # fuzzel is enabled above, should be in path
           "${mod}+d" = "exec fuzzel";
+
+          "${mod}+ctrl+l" = "exec loginctl lock-session";
 
           "XF86AudioPlay" = "exec ${playerctl} play";
           "XF86AudioPause" = "exec ${playerctl} pause";
