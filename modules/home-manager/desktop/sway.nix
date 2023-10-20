@@ -136,6 +136,7 @@ with lib; {
           { command = "/usr/libexec/polkit-gnome-authentication-agent-1"; }
           { command = lib.getExe config.services.mako.package; }
           { command = "1password --silent"; }
+          { command = lib.getExe pkgs.emote; }
           { command = "systemctl --user restart waybar.service kanshi.service"; always = true; }
         ];
         fonts = {
@@ -150,6 +151,7 @@ with lib; {
           pamixer = lib.getExe pkgs.pamixer;
           brightnessctl = lib.getExe pkgs.brightnessctl;
           grimblast = lib.getExe pkgs.grimblast;
+          emote = lib.getExe pkgs.emote;
 
           volStep = toString 5;
           brightStep = toString 5;
@@ -175,6 +177,8 @@ with lib; {
           "Print" = "exec ${grimblast} --notify copy screen";
           "shift+Print" = "exec ${grimblast} --notify copy area";
           "alt+Print" = "exec ${grimblast} --notify copy active";
+
+          "${mod}+comma" = "exec ${emote}";
         };
         bars = [];
         window = {
