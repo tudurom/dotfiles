@@ -159,8 +159,7 @@ with lib; {
 
           "${mod}+ctrl+l" = "exec loginctl lock-session";
 
-          "XF86AudioPlay" = "exec ${playerctl} play";
-          "XF86AudioPause" = "exec ${playerctl} pause";
+          "XF86AudioPlay" = "exec ${playerctl} play-pause";
           "XF86AudioPrev" = "exec ${playerctl} previous";
           "XF86AudioNext" = "exec ${playerctl} next";
           "XF86AudioStop" = "exec ${playerctl} stop";
