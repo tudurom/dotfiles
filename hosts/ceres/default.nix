@@ -11,7 +11,6 @@
       cgit.enable = false;
       gitea.enable = true;
       site.enable = true;
-      vaultwarden.enable = true;
       yarr.enable = true;
     };
     ipforward.enable = true;
