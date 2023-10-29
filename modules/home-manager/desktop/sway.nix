@@ -26,6 +26,11 @@ with lib; {
       systemdTarget = "sway-session.target";
     };
 
+    services.copyq = {
+      enable = true;
+      systemdTarget = "sway-session.target";
+    };
+
     services.gammastep = {
       enable = true;
       provider = "manual";
