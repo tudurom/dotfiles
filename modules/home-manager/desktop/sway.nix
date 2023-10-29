@@ -7,7 +7,14 @@ with lib; {
   options = {
     homeModules.desktop.sway = {
       enable = mkEnableOption "Enable sway";
-      nixGLSupport = mkEnableOption "Use NixGL when starting sway";
+      nixGLPackage = mkOption {
+        type = types.nullOr types.package;
+        default = null;
+        description = ''
+          Start sway with a nixGL variant. Useful for Non-NixOS systems.
+          If null (default), sway will be started normally.
+        '';
+      };
       wallpaperPath = mkOption {
         description = "Path to wallpaper to apply";
         type = types.path;
@@ -18,19 +25,31 @@ with lib; {
   };
 
   config = mkIf cfg.enable {    
-    services.mako.enable = true;
-    services.kanshi.systemdTarget = "sway-session.target";
-
-    homeModules.desktop.waybar = {
-      enable = true;
-      systemdTarget = "sway-session.target";
+    homeModules.desktop = {
+      # terminal emulator
+      foot.enable = true;
+      fonts.enable = true;
+      # status bar
+      waybar = {
+        enable = true;
+        systemdTarget = "sway-session.target";
+      };
     };
 
+    # notification daemon
+    services.mako.enable = true;
+    # dynamic display configuration.
+    # to be enabled by each config inidividually,
+    # this key is set here only to make it start when sway starts.
+    services.kanshi.systemdTarget = "sway-session.target";
+
+    # clipboard manager. keeps the contents once the original program quits.
     services.copyq = {
       enable = true;
       systemdTarget = "sway-session.target";
     };
 
+    # blue light remover. adjusts the red tint based on the time of day.
     services.gammastep = {
       enable = true;
       provider = "manual";
@@ -40,6 +59,7 @@ with lib; {
       tray = true;
     };
 
+    # does things if the computer is left untouched for a while
     services.swayidle = let
       swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
       # if running nixos: make sure swaylock is enabled system-wide in the system config!
@@ -51,10 +71,13 @@ with lib; {
     in {
       enable = true;
       systemdTarget = "sway-session.target";
-      extraArgs = ["-d"];
       events = [
+        # make sure the screen is locked before going to sleep
         { event = "before-sleep"; command = swaylockCmd; }
         { event = "lock"; command = swaylockCmd; }
+        # stop the screen locker if loginctl says it's time to unlock
+        # (you can test by running loginctl unlock-session).
+        # regarding the sigusr1 thing, see swaylock(1).
         { event = "unlock"; command = "pkill -USR1 swaylock"; }
       ];
       timeouts = [
@@ -63,6 +86,7 @@ with lib; {
           command = "${swaymsg} \"output * power off\"";
           resumeCommand = "${swaymsg} \"output * power on\"";
         }
+        # TODO: suspend after a longer while
       ];
     };
 
@@ -77,6 +101,7 @@ with lib; {
       };
     };
 
+    # fuzzy-finding application launcher
     programs.fuzzel = {
       enable = true;
       settings = {
@@ -87,7 +112,7 @@ with lib; {
       };
     };
 
-    # Remove once next NixOS / home-manager is released
+    # TODO: Remove once next NixOS / home-manager is released
     # https://github.com/nix-community/home-manager/blob/6bba64781e4b7c1f91a733583defbd3e46b49408/modules/services/window-managers/i3-sway/sway.nix#L480-L491
     systemd.user.targets.sway-session = {
       Unit = {
@@ -96,12 +121,13 @@ with lib; {
       };
     };
 
+    # the belly of the beast
     wayland.windowManager.sway = {
       enable = true;
       package = let
         origPkg = pkgs.sway;
-        nixGL = pkgs.nixgl.nixGLIntel;
-      in if cfg.nixGLSupport then (pkgs.runCommand "sway-nixgl-wrapper" {} ''
+        nixGL = cfg.nixGLPackage;
+      in if nixGL != null then (pkgs.runCommand "sway-nixgl-wrapper" {} ''
         mkdir $out
         ln -s ${origPkg}/* $out
         rm $out/bin
@@ -119,11 +145,19 @@ with lib; {
       #   enable = true;
       #   xdgAutostart = true;
       # };
+
+      # starts a systemd-session.target systemd target in the config,
+      # so we can easily make various other programs (see above) start
+      # when sway starts
       systemdIntegration = true;
       wrapperFeatures.gtk = true;
       config = {
+        # the super key
         modifier = "Mod4";
         input."*" = {
+          # also called "Romanian (Programmers)" on Windows.
+          # it's the us keyboard + various stuff accessible with AltGr
+          # https://learn.microsoft.com/en-us/globalization/keyboards/kbdropr
           xkb_layout = "ro";
         };
         input."type:touchpad" = {
@@ -152,10 +186,15 @@ with lib; {
         keybindings = let
           mod = config.wayland.windowManager.sway.config.modifier;
 
+          # control the currently playing media player
           playerctl = lib.getExe pkgs.playerctl;
+          # control the volume
           pamixer = lib.getExe pkgs.pamixer;
+          # control the brightness of the laptop's screen
           brightnessctl = lib.getExe pkgs.brightnessctl;
+          # take screenshots and show notifications when they're taken
           grimblast = lib.getExe pkgs.grimblast;
+          # emoji picker
           emote = lib.getExe pkgs.emote;
 
           volStep = toString 5;

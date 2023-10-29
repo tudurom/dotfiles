@@ -1,4 +1,4 @@
-{ config, options, lib, inputs, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.homeModules.desktop.foot;
   themeFont = config.homeModules.desktop.fonts.themeFont;

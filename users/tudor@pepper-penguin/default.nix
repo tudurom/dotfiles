@@ -1,5 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 let
+  nixGLPackage = pkgs.nixgl.nixGLIntel;
   laptopScreen = {
     criteria = "eDP-1";
     scale = 1.25;
@@ -16,22 +17,14 @@ let
 in {
   imports = [ ../tudor ];
 
+  home.packages = [ nixGLPackage ];
+
   homeModules = {
     tools = {
       git.opCommitSign = true;
     };
     shell.starship.enable = true;
-    
-    desktop = {
-      foot.enable = true;
-      fonts.enable = true;
-      nixgl.enable = true;
-      sway = {
-        enable = true;
-        nixGLSupport = true;
-      };
-      waybar.enable = true;
-    };
+    desktop.sway.enable = true;
   };
 
   services.kanshi = {
