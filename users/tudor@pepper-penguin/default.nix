@@ -24,7 +24,10 @@ in {
       git.opCommitSign = true;
     };
     shell.starship.enable = true;
-    desktop.sway.enable = true;
+    desktop.sway = {
+      inherit nixGLPackage;
+      enable = true;
+    };
   };
 
   services.kanshi = {
