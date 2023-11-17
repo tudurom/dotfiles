@@ -24,7 +24,10 @@ with lib; {
         '';
       };
 
-      extraConfig = {} // (if cfg.opCommitSign then {
+
+      extraConfig = {
+        push.autoSetupRemote = true;
+      } // (if cfg.opCommitSign then {
         user.signingkey = removeSuffix "\n" (builtins.readFile ../../../id_ed25519.pub);
         gpg.format = "ssh";
         gpg.ssh.program = "/opt/1Password/op-ssh-sign";
