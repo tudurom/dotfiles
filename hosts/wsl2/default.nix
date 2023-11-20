@@ -20,11 +20,13 @@
     nativeSystemd = true;
   };
 
+  networking.hostName = "wsl2";
+
   age.secrets.tudor-password = {
     file = ../../secrets/wsl2/tudor-password.age;
   };
 
   users.users.${vars.username}.passwordFile = config.age.secrets.tudor-password.path;
 
-  home-manager.users.tudor = ../../users/tudor;
+  home-manager.users.tudor = ../../users + "/tudor@wsl2";
 }
