@@ -1,0 +1,31 @@
+---
+- name: Get package facts
+  ansible.builtin.package_facts:
+
+- name: Install RPMFusion Repo
+  when: '"rpmfusion-free-release" not in ansible_facts.packages'
+  block:
+    - name: Enable RPMFusion Repo
+      become: true
+      community.general.rpm_ostree_pkg:
+        name:
+          - 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+          - 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+        state: present
+
+    - name: Apply trick to make upgrading RPMFusion easier
+      block:
+        - name: Set orig_pkg variable
+          ansible.builtin.set_fact:
+            rpmfusion_orig_pkg: '{{ ansible_facts.packages["rpmfusion-free-release"][0] }}'
+
+        - name: Do the trick
+          become: true
+          changed_when: true
+          ansible.builtin.command:
+            cmd: >-
+              /usr/bin/rpm-ostree update
+                --uninstall rpmfusion-free-release-{{ rpmfusion_orig_pkg.version }}-{{ rpmfusion_orig_pkg.release }}.noarch
+                --uninstall rpmfusion-nonfree-release-{{ rpmfusion_orig_pkg.version }}-{{ rpmfusion_orig_pkg.release }}.noarch
+                --install rpmfusion-free-release
+                --install rpmfusion-nonfree-release

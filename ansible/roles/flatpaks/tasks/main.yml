@@ -1,0 +1,17 @@
+---
+- name: Install various apps from flathub
+  community.general.flatpak:
+    name:
+      - org.telegram.desktop
+      - com.discordapp.Discord
+      - org.videolan.VLC
+      - io.github.flattool.Warehouse
+      - com.spotify.Client
+    state: present
+    remote: flathub
+- name: Install various apps from fedora flatpak repo
+  community.general.flatpak:
+    name:
+      - com.github.tchx84.Flatseal
+      - org.gnome.Solanum
+      - org.gimp.GIMP

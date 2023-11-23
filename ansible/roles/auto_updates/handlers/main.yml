@@ -1,0 +1,6 @@
+---
+- name: Reload rpm-ostree
+  become: true
+  changed_when: true
+  ansible.builtin.command:
+    cmd: /usr/bin/rpm-ostree reload

@@ -140,7 +140,7 @@
             };
 
             programs.bash.profileExtra = ''
-              . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+              . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
             '';
           }
           (./users + "/${name}")
@@ -182,6 +182,15 @@
         ];
       };
 
+      devShells.x86_64-linux.ansible = x64Pkgs.mkShell {
+        buildInputs = with x64Pkgs; [
+          ansible
+          ansible-lint
+
+          python3Packages.pip
+        ];
+      };
+
       deploy.nodes."ceres" = {
         hostname = "ceres.lamb-monitor.ts.net";
         profiles.system = {
@@ -190,6 +199,21 @@
         };
       };
 
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      checks = (builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib) // {
+        x86_64-linux.ansible-lint = x64Pkgs.stdenvNoCC.mkDerivation {
+          name = "run-ansible-lint";
+          src = ./.;
+          dontBuild = true;
+          doCheck = true;
+          buildInputs = with x64Pkgs; [ ansible-lint git ];
+          checkPhase = ''
+            cd ./ansible
+            env HOME=$TMPDIR ansible-lint --offline
+          '';
+          installPhase = ''
+            mkdir "$out"
+          '';
+        };
+      };
     };
 }

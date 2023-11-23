@@ -1,0 +1,16 @@
+---
+- name: Enable rpm-ostree automatic update staging
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/rpm-ostreed.conf
+    regexp: '^#?AutomaticUpdatePolicy='
+    line: 'AutomaticUpdatePolicy=stage'
+  register: auto_updates_policy_conf
+  notify: Reload rpm-ostree
+
+- name: Enable and start rpm-ostreed-automatic timer
+  become: true
+  ansible.builtin.systemd_service:
+    name: rpm-ostreed-automatic.timer
+    state: started
+    enabled: true

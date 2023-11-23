@@ -1,0 +1,10 @@
+---
+- name: Get package facts
+  ansible.builtin.package_facts:
+
+- name: Install 1Password
+  become: true
+  when: '"1password" not in ansible_facts.packages'
+  community.general.rpm_ostree_pkg:
+    name: '{{ one_password_rpm_url }}'
+    state: present
