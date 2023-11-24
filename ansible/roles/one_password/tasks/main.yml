@@ -2,9 +2,22 @@
 - name: Get package facts
   ansible.builtin.package_facts:
 
+- name: Download 1password repo key
+  become: true
+  ansible.builtin.get_url:
+    url: 'https://downloads.1password.com/linux/keys/1password.asc'
+    dest: '/etc/pki/rpm-gpg/1password.asc'
+    mode: '0644'
+
+- name: Install 1password repo
+  become: true
+  ansible.builtin.copy:
+    src: '1password.repo'
+    dest: /etc/yum.repos.d/1password.repo
+    mode: '0644'
+
 - name: Install 1Password
   become: true
-  when: '"1password" not in ansible_facts.packages'
   community.general.rpm_ostree_pkg:
-    name: '{{ one_password_rpm_url }}'
+    name: '1password'
     state: present
