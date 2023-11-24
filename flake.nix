@@ -182,15 +182,6 @@
         ];
       };
 
-      devShells.x86_64-linux.ansible = x64Pkgs.mkShell {
-        buildInputs = with x64Pkgs; [
-          ansible
-          ansible-lint
-
-          python3Packages.pip
-        ];
-      };
-
       deploy.nodes."ceres" = {
         hostname = "ceres.lamb-monitor.ts.net";
         profiles.system = {
