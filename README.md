@@ -26,7 +26,8 @@ Remote server:
 
 ### Any other Linux distro for sane people
 
-1. Provision a machine with a "normal" Linux distro (my personal choice is Fedora)
+1. Provision a machine with a "normal" Linux distro (my personal choice is Fedora).
+   For this, [I prepared Ansible roles and playbooks](./ansible).
 2. Install Nix (my installer of choice is [nix-installer][nix-installer]).
 3. Clone this repo somewhere on the machine
 4. `nix run .#home-manager -- switch --flake .#tudor`
