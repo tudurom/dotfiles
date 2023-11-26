@@ -19,29 +19,37 @@ that are applied transparently on next reboot!
 I would, however, like to also manage the underlying OS in a declarative way.
 To do this, I am using Ansible.
 
-The playbooks in this directory are currently meants to be run on the managed host
-directly.
+Setup
+-----
 
-> [!NOTE]
-> I am currently using the [local connection plugin][ansible-local].
-> Many of the tasks I have now need to run with elevated priviledges (`become: true`).
-> I don't want to use the usual SSH connection plugin because I don't want to run
-> a local SSH server. To make sure that elevating works correctly, create a sudo
-> session by running `sudo -v`.
+Because I don't want to litter my Silverblue install with Ansible and Python stuff,
+I am running it from a container (with either [Toolbx][toolbx] or [Distrobox][distrobox]).
+To make that work, I enabled the SSH daemon, added my own SSH key to `authorized_keys`,
+and configured the daemon to only allow pubkey authentication.
 
-[ansible-local]: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/local_connection.html#ansible-collections-ansible-builtin-local-connection
+[toolbx]: https://containertoolbx.org/
+[distrobox]: https://distrobox.it/
 
-To run the things:
+To prepare the environment:
 
 ```sh
-sudo -v
-ansible-playbook playbooks/setup_laptop.yml
+distrobox create ansible-box [--image whatever]
+distrobox enter ansible-box
 ```
 
-To lint:
+Running
+-------
 
 ```sh
-ansible-lint
-# or
+distrobox enter ansible-box
+ansible-playbook playbooks/a_playbook.yml -K # the -K is short for --ask-become-pass
+
+# or even shorter
+distrobox enter ansible-box -- ansible-playbook playbooks/a_playbook.yml -K
+```
+
+To lint, run `ansible-lint` (installation left as an exercise to the reader), or:
+
+```sh
 nix flake check # this builds EVERYTHING, it will take a while
 ```

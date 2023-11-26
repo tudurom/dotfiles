@@ -1,7 +1,6 @@
 ---
 - name: Setup my laptop
   hosts: pepper
-  connection: local
   roles:
     - auto_updates
     - nix_installer
