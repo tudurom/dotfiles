@@ -5,6 +5,7 @@
     - auto_updates
     - nix_installer
     - distrobox
+    - tailscale
     - one_password
     - sway_fixes
     - flatpaks
