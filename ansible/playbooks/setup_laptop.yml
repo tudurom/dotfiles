@@ -4,6 +4,7 @@
   roles:
     - auto_updates
     - nix_installer
+    - distrobox
     - one_password
     - sway_fixes
     - flatpaks
