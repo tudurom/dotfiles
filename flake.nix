@@ -2,40 +2,56 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    systems.url = "github:nix-systems/default-linux";
+    utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
       inputs.darwin.follows = "";
     };
+
     home-manager = {
       url = "github:rycee/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     # nix-alien = {
     #   url = "github:thiagokokada/nix-alien";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hypr-contrib = {
       url = "github:hyprwm/contrib";
     };
+
     yarr-nix = {
       url = "git+https://git.tudorr.ro/tudor/yarr-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,23 +62,11 @@
     blog.url = "github:tudurom/blog";
   };
 
-  outputs = { self, nixpkgs, deploy-rs, unstable, ... } @ inputs:
+  outputs = { self, nixpkgs, utils, deploy-rs, unstable, ... } @ inputs:
     let
       vars = {
         stateVersion = "22.05";
         username = "tudor";
-      };
-
-      mkDeployPkgs = system: let
-        pkgs = import nixpkgs { inherit system; };
-      in import nixpkgs {
-        inherit system;
-        overlays = [
-          deploy-rs.overlay
-          (final: prev: {
-            deploy-rs = { inherit (pkgs) deploy-rs; lib = prev.deploy-rs.lib; };
-          })
-        ];
       };
 
       mkPkgs = pkgs: system: import pkgs {
@@ -147,8 +151,18 @@
         ];
       };
 
-      x64Pkgs = mkPkgs nixpkgs "x86_64-linux";
-      x64DeployPkgs = mkDeployPkgs "x86_64-linux";
+      mkDeployPkgs = system: import nixpkgs {
+        inherit system;
+        overlays = [
+          deploy-rs.overlay
+          (self: super: {
+            deploy-rs = {
+              inherit (nixpkgs.legacyPackages."${system}") deploy-rs;
+              lib = super.deploy-rs.lib;
+            };
+          })
+        ];
+      };
     in
     {
       nixosConfigurations."ceres" = mkNixOSSystem "ceres" "x86_64-linux";
@@ -159,52 +173,67 @@
 
       packages.x86_64-linux."tudor" = self.homeConfigurations."tudor".activationPackage;
       packages.x86_64-linux."tudor@pepper-penguin" = self.homeConfigurations."tudor@pepper-penguin".activationPackage;
-
-      apps.x86_64-linux.deploy-rs = {
-        type = "app";
-        program = "${x64DeployPkgs.deploy-rs.deploy-rs}/bin/deploy";
+    } // {
+      checks = (builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib);
+      deploy.nodes."ceres" = {
+        hostname = "ceres.lamb-monitor.ts.net";
+        profiles.system = {
+          sshUser = "root";
+          path = (mkDeployPkgs "x86_64-linux").deploy-rs.lib.activate.nixos self.nixosConfigurations."ceres";
+        };
       };
 
-      packages.x86_64-linux.default = x64Pkgs.nix;
-      packages.x86_64-linux.home-manager = x64Pkgs.home-manager;
-      packages.x86_64-linux.nixos-rebuild = x64Pkgs.nixos-rebuild;
-      packages.x86_64-linux.agenix = x64Pkgs.agenix;
+    } // utils.lib.eachDefaultSystem (system: let 
+      deployPkgs = let
+        pkgs = import nixpkgs { inherit system; };
+      in import nixpkgs {
+        inherit system;
+        overlays = [
+          deploy-rs.overlay
+          (final: prev: {
+            deploy-rs = { inherit (pkgs) deploy-rs; lib = prev.deploy-rs.lib; };
+          })
+        ];
+      };
+      pkgs = mkPkgs nixpkgs system;
+    in {
+      apps.deploy-rs = {
+        type = "app";
+        program = "${deployPkgs.deploy-rs.deploy-rs}/bin/deploy";
+      };
 
-      devShells.x86_64-linux.default = x64Pkgs.mkShell {
-        buildInputs = with x64Pkgs; [
+      packages.default = pkgs.nix;
+      packages.home-manager = pkgs.home-manager;
+      packages.nixos-rebuild = pkgs.nixos-rebuild;
+      packages.agenix = pkgs.agenix;
+
+      devShells.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
           nix
           home-manager
           nixos-rebuild
           agenix
-          x64DeployPkgs.deploy-rs.deploy-rs
+          deployPkgs.deploy-rs.deploy-rs
 
           nil
         ];
       };
 
-      deploy.nodes."ceres" = {
-        hostname = "ceres.lamb-monitor.ts.net";
-        profiles.system = {
-          sshUser = "root";
-          path = x64DeployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations."ceres";
-        };
-      };
-
-      checks = (builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib) // {
-        x86_64-linux.ansible-lint = x64Pkgs.stdenvNoCC.mkDerivation {
+      checks = {
+        ansible-lint = pkgs.stdenvNoCC.mkDerivation {
           name = "run-ansible-lint";
           src = ./.;
           dontBuild = true;
           doCheck = true;
-          buildInputs = with x64Pkgs; [ ansible-lint git ];
+          buildInputs = with pkgs; [ ansible-lint git ];
           checkPhase = ''
             cd ./ansible
-            env HOME=$TMPDIR ansible-lint --offline
+            env "HOME=$TMPDIR" ansible-lint --offline
           '';
           installPhase = ''
             mkdir "$out"
           '';
         };
       };
-    };
+    });
 }
