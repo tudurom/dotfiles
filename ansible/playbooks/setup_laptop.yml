@@ -2,6 +2,7 @@
 - name: Setup my laptop
   hosts: pepper
   roles:
+    - sshd_no_passwords
     - auto_updates
     - nix_installer
     - distrobox

@@ -1,0 +1,9 @@
+---
+- name: Disable SSHD password authentication
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/ssh/sshd_config.d/80-no-passwords.conf
+    mode: '0600'
+    content: >
+      PasswordAuthentication no
+  notify: Reload SSHD
