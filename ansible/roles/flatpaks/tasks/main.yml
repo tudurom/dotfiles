@@ -1,7 +1,9 @@
 ---
 - name: Install various apps from flathub
+  become: true
   community.general.flatpak:
     name:
+      - com.raggesilver.BlackBox
       - org.telegram.desktop
       - com.discordapp.Discord
       - org.videolan.VLC
@@ -10,6 +12,7 @@
     state: present
     remote: flathub
 - name: Install various apps from fedora flatpak repo
+  become: true
   community.general.flatpak:
     name:
       - com.github.tchx84.Flatseal
