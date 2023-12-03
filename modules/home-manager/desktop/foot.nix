@@ -13,7 +13,7 @@ with lib; {
   config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
-      package = pkgs.unstable.foot;
+      package = pkgs.foot;
       settings = {
         main = {
           pad = "20x20";

@@ -112,15 +112,6 @@ with lib; {
       };
     };
 
-    # TODO: Remove once next NixOS / home-manager is released
-    # https://github.com/nix-community/home-manager/blob/6bba64781e4b7c1f91a733583defbd3e46b49408/modules/services/window-managers/i3-sway/sway.nix#L480-L491
-    systemd.user.targets.sway-session = {
-      Unit = {
-        Wants = ["xdg-desktop-autostart.target"];
-        Before = "xdg-desktop-autostart.target";
-      };
-    };
-
     # the belly of the beast
     wayland.windowManager.sway = {
       enable = true;
@@ -140,16 +131,14 @@ with lib; {
         EOF
         chmod +x $out/bin/sway
       '') else origPkg;
-      # Uncomment when the next Nixpkgs / home-manager is released
-      # systemd = {
-      #   enable = true;
-      #   xdgAutostart = true;
-      # };
+      systemd = {
+        enable = true;
+        xdgAutostart = true;
+      };
 
       # starts a systemd-session.target systemd target in the config,
       # so we can easily make various other programs (see above) start
       # when sway starts
-      systemdIntegration = true;
       wrapperFeatures.gtk = true;
       config = {
         # the super key
@@ -173,9 +162,9 @@ with lib; {
         workspaceAutoBackAndForth = true;
         startup = [
           { command = "/usr/libexec/polkit-gnome-authentication-agent-1"; }
-          { command = lib.getExe config.services.mako.package; }
+          { command = lib.getExe' config.services.mako.package "mako"; }
           { command = "1password --silent"; }
-          { command = lib.getExe pkgs.emote; }
+          { command = lib.getExe' pkgs.emote "emote"; }
           { command = "systemctl --user restart waybar.service kanshi.service"; always = true; }
         ];
         fonts = {
@@ -195,7 +184,7 @@ with lib; {
           # take screenshots and show notifications when they're taken
           grimblast = lib.getExe pkgs.grimblast;
           # emoji picker
-          emote = lib.getExe pkgs.emote;
+          emote = lib.getExe' pkgs.emote "emote";
 
           volStep = toString 5;
           brightStep = toString 5;
