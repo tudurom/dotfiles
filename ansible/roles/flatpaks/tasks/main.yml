@@ -29,6 +29,7 @@
       - com.spotify.Client
       - com.google.Chrome # for work...
       - org.gnome.Solanum
+      - org.signal.Signal
 
 - name: Install various apps from fedora flatpak repo
   community.general.flatpak:
@@ -42,3 +43,4 @@
       - org.mozilla.Thunderbird
       - org.gnome.NautilusPreviewer
       - org.pulseaudio.pavucontrol
+      - org.libreoffice.LibreOffice
