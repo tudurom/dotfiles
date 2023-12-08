@@ -29,10 +29,9 @@
   };
 
   networking = {
+    useDHCP = true;
     hostName = "ceres";
-    useDHCP = false;
     hostId = "23247628"; # for zfs
-    interfaces.enp0s25.useDHCP = true;
 
     firewall.enable = true;
 
