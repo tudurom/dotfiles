@@ -51,7 +51,7 @@
   };
 
   users.users.${vars.username} = {
-    passwordFile = config.age.secrets.tudor-password.path;
+    hashedPasswordFile = config.age.secrets.tudor-password.path;
     openssh.authorizedKeys.keys = [
       (builtins.readFile ../../id_ed25519.pub)
     ];

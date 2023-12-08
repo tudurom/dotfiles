@@ -26,7 +26,7 @@
     file = ../../secrets/wsl2/tudor-password.age;
   };
 
-  users.users.${vars.username}.passwordFile = config.age.secrets.tudor-password.path;
+  users.users.${vars.username}.hashedPasswordFile = config.age.secrets.tudor-password.path;
 
   home-manager.users.tudor = ../../users + "/tudor@wsl2";
 }
