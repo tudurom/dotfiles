@@ -3,12 +3,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    systems.url = "github:nix-systems/default-linux";
-    utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
-
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -67,7 +61,7 @@
     blog.url = "github:tudurom/blog";
   };
 
-  outputs = inputs@{ self, nixpkgs, utils, deploy-rs, unstable, flake-parts, ... }:
+  outputs = inputs@{ self, nixpkgs, deploy-rs, unstable, flake-parts, ... }:
     let
       vars = {
         stateVersion = "22.05";
