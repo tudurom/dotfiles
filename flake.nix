@@ -21,7 +21,7 @@
     };
 
     home-manager = {
-      url = "github:rycee/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -64,7 +64,7 @@
   outputs = inputs@{ self, nixpkgs, deploy-rs, unstable, flake-parts, ... }:
     let
       vars = {
-        stateVersion = "22.05";
+        stateVersion = "23.05";
         username = "tudor";
       };
 
