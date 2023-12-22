@@ -22,6 +22,17 @@ I am using Ansible to achieve this.
 Setup
 -----
 
+First and foremost, as a desktop user, I'd like to have some niceties like
+hardware accelerated codecs and compatibility with various peripherals.
+Luckily, the [Universal Blue][universal-blue] project provides
+ready-made Silverblue-based OSTree images with neat additions for desktop users.
+
+**This setup assumes that you already installed the [Universal Blue `silverblue-main`][silverblue-main] image!
+Applying it on top of stock Fedora Silverblue should also work just fine!**
+
+[universal-blue]: https://universal-blue.org/
+[silverblue-main]: https://universal-blue.org/images/main/
+
 Because I don't want to litter my Silverblue install with Ansible and Python stuff,
 I am running it from a container (with either [Toolbx][toolbx] or [Distrobox][distrobox]).
 To make that work, I enabled the SSH daemon, added my own SSH key to `authorized_keys`,
