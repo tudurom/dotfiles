@@ -4,6 +4,7 @@
   roles:
     - sshd_no_passwords
     - auto_updates
+    - langpacks
     - nix_installer
     - distrobox
     - tailscale

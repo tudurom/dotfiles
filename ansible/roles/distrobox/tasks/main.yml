@@ -1,6 +1,12 @@
 ---
+- name: Gather package facts
+  ansible.builtin.package_facts:
+
 - name: Install distrobox
   become: true
+  # in case we use Universal Blue, this should already be
+  # installed in the image, we don't want to layer it
+  when: '"distrobox" not in ansible_facts.packages'
   community.general.rpm_ostree_pkg:
     name: distrobox
     state: present

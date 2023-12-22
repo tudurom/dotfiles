@@ -48,6 +48,15 @@ distrobox create ansible-box [--image whatever]
 distrobox enter ansible-box
 ```
 
+TODO: setup l10n properly. This is currently done at OS install time.
+I have very funny l10n choices:
+* Language: British English
+* Measurements, time, date etc: Dutch (Netherlands)
+* Keyboard: "Romanian", XKB `ro`, on Windows it's called "Romanian (Programmers)".
+  It's IMO the best if you write primarily English but you also want to be able
+  to write accents and funny symbols, it has a nice selection of deadkeys that are
+  not annoying to use either (looking at you, Windows "English (International)").
+
 Running
 -------
 

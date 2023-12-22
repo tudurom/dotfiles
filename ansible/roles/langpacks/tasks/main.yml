@@ -1,0 +1,10 @@
+---
+- name: Install langpacks
+  become: true
+  community.general.rpm_ostree_pkg:
+    name:
+      - langpacks-en # lingua franca
+      - langpacks-en_GB # Queen's English
+      - langpacks-nl # the Nether
+      - langpacks-ro # the OG
+    state: present
