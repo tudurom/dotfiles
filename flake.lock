@@ -424,11 +424,11 @@
         "utils": "utils_5"
       },
       "locked": {
-        "lastModified": 1693056054,
-        "narHash": "sha256-7iYI2VEOTNBoGp1yCZYR6Yd3E1oV7CeszwUOx/hraAk=",
+        "lastModified": 1703623628,
+        "narHash": "sha256-0s6a/v09csvP5cyQwAqztIUQQ+0CdhvKAvE+obzUaB0=",
         "owner": "tudurom",
         "repo": "site",
-        "rev": "413a38e819180793629d3cb307cda8a49386eca1",
+        "rev": "7beda6d27e7c1032966bee6534b074458766ebaf",
         "type": "github"
       },
       "original": {
