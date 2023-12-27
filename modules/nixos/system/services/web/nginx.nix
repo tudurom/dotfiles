@@ -24,7 +24,7 @@ with lib; {
         maxAge = 31536000;
       in ''
         map $scheme $hsts_header {
-          https "max-age=${maxAge}";
+          https "max-age=${builtins.toString maxAge}";
         }
         add_header Strict-Transport-Security $hsts_header;
 
