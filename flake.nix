@@ -177,7 +177,7 @@
         deploy.nodes."ceres" = {
           hostname = "ceres.lamb-monitor.ts.net";
           profiles.system = {
-            sshUser = "root";
+            user = "root";
             path = (mkDeployPkgs "x86_64-linux").deploy-rs.lib.activate.nixos self.nixosConfigurations."ceres";
           };
         };
