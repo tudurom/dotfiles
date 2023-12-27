@@ -1,0 +1,40 @@
+{ config, pkgs, lib, ... }:
+let
+  cfg = config.systemModules.services.dyndns;
+in
+with lib; {
+  options.systemModules.services.dyndns = {
+    enable = mkEnableOption "Dynamic DNS Client";
+  };
+
+  config = mkIf cfg.enable {
+    systemd = {
+      timers.dyndns = {
+        wantedBy = [ "timers.target" ];
+        wants = [ "network-online.target" ];
+        partOf = [ "dyndns.service" ];
+        timerConfig = {
+          OnUnitActiveSec = "15min";
+          OnBootSec = "10s";
+        };
+      };
+
+      services.dyndns = {
+        serviceConfig.Type = "oneshot";
+        script = let
+          checkip4 = "checkipv4.dedyn.io";
+          checkip6 = "checkipv6.dedyn.io";
+          updateUrl = "update.dedyn.io";
+          # credentials are of the form "domain:token"
+          credentials = config.age.secrets.dedyn.path;
+          curl = lib.getExe pkgs.curl;
+        in ''
+          set -euo pipefail
+          IPV4="$(${curl} --fail-with-body 'https://${checkip4}')"
+          IPV6="$(${curl} --fail-with-body 'https://${checkip6}')"
+          ${curl} --user "$(<"${credentials}")" "https://${updateUrl}/?myipv4=$IPV4&myipv6=$IPV6"
+        '';
+      };
+    };
+  };
+}

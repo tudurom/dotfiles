@@ -4,6 +4,7 @@
 
   systemModules.basePackages.enable = true;
   systemModules.services = {
+    dyndns.enable = true;
     ssh.enable = true;
     ssh.enableMosh = true;
     web = {
@@ -42,12 +43,9 @@
   };
 
   age.secrets = {
-    tudor-password = {
-      file = ../../secrets/ceres/tudor-password.age;
-    };
-    yarr-credentials = {
-      file = ../../secrets/ceres/yarr-credentials.age;
-    };
+    tudor-password.file = ../../secrets/ceres/tudor-password.age;
+    yarr-credentials.file = ../../secrets/ceres/yarr-credentials.age;
+    dedyn.file = ../../secrets/ceres/dedyn.age;
   };
 
   users.users.${vars.username} = {
