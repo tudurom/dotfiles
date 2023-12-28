@@ -8,6 +8,17 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [
+      (final: prev: let
+        system = final.system;
+      in {
+        # https://discourse.nixos.org/t/namespacing-scoping-a-group-of-packages/13782/10
+        # I couldn't be bothered
+        tudorSite = inputs.site.packages.${system}.site;
+        tudorBlog = inputs.blog.packages.${system}.blog;
+      })
+    ];
+
     services.nginx.virtualHosts."tudorr.ro" = {
       forceSSL = true;
       enableACME = true;
@@ -16,12 +27,12 @@ with lib; {
 
       locations = {
         "/" = {
-          alias = "${pkgs.tudor.site}/";
+          alias = "${pkgs.tudorSite}/";
           index = "index.html";
         };
 
         "/blog/" = {
-          alias = "${pkgs.tudor.blog}/";
+          alias = "${pkgs.tudorBlog}/";
           index = "index.html";
         };
       };

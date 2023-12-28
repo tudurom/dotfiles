@@ -9,6 +9,12 @@ with lib;
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [
+      (final: prev: {
+        tudor.pong = inputs.co-work.packages.${final.system}.pong;
+      })
+    ];
+
     networking.firewall.allowedTCPPorts = [ 42069 ];
     systemd.services.pong = {
       enable = true;

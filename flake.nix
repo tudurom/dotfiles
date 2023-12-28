@@ -72,14 +72,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          inputs.hypr-contrib.overlays.default
-          inputs.nixgl.overlays.default
-          inputs.agenix.overlays.default
-          inputs.yarr-nix.overlays.default
           (final: prev: {
-            tudor.site = inputs.site.packages.${system}.site;
-            tudor.blog = inputs.blog.packages.${system}.blog;
-            tudor.pong = inputs.co-work.packages.${system}.pong;
             unstable = import inputs.unstable { inherit system; config.allowUnfree = true; };
             home-manager = inputs.home-manager.packages.${system}.home-manager;
           })
@@ -183,7 +176,7 @@
         };
       };
 
-      perSystem = {config, pkgs, system, ... }: let
+      perSystem = {config, pkgs, system, self', ... }: let
         deployPkgs = import nixpkgs {
           inherit system;
           overlays = [
@@ -203,14 +196,14 @@
         packages.default = pkgs.nix;
         packages.home-manager = pkgs.home-manager;
         packages.nixos-rebuild = pkgs.nixos-rebuild;
-        packages.agenix = pkgs.agenix;
+        packages.agenix = inputs.agenix.packages.${system}.default;
 
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             nix
             home-manager
             nixos-rebuild
-            agenix
+            self'.packages.agenix
             deployPkgs.deploy-rs.deploy-rs
 
             nil
