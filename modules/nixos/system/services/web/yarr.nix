@@ -3,6 +3,8 @@ let
   cfg = config.systemModules.services.web.yarr;
 in
 with lib; {
+  imports = [ flake.inputs.yarr-nix.nixosModules.default ];
+
   options.systemModules.services.web.yarr.enable = mkEnableOption "Enable yarr";
 
   config = mkIf cfg.enable {

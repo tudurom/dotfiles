@@ -104,8 +104,6 @@
                 services.openssh.enable = true;
               }
               inputs.home-manager.nixosModules.home-manager
-              inputs.nixos-wsl.nixosModules.wsl
-              inputs.yarr-nix.nixosModules.default
               {
                 home-manager = {
                   useGlobalPkgs = true;
@@ -123,9 +121,6 @@
           "ceres" = mkNixOSSystem "ceres" "x86_64-linux";
           "wsl2" = mkNixOSSystem "wsl2" "x86_64-linux";
         };
-
-        packages."x86_64-linux"."tudor" = self.homeConfigurations."tudor".activationPackage;
-        packages."x86_64-linux"."tudor@pepper-penguin" = self.homeConfigurations."tudor@pepper-penguin".activationPackage;
 
         homeConfigurations = let
           mkHomeConfiguration = name: user: system: let

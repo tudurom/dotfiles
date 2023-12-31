@@ -1,6 +1,6 @@
-{ config, pkgs, vars, ... }:
+{ config, flake, vars, ... }:
 {
-  imports = [ ../_all ];
+  imports = [ ../_all flake.inputs.nixos-wsl.nixosModules.wsl ];
 
   systemModules = {
     basePackages.enable = true;
