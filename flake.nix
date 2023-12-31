@@ -7,6 +7,10 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
@@ -61,117 +65,122 @@
     blog.url = "github:tudurom/blog";
   };
 
-  outputs = inputs@{ self, nixpkgs, deploy-rs, unstable, flake-parts, ... }:
+  outputs = inputs@{ self, haumea, nixpkgs, deploy-rs, unstable, flake-parts, ... }:
     let
       vars = {
         stateVersion = "23.11";
         username = "tudor";
       };
 
-      mkPkgs = pkgs: system: import pkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          (final: prev: {
-            unstable = import inputs.unstable { inherit system; config.allowUnfree = true; };
-            home-manager = inputs.home-manager.packages.${system}.home-manager;
-          })
-        ];
-      };
-
-      mkHmDependencies = system: [
-        inputs.agenix.homeManagerModules.default
-      ];
-
-      mkNixOSModules = name: system: [
-        {
-          nixpkgs.pkgs = mkPkgs nixpkgs system;
-          _module.args.nixpkgs = nixpkgs;
-          _module.args.self = self;
-          _module.args.inputs = inputs;
-          _module.args.configName = name;
-          _module.args.vars = vars;
-        }
-        inputs.agenix.nixosModules.default
-        {
-          environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
-          # enable ssh host key generation
-          services.openssh.enable = true;
-        }
-        inputs.home-manager.nixosModules.home-manager
-        inputs.nixos-wsl.nixosModules.wsl
-        inputs.yarr-nix.nixosModules.default
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = false;
-            extraSpecialArgs = { inherit inputs vars; configName = name; };
-            sharedModules = mkHmDependencies system;
-          };
-        }
-        ./hosts/${name}
-      ];
-
-      mkNixOSSystem = name: system: nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = mkNixOSModules name system;
-      };
-
-      mkNonNixOSEnvironment = name: user: system: inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = mkPkgs nixpkgs system;
-        extraSpecialArgs = {inherit inputs vars; configName = "normal-linux"; };
-        modules = (mkHmDependencies system) ++ [
-          {
-            _module.args.nixpkgs = nixpkgs;
-            _module.args.inputs = inputs;
-            _module.args.vars = vars;
-          }
-          {
-            home = {
-              homeDirectory = "/home/${user}";
-              username = user;
-              sessionVariables = {
-                GIT_SSH = "/usr/bin/ssh";
-              };
-            };
-
-            programs.bash.profileExtra = ''
-              . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-            '';
-          }
-          (./users + "/${name}")
-        ];
-      };
-
-      mkDeployPkgs = system: import nixpkgs {
-        inherit system;
-        overlays = [
-          deploy-rs.overlay
-          (self: super: {
-            deploy-rs = {
-              inherit (nixpkgs.legacyPackages."${system}") deploy-rs;
-              lib = super.deploy-rs.lib;
-            };
-          })
-        ];
+      specialArgs = {
+        inherit vars;
+        flake = {
+          inherit self inputs;
+        };
       };
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" ];
       flake = {
-        nixosConfigurations."ceres" = mkNixOSSystem "ceres" "x86_64-linux";
-        nixosConfigurations."wsl2" = mkNixOSSystem "wsl2" "x86_64-linux";
+        lib = haumea.lib.load {
+          src = ./lib;
+          inputs = {
+            inherit nixpkgs inputs;
+          };
+        };
+
+        nixosConfigurations = let
+          mkNixOSSystem = name: system: let
+            modules = [
+              {
+                nixpkgs = {
+                  config = self.lib.nixpkgs.defaultConfig;
+                  overlays = self.lib.nixpkgs.mkDefaultOverlays { inherit system; };
+                };
+              }
+              inputs.agenix.nixosModules.default
+              {
+                environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
+                # enable ssh host key generation
+                services.openssh.enable = true;
+              }
+              inputs.home-manager.nixosModules.home-manager
+              inputs.nixos-wsl.nixosModules.wsl
+              inputs.yarr-nix.nixosModules.default
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = false;
+                  extraSpecialArgs = specialArgs // { configName = name; };
+                  sharedModules = self.lib.hm-modules;
+                };
+              }
+              ./hosts/${name}
+            ];
+          in nixpkgs.lib.nixosSystem {
+            inherit system modules specialArgs;
+          };
+        in {
+          "ceres" = mkNixOSSystem "ceres" "x86_64-linux";
+          "wsl2" = mkNixOSSystem "wsl2" "x86_64-linux";
+        };
 
         packages."x86_64-linux"."tudor" = self.homeConfigurations."tudor".activationPackage;
         packages."x86_64-linux"."tudor@pepper-penguin" = self.homeConfigurations."tudor@pepper-penguin".activationPackage;
 
-        homeConfigurations."tudor" = mkNonNixOSEnvironment "tudor" "tudor" "x86_64-linux";
-        homeConfigurations."tudor@pepper-penguin" = mkNonNixOSEnvironment "tudor@pepper-penguin" "tudor" "x86_64-linux";
+        homeConfigurations = let
+          mkHomeConfiguration = name: user: system: let
+            pkgs = self.lib.nixpkgs.mkPkgs { inherit system; };
+          in inputs.home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
 
-        deploy.nodes."ceres" = {
+            extraSpecialArgs = specialArgs // { configName = "normal-linux"; };
+            modules = (self.lib.hm-modules) ++ [
+              {
+                nixpkgs = {
+                  config = self.lib.nixpkgs.defaultConfig;
+                  overlays = self.lib.nixpkgs.mkDefaultOverlays { inherit system; };
+                };
+              }
+              {
+                home = {
+                  homeDirectory = "/home/${user}";
+                  username = user;
+                  sessionVariables = {
+                    GIT_SSH = "/usr/bin/ssh";
+                  };
+                };
+
+                programs.bash.profileExtra = ''
+                  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+                '';
+              }
+              (./users + "/${name}")
+            ];
+          };
+        in {
+          "tudor" = mkHomeConfiguration "tudor" "tudor" "x86_64-linux";
+          "tudor@pepper-penguin" = mkHomeConfiguration "tudor@pepper-penguin" "tudor" "x86_64-linux";
+        };
+
+        deploy.nodes."ceres" = let
+          mkDeployPkgs = system: import nixpkgs {
+            inherit system;
+            overlays = [
+              deploy-rs.overlay
+              (self: super: {
+                deploy-rs = {
+                  inherit (nixpkgs.legacyPackages."${system}") deploy-rs;
+                  lib = super.deploy-rs.lib;
+                };
+              })
+            ];
+          };
+          configuration = self.nixosConfigurations."ceres";
+        in {
           hostname = "ceres.lamb-monitor.ts.net";
           profiles.system = {
             user = "root";
-            path = (mkDeployPkgs "x86_64-linux").deploy-rs.lib.activate.nixos self.nixosConfigurations."ceres";
+            path = (mkDeployPkgs configuration.pkgs.system).deploy-rs.lib.activate.nixos configuration;
           };
         };
       };
@@ -187,7 +196,6 @@
           ];
         };
       in {
-        _module.args.pkgs = mkPkgs nixpkgs system;
         apps.deploy-rs = {
           type = "app";
           program = "${deployPkgs.deploy-rs.deploy-rs}/bin/deploy";

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, flake, ... }:
 let
   cfg = config.systemModules.services.web.site;
 in
@@ -14,8 +14,8 @@ with lib; {
       in {
         # https://discourse.nixos.org/t/namespacing-scoping-a-group-of-packages/13782/10
         # I couldn't be bothered
-        tudorSite = inputs.site.packages.${system}.site;
-        tudorBlog = inputs.blog.packages.${system}.blog;
+        tudorSite = flake.inputs.site.packages.${system}.site;
+        tudorBlog = flake.inputs.blog.packages.${system}.blog;
       })
     ];
 

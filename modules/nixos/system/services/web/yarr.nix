@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }:
+{ config, lib, flake, ... }:
 let
   cfg = config.systemModules.services.web.yarr;
 in
@@ -7,7 +7,7 @@ with lib; {
 
   config = mkIf cfg.enable {
     nixpkgs.overlays = [
-      inputs.yarr-nix.overlays.default
+      flake.inputs.yarr-nix.overlays.default
     ];
     services.yarr = {
       enable = true;

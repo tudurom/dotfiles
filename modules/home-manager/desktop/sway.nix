@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }:
+{ config, flake, lib, pkgs, ... }:
 let
   cfg = config.homeModules.desktop.sway;
   themeFont = config.homeModules.desktop.fonts.themeFont;
@@ -26,7 +26,7 @@ with lib; {
 
   config = mkIf cfg.enable {    
     nixpkgs.overlays = [
-      inputs.hypr-contrib.overlays.default
+      flake.inputs.hypr-contrib.overlays.default
     ];
 
     homeModules.desktop = {

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, flake, ... }:
 let
   cfg = config.homeModules.tools.nix;
 in
@@ -10,6 +10,6 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    nix.registry.stable.flake = inputs.nixpkgs;
+    nix.registry.stable.flake = flake.inputs.nixpkgs;
   };
 }

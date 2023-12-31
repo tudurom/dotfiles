@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, flake, ... }:
 let
   cfg = config.systemModules.services.pong;
 in
@@ -11,7 +11,7 @@ with lib;
   config = mkIf cfg.enable {
     nixpkgs.overlays = [
       (final: prev: {
-        tudor.pong = inputs.co-work.packages.${final.system}.pong;
+        tudor.pong = flake.inputs.co-work.packages.${final.system}.pong;
       })
     ];
 

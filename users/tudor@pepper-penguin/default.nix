@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, flake, ... }:
 let
   nixGLPackage = pkgs.nixgl.nixGLIntel;
   laptopScreen = {
@@ -17,7 +17,7 @@ let
 in {
   imports = [ ../tudor ];
   nixpkgs.overlays = [
-    inputs.nixgl.overlays.default
+    flake.inputs.nixgl.overlays.default
   ];
 
   home.packages = [ nixGLPackage ];

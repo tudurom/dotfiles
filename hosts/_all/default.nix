@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixpkgs, self, inputs, vars, ... }:
+{ flake, vars, ... }:
 
 {
   imports = [
@@ -37,5 +37,5 @@
   };
 
   system.stateVersion = vars.stateVersion;
-  system.configurationRevision = self.rev or "dirty";
+  system.configurationRevision = flake.self.rev or "dirty";
 }

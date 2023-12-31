@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixpkgs, self, vars, configName, ... }:
+{ config, lib, pkgs, flake, ... }:
 
 with lib;
 let
@@ -35,7 +35,7 @@ in
           type = "indirect";
         };
         to = {
-          path = "${nixpkgs}";
+          path = "${flake.inputs.nixpkgs}";
           type = "path";
         };
       };
