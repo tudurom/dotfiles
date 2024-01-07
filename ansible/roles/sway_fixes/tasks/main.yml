@@ -18,7 +18,7 @@
 
     - name: Copy session file
       become: true
-      ansible.builtin.copy:
-        src: sway.desktop
+      ansible.builtin.template:
+        src: sway.desktop.j2
         dest: /usr/local/share/wayland-sessions/sway.desktop
         mode: "0444"

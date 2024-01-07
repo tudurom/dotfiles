@@ -1,5 +1,7 @@
 { config, flake, vars, ... }:
-{
+let
+  username = "tudor";
+in {
   imports = [ ../_all flake.inputs.nixos-wsl.nixosModules.wsl ];
 
   systemModules = {
@@ -15,7 +17,7 @@
   wsl = {
     enable = true;
     wslConf.automount.root = "/mnt";
-    defaultUser = vars.username;
+    defaultUser = username;
     startMenuLaunchers = true;
     nativeSystemd = true;
   };
@@ -26,7 +28,13 @@
     file = ../../secrets/wsl2/tudor-password.age;
   };
 
-  users.users.${vars.username}.hashedPasswordFile = config.age.secrets.tudor-password.path;
+  users.users."${username}" = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    uid = 1000;
+    home = "/home/${username}";
+    hashedPasswordFile = config.age.secrets.tudor-password.path;
+  };
 
   home-manager.users.tudor = ../../users + "/tudor@wsl2";
 }

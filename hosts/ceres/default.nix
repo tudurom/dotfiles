@@ -48,7 +48,11 @@
     dedyn.file = ../../secrets/ceres/dedyn.age;
   };
 
-  users.users.${vars.username} = {
+  users.users.tudor = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    uid = 1000;
+    home = "/home/tudor";
     hashedPasswordFile = config.age.secrets.tudor-password.path;
     openssh.authorizedKeys.keys = [
       (builtins.readFile ../../id_ed25519.pub)

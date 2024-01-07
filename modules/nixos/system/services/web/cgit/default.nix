@@ -3,7 +3,6 @@ let
   cfg = config.systemModules.services.web.cgit;
   readmeFile = ./cgit-root-readme.md;
   logoFile = ./logo.png;
-  repoDir = "/home/${vars.username}/git/";
   configFile = pkgs.writeText "cgitrc" ''
     css=/cgit.css
     logo=/logo.png
@@ -32,11 +31,17 @@ let
     snapshots=tar.gz zip
 
     section-from-path=1
-    scan-path=${repoDir}
+    scan-path=${if cfg.repoDir == "" then throw "Repodir must be set" else cfg.repoDir}
   '';
 in
 with lib; {
-  options.systemModules.services.web.cgit.enable = mkEnableOption "cgit";
+  options.systemModules.services.web.cgit = {
+    enable = mkEnableOption "cgit";
+    repoDir = mkOption {
+      type = types.str;
+      default = "";
+    };
+  };
 
   config = mkIf cfg.enable {
     services.fcgiwrap.enable = true;

@@ -69,7 +69,6 @@
     let
       vars = {
         stateVersion = "23.11";
-        username = "tudor";
       };
 
       specialArgs = {

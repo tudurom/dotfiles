@@ -29,12 +29,6 @@
   };
 
   users.mutableUsers = false;
-  users.users.${vars.username} = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "scanner" "lp" ];
-    uid = 1000;
-    home = "/home/${vars.username}";
-  };
 
   system.stateVersion = vars.stateVersion;
   system.configurationRevision = flake.self.rev or "dirty";
