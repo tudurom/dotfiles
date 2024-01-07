@@ -65,7 +65,7 @@
     blog.url = "github:tudurom/blog";
   };
 
-  outputs = inputs@{ self, haumea, nixpkgs, deploy-rs, unstable, flake-parts, ... }:
+  outputs = inputs@{ self, haumea, nixpkgs, deploy-rs, unstable, flake-parts, home-manager, ... }:
     let
       vars = {
         stateVersion = "23.11";
