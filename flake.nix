@@ -204,9 +204,11 @@
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             nix
-            home-manager
-            nixos-rebuild
+
+            self'.packages.home-manager
+            self'.packages.nixos-rebuild
             self'.packages.agenix
+
             deployPkgs.deploy-rs.deploy-rs
 
             nil
