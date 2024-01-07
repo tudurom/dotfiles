@@ -1,4 +1,4 @@
-{ config, lib, pkgs, configName, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.homeModules.shell.nushell;

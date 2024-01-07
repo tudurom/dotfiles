@@ -107,7 +107,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = false;
-                  extraSpecialArgs = specialArgs // { configName = name; };
+                  extraSpecialArgs = specialArgs;
                   sharedModules = self.lib.hm-modules;
                 };
               }
@@ -127,7 +127,7 @@
           in inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
 
-            extraSpecialArgs = specialArgs // { configName = "normal-linux"; };
+            extraSpecialArgs = specialArgs;
             modules = (self.lib.hm-modules) ++ [
               {
                 nixpkgs = {
