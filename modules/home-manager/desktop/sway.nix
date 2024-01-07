@@ -204,7 +204,7 @@ with lib; {
           "XF86AudioMute" = "exec ${pamixer} --toggle-mute";
           "XF86AudioMicMute" = "exec ${pamixer} --default-source --toggle-mute";
 
-          "XF86MonBrightnessUp" = "exec ${brightnessctl} set +${brightStep}%";
+          "XF86MonBrightnessUp" = "exec ${brightnessctl} set ${brightStep}%+";
           "XF86MonBrightnessDown" = "exec ${brightnessctl} set ${brightStep}%-";
 
           "Print" = "exec ${grimblast} --notify copy screen";
