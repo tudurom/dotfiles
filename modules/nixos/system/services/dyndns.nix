@@ -31,12 +31,14 @@ with lib; {
           set -euo pipefail
           IPV4="$(${curl} --fail-with-body 'https://${checkip4}')"
           IPV6="$(${curl} --fail-with-body 'https://${checkip6}')"
-          ${curl} --user "$(<"${credentials}")" "https://${updateUrl}/?myipv4=$IPV4&myipv6=$IPV6"
+          ${curl} --user "$(<"$CREDENTIALS_PATH")" "https://${updateUrl}/?myipv4=$IPV4&myipv6=$IPV6"
         '';
 
         serviceConfig = {
           Type = "oneshot";
           DynamicUser = "yes";
+          LoadCredential = "credentials:${config.age.secrets.dedyn.path}";
+          Environment = "CREDENTIALS_PATH=%d/credentials";
 
           # Hardening
           CapabilityBoundingSet = [ "" ];
