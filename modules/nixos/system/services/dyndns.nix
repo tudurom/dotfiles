@@ -20,7 +20,6 @@ with lib; {
       };
 
       services.dyndns = {
-        serviceConfig.Type = "oneshot";
         script = let
           checkip4 = "checkipv4.dedyn.io";
           checkip6 = "checkipv6.dedyn.io";
@@ -34,6 +33,35 @@ with lib; {
           IPV6="$(${curl} --fail-with-body 'https://${checkip6}')"
           ${curl} --user "$(<"${credentials}")" "https://${updateUrl}/?myipv4=$IPV4&myipv6=$IPV6"
         '';
+
+        serviceConfig = {
+          Type = "oneshot";
+          DynamicUser = "yes";
+
+          # Hardening
+          CapabilityBoundingSet = [ "" ];
+          DeviceAllow = [ "" ];
+          LockPersonality = true;
+          MemoryDenyWriteExecute = true;
+          PrivateDevices = true;
+          PrivateUsers = true;
+          ProcSubset = "pid";
+          ProtectClock = true;
+          ProtectControlGroups = true;
+          ProtectHome = true;
+          ProtectHostname = true;
+          ProtectKernelLogs = true;
+          ProtectKernelModules = true;
+          ProtectKernelTunables = true;
+          ProtectProc = "invisible";
+          RestrictAddressFamilies = [ "AF_INET" "AF_INET6" "AF_UNIX" ];
+          RestrictNamespaces = true;
+          RestrictRealtime = true;
+          RestrictSUIDSGID = true;
+          SystemCallArchitectures = "native";
+          SystemCallFilter = [ "@system-service" "~@privileged" ];
+          UMask = "0077";
+        };
       };
     };
   };
