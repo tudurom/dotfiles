@@ -9,13 +9,11 @@ with lib; {
 
   config = mkIf cfg.enable {
     nixpkgs.overlays = [
-      (final: prev: let
-        system = final.system;
-      in {
-        # https://discourse.nixos.org/t/namespacing-scoping-a-group-of-packages/13782/10
-        # I couldn't be bothered
-        tudorSite = flake.inputs.site.packages.${system}.site;
-        tudorBlog = flake.inputs.blog.packages.${system}.blog;
+      (final: prev: {
+        tudor = {
+          site = flake.inputs.site.packages.${final.system}.site;
+          blog = flake.inputs.blog.packages.${final.system}.blog;
+        } // optionalAttrs (prev ? "tudor") prev.tudor;
       })
     ];
 
@@ -27,12 +25,12 @@ with lib; {
 
       locations = {
         "/" = {
-          alias = "${pkgs.tudorSite}/";
+          alias = "${pkgs.tudor.site}/";
           index = "index.html";
         };
 
         "/blog/" = {
-          alias = "${pkgs.tudorBlog}/";
+          alias = "${pkgs.tudor.blog}/";
           index = "index.html";
         };
       };
