@@ -53,6 +53,7 @@
 
     hypr-contrib = {
       url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     yarr-nix = {
