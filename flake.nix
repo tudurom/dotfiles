@@ -78,8 +78,11 @@
           inherit self inputs;
         };
       };
+
+      deployPkgs."x86_64-linux" = self.lib.deploy.mkPkgs "x86_64-linux";
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" ];
+
       flake = {
         lib = haumea.lib.load {
           src = ./lib;
@@ -158,48 +161,26 @@
         };
 
         deploy.nodes."ceres" = let
-          mkDeployPkgs = system: import nixpkgs {
-            inherit system;
-            overlays = [
-              deploy-rs.overlay
-              (self: super: {
-                deploy-rs = {
-                  inherit (nixpkgs.legacyPackages."${system}") deploy-rs;
-                  lib = super.deploy-rs.lib;
-                };
-              })
-            ];
-          };
-          configuration = self.nixosConfigurations."ceres";
+          cfg = self.nixosConfigurations."ceres";
         in {
           hostname = "ceres.lamb-monitor.ts.net";
           profiles.system = {
             user = "root";
-            path = (mkDeployPkgs configuration.pkgs.system).deploy-rs.lib.activate.nixos configuration;
+            path = deployPkgs.${cfg.pkgs.system}.deploy-rs.lib.activate.nixos cfg;
           };
         };
+
+        checks."x86_64-linux" = deployPkgs."x86_64-linux".deploy-rs.lib.deployChecks self.deploy;
       };
 
-      perSystem = {config, pkgs, system, self', ... }: let
-        deployPkgs = import nixpkgs {
-          inherit system;
-          overlays = [
-            deploy-rs.overlay
-            (final: prev: {
-              deploy-rs = { inherit (pkgs) deploy-rs; lib = prev.deploy-rs.lib; };
-            })
-          ];
-        };
-      in {
-        apps.deploy-rs = {
-          type = "app";
-          program = "${deployPkgs.deploy-rs.deploy-rs}/bin/deploy";
-        };
-
+      perSystem = {config, pkgs, system, self', ... }: {
         packages.default = pkgs.nix;
-        packages.home-manager = pkgs.home-manager;
         packages.nixos-rebuild = pkgs.nixos-rebuild;
+
+        packages.home-manager = inputs.home-manager.packages.${system}.default;
         packages.agenix = inputs.agenix.packages.${system}.default;
+
+        packages.deploy-rs = deployPkgs.${system}.deploy-rs.deploy-rs;
 
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
@@ -208,14 +189,13 @@
             self'.packages.home-manager
             self'.packages.nixos-rebuild
             self'.packages.agenix
-
-            deployPkgs.deploy-rs.deploy-rs
+            self'.packages.deploy-rs
 
             nil
           ];
         };
 
-        checks = (deployPkgs.deploy-rs.lib.deployChecks self.deploy) // {
+        checks = {
           ansible-lint = pkgs.stdenvNoCC.mkDerivation {
             name = "run-ansible-lint";
             src = ./.;
