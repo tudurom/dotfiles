@@ -31,11 +31,6 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # nix-alien = {
-    #   url = "github:thiagokokada/nix-alien";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -68,6 +63,8 @@
 
   outputs = inputs@{ self, haumea, nixpkgs, deploy-rs, unstable, flake-parts, home-manager, ... }:
     let
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+
       vars = {
         stateVersion = "23.11";
       };
@@ -79,9 +76,9 @@
         };
       };
 
-      deployPkgs."x86_64-linux" = self.lib.deploy.mkPkgs "x86_64-linux";
+      deployPkgs = with nixpkgs.lib; listToAttrs (map (system: nameValuePair system (self.lib.deploy.mkPkgs system)) systems);
     in flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      inherit systems;
 
       flake = {
         lib = haumea.lib.load {
