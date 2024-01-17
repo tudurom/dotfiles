@@ -36,14 +36,5 @@
       };
       tmux.enable = true;
     };
-
-    desktop = {
-      disableAnimations.enable = true;
-      fonts.themeFont = {
-        family = "Berkeley Mono";
-        style = "Regular";
-        size = 12.0;
-      };
-    };
   };
 }
