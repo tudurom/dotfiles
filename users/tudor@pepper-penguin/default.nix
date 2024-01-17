@@ -30,12 +30,12 @@ in {
     desktop.sway = {
       inherit nixGLPackage;
       enable = true;
-    };
-    disableAnimations.enable = true;
-    fonts.themeFont = {
-      family = "Berkeley Mono";
-      style = "Regular";
-      size = 12.0;
+      disableAnimations.enable = true;
+      fonts.themeFont = {
+        family = "Berkeley Mono";
+        style = "Regular";
+        size = 12.0;
+      };
     };
   };
 
