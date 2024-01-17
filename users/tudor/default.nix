@@ -9,6 +9,7 @@
       enable = true;
       lightTheme = true;
     };
+
     shell.bash = {
       enable = true;
       execOtherShell = true;
@@ -37,6 +38,7 @@
     };
 
     desktop = {
+      disableAnimations.enable = true;
       fonts.themeFont = {
         family = "Berkeley Mono";
         style = "Regular";
