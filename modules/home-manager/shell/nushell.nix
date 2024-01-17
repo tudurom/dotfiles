@@ -26,6 +26,7 @@ in {
       }
 
       $env.config.completions = {
+        algorithm: "fuzzy"
         external: {
           enable: true
           completer: $fish_completer
