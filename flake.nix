@@ -91,18 +91,13 @@
         nixosConfigurations = let
           mkNixOSSystem = name: system: let
             modules = [
-              {
-                nixpkgs = {
-                  config = self.lib.nixpkgs.defaultConfig;
-                  overlays = self.lib.nixpkgs.mkDefaultOverlays { inherit system; };
-                };
-              }
               inputs.agenix.nixosModules.default
               {
                 environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
                 # enable ssh host key generation
                 services.openssh.enable = true;
               }
+
               inputs.home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -115,6 +110,7 @@
               ./hosts/${name}
             ];
           in nixpkgs.lib.nixosSystem {
+            pkgs = self.lib.nixpkgs.mkPkgs { inherit system; };
             inherit system modules specialArgs;
           };
         in {
@@ -130,12 +126,6 @@
 
             extraSpecialArgs = specialArgs;
             modules = (self.lib.hm-modules) ++ [
-              {
-                nixpkgs = {
-                  config = self.lib.nixpkgs.defaultConfig;
-                  overlays = self.lib.nixpkgs.mkDefaultOverlays { inherit system; };
-                };
-              }
               {
                 home = {
                   homeDirectory = "/home/${user}";
