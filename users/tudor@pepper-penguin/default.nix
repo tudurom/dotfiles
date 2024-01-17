@@ -27,14 +27,16 @@ in {
       git.opCommitSign = true;
     };
     shell.starship.enable = true;
-    desktop.sway = {
-      inherit nixGLPackage;
-      enable = true;
+    desktop = {
       disableAnimations.enable = true;
       fonts.themeFont = {
         family = "Berkeley Mono";
         style = "Regular";
         size = 12.0;
+      };
+      sway = {
+        inherit nixGLPackage;
+        enable = true;
       };
     };
   };
