@@ -11,8 +11,8 @@ with lib; {
     nixpkgs.overlays = [
       (final: prev: {
         tudor = {
-          site = flake.inputs.site.packages.${final.system}.site;
-          blog = flake.inputs.blog.packages.${final.system}.blog;
+          inherit (flake.inputs.site.packages.${final.system}) site;
+          inherit (flake.inputs.blog.packages.${final.system}) blog;
         } // optionalAttrs (prev ? "tudor") prev.tudor;
       })
     ];

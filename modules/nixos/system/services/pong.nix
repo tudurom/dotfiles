@@ -12,7 +12,7 @@ with lib;
     nixpkgs.overlays = [
       (final: prev: {
         tudor = {
-          pong = flake.inputs.co-work.packages.${final.system}.pong;
+          inherit (flake.inputs.co-work.packages.${final.system}) pong;
         } // optionalAttrs (prev ? "tudor") prev.tudor;
       })
     ];
