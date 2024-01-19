@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, flake, ... }:
 let
   cfg = config.systemModules.services.dyndns;
 in
@@ -24,8 +24,6 @@ with lib; {
           checkip4 = "checkipv4.dedyn.io";
           checkip6 = "checkipv6.dedyn.io";
           updateUrl = "update.dedyn.io";
-          # credentials are of the form "domain:token"
-          credentials = config.age.secrets.dedyn.path;
           curl = lib.getExe pkgs.curl;
         in ''
           set -euo pipefail
@@ -34,35 +32,12 @@ with lib; {
           ${curl} --user "$(<"$CREDENTIALS_PATH")" "https://${updateUrl}/?myipv4=$IPV4&myipv6=$IPV6"
         '';
 
-        serviceConfig = {
+        serviceConfig = flake.self.lib.harden {
           Type = "oneshot";
           DynamicUser = "yes";
+          # credentials are of the form "domain:token"
           LoadCredential = "credentials:${config.age.secrets.dedyn.path}";
           Environment = "CREDENTIALS_PATH=%d/credentials";
-
-          # Hardening
-          CapabilityBoundingSet = [ "" ];
-          DeviceAllow = [ "" ];
-          LockPersonality = true;
-          MemoryDenyWriteExecute = true;
-          PrivateDevices = true;
-          PrivateUsers = true;
-          ProcSubset = "pid";
-          ProtectClock = true;
-          ProtectControlGroups = true;
-          ProtectHome = true;
-          ProtectHostname = true;
-          ProtectKernelLogs = true;
-          ProtectKernelModules = true;
-          ProtectKernelTunables = true;
-          ProtectProc = "invisible";
-          RestrictAddressFamilies = [ "AF_INET" "AF_INET6" "AF_UNIX" ];
-          RestrictNamespaces = true;
-          RestrictRealtime = true;
-          RestrictSUIDSGID = true;
-          SystemCallArchitectures = "native";
-          SystemCallFilter = [ "@system-service" "~@privileged" ];
-          UMask = "0077";
         };
       };
     };
