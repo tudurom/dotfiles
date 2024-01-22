@@ -31,7 +31,7 @@ with lib; {
 
     homeModules.desktop = {
       # terminal emulator
-      foot.enable = true;
+      wezterm.enable = true;
       fonts.enable = true;
       # status bar
       waybar = {
@@ -189,11 +189,13 @@ with lib; {
           grimblast = lib.getExe pkgs.grimblast;
           # emoji picker
           emote = lib.getExe' pkgs.emote "emote";
+          wezterm = lib.getExe config.programs.wezterm.package;
 
           volStep = toString 5;
           brightStep = toString 5;
         in lib.mkOptionDefault {
           # fuzzel is enabled above, should be in path
+          "${mod}+Return" = "exec ${wezterm}";
           "${mod}+d" = "exec fuzzel";
 
           "${mod}+ctrl+l" = "exec loginctl lock-session";

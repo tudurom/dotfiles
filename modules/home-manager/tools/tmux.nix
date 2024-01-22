@@ -18,6 +18,7 @@ with lib; {
       clock24 = true; # why does 12h exist
       extraConfig = ''
       set -g default-terminal "tmux-256color"
+      set -ag terminal-overrides ",xterm-256color:RGB"
 
       set -sg escape-time 0
 

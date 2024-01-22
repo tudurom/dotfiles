@@ -5,5 +5,6 @@
     ./foot.nix
     ./sway.nix
     ./waybar
+    ./wezterm.nix
   ];
 }
