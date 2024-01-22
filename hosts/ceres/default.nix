@@ -1,4 +1,4 @@
-{ config, pkgs, lib, vars, ...}:
+{ config, ...}:
 {
   imports = [ ../_all ./hardware.nix ];
 
@@ -11,7 +11,10 @@
       nginx.enable = true;
       cgit.enable = false;
       gitea.enable = true;
-      site.enable = true;
+      site = {
+        enable = true;
+        webRootUser = "tudor";
+      };
       yarr.enable = true;
     };
     ipforward.enable = true;

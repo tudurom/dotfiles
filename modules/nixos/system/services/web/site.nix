@@ -5,6 +5,16 @@ in
 with lib; {
   options.systemModules.services.web.site = {
     enable = mkEnableOption "site";
+    webRoot = mkOption {
+      description = "Website webroot";
+      type = types.str;
+      default = "/srv/site";
+    };
+    webRootUser = mkOption {
+      description = "User who places files in webroot";
+      type = types.str;
+      default = "";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -17,6 +27,12 @@ with lib; {
       })
     ];
 
+    systemd.tmpfiles.rules =
+      assert cfg.webRootUser != "";
+    [
+      "d ${cfg.webRoot} 2755 ${cfg.webRootUser} nginx -"
+    ];
+
     services.nginx.virtualHosts."tudorr.ro" = {
       forceSSL = true;
       enableACME = true;
@@ -25,12 +41,7 @@ with lib; {
 
       locations = {
         "/" = {
-          alias = "${pkgs.tudor.site}/";
-          index = "index.html";
-        };
-
-        "/blog/" = {
-          alias = "${pkgs.tudor.blog}/";
+          alias = "${cfg.webRoot}/";
           index = "index.html";
         };
       };
