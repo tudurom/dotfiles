@@ -40,6 +40,7 @@ in {
         settings = {
           log.level = "warn";
           container.network = "host";
+          container.privileged = true;
         };
       };
     };
