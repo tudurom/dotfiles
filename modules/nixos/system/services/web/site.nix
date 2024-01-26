@@ -1,4 +1,4 @@
-{ config, pkgs, lib, flake, ... }:
+{ config, lib, ... }:
 let
   cfg = config.systemModules.services.web.site;
 in
@@ -18,15 +18,6 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [
-      (final: prev: {
-        tudor = {
-          inherit (flake.inputs.site.packages.${final.system}) site;
-          inherit (flake.inputs.blog.packages.${final.system}) blog;
-        } // optionalAttrs (prev ? "tudor") prev.tudor;
-      })
-    ];
-
     systemd.tmpfiles.rules =
       assert cfg.webRootUser != "";
     [

@@ -57,8 +57,6 @@
     };
 
     co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
-    site.url = "github:tudurom/site";
-    blog.url = "github:tudurom/blog";
   };
 
   outputs = inputs@{ self, haumea, nixpkgs, deploy-rs, unstable, flake-parts, home-manager, ... }:
