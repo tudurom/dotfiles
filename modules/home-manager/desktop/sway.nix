@@ -117,8 +117,13 @@ with lib; {
       enable = true;
       settings = {
         main = {
-          prompt = "\"👀 \"";
-          font = "${themeFont.family}:size=${builtins.toString (builtins.floor themeFont.size)}";
+          # in case you don't see it: that's the eyes emoji,
+          # followed by the U+FE0F "Variation selector-6" character.
+          # That magic character tells the text rendering system to use
+          # the colour version of the emoji, instead of the outline version.
+          # You can also force the outline version with U+FE0E "Variation selector-5".
+          prompt = "\"👀️ \"";
+          font = "${themeFont.family}:size=${builtins.toString (builtins.floor themeFont.size)},Noto Color Emoji,Noto Emoji";
         };
       };
     };
@@ -186,6 +191,9 @@ with lib; {
         keybindings = let
           mod = config.wayland.windowManager.sway.config.modifier;
 
+          # application menu
+          fuzzel = lib.getExe config.programs.fuzzel.package;
+
           # control the currently playing media player
           playerctl = lib.getExe pkgs.playerctl;
           # control the volume
@@ -208,8 +216,7 @@ with lib; {
             else "exec ${foot}";
 
           # fuzzel is enabled above, should be in path
-          "${mod}+Return" = "exec ${wezterm}";
-          "${mod}+d" = "exec fuzzel";
+          "${mod}+d" = "exec ${fuzzel}";
 
           "${mod}+ctrl+l" = "exec loginctl lock-session";
 
