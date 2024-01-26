@@ -36,7 +36,9 @@ in {
       };
       sway = {
         inherit nixGLPackage;
+
         enable = true;
+        terminal = "wezterm";
       };
     };
   };

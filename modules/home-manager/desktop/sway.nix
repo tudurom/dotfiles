@@ -15,11 +15,18 @@ with lib; {
           If null (default), sway will be started normally.
         '';
       };
+
       wallpaperPath = mkOption {
         description = "Path to wallpaper to apply";
         type = types.path;
         # https://unsplash.com/photos/ZlzWbHC86B8
         default = ./wallpaper.jpg;
+      };
+
+      terminal = mkOption {
+        description = "Terminal emulator to use: foot or wezterm";
+        type = types.str;
+        default = "wezterm";
       };
     };
   };
@@ -31,8 +38,8 @@ with lib; {
 
     homeModules.desktop = {
       # terminal emulator
-      wezterm.enable = true;
-      fonts.enable = true;
+      wezterm.enable = cfg.terminal == "wezterm";
+      fonts.enable = cfg.terminal == "foot";
       # status bar
       waybar = {
         enable = true;
@@ -189,11 +196,17 @@ with lib; {
           grimblast = lib.getExe pkgs.grimblast;
           # emoji picker
           emote = lib.getExe' pkgs.emote "emote";
+
+          foot = lib.getExe config.programs.foot.package;
           wezterm = lib.getExe config.programs.wezterm.package;
 
           volStep = toString 5;
           brightStep = toString 5;
         in lib.mkOptionDefault {
+          "${mod}+Return" = if cfg.terminal == "wezterm"
+            then "exec ${wezterm}"
+            else "exec ${foot}";
+
           # fuzzel is enabled above, should be in path
           "${mod}+Return" = "exec ${wezterm}";
           "${mod}+d" = "exec fuzzel";
