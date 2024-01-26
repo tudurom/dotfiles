@@ -31,17 +31,19 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1653679518,
-        "narHash": "sha256-DWrxMilNdFHWJxvIVaM+49eAuld91BRfcVC6TCHeL2I=",
+        "dir": "co",
+        "lastModified": 1704921152,
+        "narHash": "sha256-MqwppimGSrdpMRxZcpujzFMFUOQ27Ie/JgYEkSRQSgI=",
         "ref": "refs/heads/master",
-        "rev": "158ffbd94baae1796273a36dbb3bbcd190cb5757",
-        "revCount": 28,
+        "rev": "6809d3578142b6f44d7508d17921e50c9b81dc43",
+        "revCount": 403,
         "type": "git",
-        "url": "ssh://git@github.com/tudurom/co-work.git"
+        "url": "ssh://gitea@git.tudorr.ro/tudor/assignments.git?dir=co"
       },
       "original": {
+        "dir": "co",
         "type": "git",
-        "url": "ssh://git@github.com/tudurom/co-work.git"
+        "url": "ssh://gitea@git.tudorr.ro/tudor/assignments.git?dir=co"
       }
     },
     "deploy-rs": {
@@ -290,16 +292,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1645563607,
-        "narHash": "sha256-5eeld8IXF8c9HsdFTpppiZ398PRqyWCfIXTBpzaZwjc=",
+        "lastModified": 1706098335,
+        "narHash": "sha256-r3dWjT8P9/Ah5m5ul4WqIWD8muj5F+/gbCdjiNVBKmU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c99d2a0b6e3807f5c5ddcfc136398be3ab950bac",
+        "rev": "a77ab169a83a4175169d78684ddd2e54486ac651",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-21.11",
+        "ref": "nixos-23.11",
         "repo": "nixpkgs",
         "type": "github"
       }

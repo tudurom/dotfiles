@@ -56,7 +56,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    co-work.url = "git+ssh://git@github.com/tudurom/co-work.git";
+    co-work.url = "git+ssh://gitea@git.tudorr.ro/tudor/assignments.git?dir=co";
   };
 
   outputs = inputs@{ self, haumea, nixpkgs, deploy-rs, unstable, flake-parts, home-manager, ... }:
