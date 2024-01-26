@@ -1,4 +1,4 @@
-{ config, ...}:
+{ config, pkgs, ...}:
 {
   imports = [ ../_all ./hardware.nix ];
 
@@ -49,6 +49,7 @@
     tudor-password.file = ../../secrets/ceres/tudor-password.age;
     yarr-credentials.file = ../../secrets/ceres/yarr-credentials.age;
     dedyn.file = ../../secrets/ceres/dedyn.age;
+    gitea-actions-token.file = ../../secrets/ceres/gitea-actions-token.age;
   };
 
   users.users.tudor = {

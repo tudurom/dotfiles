@@ -7,4 +7,5 @@ in
   "tudor-password.age".publicKeys = keys;
   "yarr-credentials.age".publicKeys = keys;
   "dedyn.age".publicKeys = keys;
+  "gitea-actions-token.age".publicKeys = keys;
 }

@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.systemModules.services.web.gitea;
 in
-with lib; {
+with lib; let
+  name = "${config.networking.hostName}-1";
+in {
   options.systemModules.services.web.gitea.enable = mkEnableOption "Enable Gitea";
 
   config = mkIf cfg.enable {
@@ -17,6 +19,28 @@ with lib; {
       };
       settings.service = {
         DISABLE_REGISTRATION = true;
+      };
+      settings.actions.ENABLED = true;
+    };
+
+    virtualisation.podman.enable = true;
+
+    services.gitea-actions-runner = {
+      instances.${name} = {
+        inherit name;
+        enable = true;
+        url = config.services.gitea.settings.server.ROOT_URL;
+        tokenFile = config.age.secrets.gitea-actions-token.path;
+        labels = [
+          "ubuntu-latest:docker://node:16-bullseye"
+          "ubuntu-22.04:docker://node:16-bullseye"
+          "ubuntu-20.04:docker://node:16-bullseye"
+          "ubuntu-18.04:docker://node:16-buster"
+        ];
+        settings = {
+          log.level = "warn";
+          container.network = "host";
+        };
       };
     };
 
