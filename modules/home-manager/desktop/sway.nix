@@ -47,6 +47,10 @@ with lib; {
       };
     };
 
+    home.packages = with pkgs; [
+      wl-clipboard
+    ];
+
     # notification daemon
     services.mako.enable = true;
     # dynamic display configuration.
