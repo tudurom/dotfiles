@@ -11,7 +11,10 @@
     web = {
       nginx.enable = true;
       cgit.enable = false;
-      gitea.enable = true;
+      gitea = {
+        enable = true;
+        enableActions = true;
+      };
       site = {
         enable = true;
         webRootUser = "tudor";
