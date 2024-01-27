@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./attic.nix
     ./dyndns.nix
     ./ipforward.nix
     ./pong.nix

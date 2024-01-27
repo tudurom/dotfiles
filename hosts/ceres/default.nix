@@ -1,9 +1,10 @@
-{ config, pkgs, ...}:
+{ config, ...}:
 {
   imports = [ ../_all ./hardware.nix ];
 
   systemModules.basePackages.enable = true;
   systemModules.services = {
+    attic.enable = true;
     dyndns.enable = true;
     ssh.enable = true;
     ssh.enableMosh = true;
@@ -50,6 +51,7 @@
     yarr-credentials.file = ../../secrets/ceres/yarr-credentials.age;
     dedyn.file = ../../secrets/ceres/dedyn.age;
     gitea-actions-token.file = ../../secrets/ceres/gitea-actions-token.age;
+    attic-server-token.file = ../../secrets/ceres/attic-server-token.age;
   };
 
   users.users.tudor = {

@@ -57,6 +57,8 @@
     };
 
     co-work.url = "git+ssh://gitea@git.tudorr.ro/tudor/assignments.git?dir=co";
+
+    attic.url = "github:zhaofengli/attic";
   };
 
   outputs = inputs@{ self, haumea, nixpkgs, deploy-rs, unstable, flake-parts, home-manager, ... }:
