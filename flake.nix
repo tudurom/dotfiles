@@ -220,22 +220,13 @@
               alejandra.enable = true;
               statix.enable = true;
               deadnix.enable = true;
+              ansible-lint = {
+                enable = true;
+              };
             };
-          };
-
-          ansible-lint = pkgs.stdenvNoCC.mkDerivation {
-            name = "run-ansible-lint";
-            src = ./.;
-            dontBuild = true;
-            doCheck = true;
-            buildInputs = with pkgs; [ansible-lint git];
-            checkPhase = ''
-              cd ./ansible
-              env "HOME=$TMPDIR" ansible-lint --offline
-            '';
-            installPhase = ''
-              mkdir "$out"
-            '';
+            settings.ansible-lint = {
+              subdir = "ansible";
+            };
           };
         };
       };
