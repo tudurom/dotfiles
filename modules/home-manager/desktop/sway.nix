@@ -1,7 +1,7 @@
 { config, flake, lib, pkgs, ... }:
 let
   cfg = config.homeModules.desktop.sway;
-  themeFont = config.homeModules.desktop.fonts.themeFont;
+  inherit (config.homeModules.desktop.fonts) themeFont;
 in
 with lib; {
   options = {
@@ -188,9 +188,8 @@ with lib; {
           { command = "systemctl --user restart waybar.service kanshi.service"; always = true; }
         ];
         fonts = {
+          inherit (themeFont) style size;
           names = [ themeFont.family ];
-          style = themeFont.style;
-          size = themeFont.size;
         };
         keybindings = let
           mod = config.wayland.windowManager.sway.config.modifier;

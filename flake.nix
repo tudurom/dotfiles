@@ -136,7 +136,7 @@
             inherit pkgs;
 
             extraSpecialArgs = specialArgs;
-            modules = (self.lib.hm-modules) ++ [
+            modules = self.lib.hm-modules ++ [
               {
                 home = {
                   homeDirectory = "/home/${user}";

@@ -30,10 +30,8 @@ with lib; {
       # Requires npiperelay
       homeModules.tools.op.bashInitExtra =
         let
-          ps = pkgs.ps;
+          inherit (pkgs) ps util-linux socat;
           grep = pkgs.gnugrep;
-          util-linux = pkgs.util-linux;
-          socat = pkgs.socat;
       in ''
         # Configure ssh forwarding
         export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock

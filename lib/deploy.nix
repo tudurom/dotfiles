@@ -1,6 +1,5 @@
 { inputs, ... }: let
-  nixpkgs = inputs.nixpkgs;
-  deploy-rs = inputs.deploy-rs;
+  inherit (inputs) nixpkgs deploy-rs;
 in {  
   mkPkgs = system: import nixpkgs {
     inherit system;
@@ -9,7 +8,7 @@ in {
       (_self: super: {
         deploy-rs = {
           inherit (nixpkgs.legacyPackages."${system}") deploy-rs;
-          lib = super.deploy-rs.lib;
+          inherit (super.deploy-rs) lib;
         };
       })
     ];

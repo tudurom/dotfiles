@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.homeModules.desktop.wezterm;
-  themeFont = config.homeModules.desktop.fonts.themeFont;
+  inherit (config.homeModules.desktop.fonts) themeFont;
 in
 with lib; {
   options = {
