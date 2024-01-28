@@ -1,0 +1,17 @@
+name: pre-commit
+
+env:
+  RUNNER_ARCH: X64
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: DeterminateSystems/nix-installer-action@main
+      - run: nix develop -c pre-commit run -a
