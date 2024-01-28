@@ -11,6 +11,10 @@
       url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
@@ -61,7 +65,15 @@
     attic.url = "github:zhaofengli/attic";
   };
 
-  outputs = inputs@{ self, haumea, nixpkgs, deploy-rs, unstable, flake-parts, home-manager, ... }:
+  outputs = inputs@{ self
+          , haumea
+          , pre-commit-hooks
+          , nixpkgs
+          , deploy-rs
+          , unstable
+          , flake-parts
+          , home-manager
+          , ... }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" ];
 
@@ -170,6 +182,7 @@
         packages.deploy-rs = deployPkgs.${system}.deploy-rs.deploy-rs;
 
         devShells.default = pkgs.mkShell {
+          inherit (self'.checks.pre-commit-check) shellHook;
           buildInputs = with pkgs; [
             nix
 
@@ -179,10 +192,22 @@
             self'.packages.deploy-rs
 
             nil
+            alejandra
+            statix
+            deadnix
           ];
         };
 
         checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              alejandra.enable = true;
+              statix.enable = true;
+              deadnix.enable = true;
+            };
+          };
+
           ansible-lint = pkgs.stdenvNoCC.mkDerivation {
             name = "run-ansible-lint";
             src = ./.;
