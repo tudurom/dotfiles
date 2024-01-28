@@ -45,7 +45,7 @@ with lib; {
 
         battery = {
           format-charging = " {capacity}%";
-          format = "{icon} {capacity}%";
+          format = "{icon}  {capacity}%";
           format-icons = [ "" "" "" "" "" ];
         };
 
