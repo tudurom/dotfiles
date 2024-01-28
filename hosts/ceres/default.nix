@@ -15,7 +15,11 @@
       cgit.enable = false;
       gitea = {
         enable = true;
-        enableActions = true;
+        actions = {
+          enable = true;
+          host = "100.81.169.93";
+          cachePort = 8088;
+        };
       };
       site = {
         enable = true;

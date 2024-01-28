@@ -11,7 +11,19 @@ in
   in {
     options.systemModules.services.web.gitea = {
       enable = mkEnableOption "Enable Gitea";
-      enableActions = mkEnableOption "Enable Gitea Actions runner";
+      actions = {
+        enable = mkEnableOption "Enable Gitea Actions runner";
+        host = mkOption {
+          type = types.str;
+          description = "Gitea actions runner LAN IP";
+          default = "";
+        };
+        cachePort = mkOption {
+          type = types.int;
+          description = "Gitea actions runner cache port";
+          default = 8088;
+        };
+      };
     };
 
     config = mkMerge [
@@ -38,7 +50,7 @@ in
           };
         };
       })
-      (mkIf cfg.enableActions {
+      (mkIf cfg.actions.enable {
         services.gitea = {
           settings.actions.ENABLED = true;
         };
@@ -66,6 +78,11 @@ in
               log.level = "warn";
               container.network = "host";
               container.privileged = true;
+              cache = assert cfg.actions.host != ""; {
+                enabled = true;
+                inherit (cfg.actions) host;
+                port = cfg.actions.cachePort;
+              };
             };
           };
         };

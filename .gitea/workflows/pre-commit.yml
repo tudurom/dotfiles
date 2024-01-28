@@ -17,5 +17,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
       - name: Setup Nix caching
         uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Build shell
+        run: nix build .#devShells.x86_64-linux.default --no-link -L
       - name: Run pre-commit hooks on all files
-        run: nix develop -c pre-commit run -a
+        run: nix develop -L -c pre-commit run -a
