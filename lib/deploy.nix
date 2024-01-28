@@ -6,7 +6,7 @@ in {
     inherit system;
     overlays = [
       deploy-rs.overlay
-      (self: super: {
+      (_self: super: {
         deploy-rs = {
           inherit (nixpkgs.legacyPackages."${system}") deploy-rs;
           lib = super.deploy-rs.lib;

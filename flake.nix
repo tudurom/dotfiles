@@ -70,7 +70,6 @@
           , pre-commit-hooks
           , nixpkgs
           , deploy-rs
-          , unstable
           , flake-parts
           , home-manager
           , ... }:
@@ -172,7 +171,7 @@
         checks."x86_64-linux" = deployPkgs."x86_64-linux".deploy-rs.lib.deployChecks self.deploy;
       };
 
-      perSystem = {config, pkgs, system, self', ... }: {
+      perSystem = { pkgs, system, self', ... }: {
         packages.default = pkgs.nix;
         packages.nixos-rebuild = pkgs.nixos-rebuild;
 

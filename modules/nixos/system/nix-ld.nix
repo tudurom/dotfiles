@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   environment.variables = {
     NIX_LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [

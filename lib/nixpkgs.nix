@@ -5,7 +5,7 @@
   };
 
   mkDefaultOverlays = { system }: [
-    (final: prev: {
+    (final: _prev: {
       unstable = import inputs.unstable {
         inherit system;
         inherit (final) config;

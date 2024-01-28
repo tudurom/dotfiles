@@ -1,8 +1,5 @@
-{ pkgs, inputs, vars, ... }:
+{ inputs, vars, ... }:
 
-let
-  hm = inputs.home-manager.lib.hm;
-in
 {
   imports = [
     ../../modules/home-manager

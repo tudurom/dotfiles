@@ -1,4 +1,4 @@
-{ config, lib, pkgs, vars, ...}:
+{ config, lib, pkgs, ...}:
 let
   cfg = config.systemModules.services.web.cgit;
   readmeFile = ./cgit-root-readme.md;

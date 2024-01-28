@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...}:
+{ pkgs, lib, ...}:
 {
   boot.initrd.availableKernelModules = [ "ata_generic" "uhci_hcd" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];

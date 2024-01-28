@@ -1,4 +1,4 @@
-{ config, options, lib, pkgs, inputs, vars, ... }:
+{ config, ... }:
 {
   imports = [
     ../_all

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 let
   cfg = config.systemModules.services.tailscale;
 in

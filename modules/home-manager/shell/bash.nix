@@ -3,7 +3,6 @@
 with lib;
 let
   cfg = config.homeModules.shell.bash;
-  direnvCfg = config.homeModules.tools.direnv;
   opCfg = config.homeModules.tools.op;
 in
 {

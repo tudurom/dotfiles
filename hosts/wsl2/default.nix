@@ -1,4 +1,4 @@
-{ config, flake, vars, ... }:
+{ config, flake, ... }:
 let
   username = "tudor";
 in {
