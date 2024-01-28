@@ -49,10 +49,10 @@ in {
           url = config.services.gitea.settings.server.ROOT_URL;
           tokenFile = config.age.secrets.gitea-actions-token.path;
           labels = [
-            "ubuntu-latest:docker://node:16-bullseye"
-            "ubuntu-22.04:docker://node:16-bullseye"
-            "ubuntu-20.04:docker://node:16-bullseye"
-            "ubuntu-18.04:docker://node:16-buster"
+            "ubuntu-latest:docker://node:lts-bookworm"
+            "ubuntu-22.04:docker://node:lts-bullseye"
+            "ubuntu-20.04:docker://node:lts-bullseye"
+            "ubuntu-18.04:docker://node:lts-buster"
           ];
           settings = {
             log.level = "warn";
