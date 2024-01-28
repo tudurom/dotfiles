@@ -1,4 +1,4 @@
-{ config, pkgs, lib, flake, ... }:
+{ config, lib, flake, ... }:
 let
   cfg = config.systemModules.services.attic;
 in
@@ -9,6 +9,10 @@ with lib; {
 
   options.systemModules.services.attic = {
     enable = mkEnableOption "Attic Nix cache";
+    hostAddress = mkOption {
+      description = "User-facing address";
+      type = types.str;
+    };
     listenPort = mkOption {
       description = "Listen port";
       type = types.int;
@@ -17,11 +21,16 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    services.atticd = {
+    services.atticd = let
+      hostString = assert cfg.hostAddress != "";
+        "${cfg.hostAddress}:${builtins.toString cfg.listenPort}";
+    in {
       enable = true;
       credentialsFile = config.age.secrets.attic-server-token.path;
       settings = {
         listen = "[::]:${builtins.toString cfg.listenPort}";
+        allowed-hosts = [ hostString ];
+        api-endpoint = "http://${hostString}/";
         # taken from: https://docs.attic.rs/admin-guide/deployment/nixos.html
         chunking = {
           nar-size-threshold = 64 * 1024; # 64 KiB

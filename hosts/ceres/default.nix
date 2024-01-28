@@ -4,7 +4,10 @@
 
   systemModules.basePackages.enable = true;
   systemModules.services = {
-    attic.enable = true;
+    attic = {
+      enable = true;
+      hostAddress = "ceres.lamb-monitor.ts.net";
+    };
     dyndns.enable = true;
     ssh.enable = true;
     ssh.enableMosh = true;
