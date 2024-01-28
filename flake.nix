@@ -192,7 +192,12 @@
         packages.deploy-rs = deployPkgs.${system}.deploy-rs.deploy-rs;
 
         devShells.default = pkgs.mkShell {
-          inherit (self'.checks.pre-commit-check) shellHook;
+          shellHook =
+            self'.checks.pre-commit-check.shellHook
+            + ''
+
+              /usr/bin/env git config blame.ignoreRevsFile .git-blame-ignore-revs
+            '';
           buildInputs = with pkgs; [
             nix
 
