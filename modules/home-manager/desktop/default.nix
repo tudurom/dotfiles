@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./disable-animations.nix
     ./fonts.nix

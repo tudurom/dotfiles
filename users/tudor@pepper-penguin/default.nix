@@ -1,5 +1,8 @@
-{ pkgs, flake, ... }:
-let
+{
+  pkgs,
+  flake,
+  ...
+}: let
   nixGLPackage = pkgs.nixgl.nixGLIntel;
   laptopScreen = {
     criteria = "eDP-1";
@@ -15,12 +18,12 @@ let
     scale = 2.0;
   };
 in {
-  imports = [ ../tudor ];
+  imports = [../tudor];
   nixpkgs.overlays = [
     flake.inputs.nixgl.overlays.default
   ];
 
-  home.packages = [ nixGLPackage ];
+  home.packages = [nixGLPackage];
 
   homeModules = {
     tools = {
@@ -47,7 +50,7 @@ in {
   services.kanshi = {
     enable = true;
     profiles = let
-      withPos = mon: x: y: mon // { position = "${builtins.toString x},${builtins.toString y}"; };
+      withPos = mon: x: y: mon // {position = "${builtins.toString x},${builtins.toString y}";};
     in {
       undocked = {
         outputs = [

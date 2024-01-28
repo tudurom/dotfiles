@@ -1,6 +1,8 @@
-{ flake, vars, ... }:
-
 {
+  flake,
+  vars,
+  ...
+}: {
   imports = [
     ../../modules/nixos
   ];

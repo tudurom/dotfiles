@@ -65,30 +65,32 @@
     attic.url = "github:zhaofengli/attic";
   };
 
-  outputs = inputs@{ self
-          , haumea
-          , pre-commit-hooks
-          , nixpkgs
-          , deploy-rs
-          , flake-parts
-          , home-manager
-          , ... }:
-    let
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+  outputs = inputs @ {
+    self,
+    haumea,
+    pre-commit-hooks,
+    nixpkgs,
+    deploy-rs,
+    flake-parts,
+    home-manager,
+    ...
+  }: let
+    systems = ["x86_64-linux" "aarch64-linux"];
 
-      vars = {
-        stateVersion = "23.11";
+    vars = {
+      stateVersion = "23.11";
+    };
+
+    specialArgs = {
+      inherit vars;
+      flake = {
+        inherit self inputs;
       };
+    };
 
-      specialArgs = {
-        inherit vars;
-        flake = {
-          inherit self inputs;
-        };
-      };
-
-      deployPkgs = with nixpkgs.lib; listToAttrs (map (system: nameValuePair system (self.lib.deploy.mkPkgs system)) systems);
-    in flake-parts.lib.mkFlake { inherit inputs; } {
+    deployPkgs = with nixpkgs.lib; listToAttrs (map (system: nameValuePair system (self.lib.deploy.mkPkgs system)) systems);
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
       inherit systems;
 
       flake = {
@@ -104,7 +106,7 @@
             modules = [
               inputs.agenix.nixosModules.default
               {
-                environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
+                environment.systemPackages = [inputs.agenix.packages.${system}.default];
                 # enable ssh host key generation
                 services.openssh.enable = true;
               }
@@ -120,10 +122,11 @@
               }
               ./hosts/${name}
             ];
-          in nixpkgs.lib.nixosSystem {
-            pkgs = self.lib.nixpkgs.mkPkgs { inherit system; };
-            inherit system modules specialArgs;
-          };
+          in
+            nixpkgs.lib.nixosSystem {
+              pkgs = self.lib.nixpkgs.mkPkgs {inherit system;};
+              inherit system modules specialArgs;
+            };
         in {
           "ceres" = mkNixOSSystem "ceres" "x86_64-linux";
           "wsl2" = mkNixOSSystem "wsl2" "x86_64-linux";
@@ -131,28 +134,31 @@
 
         homeConfigurations = let
           mkHomeConfiguration = name: user: system: let
-            pkgs = self.lib.nixpkgs.mkPkgs { inherit system; };
-          in inputs.home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
+            pkgs = self.lib.nixpkgs.mkPkgs {inherit system;};
+          in
+            inputs.home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
 
-            extraSpecialArgs = specialArgs;
-            modules = self.lib.hm-modules ++ [
-              {
-                home = {
-                  homeDirectory = "/home/${user}";
-                  username = user;
-                  sessionVariables = {
-                    GIT_SSH = "/usr/bin/ssh";
-                  };
-                };
+              extraSpecialArgs = specialArgs;
+              modules =
+                self.lib.hm-modules
+                ++ [
+                  {
+                    home = {
+                      homeDirectory = "/home/${user}";
+                      username = user;
+                      sessionVariables = {
+                        GIT_SSH = "/usr/bin/ssh";
+                      };
+                    };
 
-                programs.bash.profileExtra = ''
-                  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-                '';
-              }
-              (./users + "/${name}")
-            ];
-          };
+                    programs.bash.profileExtra = ''
+                      . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+                    '';
+                  }
+                  (./users + "/${name}")
+                ];
+            };
         in {
           "tudor" = mkHomeConfiguration "tudor" "tudor" "x86_64-linux";
           "tudor@pepper-penguin" = mkHomeConfiguration "tudor@pepper-penguin" "tudor" "x86_64-linux";
@@ -171,7 +177,12 @@
         checks."x86_64-linux" = deployPkgs."x86_64-linux".deploy-rs.lib.deployChecks self.deploy;
       };
 
-      perSystem = { pkgs, system, self', ... }: {
+      perSystem = {
+        pkgs,
+        system,
+        self',
+        ...
+      }: {
         packages.default = pkgs.nix;
         packages.nixos-rebuild = pkgs.nixos-rebuild;
 
@@ -212,7 +223,7 @@
             src = ./.;
             dontBuild = true;
             doCheck = true;
-            buildInputs = with pkgs; [ ansible-lint git ];
+            buildInputs = with pkgs; [ansible-lint git];
             checkPhase = ''
               cd ./ansible
               env "HOME=$TMPDIR" ansible-lint --offline

@@ -1,10 +1,13 @@
-{ config, lib, pkgs, flake, ... }:
-
-with lib;
-let
-  cfg = config.systemModules.nix;
-in
 {
+  config,
+  lib,
+  pkgs,
+  flake,
+  ...
+}:
+with lib; let
+  cfg = config.systemModules.nix;
+in {
   options.systemModules.nix = {
     enable = mkOption {
       default = false;

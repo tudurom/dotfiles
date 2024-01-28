@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ...}:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.systemModules.services.web.cgit;
   readmeFile = ./cgit-root-readme.md;
   logoFile = ./logo.png;
@@ -31,48 +35,52 @@ let
     snapshots=tar.gz zip
 
     section-from-path=1
-    scan-path=${if cfg.repoDir == "" then throw "Repodir must be set" else cfg.repoDir}
+    scan-path=${
+      if cfg.repoDir == ""
+      then throw "Repodir must be set"
+      else cfg.repoDir
+    }
   '';
 in
-with lib; {
-  options.systemModules.services.web.cgit = {
-    enable = mkEnableOption "cgit";
-    repoDir = mkOption {
-      type = types.str;
-      default = "";
+  with lib; {
+    options.systemModules.services.web.cgit = {
+      enable = mkEnableOption "cgit";
+      repoDir = mkOption {
+        type = types.str;
+        default = "";
+      };
     };
-  };
 
-  config = mkIf cfg.enable {
-    services.fcgiwrap.enable = true;
+    config = mkIf cfg.enable {
+      services.fcgiwrap.enable = true;
 
-    services.nginx.virtualHosts."git.tudorr.ro" = {
-      forceSSL = true;
-      enableACME = true;
+      services.nginx.virtualHosts."git.tudorr.ro" = {
+        forceSSL = true;
+        enableACME = true;
 
-      root = "${pkgs.cgit}/cgit";
+        root = "${pkgs.cgit}/cgit";
 
-      extraConfig = ''
-        try_files $uri @cgit;
-      '';
+        extraConfig = ''
+          try_files $uri @cgit;
+        '';
 
-      locations = {
-        "=/logo.png" = {
-          alias = "${logoFile}";
-        };
+        locations = {
+          "=/logo.png" = {
+            alias = "${logoFile}";
+          };
 
-        "@cgit" = {
-          extraConfig = ''
-            include ${pkgs.nginx}/conf/fastcgi_params;
-            fastcgi_param SCRIPT_FILENAME $document_root/cgit.cgi;
-            fastcgi_param PATH_INFO $uri;
-            fastcgi_param QUERY_STRING $args;
-            fastcgi_param HTTP_HOST $server_name;
-            fastcgi_param CGIT_CONFIG "${configFile}";
-            fastcgi_pass unix:${config.services.fcgiwrap.socketAddress};
-          '';
+          "@cgit" = {
+            extraConfig = ''
+              include ${pkgs.nginx}/conf/fastcgi_params;
+              fastcgi_param SCRIPT_FILENAME $document_root/cgit.cgi;
+              fastcgi_param PATH_INFO $uri;
+              fastcgi_param QUERY_STRING $args;
+              fastcgi_param HTTP_HOST $server_name;
+              fastcgi_param CGIT_CONFIG "${configFile}";
+              fastcgi_pass unix:${config.services.fcgiwrap.socketAddress};
+            '';
+          };
         };
       };
     };
-  };
-}
+  }

@@ -1,8 +1,11 @@
-{ config, flake, ... }:
-let
+{
+  config,
+  flake,
+  ...
+}: let
   username = "tudor";
 in {
-  imports = [ ../_all flake.inputs.nixos-wsl.nixosModules.wsl ];
+  imports = [../_all flake.inputs.nixos-wsl.nixosModules.wsl];
 
   systemModules = {
     basePackages.enable = true;
@@ -30,7 +33,7 @@ in {
 
   users.users."${username}" = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     uid = 1000;
     home = "/home/${username}";
     hashedPasswordFile = config.age.secrets.tudor-password.path;

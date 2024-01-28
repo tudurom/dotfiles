@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./attic.nix
     ./dyndns.nix

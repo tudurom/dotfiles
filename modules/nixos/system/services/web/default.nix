@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./cgit
     ./gitea.nix

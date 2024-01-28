@@ -1,5 +1,9 @@
-{ config, options, lib, ... }:
-let
+{
+  config,
+  options,
+  lib,
+  ...
+}: let
   cfg = config.homeModules.shell.starship;
 in {
   options.homeModules.shell.starship = {

@@ -1,10 +1,11 @@
-{ config, lib, ... }:
-
-with lib;
-let
-  cfg = config.homeModules.shell.fish;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.homeModules.shell.fish;
+in {
   options.homeModules.shell.fish = {
     enable = mkOption {
       default = false;

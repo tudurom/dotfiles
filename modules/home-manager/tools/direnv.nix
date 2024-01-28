@@ -1,6 +1,9 @@
-{ config, lib, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.homeModules.tools.direnv;
 in {
   options.homeModules.tools.direnv = {

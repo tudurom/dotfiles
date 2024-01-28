@@ -1,3 +1,3 @@
-{ inputs }: [
+{inputs}: [
   inputs.agenix.homeManagerModules.default
 ]

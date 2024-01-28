@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./aspell.nix
     ./base.nix

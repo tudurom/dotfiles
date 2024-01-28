@@ -1,11 +1,13 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.homeModules.shell.bash;
   opCfg = config.homeModules.tools.op;
-in
-{
+in {
   options.homeModules.shell.bash = {
     enable = mkOption {
       default = true;
@@ -26,14 +28,18 @@ in
       enable = true;
       initExtra = let
         shellName = builtins.baseNameOf (lib.getExe cfg.shellToExecPackage);
-        in opCfg.bashInitExtra +
-        (if cfg.execOtherShell then ''
-          # start ${shellName} if interactive
-          if [[ $(basename "$(ps --no-header --pid=$PPID --format=cmd)") != "${shellName}" ]]; then
-            [[ -z "$BASH_EXECUTION_STRING" ]] && exec ${lib.getExe cfg.shellToExecPackage}
-          fi
-        '' else "")
-      ;
+      in
+        opCfg.bashInitExtra
+        + (
+          if cfg.execOtherShell
+          then ''
+            # start ${shellName} if interactive
+            if [[ $(basename "$(ps --no-header --pid=$PPID --format=cmd)") != "${shellName}" ]]; then
+              [[ -z "$BASH_EXECUTION_STRING" ]] && exec ${lib.getExe cfg.shellToExecPackage}
+            fi
+          ''
+          else ""
+        );
     };
 
     programs.direnv.enableBashIntegration = true;

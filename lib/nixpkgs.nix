@@ -1,10 +1,13 @@
-{ self, inputs, ... }:
 {
+  self,
+  inputs,
+  ...
+}: {
   defaultConfig = {
     allowUnfree = true;
   };
 
-  mkDefaultOverlays = { system }: [
+  mkDefaultOverlays = {system}: [
     (final: _prev: {
       unstable = import inputs.unstable {
         inherit system;
@@ -13,9 +16,10 @@
     })
   ];
 
-  mkPkgs = { system }: import inputs.nixpkgs {
-    inherit system;
-    config = self.defaultConfig;
-    overlays = self.mkDefaultOverlays { inherit system; };
-  };
+  mkPkgs = {system}:
+    import inputs.nixpkgs {
+      inherit system;
+      config = self.defaultConfig;
+      overlays = self.mkDefaultOverlays {inherit system;};
+    };
 }

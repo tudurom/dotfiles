@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let
-  cfg = config.systemModules.basePackages;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.systemModules.basePackages;
+in {
   options.systemModules.basePackages = {
     enable = mkOption {
       default = false;
@@ -13,7 +15,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
     programs.fish.enable = true;
 
     environment.systemPackages = with pkgs; [

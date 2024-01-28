@@ -1,6 +1,5 @@
-{ config, ...}:
-{
-  imports = [ ../_all ./hardware.nix ];
+{config, ...}: {
+  imports = [../_all ./hardware.nix];
 
   systemModules.basePackages.enable = true;
   systemModules.services = {
@@ -32,7 +31,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Bucharest";
 
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = ["zfs"];
 
   boot.loader.grub = {
     enable = true;
@@ -62,7 +61,7 @@
 
   users.users.tudor = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     uid = 1000;
     home = "/home/tudor";
     hashedPasswordFile = config.age.secrets.tudor-password.path;

@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.homeModules.tools.base;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.homeModules.tools.base;
+in {
   options = {
     homeModules.tools.base = {
       enable = mkEnableOption "Enable base utilities";

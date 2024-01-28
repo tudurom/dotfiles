@@ -1,6 +1,4 @@
-{ inputs, vars, ... }:
-
-{
+{vars, ...}: {
   imports = [
     ../../modules/home-manager
   ];
