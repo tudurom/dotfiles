@@ -24,6 +24,7 @@ in {
 
   homeModules = {
     tools = {
+      nix.installAttic = true;
       git.opCommitSign = true;
     };
     shell.starship.enable = true;
