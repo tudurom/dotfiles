@@ -47,27 +47,6 @@
         "type": "github"
       }
     },
-    "co-work": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2",
-        "utils": "utils"
-      },
-      "locked": {
-        "dir": "co",
-        "lastModified": 1704921152,
-        "narHash": "sha256-MqwppimGSrdpMRxZcpujzFMFUOQ27Ie/JgYEkSRQSgI=",
-        "ref": "refs/heads/master",
-        "rev": "6809d3578142b6f44d7508d17921e50c9b81dc43",
-        "revCount": 403,
-        "type": "git",
-        "url": "ssh://gitea@git.tudorr.ro/tudor/assignments.git?dir=co"
-      },
-      "original": {
-        "dir": "co",
-        "type": "git",
-        "url": "ssh://gitea@git.tudorr.ro/tudor/assignments.git?dir=co"
-      }
-    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -95,7 +74,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "utils": "utils_2"
+        "utils": "utils"
       },
       "locked": {
         "lastModified": 1704875591,
@@ -469,22 +448,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1706098335,
-        "narHash": "sha256-r3dWjT8P9/Ah5m5ul4WqIWD8muj5F+/gbCdjiNVBKmU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a77ab169a83a4175169d78684ddd2e54486ac651",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-23.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1704874635,
         "narHash": "sha256-YWuCrtsty5vVZvu+7BchAxmcYzTMfolSPP5io8+WYCg=",
         "owner": "nixos",
@@ -527,7 +490,6 @@
       "inputs": {
         "agenix": "agenix",
         "attic": "attic",
-        "co-work": "co-work",
         "deploy-rs": "deploy-rs",
         "flake-compat": "flake-compat_3",
         "flake-parts": "flake-parts",
@@ -537,7 +499,7 @@
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "pre-commit-hooks": "pre-commit-hooks",
         "unstable": "unstable",
         "yarr-nix": "yarr-nix"
@@ -620,21 +582,6 @@
       }
     },
     "utils": {
-      "locked": {
-        "lastModified": 1644229661,
-        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "utils_2": {
       "inputs": {
         "systems": "systems_2"
       },

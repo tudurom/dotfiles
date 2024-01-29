@@ -60,8 +60,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    co-work.url = "git+ssh://gitea@git.tudorr.ro/tudor/assignments.git?dir=co";
-
     attic.url = "github:zhaofengli/attic";
   };
 

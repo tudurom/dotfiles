@@ -29,7 +29,6 @@
     };
     ipforward.enable = true;
     tailscale.enable = true;
-    pong.enable = true;
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
