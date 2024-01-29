@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  utils,
   ...
 }: let
   cfg = config.systemModules.services.web.gitea;
@@ -44,7 +45,11 @@ in
 
         virtualisation.podman.enable = true;
 
-        # systemd.services."gitea-runner-${pkgs.utils.escapeSystemdPath name}"
+        systemd.services."gitea-runner-${utils.escapeSystemdPath name}" = {
+          # make it not dump literally everything in the syslog
+          serviceConfig.StandardOutput = "null";
+        };
+
         services.gitea-actions-runner = {
           instances.${name} = {
             inherit name;
