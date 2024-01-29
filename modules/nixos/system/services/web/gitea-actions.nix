@@ -130,8 +130,19 @@ in {
   };
 
   systemd.services."gitea-runner-${escapedName}" = {
-    # make it not dump literally everything in the syslog
-    serviceConfig.StandardOutput = "null";
+    serviceConfig = flake.self.lib.harden {
+      # make it not dump literally everything in the syslog
+      StandardOutput = "null";
+
+      # undo some hardening
+
+      # Node is a JIT
+      MemoryDenyWriteExecute = false;
+      # nix emits warnings otherwise
+      ProcSubset = "all";
+      # uncomment if disabling ASLR in jobs
+      # LockPersonality = false;
+    };
     after = [
       "gitea-runner-${escapedName}-token.service"
       "gitea-runner-nix-image.service"
