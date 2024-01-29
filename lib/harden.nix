@@ -1,6 +1,5 @@
 {...}: serviceConfig:
-serviceConfig
-// {
+{
   CapabilityBoundingSet = [""];
   DeviceAllow = [""];
   LockPersonality = true;
@@ -24,3 +23,4 @@ serviceConfig
   SystemCallFilter = ["@system-service" "~@privileged"];
   UMask = "0077";
 }
+// serviceConfig
