@@ -27,6 +27,8 @@ in {
 
   homeModules = {
     tools = {
+      aspell.enable = true;
+      op.enable = true;
       nix.installAttic = true;
       git.opCommitSign = true;
     };

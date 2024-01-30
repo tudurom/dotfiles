@@ -18,7 +18,6 @@
     tools = {
       base.enable = true;
 
-      aspell.enable = true;
       direnv.enable = true;
       git.enable = true;
       neovim = {
@@ -29,9 +28,6 @@
       hx = {
         enable = true;
         defaultEditor = true;
-      };
-      op = {
-        enable = true;
       };
       tmux.enable = true;
     };
