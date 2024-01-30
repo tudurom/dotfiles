@@ -5,6 +5,8 @@
 }: {
   imports = [../_all ./hardware.nix];
 
+  nix.settings.trusted-users = ["tudor"];
+
   systemModules.basePackages.enable = true;
   systemModules.services = {
     attic = {
