@@ -29,6 +29,8 @@
     fsType = "ext4";
   };
 
+  # there's also rpool/root/podman for container storage
+
   swapDevices = [];
 
   # High-DPI console

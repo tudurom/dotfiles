@@ -119,14 +119,6 @@ in {
 
   virtualisation.podman = {
     enable = true;
-    extraPackages = [pkgs.zfs];
-  };
-
-  virtualisation.containers.storage.settings = {
-    storage.driver = "zfs";
-    storage.graphroot = "/var/lib/containers/storage";
-    storage.runroot = "/run/containers/storage";
-    storage.options.zfs.fsname = "rpool/root/podman";
   };
 
   systemd.services."gitea-runner-${escapedName}" = {

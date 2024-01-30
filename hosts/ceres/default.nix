@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [../_all ./hardware.nix];
 
   systemModules.basePackages.enable = true;
@@ -71,6 +75,20 @@
     openssh.authorizedKeys.keys = [
       (builtins.readFile ../../id_ed25519.pub)
     ];
+  };
+
+  virtualisation = {
+    podman = {
+      enable = true;
+      extraPackages = [pkgs.zfs];
+    };
+  };
+
+  virtualisation.containers.storage.settings = {
+    storage.driver = "zfs";
+    storage.graphroot = "/var/lib/containers/storage";
+    storage.runroot = "/run/containers/storage";
+    storage.options.zfs.fsname = "rpool/root/podman";
   };
 
   security.sudo.wheelNeedsPassword = false;
