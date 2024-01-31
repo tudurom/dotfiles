@@ -40,6 +40,9 @@ in {
         settings.service = {
           DISABLE_REGISTRATION = true;
         };
+        settings."repository.pull-request" = {
+          DEFAULT_MERGE_STYLE = "rebase";
+        };
       };
 
       services.nginx.virtualHosts."git.tudorr.ro" = {
