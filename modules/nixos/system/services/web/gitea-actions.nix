@@ -1,5 +1,5 @@
 # HUGE thanks to this: https://git.clan.lol/clan/clan-infra/src/branch/main/modules/web01/gitea/actions-runner.nix
-# Largely copied from there.
+# Largely copied from there. Improved and clean afterwards.
 # This file is meant to be conditionally included in ./gitea.nix
 {
   config,
@@ -8,23 +8,43 @@
   utils,
   flake,
   ...
-}:
-with lib; let
+}: let
   cfg = config.systemModules.services.web.gitea.actions;
   name = "${config.networking.hostName}-1";
   escapedName = utils.escapeSystemdPath name;
-  storeDeps = pkgs.runCommand "store-deps" {} ''
-    mkdir -p $out/bin
-    for dir in ${toString (with pkgs; [coreutils findutils gnugrep gawk git nix bash jq nodejs])}; do
-      for bin in "$dir"/bin/*; do
-        ln -s "$bin" "$out/bin/$(basename "$bin")"
-      done
-    done
 
-    # Add SSL CA certs
-    mkdir -p $out/etc/ssl/certs
-    cp -a "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" $out/etc/ssl/certs/ca-bundle.crt
-  '';
+  # inspired by
+  # https://gist.github.com/fasterthanlime/e9582c4842ef00c581a042bb6057b707
+  nixImage = let
+    nixConfig = pkgs.writeTextFile {
+      name = "nix-config";
+      text = ''
+        build-users-group =
+        experimental-features = nix-command flakes
+        max-jobs = auto
+      '';
+      destination = "/etc/nix/nix.conf";
+    };
+  in
+    pkgs.dockerTools.streamLayeredImage {
+      name = "gitea-runner-nix";
+      tag = "latest";
+      contents = [
+        nixConfig
+
+        pkgs.cacert
+        pkgs.bash
+        pkgs.nodejs
+        pkgs.gitMinimal
+        pkgs.coreutils
+        pkgs.busybox
+        pkgs.nix
+
+        pkgs.dockerTools.fakeNss
+        pkgs.dockerTools.caCertificates
+      ];
+      config.Cmd = ["/bin/bash"];
+    };
 in {
   services.gitea = {
     settings.actions.ENABLED = true;
@@ -34,49 +54,14 @@ in {
     wantedBy = ["multi-user.target"];
     after = ["podman.service"];
     requires = ["podman.service"];
-    path = with pkgs; [
+    path = [
       config.virtualisation.podman.package
-      gnutar
-      shadow
-      getent
     ];
 
-    # we also include etc here because the cleanup job also wants the nixuser to be present
     script = ''
-      set -eux -o pipefail
-      mkdir -p etc/nix
-
-      # Create an unpriveleged user that we can use also without the run-as-user.sh script
-      touch etc/passwd etc/group
-      groupid=$(cut -d: -f3 < <(getent group nixuser))
-      userid=$(cut -d: -f3 < <(getent passwd nixuser))
-      groupadd --prefix $(pwd) --gid "$groupid" nixuser
-      emptypassword='$6$1ero.LwbisiU.h3D$GGmnmECbPotJoPQ5eoSTD6tTjKnSWZcjHoVTkxFLZP17W9hRi/XkmCiAMOfWruUwy8gMjINrBMNODc7cYEo4K.'
-      useradd --prefix $(pwd) -p "$emptypassword" -m -d /tmp -u "$userid" -g "$groupid" -G nixuser nixuser
-
-      cat <<NIX_CONFIG > etc/nix/nix.conf
-      accept-flake-config = true
-      experimental-features = nix-command flakes
-      NIX_CONFIG
-
-      cat <<NSSWITCH > etc/nsswitch.conf
-      passwd:    files mymachines systemd
-      group:     files mymachines systemd
-      shadow:    files
-
-      hosts:     files mymachines dns myhostname
-      networks:  files
-
-      ethers:    files
-      services:  files
-      protocols: files
-      rpc:       files
-      NSSWITCH
-
-      # list the content as it will be imported into the container
-      tar -cv . | tar -tvf -
-      tar -cv . | podman import --change="USER nixuser" - gitea-runner-nix
+      ${nixImage} | podman load -q
     '';
+
     serviceConfig = {
       RuntimeDirectory = "gitea-runner-nix-image";
       WorkingDirectory = "/run/gitea-runner-nix-image";
@@ -84,13 +69,6 @@ in {
       RemainAfterExit = true;
     };
   };
-
-  users.users.nixuser = {
-    group = "nixuser";
-    home = "/var/empty";
-    isSystemUser = true;
-  };
-  users.groups.nixuser = {};
 
   systemd.services."gitea-runner-${escapedName}-token" = {
     wantedBy = ["multi-user.target"];
@@ -105,6 +83,7 @@ in {
       token=$(${lib.getExe config.services.gitea.package} actions generate-runner-token)
       echo "TOKEN=$token" > /var/lib/gitea-registration/${name}-token
     '';
+
     unitConfig.ConditionPathExists = ["!/var/lib/gitea-registration/${name}"];
     serviceConfig = flake.self.lib.harden {
       DynamicUser = false;
@@ -159,14 +138,12 @@ in {
         "ubuntu-18.04:docker://node:lts-buster"
       ];
       settings = {
-        container.options = "-e NIX_BUILD_SHELL=/bin/bash -e PAGER=cat -e PATH=/bin -e SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt --device /dev/kvm -v /nix:/nix -v ${storeDeps}/bin:/bin -v ${storeDeps}/etc/ssl:/etc/ssl --device=/dev/kvm";
+        container.options = "--device /dev/kvm -v /nix:/nix";
         log.level = "warn";
         container.network = "host";
         container.privileged = true;
         container.valid_volumes = [
           "/nix"
-          "${storeDeps}/bin"
-          "${storeDeps}/etc/ssl"
         ];
         cache = assert cfg.host != ""; {
           enabled = true;
