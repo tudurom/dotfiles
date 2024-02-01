@@ -1,8 +1,18 @@
 {
   pkgs,
   lib,
+  flake,
   ...
 }: {
+  imports = with flake.inputs.nixos-hardware.nixosModules; [
+    common-pc
+    common-pc-hdd
+    common-cpu-intel
+    common-cpu-intel-cpu-only
+  ];
+
+  hardware.enableRedistributableFirmware = true;
+
   boot.initrd.availableKernelModules = ["ata_generic" "uhci_hcd" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];

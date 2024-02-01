@@ -3,7 +3,10 @@
   pkgs,
   ...
 }: {
-  imports = [../_all ./hardware.nix];
+  imports = [
+    ../_all
+    ./hardware.nix
+  ];
 
   nix.settings.trusted-users = ["tudor"];
 
