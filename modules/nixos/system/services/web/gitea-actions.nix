@@ -75,7 +75,7 @@ in {
 
       # list the content as it will be imported into the container
       tar -cv . | tar -tvf -
-      tar -cv . | podman import - gitea-runner-nix
+      tar -cv . | podman import --change="USER nixuser" - gitea-runner-nix
     '';
     serviceConfig = {
       RuntimeDirectory = "gitea-runner-nix-image";
@@ -159,7 +159,7 @@ in {
         "ubuntu-18.04:docker://node:lts-buster"
       ];
       settings = {
-        container.options = "-e NIX_BUILD_SHELL=/bin/bash -e PAGER=cat -e PATH=/bin -e SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt --device /dev/kvm -v /nix:/nix -v ${storeDeps}/bin:/bin -v ${storeDeps}/etc/ssl:/etc/ssl --user nixuser --device=/dev/kvm";
+        container.options = "-e NIX_BUILD_SHELL=/bin/bash -e PAGER=cat -e PATH=/bin -e SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt --device /dev/kvm -v /nix:/nix -v ${storeDeps}/bin:/bin -v ${storeDeps}/etc/ssl:/etc/ssl --device=/dev/kvm";
         log.level = "warn";
         container.network = "host";
         container.privileged = true;
