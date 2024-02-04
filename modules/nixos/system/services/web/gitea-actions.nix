@@ -32,6 +32,10 @@
       contents = [
         nixConfig
 
+        # for caching
+        pkgs.gnutar
+        pkgs.zstd
+
         pkgs.cacert
         pkgs.bash
         pkgs.nodejs
