@@ -189,7 +189,10 @@ in
           };
           input."type:touchpad" = {
             tap = "enabled";
+            tap_button_map = "lrm";
             natural_scroll = "enabled";
+            drag = "enabled";
+            drag_lock = "enabled";
           };
           output = {
             "*" = {
