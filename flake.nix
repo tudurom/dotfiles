@@ -197,8 +197,6 @@
               /usr/bin/env git config blame.ignoreRevsFile .git-blame-ignore-revs
             '';
           buildInputs = with pkgs; [
-            nix
-
             self'.packages.home-manager
             self'.packages.nixos-rebuild
             self'.packages.agenix
