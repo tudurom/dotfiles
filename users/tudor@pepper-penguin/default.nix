@@ -72,4 +72,9 @@ in {
   wayland.windowManager.sway.config.output = {
     "${monitor1.criteria}".subpixel = "vrgb";
   };
+
+  # it broke, rip
+  wayland.windowManager.sway.config.input = {
+    "2:10:TPPS/2_Elan_TrackPoint".events = "disabled";
+  };
 }
