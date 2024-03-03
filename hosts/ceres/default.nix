@@ -27,7 +27,7 @@
         };
       };
       site = {
-        enable = true;
+        enable = false;
         webRootUser = "tudor";
       };
       yarr.enable = true;
