@@ -1,6 +1,6 @@
 # HUGE thanks to this: https://git.clan.lol/clan/clan-infra/src/branch/main/modules/web01/gitea/actions-runner.nix
 # Largely copied from there. Improved and clean afterwards.
-# This file is meant to be conditionally included in ./gitea.nix
+# This file is meant to be conditionally included in ./forgejo.nix
 {
   config,
   lib,
@@ -9,7 +9,7 @@
   flake,
   ...
 }: let
-  cfg = config.systemModules.services.web.gitea.actions;
+  cfg = config.systemModules.services.web.forgejo.actions;
   name = "${config.networking.hostName}-1";
   escapedName = utils.escapeSystemdPath name;
 
@@ -27,7 +27,7 @@
     };
   in
     pkgs.dockerTools.streamLayeredImage {
-      name = "gitea-runner-nix";
+      name = "forgejo-runner-nix";
       tag = "latest";
       contents = [
         nixConfig
@@ -50,11 +50,11 @@
       config.Cmd = ["/bin/bash"];
     };
 in {
-  services.gitea = {
+  services.forgejo = {
     settings.actions.ENABLED = true;
   };
 
-  systemd.services.gitea-runner-nix-image = {
+  systemd.services.forgejo-runner-nix-image = {
     wantedBy = ["multi-user.target"];
     after = ["podman.service"];
     requires = ["podman.service"];
@@ -67,34 +67,34 @@ in {
     '';
 
     serviceConfig = {
-      RuntimeDirectory = "gitea-runner-nix-image";
-      WorkingDirectory = "/run/gitea-runner-nix-image";
+      RuntimeDirectory = "forgejo-runner-nix-image";
+      WorkingDirectory = "/run/forgejo-runner-nix-image";
       Type = "oneshot";
       RemainAfterExit = true;
     };
   };
 
-  systemd.services."gitea-runner-${escapedName}-token" = {
+  systemd.services."forgejo-runner-${escapedName}-token" = {
     wantedBy = ["multi-user.target"];
-    after = ["gitea.service"];
+    after = ["forgejo.service"];
     environment = {
-      GITEA_CUSTOM = "/var/lib/gitea/custom";
-      GITEA_WORK_DIR = "/var/lib/gitea";
+      FORGEJO_CUSTOM = "/var/lib/forgejo/custom";
+      FORGEJO_WORK_DIR = "/var/lib/forgejo";
     };
 
     script = ''
       set -euo pipefail
-      token=$(${lib.getExe config.services.gitea.package} actions generate-runner-token)
-      echo "TOKEN=$token" > /var/lib/gitea-registration/${name}-token
+      token=$(${lib.getExe config.services.forgejo.package} actions generate-runner-token)
+      echo "TOKEN=$token" > /var/lib/forgejo-registration/${name}-token
     '';
 
-    unitConfig.ConditionPathExists = ["!/var/lib/gitea-registration/${name}"];
+    unitConfig.ConditionPathExists = ["!/var/lib/forgejo-registration/${name}"];
     serviceConfig = flake.self.lib.harden {
       DynamicUser = false;
 
-      User = "gitea";
-      Group = "gitea";
-      StateDirectory = "gitea-registration";
+      User = config.services.forgejo.user;
+      Group = config.services.forgejo.group;
+      StateDirectory = "forgejo-registration";
       Type = "oneshot";
       RemainAfterExit = true;
     };
@@ -104,6 +104,8 @@ in {
     enable = true;
   };
 
+  # TODO: change to forgejo-runner once there's a NixOS
+  # module for it
   systemd.services."gitea-runner-${escapedName}" = {
     serviceConfig = flake.self.lib.harden {
       # make it not dump literally everything in the syslog
@@ -119,23 +121,24 @@ in {
       # LockPersonality = false;
     };
     after = [
-      "gitea-runner-${escapedName}-token.service"
-      "gitea-runner-nix-image.service"
+      "forgejo-runner-${escapedName}-token.service"
+      "forgejo-runner-nix-image.service"
     ];
     requires = [
-      "gitea-runner-${escapedName}-token.service"
-      "gitea-runner-nix-image.service"
+      "forgejo-runner-${escapedName}-token.service"
+      "forgejo-runner-nix-image.service"
     ];
   };
 
   services.gitea-actions-runner = {
+    package = pkgs.forgejo-actions-runner;
     instances.${name} = {
       inherit name;
       enable = true;
-      url = config.services.gitea.settings.server.ROOT_URL;
-      tokenFile = "/var/lib/gitea-registration/${name}-token";
+      url = config.services.forgejo.settings.server.ROOT_URL;
+      tokenFile = "/var/lib/forgejo-registration/${name}-token";
       labels = [
-        "nix:docker://gitea-runner-nix"
+        "nix:docker://forgejo-runner-nix"
         "ubuntu-latest:docker://node:lts-bookworm"
         "ubuntu-22.04:docker://node:lts-bullseye"
         "ubuntu-20.04:docker://node:lts-bullseye"

@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./cgit
-    ./gitea.nix
+    ./forgejo.nix
     ./nginx.nix
     ./site.nix
     ./yarr.nix

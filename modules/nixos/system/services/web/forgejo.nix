@@ -7,20 +7,20 @@
   ...
 }:
 with lib; let
-  cfg = config.systemModules.services.web.gitea;
+  cfg = config.systemModules.services.web.forgejo;
 in {
-  options.systemModules.services.web.gitea = {
-    enable = mkEnableOption "Enable Gitea";
+  options.systemModules.services.web.forgejo = {
+    enable = mkEnableOption "Enable Forgejo";
     actions = {
-      enable = mkEnableOption "Enable Gitea Actions runner";
+      enable = mkEnableOption "Enable Forgejo Actions runner";
       host = mkOption {
         type = types.str;
-        description = "Gitea actions runner LAN IP";
+        description = "Forgejo actions runner LAN IP";
         default = "";
       };
       cachePort = mkOption {
         type = types.int;
-        description = "Gitea actions runner cache port";
+        description = "Forgejo actions runner cache port";
         default = 8088;
       };
     };
@@ -28,7 +28,7 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
-      services.gitea = {
+      services.forgejo = {
         enable = true;
         appName = "Tudor's Code Pantry";
         database.type = "sqlite3";
@@ -53,7 +53,7 @@ in {
         };
       };
     }
-    (mkIf cfg.actions.enable (import ./gitea-actions.nix {
+    (mkIf cfg.actions.enable (import ./forgejo-actions.nix {
       inherit config lib pkgs utils flake;
     }))
   ]);
