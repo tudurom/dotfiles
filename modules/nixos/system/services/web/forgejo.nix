@@ -30,7 +30,7 @@ in {
     {
       services.forgejo = {
         enable = true;
-        appName = "Tudor's Code Pantry";
+        settings.DEFAULT.APP_NAME = "Tudor's Code Pantry";
         database.type = "sqlite3";
         settings.server = {
           DOMAIN = "git.tudorr.ro";
