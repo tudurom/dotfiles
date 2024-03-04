@@ -63,7 +63,6 @@
     tudor-password.file = ../../secrets/ceres/tudor-password.age;
     yarr-credentials.file = ../../secrets/ceres/yarr-credentials.age;
     dedyn.file = ../../secrets/ceres/dedyn.age;
-    forgejo-actions-token.file = ../../secrets/ceres/forgejo-actions-token.age;
   };
 
   users.users.tudor = {

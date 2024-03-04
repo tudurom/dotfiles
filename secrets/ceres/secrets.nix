@@ -6,5 +6,4 @@ in {
   "tudor-password.age".publicKeys = keys;
   "yarr-credentials.age".publicKeys = keys;
   "dedyn.age".publicKeys = keys;
-  "forgejo-actions-token.age".publicKeys = keys;
 }
