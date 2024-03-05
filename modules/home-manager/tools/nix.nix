@@ -17,6 +17,7 @@ in
 
     config = mkIf cfg.enable {
       nix.registry.stable.flake = flake.inputs.nixpkgs;
+      nix.registry.unstable.flake = flake.inputs.unstable;
       nixpkgs.overlays = mkIf cfg.installAttic [
         flake.inputs.attic.overlays.default
       ];

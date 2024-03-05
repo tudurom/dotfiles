@@ -49,7 +49,8 @@ in
             else
               -- for some reason the version of wezterm in nixpkgs
               -- doesn't have 'GruvboxLight'
-              return 'Gruvbox (Gogh)'
+              -- return 'Gruvbox (Gogh)'
+              return 'GruvboxLight'
             end
           end
 

@@ -33,6 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "unstable";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     flake-compat = {
@@ -68,9 +73,11 @@
     haumea,
     pre-commit-hooks,
     nixpkgs,
+    unstable,
     deploy-rs,
     flake-parts,
     home-manager,
+    home-manager-unstable,
     ...
   }: let
     systems = ["x86_64-linux" "aarch64-linux"];
@@ -132,9 +139,22 @@
 
         homeConfigurations = let
           mkHomeConfiguration = name: user: system: let
-            pkgs = self.lib.nixpkgs.mkPkgs {inherit system;};
+            stablePkgs = self.lib.nixpkgs.mkPkgs {inherit system;};
+            hm = inputs.home-manager;
           in
-            inputs.home-manager.lib.homeManagerConfiguration {
+            mkHomeConfiguration' hm stablePkgs name user;
+
+          mkHomeConfigurationUnstable = name: user: system: let
+            unstablePkgs = self.lib.nixpkgs.mkPkgs {
+              inherit system;
+              nixpkgsVersion = unstable;
+            };
+            hm = inputs.home-manager-unstable;
+          in
+            mkHomeConfiguration' hm unstablePkgs name user;
+
+          mkHomeConfiguration' = hm: pkgs: name: user:
+            hm.lib.homeManagerConfiguration {
               inherit pkgs;
 
               extraSpecialArgs = specialArgs;
@@ -159,7 +179,7 @@
             };
         in {
           "tudor" = mkHomeConfiguration "tudor" "tudor" "x86_64-linux";
-          "tudor@pepper-penguin" = mkHomeConfiguration "tudor@pepper-penguin" "tudor" "x86_64-linux";
+          "tudor@pepper-penguin" = mkHomeConfigurationUnstable "tudor@pepper-penguin" "tudor" "x86_64-linux";
         };
 
         deploy.nodes."ceres" = let
@@ -185,6 +205,7 @@
         packages.nixos-rebuild = pkgs.nixos-rebuild;
 
         packages.home-manager = inputs.home-manager.packages.${system}.default;
+        packages.home-manager-unstable = inputs.home-manager-unstable.packages.${system}.default;
         packages.agenix = inputs.agenix.packages.${system}.default;
 
         packages.deploy-rs = deployPkgs.${system}.deploy-rs.deploy-rs;
@@ -198,6 +219,7 @@
             '';
           buildInputs = with pkgs; [
             self'.packages.home-manager
+            self'.packages.home-manager-unstable
             self'.packages.nixos-rebuild
             self'.packages.agenix
             self'.packages.deploy-rs

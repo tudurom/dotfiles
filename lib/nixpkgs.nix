@@ -1,6 +1,7 @@
 {
   self,
   inputs,
+  nixpkgs,
   ...
 }: {
   defaultConfig = {
@@ -16,8 +17,11 @@
     })
   ];
 
-  mkPkgs = {system}:
-    import inputs.nixpkgs {
+  mkPkgs = {
+    nixpkgsVersion ? nixpkgs,
+    system,
+  }:
+    import nixpkgsVersion {
       inherit system;
       config = self.defaultConfig;
       overlays = self.mkDefaultOverlays {inherit system;};

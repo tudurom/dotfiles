@@ -9,12 +9,12 @@
     scale = 1.25;
   };
   monitor1 = {
-    criteria = "LG Electronics LG HDR 4K 0x00003A3A";
+    criteria = "LG Electronics LG HDR 4K 0x00083A3A";
     scale = 2.0;
     transform = "90";
   };
   monitor2 = {
-    criteria = "LG Electronics LG HDR 4K 0x0000D901";
+    criteria = "LG Electronics LG HDR 4K 0x0008D101";
     scale = 2.0;
   };
 in {
