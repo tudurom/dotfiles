@@ -39,6 +39,7 @@ in {
         style = "Regular";
         size = 12.0;
       };
+      fonts.enable = true;
       sway = {
         inherit nixGLPackage;
 

@@ -44,7 +44,6 @@ in
       homeModules.desktop = {
         # terminal emulator
         wezterm.enable = cfg.terminal == "wezterm";
-        fonts.enable = cfg.terminal == "foot";
         # status bar
         waybar = {
           enable = true;
@@ -150,7 +149,12 @@ in
       wayland.windowManager.sway = {
         enable = true;
         package = let
-          origPkg = pkgs.sway;
+          origPkg = pkgs.sway.override {
+            extraSessionCommands = "";
+            extraOptions = [];
+            withBaseWrapper = true;
+            withGtkWrapper = false;
+          };
           nixGL = cfg.nixGLPackage;
         in
           if nixGL != null
@@ -303,6 +307,9 @@ in
             };
           };
         };
+        extraConfigEarly = ''
+          exec "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd XDG_DATA_DIRS"
+        '';
         extraConfig = ''
           title_align center
         '';
