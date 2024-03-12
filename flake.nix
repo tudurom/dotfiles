@@ -238,12 +238,6 @@
               alejandra.enable = true;
               statix.enable = true;
               deadnix.enable = true;
-              ansible-lint = {
-                enable = true;
-              };
-            };
-            settings.ansible-lint = {
-              subdir = "ansible";
             };
           };
         };

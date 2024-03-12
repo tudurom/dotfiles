@@ -26,8 +26,11 @@ Remote server:
 
 ### Any other Linux distro for sane people
 
-1. Provision a machine with a "normal" Linux distro (my personal choice is Fedora).
-   For this, [I prepared Ansible roles and playbooks](./ansible).
+The companion distro for this config is [My Build of Fedora Silverblue](https://github.com/tudurom/my-os).
+It is made with [BlueBuild](https://blue-build.org). The desktop-oriented configs in this repo
+are meant to be used with this Fedora build only.
+
+1. Provision a system with the [ISO](https://github.com/tudurom/my-os/releases/tag/auto-iso).
 2. Install Nix (my installer of choice is [nix-installer][nix-installer]).
 3. Clone this repo somewhere on the machine
 4. `nix run .#home-manager -- switch --flake .#tudor`
