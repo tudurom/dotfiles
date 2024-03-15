@@ -87,7 +87,7 @@
     storage.driver = "zfs";
     storage.graphroot = "/var/lib/containers/storage";
     storage.runroot = "/run/containers/storage";
-    storage.options.zfs.fsname = "rpool/root/podman";
+    storage.options.zfs.fsname = "rpool/podman";
   };
 
   security.sudo.wheelNeedsPassword = false;
