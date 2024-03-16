@@ -64,8 +64,6 @@
       url = "git+https://git.tudorr.ro/tudor/yarr-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    attic.url = "github:zhaofengli/attic";
   };
 
   outputs = inputs @ {
@@ -173,6 +171,8 @@
                     programs.bash.profileExtra = ''
                       . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
                     '';
+
+                    nix.package = pkgs.nix;
                   }
                   (./users + "/${name}")
                 ];
