@@ -32,6 +32,7 @@ in {
       git.opCommitSign = true;
     };
     shell.starship.enable = true;
+    shell.zoxide.enable = true;
     desktop = {
       disableAnimations.enable = true;
       fonts.themeFont = {
