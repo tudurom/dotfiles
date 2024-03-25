@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   imports = [
     ../_all
   ];
@@ -11,8 +11,6 @@
 
     shell.bash = {
       enable = true;
-      execOtherShell = true;
-      shellToExecPackage = config.programs.nushell.package;
     };
 
     tools = {

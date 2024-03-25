@@ -11,6 +11,12 @@ in
     options = {
       homeModules.desktop.wezterm = {
         enable = mkEnableOption "Enable wezterm";
+        shell = mkOption {
+          type = types.listOf types.str;
+          default = [];
+          example = ["$${lib.getExe pkgs.bash}"];
+          description = "The shell to start and its args. Leave empty for the default in passwd.";
+        };
       };
     };
 
@@ -58,6 +64,12 @@ in
 
           -- TODO: remove this after it's fixed
           config.default_gui_startup_args = {'start', '--always-new-process'}
+
+          ${
+            if cfg.shell != ""
+            then "config.default_prog = {${lib.concatMapStringsSep ", " (x: "'${x}'") cfg.shell}}"
+            else ""
+          }
 
           return config
         '';

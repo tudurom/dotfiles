@@ -1,6 +1,8 @@
 {
   pkgs,
   flake,
+  lib,
+  config,
   ...
 }: let
   nixGLPackage = pkgs.nixgl.nixGLIntel;
@@ -47,6 +49,10 @@ in {
         enable = true;
         terminal = "wezterm";
       };
+      wezterm.shell = [
+        "${lib.getExe config.programs.nushell.package}"
+        "-l"
+      ];
     };
   };
 

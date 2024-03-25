@@ -32,7 +32,7 @@ in
         # Acknowledgements: https://stuartleeks.com/posts/wsl-ssh-key-forward-to-windows/
         # God bless your soul
         # Requires npiperelay
-        homeModules.tools.op.bashInitExtra = let
+        programs.bash.initExtra = let
           inherit (pkgs) ps util-linux socat;
           grep = pkgs.gnugrep;
         in ''
