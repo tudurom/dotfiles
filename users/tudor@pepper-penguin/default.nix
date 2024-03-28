@@ -1,7 +1,6 @@
 {
   pkgs,
   flake,
-  lib,
   config,
   ...
 }: let
@@ -43,16 +42,11 @@ in {
         size = 12.0;
       };
       fonts.enable = true;
-      sway = {
+      common = {
         inherit nixGLPackage;
-
-        enable = true;
         terminal = "wezterm";
       };
-      wezterm.shell = [
-        "${lib.getExe config.programs.nushell.package}"
-        "-l"
-      ];
+      sway.enable = true;
     };
   };
 
