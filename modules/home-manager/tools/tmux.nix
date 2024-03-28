@@ -1,10 +1,10 @@
 {
   config,
-  options,
   lib,
   ...
 }: let
   cfg = config.homeModules.tools.tmux;
+  shellCfg = config.homeModules.shell.default;
 in
   with lib; {
     options = {
@@ -32,6 +32,12 @@ in
 
           bind h split-window -v
           bind v split-window -h
+
+          ${
+            if shellCfg.package != null
+            then "set-option -g default-shell ${lib.getExe shellCfg.package}"
+            else ""
+          }
         '';
       };
     };

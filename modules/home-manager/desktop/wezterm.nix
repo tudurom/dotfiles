@@ -5,18 +5,13 @@
   ...
 }: let
   cfg = config.homeModules.desktop.wezterm;
+  shellCfg = config.homeModules.shell.default;
   inherit (config.homeModules.desktop.fonts) themeFont;
 in
   with lib; {
     options = {
       homeModules.desktop.wezterm = {
         enable = mkEnableOption "Enable wezterm";
-        shell = mkOption {
-          type = types.listOf types.str;
-          default = [];
-          example = ["$${lib.getExe pkgs.bash}"];
-          description = "The shell to start and its args. Leave empty for the default in passwd.";
-        };
       };
     };
 
@@ -24,7 +19,12 @@ in
       programs.wezterm = {
         enable = true;
         package = pkgs.wezterm;
-        extraConfig = ''
+        extraConfig = let
+          defaultProg =
+            if shellCfg.package != null
+            then lib.concatMapStringsSep ", " (x: "'${x}'") ([(lib.getExe shellCfg.package)] ++ shellCfg.flags)
+            else null;
+        in ''
           local wezterm = require "wezterm"
 
           local config = wezterm.config_builder()
@@ -66,8 +66,8 @@ in
           config.default_gui_startup_args = {'start', '--always-new-process'}
 
           ${
-            if cfg.shell != ""
-            then "config.default_prog = {${lib.concatMapStringsSep ", " (x: "'${x}'") cfg.shell}}"
+            if shellCfg.package != null
+            then "config.default_prog = {${defaultProg}}"
             else ""
           }
 
