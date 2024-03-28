@@ -6,33 +6,13 @@
   ...
 }: let
   cfg = config.homeModules.desktop.sway;
+  cfgCommon = config.homeModules.desktop.common;
   inherit (config.homeModules.desktop.fonts) themeFont;
 in
   with lib; {
     options = {
       homeModules.desktop.sway = {
         enable = mkEnableOption "Enable sway";
-        nixGLPackage = mkOption {
-          type = types.nullOr types.package;
-          default = null;
-          description = ''
-            Start sway with a nixGL variant. Useful for Non-NixOS systems.
-            If null (default), sway will be started normally.
-          '';
-        };
-
-        wallpaperPath = mkOption {
-          description = "Path to wallpaper to apply";
-          type = types.path;
-          # https://unsplash.com/photos/ZlzWbHC86B8
-          default = ./wallpaper.jpg;
-        };
-
-        terminal = mkOption {
-          description = "Terminal emulator to use: foot or wezterm";
-          type = types.str;
-          default = "wezterm";
-        };
       };
     };
 
@@ -42,8 +22,9 @@ in
       ];
 
       homeModules.desktop = {
+        common.enable = true;
         # terminal emulator
-        wezterm.enable = cfg.terminal == "wezterm";
+        wezterm.enable = cfgCommon.terminal == "wezterm";
         # status bar
         waybar = {
           enable = true;
@@ -51,32 +32,13 @@ in
         };
       };
 
-      home.packages = with pkgs; [
-        wl-clipboard
-      ];
-
-      # notification daemon
-      services.mako.enable = true;
       # dynamic display configuration.
       # to be enabled by each config inidividually,
       # this key is set here only to make it start when sway starts.
       services.kanshi.systemdTarget = "sway-session.target";
 
       # clipboard manager. keeps the contents once the original program quits.
-      services.copyq = {
-        enable = true;
-        systemdTarget = "sway-session.target";
-      };
-
-      # blue light remover. adjusts the red tint based on the time of day.
-      services.gammastep = {
-        enable = true;
-        provider = "manual";
-        # https://maps.app.goo.gl/wrftdjP96bKDu5FW7
-        latitude = "52.36308";
-        longitude = "4.88372";
-        tray = true;
-      };
+      services.copyq.systemdTarget = "sway-session.target";
 
       # does things if the computer is left untouched for a while
       services.swayidle = let
@@ -118,33 +80,6 @@ in
         ];
       };
 
-      systemd.user.services.swayidle = {
-        Service = {
-          # hack to make calling swaylock with /usr/bin/env work
-          # for both NixOS and non-NixOS
-          # See: https://github.com/nix-community/home-manager/blob/05649393ac1f34980a5cf6a6e89de77626c9182b/modules/services/swayidle.nix#L124-L125
-          Environment = mkForce [
-            "PATH=${makeBinPath [pkgs.bash]}:/usr/bin"
-          ];
-        };
-      };
-
-      # fuzzy-finding application launcher
-      programs.fuzzel = {
-        enable = true;
-        settings = {
-          main = {
-            # in case you don't see it: that's the eyes emoji,
-            # followed by the U+FE0F "Variation selector-6" character.
-            # That magic character tells the text rendering system to use
-            # the colour version of the emoji, instead of the outline version.
-            # You can also force the outline version with U+FE0E "Variation selector-5".
-            prompt = "\"👀️ \"";
-            font = "${themeFont.family}:size=${builtins.toString (builtins.floor themeFont.size)},Noto Color Emoji,Noto Emoji";
-          };
-        };
-      };
-
       # the belly of the beast
       wayland.windowManager.sway = {
         enable = true;
@@ -155,7 +90,7 @@ in
             withBaseWrapper = true;
             withGtkWrapper = false;
           };
-          nixGL = cfg.nixGLPackage;
+          nixGL = cfgCommon.nixGLPackage;
         in
           if nixGL != null
           then
@@ -200,7 +135,7 @@ in
           };
           output = {
             "*" = {
-              bg = "${cfg.wallpaperPath} fill";
+              bg = "${cfgCommon.wallpaperPath} fill";
               adaptive_sync = "on";
             };
           };
@@ -244,7 +179,7 @@ in
           in
             lib.mkOptionDefault {
               "${mod}+Return" =
-                if cfg.terminal == "wezterm"
+                if cfgCommon.terminal == "wezterm"
                 then "exec ${wezterm}"
                 else "exec ${foot}";
 
