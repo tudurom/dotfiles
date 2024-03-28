@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.homeModules.desktop.foot;
+  shellCfg = config.homeModules.shell.default;
   inherit (config.homeModules.desktop.fonts) themeFont;
 in
   with lib; {
@@ -21,6 +22,10 @@ in
         settings = {
           main = {
             pad = "20x20";
+            shell =
+              if shellCfg.package != null
+              then lib.concatStringsSep " " ([(lib.getExe shellCfg.package)] ++ shellCfg.flags)
+              else null;
             # idk how foot does font sizes but it's not as
             # small as you might think
             font = "${themeFont.family}:size=${builtins.toString (builtins.floor themeFont.size)}";

@@ -32,8 +32,11 @@ in {
       op.enable = true;
       git.opCommitSign = true;
     };
-    shell.starship.enable = true;
-    shell.zoxide.enable = true;
+    shell = {
+      default.package = config.programs.nushell.package;
+      starship.enable = true;
+      zoxide.enable = true;
+    };
     desktop = {
       disableAnimations.enable = true;
       fonts.themeFont = {
