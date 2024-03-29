@@ -47,8 +47,9 @@ in {
       fonts.enable = true;
       common = {
         inherit nixGLPackage;
-        terminal = "wezterm";
+        terminal = "foot";
       };
+      foot.enable = true;
       sway.enable = true;
     };
   };
