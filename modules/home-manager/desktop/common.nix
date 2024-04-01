@@ -95,5 +95,44 @@ in
           };
         };
       };
+
+      services.swayidle = let
+        swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
+        niri = "${config.programs.niri.package}/bin/niri";
+        # if running nixos: make sure swaylock is enabled system-wide in the system config!
+        # if not: make sure you either have swaylock installed via the system package manager,
+        # or you have a valid PAM config for it.
+        # otherwise, it will not be able to unlock the screen!
+        swaylock = "/usr/bin/env swaylock";
+        swaylockCmd = "${swaylock} -c 000000 -fF";
+      in {
+        enable = true;
+        systemdTarget = "wl-session.target";
+        events = [
+          # make sure the screen is locked before going to sleep
+          {
+            event = "before-sleep";
+            command = swaylockCmd;
+          }
+          {
+            event = "lock";
+            command = swaylockCmd;
+          }
+          # stop the screen locker if loginctl says it's time to unlock
+          # (you can test by running loginctl unlock-session).
+          # regarding the sigusr1 thing, see swaylock(1).
+          {
+            event = "unlock";
+            command = "pkill -USR1 swaylock";
+          }
+        ];
+        timeouts = [
+          {
+            timeout = 600;
+            command = "${swaymsg} \"output * power off\" || ${niri} msg action power-off-monitors";
+            resumeCommand = "${swaymsg} \"output * power on\" || true";
+          }
+        ];
+      };
     };
   }
