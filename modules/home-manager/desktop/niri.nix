@@ -61,7 +61,12 @@ in
               tap = true;
               tap-button-map = "left-right-middle";
               natural-scroll = true;
+              dwt = true;
+              dwtp = true;
             };
+            focus-follows-mouse = true;
+            warp-mouse-to-focus = true;
+            workspace-auto-back-and-forth = true;
           };
 
           spawn-at-startup = [
