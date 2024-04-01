@@ -90,6 +90,16 @@ in
             }
             {
               command = [
+                "/usr/libexec/polkit-gnome-authentication-agent-1"
+              ];
+            }
+            {
+              command = [
+                (lib.getExe' config.services.mako.package "mako")
+              ];
+            }
+            {
+              command = [
                 "systemctl"
                 "--user"
                 "start"
