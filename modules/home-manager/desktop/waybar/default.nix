@@ -15,7 +15,7 @@ in
           type = types.str;
           description = "Enable Waybar as part of a systemd target";
           example = "sway-session.target";
-          default = "";
+          default = "wl-session.target";
         };
       };
     };

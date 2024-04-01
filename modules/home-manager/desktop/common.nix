@@ -40,11 +40,24 @@ in
         wl-clipboard
       ];
 
+      systemd.user.targets.wl-session = {
+        Unit = {
+          Description = "wayland compositor session";
+          BindsTo = ["graphical-session.target"];
+          Wants = ["graphical-session-pre.target" "xdg-desktop-autostart.target"];
+          After = ["graphical-session-pre.target"];
+          Before = ["xdg-desktop-autostart.target"];
+        };
+      };
+
       # notification daemon
       services.mako.enable = true;
 
       # clipboard manager. keeps the contents once the original program quits.
-      services.copyq.enable = true;
+      services.copyq = {
+        enable = true;
+        systemdTarget = "wl-session.target";
+      };
 
       # blue light remover. adjusts the red tint based on the time of day.
       services.gammastep = {

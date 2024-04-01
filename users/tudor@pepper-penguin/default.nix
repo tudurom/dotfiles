@@ -51,6 +51,7 @@ in {
       };
       foot.enable = true;
       sway.enable = true;
+      niri.enable = true;
     };
   };
 

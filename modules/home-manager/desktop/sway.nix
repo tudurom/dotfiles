@@ -28,7 +28,7 @@ in
         # status bar
         waybar = {
           enable = true;
-          systemdTarget = "sway-session.target";
+          # systemdTarget = "sway-session.target";
         };
       };
 
@@ -36,9 +36,6 @@ in
       # to be enabled by each config inidividually,
       # this key is set here only to make it start when sway starts.
       services.kanshi.systemdTarget = "sway-session.target";
-
-      # clipboard manager. keeps the contents once the original program quits.
-      services.copyq.systemdTarget = "sway-session.target";
 
       # does things if the computer is left untouched for a while
       services.swayidle = let
@@ -250,6 +247,7 @@ in
         };
         extraConfigEarly = ''
           exec "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd XDG_DATA_DIRS"
+          exec systemctl --user start wl-session.target
         '';
         extraConfig = ''
           title_align center
