@@ -122,6 +122,9 @@ in
                 "1password"
               ];
             }
+            {
+              command = [(lib.getExe' pkgs.emote "emote")];
+            }
           ];
 
           binds = with config.lib.niri.actions; let
