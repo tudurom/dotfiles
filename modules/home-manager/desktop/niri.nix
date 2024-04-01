@@ -196,6 +196,23 @@ in
             ];
 
             default-column-width = {proportion = 1.0 / 2.0;};
+
+            struts = {
+              left = 0;
+              right = 0;
+              top = 0;
+              bottom = 0;
+            };
+
+            gaps = 0;
+
+            focus-ring.enable = false;
+            border = {
+              enable = true;
+              width = 2;
+              active.color = "#ffffff";
+              inactive.color = "#000000";
+            };
           };
 
           prefer-no-csd = true;
