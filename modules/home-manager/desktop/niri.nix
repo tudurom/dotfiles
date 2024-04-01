@@ -55,6 +55,9 @@ in
         systemd.user.services.copyq.Service.Environment = lib.mkAfter ["QT_QPA_PLATFORM=wayland"];
 
         programs.niri.settings = {
+          # please no
+          animations.window-open = null;
+
           input = {
             keyboard.xkb.layout = "ro";
             touchpad = {
