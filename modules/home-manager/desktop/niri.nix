@@ -117,10 +117,9 @@ in
             }
             {
               command = [
+                (lib.getExe pkgs.cage)
+                "--"
                 "1password"
-                "--enable-features=UseOzonePlatform"
-                "--ozone-platform=wayland"
-                "--silent"
               ];
             }
           ];
