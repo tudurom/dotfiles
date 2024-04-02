@@ -206,6 +206,11 @@ in
               "alt+Print" = "exec ${grimblast} --notify copy active";
 
               "${mod}+comma" = "exec ${emote}";
+
+              "${mod}+ctrl+shift+l" = "move workspace to output right";
+              "${mod}+ctrl+shift+h" = "move workspace to output left";
+              "${mod}+ctrl+shift+j" = "move workspace to output down";
+              "${mod}+ctrl+shift+k" = "move workspace to output up";
             };
           bars = [];
           window = {
