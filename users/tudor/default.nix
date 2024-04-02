@@ -30,4 +30,6 @@
       tmux.enable = true;
     };
   };
+
+  xdg.systemDirs.data = ["/home/tudor/.nix-profile/share"];
 }
