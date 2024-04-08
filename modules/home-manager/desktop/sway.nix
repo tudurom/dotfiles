@@ -125,6 +125,7 @@ in
             # it's the us keyboard + various stuff accessible with AltGr
             # https://learn.microsoft.com/en-us/globalization/keyboards/kbdropr
             xkb_layout = "ro";
+            xkb_options = "compose:rctrl";
           };
           input."type:touchpad" = {
             tap = "enabled";
