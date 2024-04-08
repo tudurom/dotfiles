@@ -60,6 +60,7 @@ in
 
           input = {
             keyboard.xkb.layout = "ro";
+            keyboard.xkb.options = "compose:rctrl";
             touchpad = {
               tap = true;
               tap-button-map = "left-right-middle";
