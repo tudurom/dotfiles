@@ -99,6 +99,8 @@ in {
       StateDirectory = "forgejo-registration";
       Type = "oneshot";
       RemainAfterExit = true;
+
+      MemoryDenyWriteExecute = false;
     };
   };
 
