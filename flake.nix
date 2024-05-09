@@ -137,7 +137,7 @@
             };
         in {
           "ceres" = mkNixOSSystem "ceres" "x86_64-linux";
-          # "wsl2" = mkNixOSSystem "wsl2" "x86_64-linux";
+          "wsl2" = mkNixOSSystem "wsl2" "x86_64-linux";
         };
 
         homeConfigurations = let

@@ -1,5 +1,5 @@
 let
-  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOx1R1yElHBnKKcH3tPuuTZsRjHzWK8ztquIGvYxjY8f";
+  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9gaii6nSVqUOBYHPotGGBSBxoV6EHL1YFFoLzyJRIN";
   agenixPubkey = ../../id_ed25519_agenix.pub;
   keys = [key (builtins.readFile agenixPubkey)];
 in {
