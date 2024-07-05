@@ -1,0 +1,6 @@
+test -z "$PROFILEREAD" && . /etc/profile || true
+
+export EDITOR=hx
+export VISUAL=hx
+
+eval `mise env`

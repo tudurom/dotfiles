@@ -1,0 +1,10 @@
+[user]
+	name = Tudor Roman
+	email = tudor@tudorr.ro
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPL0/8jCHkisIGcEIztViShls0iANZwL/W6v5xwPAKkZ
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /opt/1Password/op-ssh-sign
+[commit]
+	gpgsign = true

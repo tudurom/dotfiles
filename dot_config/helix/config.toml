@@ -1,0 +1,5 @@
+theme = "base16_terminal"
+
+[editor]
+bufferline = "multiple"
+indent-guides.render = true
