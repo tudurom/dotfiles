@@ -5,7 +5,7 @@ type brew &>/dev/null || \
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 brew install \
-  chezmoi \
+  mise \
   helix \
   tmux \
   jq \

@@ -1,5 +1,7 @@
 test -z "$PROFILEREAD" && . /etc/profile || true
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 export EDITOR=hx
 export VISUAL=hx
 

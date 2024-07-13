@@ -1,9 +1,7 @@
 . "$HOME/.profile"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 type direnv &>/dev/null && eval "$(direnv hook bash)"
-eval "$(/home/tudor/.local/bin/mise activate bash)"
+eval "$(mise activate bash)"
 
 if type brew &>/dev/null; then
     HOMEBREW_PREFIX="$(brew --prefix)"
