@@ -1,3 +1,9 @@
+[core]
+	excludesFile = ~/.gitignore
+
+[push]
+	autoSetupRemote = true
+
 [user]
 	name = Tudor Roman
 	email = tudor@tudorr.ro
