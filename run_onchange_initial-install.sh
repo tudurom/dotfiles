@@ -10,5 +10,6 @@ brew install \
   tmux \
   jq \
   ripgrep \
+  fd \
   direnv \
   fish
