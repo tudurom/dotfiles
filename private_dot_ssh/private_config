@@ -1,5 +1,4 @@
 Host *
-	ForwardAgent yes
 	IdentityAgent ~/.1password/agent.sock
 
 Include work_config
