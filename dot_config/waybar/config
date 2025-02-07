@@ -1,0 +1,140 @@
+{
+	"layer": "top", // Waybar at top layer
+			// "position": "bottom", // Waybar position (top|bottom|left|right)
+		"height": 30, // Waybar height (to be removed for auto height)
+			      // "width": 1280, // Waybar width
+			      // "gtk-layer-shell": "false",
+			      // Choose the order of the modules
+		"modules-left": ["niri/workspaces", "custom/scratchpad", "tray"],
+		"modules-center": ["niri/window"],
+		"modules-right": ["custom/zypper", "network", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "pulseaudio", "clock", "custom/notification"],
+		"niri/workspaces": {
+			"all-outputs": false,
+			"disable-scroll": true,
+			"format": "{index} {icon}",
+			"format-icons": {
+				"urgent": "",
+				"focused": "",
+				"default": ""
+			}
+		},
+		"custom/zypper": {
+			"format": "{} ",
+			"interval": 3600,
+			"exec": "zypper lu | grep 'v \\+|' | wc -l; echo 'packages to update'",
+			"exec-if": "exit 0",
+			"on-click": "exec alacritty -e sudo sh -c 'zypper ref; zypper dup; pkill -SIGRTMIN+8 waybar'",
+			"signal": 8
+		},
+		"idle_inhibitor": {
+			"format": "{icon}",
+			"format-icons": {
+				"activated": "",
+				"deactivated": ""
+			} 
+		},
+		"tray": {
+			// "icon-size": 21,
+			"spacing": 10
+		},
+		"clock": {
+			// "timezone": "America/New_York",
+			"format": " {:%b %d %Y %R}",
+			"format-alt": "{:%a %d %b w:%V %H:%M}",
+			"tooltip-format": "<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
+			"calendar": {
+				"mode-mon-col"      : 4,
+				"weeks-pos"         : "left",
+				"on-scroll"         : 1,
+				"on-click-right"    : "mode",
+				"format": {
+					"months":    "<span color='#35b9ab'><b>{}</b></span>",
+					"weeks":    "<span color='#73ba25'><b>{}</b></span>",
+					"weekdays": "<span color='#21a4df'><b>{}</b></span>",
+					"today":    "<span color='#21a4df'><b><u>{}</u></b></span>"
+				}
+			},
+			"actions": {
+				"on-click-right"    : "mode",
+				"on-scroll-up"      : "shift_up",
+				"on-scroll-down"      : "shift_down"
+			},
+			"interval": 10
+		},
+		"cpu": {
+			"format": "{usage}% ",
+			"tooltip": false
+		},
+		"memory": {
+			"format": "{}% "
+		},
+		"temperature": {
+			// "thermal-zone": 2,
+			// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+			"critical-threshold": 80,
+			// "format-critical": "{temperatureC}°C {icon}",
+			"format": "{temperatureC}°C {icon}",
+			"format-icons": ["", "", ""]
+		},
+		"backlight": {
+			// "device": "acpi_video1",
+			"format": "{percent}% {icon}",
+			"format-icons": ["", ""]
+		},
+		"battery": {
+			"states": {
+				// "good": 95,
+				"warning": 30,
+				"critical": 15
+			},
+			"format": "{icon}",
+			"format-charging": "",
+			"format-plugged": "",
+			"format-alt": "{capacity}% {time}",
+			"format-icons": ["", "", "", "", ""]
+		},
+		"network": {
+			// "interface": "wlp2*", // (Optional) To force the use of this interface
+			"format-wifi": "",
+			"format-ethernet": "",
+			"format-linked": "",
+			"format-disconnected": "⚠",
+			"format-alt": "{ifname} {essid} ({signalStrength}%)"
+		},
+		"bluetooth": {
+			"format": "",
+			"format-disabled": "",
+			"format-off": "",
+			"format-connected": " {num_connections}",
+			// "format-connected": " {device_alias}",
+			"tooltip-format": "{controller_address} {status}\n\n{num_connections} connected",
+			"tooltip-format-disabled": "{status}",
+			"tooltip-format-connected": "{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+			"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+			"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+			// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+			"on-click": "bluetooth toggle; pkill -SIGRTMIN+8 waybar",
+			"on-click-right": "exec alacritty -e sh -c 'bluetoothctl'"
+		},
+		"pulseaudio": {
+			"format": "{icon}",
+			"format-alt": "{volume} {icon}",
+			"format-alt-click": "click-right",
+			"format-muted": "",
+			"format-icons": {
+				"headphones": "",
+				"handsfree": "",
+				"headset": "",
+				"phone": "",
+				"portable": "",
+				"car": "",
+				"default": ["", "", ""]
+			},
+			"scroll-step": 10,
+			"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+			"on-click-right": "pavucontrol",
+			"tooltip": false
+		},
+	}
+}

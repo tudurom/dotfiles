@@ -1,0 +1,19 @@
+profile laptop {
+	output "BOE 0x09DE Unknown" scale 1.25
+}
+
+profile dock {
+	output "BOE 0x09DE Unknown" {
+		scale 1.25
+		position 4000,750
+	}
+	output "LG Electronics LG HDR 4K 0x00083A3A" {
+		scale 1.5
+		transform 90
+		position 0,0
+	}
+	output "LG Electronics LG HDR 4K 0x0008D101" {
+		scale 1.5
+		position 1440,750
+	}
+}
