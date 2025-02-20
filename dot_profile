@@ -4,5 +4,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 export EDITOR=hx
 export VISUAL=hx
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+export SAL_USE_VCLPLUGIN=qt6
 
 eval `mise env -s bash`
