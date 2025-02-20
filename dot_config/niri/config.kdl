@@ -261,8 +261,8 @@ binds {
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
     //Brightness
-    XF86MonBrightnessUp { spawn "lxqt-config-brightness" "-i"; }
-    XF86MonBrightnessDown { spawn "lxqt-config-brightness" "-d"; }
+    XF86MonBrightnessUp { spawn "brightnessctl" "s" "10%+"; }
+    XF86MonBrightnessDown { spawn "brightnessctl" "s" "10%-"; }
 
     Mod+Q { close-window; }
 
