@@ -12,4 +12,5 @@ brew install \
   ripgrep \
   fd \
   direnv \
-  fish
+  fish \
+  libnotify

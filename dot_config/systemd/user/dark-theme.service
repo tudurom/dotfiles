@@ -1,0 +1,10 @@
+[Unit]
+Description="Switch to dark theme"
+Conflicts=light-theme.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+ExecStart=lookandfeeltool -a org.kde.breezedark.desktop
+ExecStartPost=/home/linuxbrew/.linuxbrew/bin/notify-send "Switched to dark theme"

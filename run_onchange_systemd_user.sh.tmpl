@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+systemctl --user daemon-reload
+
+for unit_symlink_file in {{ .chezmoi.sourceDir }}/dot_config/systemd/user/timers.target.wants/*; do
+  unit="${unit_symlink_file##*/symlink_}"
+  echo "Starting timer unit $unit"
+  systemctl --user start "$unit"
+done

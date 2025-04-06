@@ -1,0 +1,12 @@
+[Unit]
+Description="Set light theme during the morning"
+Wants=dark-theme.timer
+
+[Timer]
+OnCalendar=*-*-* 8:00:00
+Persistent=true
+Unit=light-theme.service
+
+[Install]
+WantedBy=timers.target
+Also=dark-theme.timer
