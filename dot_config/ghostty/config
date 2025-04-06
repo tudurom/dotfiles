@@ -1,0 +1,6 @@
+command = fish
+font-family = "Berkeley Mono"
+window-decoration = auto
+theme = light:GruvboxLight,dark:GruvboxDark
+window-padding-x = 9
+window-padding-y = 7
