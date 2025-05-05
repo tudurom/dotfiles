@@ -6,4 +6,4 @@ export EDITOR=hx
 export VISUAL=hx
 export MANPAGER='nvim +Man!'
 
-eval `mise env -s bash`
+eval "$(mise env -s bash)"
