@@ -4,5 +4,6 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 export EDITOR=hx
 export VISUAL=hx
+export MANPAGER='nvim +Man!'
 
 eval `mise env -s bash`

@@ -13,4 +13,5 @@ brew install \
   fd \
   direnv \
   fish \
-  libnotify
+  libnotify \
+  neovim
