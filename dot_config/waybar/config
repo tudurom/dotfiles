@@ -5,9 +5,9 @@
 			      // "width": 1280, // Waybar width
 			      // "gtk-layer-shell": "false",
 			      // Choose the order of the modules
-		"modules-left": ["niri/workspaces", "custom/scratchpad", "tray"],
+		"modules-left": ["niri/workspaces", "tray"],
 		"modules-center": ["niri/window"],
-		"modules-right": ["custom/zypper", "network", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "pulseaudio", "clock", "custom/notification"],
+		"modules-right": ["custom/zypper", "idle_inhibitor", "network", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "wireplumber", "clock"],
 		"niri/workspaces": {
 			"all-outputs": false,
 			"disable-scroll": true,
@@ -35,7 +35,8 @@
 		},
 		"tray": {
 			// "icon-size": 21,
-			"spacing": 10
+			"spacing": 10,
+			"show-passive-items": true
 		},
 		"clock": {
 			// "timezone": "America/New_York",
@@ -79,7 +80,7 @@
 		"backlight": {
 			// "device": "acpi_video1",
 			"format": "{percent}% {icon}",
-			"format-icons": ["", ""]
+			"format-icons": ["", ""]
 		},
 		"battery": {
 			"states": {
@@ -117,10 +118,10 @@
 			"on-click": "bluetooth toggle; pkill -SIGRTMIN+8 waybar",
 			"on-click-right": "exec alacritty -e sh -c 'bluetoothctl'"
 		},
-		"pulseaudio": {
+		"wireplumber": {
 			"format": "{icon}",
 			"format-alt": "{volume} {icon}",
-			"format-alt-click": "click-right",
+			"format-alt-click": "click-middle",
 			"format-muted": "",
 			"format-icons": {
 				"headphones": "",
@@ -133,8 +134,8 @@
 			},
 			"scroll-step": 10,
 			"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-			"on-click-right": "pavucontrol",
-			"tooltip": false
+			"on-click-right": "pavucontrol-qt",
+			"tooltip": true
 		},
 	}
 }

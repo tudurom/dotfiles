@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Reload waybar if config changes
+
+# waybar config hash: {{ include "dot_config/waybar/config" | sha256sum }}
+# waybar style.css hash: {{ include "dot_config/waybar/style.css" | sha256sum }}
+systemctl --user reload waybar
