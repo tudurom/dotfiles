@@ -2,7 +2,7 @@
 
 set -l current_hour (date +%k)
 echo "Current hour is $current_hour" >&2
-if test $current_hour -ge 8 -a $current_hour -le 20
+if test $current_hour -ge 8 -a $current_hour -lt 20
     set theme_type light
     set gsettings_prefer prefer-light
     set qt_theme org.kde.breeze.desktop
