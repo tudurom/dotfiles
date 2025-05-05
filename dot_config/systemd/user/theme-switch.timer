@@ -1,0 +1,10 @@
+[Unit]
+Description="Trigger light/dark theme switching"
+
+[Timer]
+OnCalendar=*-*-* 8:00:00
+OnCalendar=*-*-* 20:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

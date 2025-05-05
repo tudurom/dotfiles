@@ -1,0 +1,18 @@
+#!/usr/bin/env fish
+
+set -l current_hour (date +%k)
+echo "Current hour is $current_hour" >&2
+if test $current_hour -ge 8 -a $current_hour -le 20
+    set theme_type light
+    set gsettings_prefer prefer-light
+    set qt_theme org.kde.breeze.desktop
+else
+    set theme_type dark
+    set gsettings_prefer prefer-dark
+    set qt_theme org.kde.breezedark.desktop
+end
+echo "Set theme to $theme_type" >&2
+
+/usr/bin/gsettings set org.gnome.desktop.interface color-scheme \'$gsettings_prefer\'
+/usr/bin/lookandfeeltool -a $qt_theme
+notify-send "Switched to $theme_type mode!"
