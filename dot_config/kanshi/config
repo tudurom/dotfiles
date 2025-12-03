@@ -1,3 +1,5 @@
+include ~/.config/kanshi/extra
+
 profile laptop {
 	output "BOE 0x09DE Unknown" scale 1.25
 }
