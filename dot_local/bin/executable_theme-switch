@@ -1,8 +1,41 @@
 #!/usr/bin/env fish
 
+function fail_usage
+    echo "Usage: theme-switch [light|dark]"
+    exit 1
+end
+
+set -l force_mode ""
+switch (count $argv)
+    case 0
+        : # do nothing
+    case 1
+        set force_mode $argv[1]
+        if ! string match -r "^light|dark\$" -- "$force_mode"
+            fail_usage
+        end
+    case '*'
+        fail_usage
+end
+
 set -l current_hour (date +%k)
+set -l current_gsettings_mode (/usr/bin/gsettings get org.gnome.desktop.interface color-scheme | string match -gr "'prefer-(light|dark)'")
 echo "Current hour is $current_hour" >&2
-if test $current_hour -ge 8 -a $current_hour -lt 20
+echo "Current mode is $current_gsettings_mode" >&2
+
+set -l to_set_mode ""
+if test \( -z $force_mode -a $current_hour -ge 8 -a $current_hour -lt 19 \) -o $force_mode = light
+    set to_set_mode light
+else
+    set to_set_mode dark
+end
+
+if test $to_set_mode = $current_gsettings_mode
+    echo "Nothing to do. Already $current_gsettings_mode"
+    exit 0
+end
+
+if test $to_set_mode = light
     set theme_type light
     set gsettings_prefer prefer-light
     set qt_theme org.kde.breeze.desktop
@@ -15,4 +48,4 @@ echo "Set theme to $theme_type" >&2
 
 /usr/bin/gsettings set org.gnome.desktop.interface color-scheme \'$gsettings_prefer\'
 /usr/bin/lookandfeeltool -a $qt_theme
-notify-send "Switched to $theme_type mode!"
+notify-send --urgency=low --expire-time=1500 "Switched to $theme_type mode!"

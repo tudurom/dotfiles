@@ -2,9 +2,8 @@
 Description="Trigger light/dark theme switching"
 
 [Timer]
-OnCalendar=*-*-* 8:00:00
-OnCalendar=*-*-* 20:00:00
-Persistent=true
+OnStartupSec=10s
+OnUnitActiveSec=15m
 
 [Install]
 WantedBy=timers.target
