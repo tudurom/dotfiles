@@ -1,3 +1,6 @@
+@define-color fg-color #f0f0f0;
+@define-color background-color rgba(13, 13, 13, 0.6);
+@define-color border-color #787878;
 * {
     border:        none;
     border-radius: 0;
@@ -9,13 +12,16 @@
 }
 
 window#waybar {
-    color: rgba(53, 185, 171, 1);
-    background-color: rgba(23, 63, 79, 0.4);
-    border-bottom: 2px solid rgba(53, 185, 171, 0.4);
+    /* color: rgba(53, 185, 171, 1); */
+    /* background-color: rgba(23, 63, 79, 0.4); */
+    /* border-bottom: 2px solid rgba(53, 185, 171, 0.4); */
+    background-color: @background-color;
+    color: @fg-color;
+    border-bottom: 2px solid @border-color;
 }
 
 window#waybar.solo {
-    color: rgba(53, 185, 171, 1);
+    color: @fg-color;
 }
 
 #workspaces {
@@ -29,7 +35,7 @@ window#waybar.solo {
 
 #workspaces button {
     padding: 0 5px;
-    color: rgba(53, 185, 171, 1);
+    color: @fg-color;
 }
 
 #workspaces button.focused {
@@ -50,7 +56,7 @@ window#waybar.solo {
 #memory, 
 #network, 
 #bluetooth,
-#pulseaudio, 
+#wireplumber,
 #idle_inhibitor, 
 #temperature,
 #custom-layout,

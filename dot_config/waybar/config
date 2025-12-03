@@ -6,8 +6,8 @@
 			      // "gtk-layer-shell": "false",
 			      // Choose the order of the modules
 		"modules-left": ["niri/workspaces", "tray"],
-		"modules-center": ["niri/window"],
-		"modules-right": ["custom/zypper", "idle_inhibitor", "network", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "wireplumber", "clock"],
+		"modules-center": ["clock"],
+		"modules-right": ["custom/zypper", "idle_inhibitor", "network", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "wireplumber"],
 		"niri/workspaces": {
 			"all-outputs": false,
 			"disable-scroll": true,
