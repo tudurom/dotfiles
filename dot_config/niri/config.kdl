@@ -158,6 +158,9 @@ spawn-at-startup "/usr/libexec/pam_kwallet_init"
 environment {
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "qt6ct"
+    GTK_IM_MODULE "ibus"
+    QT_IM_MODULE "ibus"
+    XMODIFIERS "@im=ibus"
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
