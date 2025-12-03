@@ -1,6 +1,3 @@
-[core]
-	excludesFile = ~/.gitignore
-
 [push]
 	autoSetupRemote = true
 
@@ -12,5 +9,6 @@
 	format = ssh
 [gpg "ssh"]
 	program = /opt/1Password/op-ssh-sign
+	allowedSignersFile = /home/tudor/.config/git/allowed_signers
 [commit]
 	gpgsign = true
