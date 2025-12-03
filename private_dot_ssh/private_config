@@ -1,5 +1,6 @@
 Host *
 	IdentityAgent ~/.1password/agent.sock
+	SetEnv TERM=xterm
 
 Include work_config
 Include private
