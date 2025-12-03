@@ -3,3 +3,9 @@ theme = "base16_terminal"
 [editor]
 bufferline = "multiple"
 indent-guides.render = true
+soft-wrap.enable = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
