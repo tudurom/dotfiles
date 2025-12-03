@@ -1,6 +1,7 @@
 command = fish
 font-family = "Berkeley Mono"
 window-decoration = auto
-theme = light:GruvboxLight,dark:GruvboxDark
+theme = light:Gruvbox Light,dark:Gruvbox Dark
 window-padding-x = 9
 window-padding-y = 7
+cursor-style = bar
