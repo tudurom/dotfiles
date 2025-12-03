@@ -153,19 +153,7 @@ layout {
     }
 }
 
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// See the binds section below for more spawn examples.
-// spawn-at-startup "alacritty" "-e" "fish"
-    // spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/tudor/Pictures/tomasz-filipek-59OA9ycJhpI-unsplash.jpg"
-    // spawn-at-startup "waybar"
-    // spawn-at-startup "kanshi"
-    // spawn-at-startup "kwalletd6"
-    // spawn-at-startup "sh" "-c" "systemctl --user stop xdg-desktop-portal-gtk.service && systemctl --user start plasma-xdg-desktop-portal-kde.service"
-    // spawn-at-startup "sh" "-c" "lxqt-session && niri msg action quit -s"
-    spawn-at-startup "/usr/libexec/pam_kwallet_init"
-    spawn-at-startup "nm-applet"
+spawn-at-startup "/usr/libexec/pam_kwallet_init"
 
 environment {
     QT_QPA_PLATFORM "wayland"
