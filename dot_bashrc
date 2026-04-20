@@ -1,7 +1,8 @@
-. "$HOME/.profile"
+test -f "$HOME/.profile" && . "$HOME/.profile"
 
-type direnv &>/dev/null && eval "$(direnv hook bash)"
-eval "$(mise activate bash)"
+test -f "/usr/share/ghostty/shell-integration/bash/ghostty.bash" && . "/usr/share/ghostty/shell-integration/bash/ghostty.bash"
+test -f "/home/linuxbrew/.linuxbrew/bin/brew" && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+type "mise" &>/dev/null && eval "$(mise activate bash)"
 
 if type brew &>/dev/null; then
     HOMEBREW_PREFIX="$(brew --prefix)"
@@ -13,3 +14,4 @@ if type brew &>/dev/null; then
         done
     fi
 fi
+

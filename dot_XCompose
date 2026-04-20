@@ -1,0 +1,10 @@
+include "%L"
+
+<Multi_key> <s> <comma> : "ș"
+<Multi_key> <S>  : "Ș"
+<Multi_key> <comma> <s> : "ș"
+<Multi_key> <comma> <S> : "Ș"
+<Multi_key> <t> <comma> : "ț"
+<Multi_key> <T> <comma> : "Ț"
+<Multi_key> <comma> <t> : "ț"
+<Multi_key> <comma> <T> : "Ț"

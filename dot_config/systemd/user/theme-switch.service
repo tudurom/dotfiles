@@ -3,8 +3,8 @@ Description="Switch to light or dark theme"
 After=niri.service
 
 [Service]
-Type=oneshot
-ExecStart=%h/.local/bin/theme-switch
+Type=exec
+ExecStart=%h/.local/bin/theme-switch -d
 
 [Install]
 WantedBy=niri.service

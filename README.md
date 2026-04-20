@@ -44,3 +44,8 @@ Past milestones:
 1. Install Chezmoi
 2. `chezmoi init <repo_url>`
 3. `chezmoi apply`. This will also take care of installing brew and mise.
+
+## Niri session
+
+This repo contains my setup for the Niri Wayland compositor. Be aware that this setup
+assumes that KDE Plasma is installed on the system.

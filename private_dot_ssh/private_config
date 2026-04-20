@@ -1,6 +1,9 @@
 Host *
 	IdentityAgent ~/.1password/agent.sock
 	SetEnv TERM=xterm
+	ControlPath ~/.ssh/cm-%r@%h:%p
+	ControlMaster auto
+	ControlPersist 600
 
 Include work_config
 Include private

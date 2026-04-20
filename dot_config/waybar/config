@@ -7,7 +7,7 @@
 			      // Choose the order of the modules
 		"modules-left": ["niri/workspaces", "tray"],
 		"modules-center": ["clock"],
-		"modules-right": ["custom/zypper", "idle_inhibitor", "network", "bluetooth", "cpu", "memory", "temperature", "backlight", "battery", "wireplumber"],
+		"modules-right": ["idle_inhibitor", "bluetooth", "backlight", "battery", "wireplumber"],
 		"niri/workspaces": {
 			"all-outputs": false,
 			"disable-scroll": true,
@@ -115,7 +115,7 @@
 			"format-connected-battery": " {device_alias} {device_battery_percentage}%",
 			"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
 			// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
-			"on-click": "bluetooth toggle; pkill -SIGRTMIN+8 waybar",
+			"on-click": "bluetoothctl show | grep -q 'Powered: no' && bluetoothctl power on || bluetoothctl power off; pkill -SIGRTMIN+8 waybar",
 			"on-click-right": "exec alacritty -e sh -c 'bluetoothctl'"
 		},
 		"wireplumber": {

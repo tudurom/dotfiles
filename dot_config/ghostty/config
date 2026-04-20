@@ -1,7 +1,9 @@
 command = fish
 font-family = "Berkeley Mono"
 window-decoration = auto
-theme = light:Gruvbox Light,dark:Gruvbox Dark
+theme = light:Flexoki Light,dark:Flexoki Dark
 window-padding-x = 9
 window-padding-y = 7
 cursor-style = bar
+
+keybind = performable:ctrl+l=copy_url_to_clipboard

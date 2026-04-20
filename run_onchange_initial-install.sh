@@ -11,7 +11,7 @@ brew install \
   jq \
   ripgrep \
   fd \
-  direnv \
   fish \
   libnotify \
-  neovim
+  neovim \
+  jujutsu
