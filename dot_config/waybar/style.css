@@ -56,7 +56,7 @@ window#waybar.solo {
 #memory, 
 #network, 
 #bluetooth,
-#wireplumber,
+#wireplumber, 
 #idle_inhibitor, 
 #temperature,
 #custom-layout,
