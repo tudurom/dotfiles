@@ -9,11 +9,23 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file 'noerror)
 
+(setq tudor/ui-text-font "Luxi Sans")
+
 (use-package use-package
   :ensure nil
   :custom
   (use-package-always-defer t)          ; speed boost
   (use-package-always-ensure t))
+
+(use-package package
+  :ensure nil
+  :custom
+  (package-archives '(("melpa" . "https://melpa.org/packages/")
+		              ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+		              ("elpa" . "https://elpa.gnu.org/packages/")
+		              ("nongnu" . "https://elpa.nongnu.org/nongnu/"))))
+
+;;;; Settings for built-in Emacs features
 
 (use-package emacs
   :bind (("M-/" . hippie-expand) ; http://www.emacswiki.org/emacs/HippieExpand
@@ -23,7 +35,8 @@
          ((prog-mode conf-mode) . electric-pair-mode)
          ((prog-mode conf-mode) . electric-quote-mode))
   :custom-face
-  (default ((t (:family "Luxi Sans" :height 120))))
+  ;; (default ((t (:family "Luxi Sans" :height 120))) "Default UI font.")
+  (default ((t (:family "Berkeley Mono" :height 120))) "Default UI font.")
   (fixed-pitch ((t (:family "Berkeley Mono"))))
   (variable-pitch ((t (:family "Source Serif 4"))))
   :custom
@@ -37,27 +50,26 @@
   (create-lockfiles nil)
   (default-frame-alist '((vertical-scroll-bars . nil)
                          (horizontal-scroll-bars . nil)
-                         (font . "Luxi Sans")))
+                         (font . "Berkeley Mono")
+                         ))
   (enable-remote-dir-locals t)
   ;; (explicit-bash-args '("--noediting" "-i" "-l") "Run bash as login shell")
 
   (fido-vertical-mode t)
-  (fringe-mode 20)
+  (fringe-mode 20 "Give some room to breathe.")
+  (mode-line-right-align-edge 'right-margin "Otherwise the right side of the modeline will go off-screen with a non-zero fringe.")
   (global-auto-revert-mode t)
   (help-window-select t)
+  (help-window-keep-selected t)
   (indent-tabs-mode nil)
   (tab-width 4)
   (tab-always-indent 'complete)
   (inhibit-startup-screen t)
-  (menu-bar-mode nil)
+  (menu-bar-mode t)
   (tool-bar-mode nil)
   ;; (tooltip-mode nil)
   (mouse-wheel-tilt-scroll t "Horizontal mouse / touchpad scroll")
   (mouse-yank-at-point t)
-  (package-archives '(("melpa" . "https://melpa.org/packages/")
-		      ("melpa-stable" . "https://stable.melpa.org/packages/")
-		      ("elpa" . "https://elpa.gnu.org/packages/")
-		      ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
   (pixel-scroll-precision-mode t)
   (pixel-scroll-precision-interpolate-mice nil)
   (read-buffer-completion-ignore-case t)
@@ -65,49 +77,74 @@
   (read-file-name-completion-ignore-case t)
   (save-interprogram-paste-before-kill t "Save text copied from other programs in the kill ring")
   (save-place-mode t)
-  (savehist-mode t)
   (select-enable-clipboard t)
   (sentence-end-double-space nil)
   (switch-to-buffer-obey-display-actions t))
 
-(use-package which-key
+(use-package info
+  :ensure nil
+  :preface
+  (define-minor-mode tudor/info-variable-pitch-mode
+    "Set the font in Info mode to a serif font."
+    :local t
+    :init-value nil
+    (if tudor/info-variable-pitch-mode
+        (setq tudor/info-variable-pitch-cookie
+              (face-remap-add-relative 'default :inherit 'variable-pitch))
+      (face-remap-remove-relative tudor/info-variable-pitch-cookie)))
+  :hook ((Info-mode . tudor/info-variable-pitch-mode)))
+
+(use-package savehist
   :ensure nil
   :custom
-  (which-key-idle-delay 0.3)
-  (which-key-mode t))
+  (savehist-mode t))
+
+;; (use-package which-key
+;;   :ensure nil
+;;   :custom
+;;   (which-key-idle-delay 0.3)
+;;   (which-key-mode t))
+
+(use-package embark
+  :bind (("C-." . embark-act)
+         ("C-;" . embark-dwim)
+         :map help-map
+         ("B" . embark-bindings)
+         :map icomplete-minibuffer-map
+         ("C-." . embark-act))
+  :init
+  (setopt prefix-help-command #'embark-prefix-help-command))
+
+(use-package consult)
+
+(use-package embark-consult)
 
 (use-package man
   :ensure nil
   :custom
   (Man-notify-method 'aggressive))
 
+(use-package marginalia
+  :custom
+  (marginalia-align 'right)
+  (marginalia-mode t))
 
 ;;;; eyecandy
 (use-package all-the-icons)
 (use-package doom-modeline
+  :custom-face
+  (doom-modeline ((t (:family ,tudor/ui-text-font))))
   :custom
   (doom-modeline-height 30)
   (doom-modeline-mode t))
-
-(use-package fixed-pitch
-  :vc (:url "https://github.com/cstby/fixed-pitch-mode"
-       :rev :newest)
-  :demand t
-  :custom
-  (fixed-pitch-use-extended-default t)
-  (fixed-pitch-whitelist-hooks '(prog-mode-hook
-                                 text-mode-hook
-                                 conf-mode-hook
-                                 eat-mode-hook
-                                 vterm-mode-hook
-                                 ghostel-mode-hook
-                                 elfeed-search-mode-hook)))
 
 ;;;; editor themes
 (use-package doom-themes
   :demand t)
 (use-package flexoki-themes
-  :demand t)
+  :demand t
+  :load-path "site-lisp/emacs-flexoki-theme"
+  :pin melpa)
 (use-package auto-dark                  ; themes set as customisations
   :after (flexoki-themes doom-themes)
   :custom
@@ -165,7 +202,9 @@
   :after tramp
   :vc (:url "https://github.com/ArthurHeymans/emacs-tramp-rpc"
             :rev :newest
-            :lisp-dir "lisp"))
+            :lisp-dir "lisp")
+  :custom
+  (tramp-rpc-deploy-git-build-policy 'release))
 
 ;;;; Version control
 
@@ -181,6 +220,7 @@
 
 ;; Tree-siter
 (use-package treesit-auto
+  :pin melpa
   :demand t
   :custom
   (treesit-auto-install 'prompt)
@@ -199,8 +239,6 @@
 ;;;; Anaconda
 
 (use-package conda
-  :custom
-  (conda-env-autoactivate-mode t)
   :config
   (conda-env-initialize-interactive-shells)
   (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
@@ -220,9 +258,14 @@
 ;;;; C
 
 (use-package emacs
+  :preface
+  (defun tudor/disable-tabs ()
+    "Set indent-tabs-mode to nil"
+    (setq-local indent-tabs-mode nil))
   :custom
   (c-ts-mode-indent-offset 4)
-  (c-ts-mode-indent-style 'linux))
+  (c-ts-mode-indent-style 'linux)
+  :hook ((c-ts-mode c++-ts-mode) . tudor/disable-tabs))
 
 ;;;; Clojure
 
@@ -251,7 +294,7 @@
 (use-package eglot
   :commands (eglot eglot-ensure)
   :custom
-  (eglot-events-buffer-config '(:size 2000000
+  (eglot-events-buffer-config '(:size 0
                         :format short))
   (eglot-extend-to-xref t)
   :config
@@ -263,8 +306,14 @@
                '((c-mode c++-mode cuda-mode) . ("clangd" "--fallback-style=webkit" "--enable-config"))))
 
 (use-package eldoc-box
-  :bind (:map prog-mode-map
-              ("C-<tab>" . eldoc-box-help-at-point)))
+  :bind ("C-<tab>" . eldoc-box-help-at-point))
+
+(use-package corfu
+  :custom
+  (global-corfu-mode t)
+  (corfu-popupinfo-mode t)
+  :custom-face
+  (corfu-default ((t (:inherit fixed-pitch)))))
 
 ;;;; Typst
 
@@ -279,6 +328,12 @@
 (use-package eat
   :custom
   (eat-term-name "xterm" "For widespread compatibility."))
+
+(use-package olivetti
+  :hook ((org-mode markdown-mode elfeed-show-mode) . olivetti-mode))
+
+(use-package mixed-pitch
+  :hook ((org-mode markdown-mode) . mixed-pitch-mode))
 
 (use-package org
   :custom
@@ -295,13 +350,27 @@
 (use-package elfeed
   :commands elfeed)
 
+(use-package markdown-mode
+  :custom
+  (markdown-fontify-code-block-natively t))
+
 (use-package undo-tree
   :custom
+  (undo-tree-auto-save-history nil)
   (global-undo-tree-mode t))
 
 (use-package ghostel
   :custom
-  (ghostel-shell "fish"))
+  (ghostel-shell "fish")
+  (ghostel-tramp-shells '((t login-shell "/bin/sh")) "Try login shell for all methods, fall back to /bin/sh")
+  :bind (("C-x g" . ghostel)
+         :map project-prefix-map
+         ("s" . ghostel-project)))
+
+(use-package doc-view
+  :ensure nil
+  :custom
+  (doc-view-resolution 300))
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setopt gc-cons-threshold (* 2 1000 1000))
