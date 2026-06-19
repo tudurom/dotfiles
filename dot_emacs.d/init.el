@@ -389,5 +389,39 @@
   :custom
   (doc-view-resolution 300))
 
+(use-package notmuch
+  :commands (notmuch notmuch-hello)
+  :ensure nil)
+
+(use-package mu4e
+  :ensure nil
+  :commands (mu4e)
+  :custom
+  (mu4e-get-mail-command "mbsync -C -a"))
+
+(use-package emacs
+  :custom
+  (message-send-mail-function 'message-send-mail-with-sendmail)
+  (sendmail-program "msmtp")
+  (message-sendmail-extra-arguments '("--read-envelope-from"))
+  (message-sendmail-f-is-evil 't))
+
+(use-package emms
+  :ensure t
+  :custom
+  (emms-player-list '(emms-player-mpv))
+  (emms-info-functions '(emms-info-native))
+  :config
+  (emms-all))
+
+(use-package emms-mpris
+  :ensure nil
+  :after emms
+  :config
+  (emms-mpris-enable))
+
 ;; Make gc pauses faster by decreasing the threshold.
 (setopt gc-cons-threshold (* 2 1000 1000))
+
+(setq tudor/private-file "private.el")
+(load tudor/private-file 'noerror)
