@@ -9,7 +9,10 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file 'noerror)
 
-(setq tudor/ui-text-font "Luxi Sans")
+(setq tudor/ui-text-font "Lucida Grande")
+(setq tudor/mono-font "Lucida Sans Typewriter")
+(setq tudor/serif-font "Source Serif 4")
+(setq tudor/mono-serif-font "Lucida Typewriter Std")
 
 (use-package use-package
   :ensure nil
@@ -36,9 +39,10 @@
          ((prog-mode conf-mode) . electric-quote-mode))
   :custom-face
   ;; (default ((t (:family "Luxi Sans" :height 120))) "Default UI font.")
-  (default ((t (:family "Berkeley Mono" :height 120))) "Default UI font.")
-  (fixed-pitch ((t (:family "Berkeley Mono"))))
-  (variable-pitch ((t (:family "Source Serif 4"))))
+  (default ((t (:family ,tudor/mono-font :height 120))) "Default UI font.")
+  (fixed-pitch ((t (:family ,tudor/mono-font :height 120))))
+  (fixed-pitch-serif ((t (:family ,tudor/mono-serif-font :height 120))))
+  (variable-pitch ((t (:family ,tudor/serif-font :height 140))))
   :custom
   (apropos-do-all t)
   (auto-revert-avoid-polling t "Use filesystem notifications instead of polling")
@@ -48,10 +52,11 @@
   (blink-cursor-mode nil "It's annoying")
   (completions-detailed t)
   (create-lockfiles nil)
-  (default-frame-alist '((vertical-scroll-bars . nil)
+  (default-frame-alist `((vertical-scroll-bars . nil)
                          (horizontal-scroll-bars . nil)
-                         (font . "Berkeley Mono")
-                         ))
+                         (font . ,tudor/mono-font)
+                         (inhibit-double-buffering . t)))
+  (dired-dwim-target t "Suggest path of other dired window for operations.")
   (enable-remote-dir-locals t)
   ;; (explicit-bash-args '("--noediting" "-i" "-l") "Run bash as login shell")
 
@@ -79,6 +84,7 @@
   (save-place-mode t)
   (select-enable-clipboard t)
   (sentence-end-double-space nil)
+  (show-paren-delay 0)
   (switch-to-buffer-obey-display-actions t))
 
 (use-package info
@@ -330,7 +336,7 @@
   (eat-term-name "xterm" "For widespread compatibility."))
 
 (use-package olivetti
-  :hook ((org-mode markdown-mode elfeed-show-mode) . olivetti-mode))
+  :hook ((org-mode markdown-mode) . olivetti-mode))
 
 (use-package mixed-pitch
   :hook ((org-mode markdown-mode) . mixed-pitch-mode))
@@ -348,7 +354,18 @@
   (rmh-elfeed-org-files (list (locate-user-emacs-file "elfeed.org"))))
 
 (use-package elfeed
-  :commands elfeed)
+  :commands elfeed
+  :preface
+  (defun tudor/elfeed-olivetti (buff)
+    "Turn on olivetti-mode in an elfeed-show buffer and refresh the buffer to get good text alignment."
+    (switch-to-buffer buff)
+    (olivetti-mode)
+    (setq-local line-spacing 0.25)
+    (elfeed-show-refresh))
+  :custom
+  (elfeed-search-separator-date-format "%a %x")
+  (elfeed-search-date-format '("%X" 8 :left))
+  (elfeed-show-entry-switch 'tudor/elfeed-olivetti))
 
 (use-package markdown-mode
   :custom
