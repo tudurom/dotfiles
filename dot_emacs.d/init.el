@@ -14,19 +14,33 @@
 (setq tudor/serif-font "Source Serif 4")
 (setq tudor/mono-serif-font "Lucida Typewriter Std")
 
+(setopt straight-use-package-by-default t)
+
+;;;; Straight bootstrap
+; Copyright (c) 2017-2026 Radian LLC and contributors
+; MIT Licensed
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+; Copyright end
+
 (use-package use-package
   :ensure nil
+  :straight nil
   :custom
-  (use-package-always-defer t)          ; speed boost
-  (use-package-always-ensure t))
-
-(use-package package
-  :ensure nil
-  :custom
-  (package-archives '(("melpa" . "https://melpa.org/packages/")
-		              ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-		              ("elpa" . "https://elpa.gnu.org/packages/")
-		              ("nongnu" . "https://elpa.nongnu.org/nongnu/"))))
+  (use-package-always-defer t))         ; speed boost
 
 ;;;; Settings for built-in Emacs features
 
@@ -89,6 +103,7 @@
 
 (use-package info
   :ensure nil
+  :straight nil
   :preface
   (define-minor-mode tudor/info-variable-pitch-mode
     "Set the font in Info mode to a serif font."
@@ -102,6 +117,7 @@
 
 (use-package savehist
   :ensure nil
+  :straight nil
   :custom
   (savehist-mode t))
 
@@ -127,6 +143,7 @@
 
 (use-package man
   :ensure nil
+  :straight nil
   :custom
   (Man-notify-method 'aggressive))
 
@@ -150,7 +167,7 @@
 (use-package flexoki-themes
   :demand t
   :load-path "site-lisp/emacs-flexoki-theme"
-  :pin melpa)
+  )
 (use-package auto-dark                  ; themes set as customisations
   :after (flexoki-themes doom-themes)
   :custom
@@ -206,9 +223,7 @@
 ;; Make TRAMP go brr
 (use-package tramp-rpc
   :after tramp
-  :vc (:url "https://github.com/ArthurHeymans/emacs-tramp-rpc"
-            :rev :newest
-            :lisp-dir "lisp")
+  :straight (:host github :repo "ArthurHeymans/emacs-tramp-rpc")
   :custom
   (tramp-rpc-deploy-git-build-policy 'release))
 
@@ -218,7 +233,7 @@
   :bind ("C-M-;" . magit-status))
 
 (use-package majutsu
-  :vc (:url "https://github.com/0WD0/majutsu"))
+  :straight (:host github :repo "0WD0/majutsu"))
 
 (use-package vc-jj)
 
@@ -226,7 +241,6 @@
 
 ;; Tree-siter
 (use-package treesit-auto
-  :pin melpa
   :demand t
   :custom
   (treesit-auto-install 'prompt)
@@ -324,7 +338,7 @@
 ;;;; Typst
 
 (use-package typst-ts-mode
-  :vc (:url "https://codeberg.org/meow_king/typst-ts-mode.git"))
+  :straight (:host codeberg :repo "meow_king/typst-ts-mode"))
 
 ;;;; Misc
 
@@ -386,15 +400,18 @@
 
 (use-package doc-view
   :ensure nil
+  :straight nil
   :custom
   (doc-view-resolution 300))
 
 (use-package notmuch
   :commands (notmuch notmuch-hello)
-  :ensure nil)
+  :ensure nil
+  :straight nil)
 
 (use-package mu4e
   :ensure nil
+  :straight nil
   :commands (mu4e)
   :custom
   (mu4e-get-mail-command "mbsync -C -a"))
@@ -415,6 +432,7 @@
   (emms-all))
 
 (use-package emms-mpris
+  :straight nil
   :ensure nil
   :after emms
   :config
