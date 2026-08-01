@@ -70,6 +70,7 @@
                          (horizontal-scroll-bars . nil)
                          (font . ,tudor/mono-font)
                          (inhibit-double-buffering . t)))
+  (delete-selection-mode t)
   (dired-dwim-target t "Suggest path of other dired window for operations.")
   (enable-remote-dir-locals t)
   ;; (explicit-bash-args '("--noediting" "-i" "-l") "Run bash as login shell")
@@ -77,6 +78,7 @@
   (fido-vertical-mode t)
   (fringe-mode 20 "Give some room to breathe.")
   (mode-line-right-align-edge 'right-margin "Otherwise the right side of the modeline will go off-screen with a non-zero fringe.")
+  (require-final-newline t)
   (global-auto-revert-mode t)
   (help-window-select t)
   (help-window-keep-selected t)
@@ -99,7 +101,8 @@
   (select-enable-clipboard t)
   (sentence-end-double-space nil)
   (show-paren-delay 0)
-  (switch-to-buffer-obey-display-actions t))
+  (switch-to-buffer-obey-display-actions t)
+  (treesit-font-lock-level 4))
 
 (use-package info
   :ensure nil
@@ -146,6 +149,10 @@
   :straight nil
   :custom
   (Man-notify-method 'aggressive))
+
+(use-package nerd-icons-dired
+  :custom
+  (nerd-icons-dired-mode t))
 
 (use-package marginalia
   :custom
@@ -414,7 +421,8 @@
   :straight nil
   :commands (mu4e)
   :custom
-  (mu4e-get-mail-command "mbsync -C -a"))
+  (mu4e-get-mail-command "mbsync -C -a")
+  (mu4e-update-interval (* 60 60)))
 
 (use-package emacs
   :custom
@@ -437,6 +445,37 @@
   :after emms
   :config
   (emms-mpris-enable))
+
+(use-package nerd-icons
+  :defer nil
+  :preface
+  (setq tudor/nerd-icons-font-name "Symbols Nerd Font Mono")
+  (defun tudor/nerd-icons-fix (&optional frame)
+    (set-fontset-font t '(#xE000 . #xF8FF)     (font-spec :family tudor/nerd-icons-font-name) frame nil)
+    (set-fontset-font t '(#xF0000 . #xFFFFD)   (font-spec :family tudor/nerd-icons-font-name) frame nil)
+    (set-fontset-font t '(#x100000 . #x10FFFD) (font-spec :family tudor/nerd-icons-font-name) frame nil))
+  :hook (after-make-frame-functions . tudor/nerd-icons-fix)
+  :init
+  (tudor/nerd-icons-fix)
+  :custom
+  (nerd-icons-font-family tudor/nerd-icons-font-name))
+
+(use-package ledger-mode
+  :custom
+  (ledger-binary-path "hledger.sh")
+  (ledger-mode-should-check-version nil)
+  (ledger-report-auto-width nil)
+  (ledger-report-links-in-register nil)
+  (ledger-report-native-highlighting-arguments '("--color=always"))
+  (ledger-default-date-string "%Y-%m-%d")
+  :mode ("\\.hledger\\'" "\\.ledger\\'" "\\.journal\\'"))
+
+(use-package nix-ts-mode
+  :mode "\\.nix\\'")
+
+(use-package direnv
+  :config
+  (direnv-mode))
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setopt gc-cons-threshold (* 2 1000 1000))
