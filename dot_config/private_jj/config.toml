@@ -1,0 +1,20 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Tudor Roman"
+email = "tudor@tudorr.ro"
+
+[signing]
+behavior = "drop"
+backend = "ssh"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPL0/8jCHkisIGcEIztViShls0iANZwL/W6v5xwPAKkZ"
+
+[signing.backends.ssh]
+program = "/opt/1Password/op-ssh-sign"
+allowed-signers = "/home/tudor/.config/git/allowed_signers"
+
+[ui]
+show-cryptographic-signatures = false
+
+[git]
+sign-on-push = true
