@@ -1,5 +1,3 @@
-test -f "$HOME/.profile" && . "$HOME/.profile"
-
 test -f "/usr/share/ghostty/shell-integration/bash/ghostty.bash" && . "/usr/share/ghostty/shell-integration/bash/ghostty.bash"
 test -f "/home/linuxbrew/.linuxbrew/bin/brew" && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 type "mise" &>/dev/null && eval "$(mise activate bash)"

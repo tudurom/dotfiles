@@ -1,0 +1,3 @@
+# Login shell loads .bash_profile but not .bashrc
+# So we load .bashrc here to have a common configuration.
+[[ -r ~/.bashrc ]] && . ~/.bashrc
